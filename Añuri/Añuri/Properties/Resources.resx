@@ -130,9 +130,6 @@
   <data name="hogar (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hogar (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="usuario (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\usuario (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="repartidor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\repartidor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -148,11 +145,17 @@
   <data name="estadisticas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\estadisticas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="hogar (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hogar (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hogar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hogar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hogar (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hogar (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cancelar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cancelar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="repartidor (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\repartidor (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cajas-de-carga-de-trabajador" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cajas-de-carga-de-trabajador.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,11 +166,11 @@
   <data name="Añuri" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Añuri.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="usuario1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\usuario1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cancelar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancelar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hogar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hogar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="usuario (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\usuario (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ingeniero" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ingeniero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,8 +178,8 @@
   <data name="cerrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cerrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hogar (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hogar (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="usuario1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\usuario1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="menos (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\menos (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,7 +187,7 @@
   <data name="maximizar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\maximizar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="repartidor (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\repartidor (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Añuri1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Añuri1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

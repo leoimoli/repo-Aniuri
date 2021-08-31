@@ -24,8 +24,34 @@ namespace Añuri.Negocio
         public static List<MenuPorPerfilUsuario> BuscarMenuPorPerfilUsuario(int idPerfil)
         {
             List<Entidades.MenuPorPerfilUsuario> lista = new List<Entidades.MenuPorPerfilUsuario>();
-            lista = UsuarioDao.BuscarMenuPorPerfilUsuario(idPerfil);           
+            lista = UsuarioDao.BuscarMenuPorPerfilUsuario(idPerfil);
             return lista;
+        }
+        public static List<Usuario> ListarUsuarios()
+        {
+            List<Usuario> _listaUsuarios = new List<Usuario>();
+            try
+            {
+                _listaUsuarios = Dao.UsuarioDao.ListarUsuarios();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _listaUsuarios;
+        }
+        public static List<string> CargarComboPerfiles()
+        {
+            List<string> _listaPerfiles = new List<string>();
+            try
+            {
+                _listaPerfiles = Dao.UsuarioDao.CargarComboPerfiles();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _listaPerfiles;
         }
     }
 }

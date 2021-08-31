@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases Maestras\AutoCompleteUsuarios.cs" />
     <Compile Include="Clases Maestras\Sesion.cs" />
     <Compile Include="Dao\UsuarioDao.cs" />
     <Compile Include="Entidades\MenuPorPerfilUsuario.cs" />
@@ -192,6 +193,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\repartidor %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Añuri1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -50,7 +50,73 @@ namespace Añuri.Dao
             }
             connection.Close();
             return lista;
-        }        
+        }
+
+        public static List<string> CargarComboPerfiles()
+        {
+            connection.Close();
+            connection.Open();
+            List<string> _listaPerfiles = new List<string>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { };
+            string proceso = "CargarComboPerfiles";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    string Perfil = item["Nombre"].ToString();
+                    _listaPerfiles.Add(Perfil);
+                }
+            }
+            connection.Close();
+            return _listaPerfiles;
+        }
+
+        public static List<Usuario> ListarUsuarios()
+        {
+            connection.Close();
+            connection.Open();
+            List<Usuario> _listaUsuarios = new List<Usuario>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { };
+            string proceso = "ListarUsuarios";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Entidades.Usuario listaUsuario = new Entidades.Usuario();
+                    listaUsuario.idUsuario = Convert.ToInt32(item["idUsuario"].ToString());
+                    listaUsuario.Apellido = item["Apellido"].ToString();
+                    listaUsuario.Nombre = item["Nombre"].ToString();
+                    listaUsuario.Dni = item["Dni"].ToString();
+                    listaUsuario.FechaDeAlta = Convert.ToDateTime(item["FechaDeAlta"].ToString());
+                    listaUsuario.FechaUltimaConexion = Convert.ToDateTime(item["UltimoInicioSesion"].ToString());
+                    listaUsuario.Contraseña = item["Contrasena"].ToString();
+                    int estado = Convert.ToInt32(item["Estado"].ToString());
+                    string estadoString = "";
+                    if (estado == 1)
+                    { estadoString = "Activo"; }
+                    listaUsuario.Estado = estadoString;
+                    listaUsuario.idPerfil = Convert.ToInt32(item["idPerfil"].ToString());
+                    _listaUsuarios.Add(listaUsuario);
+                }
+            }
+            connection.Close();
+            return _listaUsuarios;
+        }
+
         public static void ActualizarUltimaConexion(int idUsuario)
         {
             connection.Close();
@@ -67,7 +133,7 @@ namespace Añuri.Dao
         }
         public static List<MenuPorPerfilUsuario> BuscarMenuPorPerfilUsuario(int idPerfil)
         {
-            connection.Close();           
+            connection.Close();
             connection.Open();
             List<Entidades.MenuPorPerfilUsuario> lista = new List<Entidades.MenuPorPerfilUsuario>();
             MySqlCommand cmd = new MySqlCommand();
@@ -88,7 +154,7 @@ namespace Añuri.Dao
                     Entidades.MenuPorPerfilUsuario listaMenu = new Entidades.MenuPorPerfilUsuario();
                     listaMenu.idMenuPorPerfil = Convert.ToInt32(item["idMenuPorPerfil"].ToString());
                     listaMenu.idPerfil = Convert.ToInt32(item["idPerfil"].ToString());
-                    listaMenu.NombreMenu = item["NombreMenu"].ToString();                                 
+                    listaMenu.NombreMenu = item["NombreMenu"].ToString();
                     lista.Add(listaMenu);
                 }
             }

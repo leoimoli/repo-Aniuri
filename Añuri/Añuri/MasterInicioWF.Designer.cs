@@ -217,7 +217,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(74, 51);
+            this.label2.Location = new System.Drawing.Point(85, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(118, 13);
             this.label2.TabIndex = 22;
@@ -228,7 +228,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(71, 26);
+            this.label1.Location = new System.Drawing.Point(82, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 25);
             this.label1.TabIndex = 1;
@@ -312,9 +312,9 @@
             this.lblPantalla.ForeColor = System.Drawing.Color.White;
             this.lblPantalla.Location = new System.Drawing.Point(47, 7);
             this.lblPantalla.Name = "lblPantalla";
-            this.lblPantalla.Size = new System.Drawing.Size(73, 19);
+            this.lblPantalla.Size = new System.Drawing.Size(51, 19);
             this.lblPantalla.TabIndex = 4;
-            this.lblPantalla.Text = "Pantalla";
+            this.lblPantalla.Text = "Inicio";
             // 
             // pictureBox6
             // 
@@ -421,17 +421,19 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(68, 6);
+            this.pictureBox2.Location = new System.Drawing.Point(77, 6);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(140, 81);
+            this.pictureBox2.Size = new System.Drawing.Size(131, 81);
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = global::Añuri.Properties.Resources.Añuri1;
             this.pictureBox1.Location = new System.Drawing.Point(4, 6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 81);
+            this.pictureBox1.Size = new System.Drawing.Size(72, 81);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
