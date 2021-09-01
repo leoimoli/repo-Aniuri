@@ -19,6 +19,6 @@ namespace Añuri.Entidades
         public string Contraseña2 { get; set; }
         public string Perfil { get; set; }
         public int idPerfil { get; set; }
-        public string Estado { get; set; }
+        public int Estado { get; set; }
     }
 }

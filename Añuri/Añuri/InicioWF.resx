@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Líder en la construcción de estructuras metálicas en España desde 1965 y radicada desde 1980 en Lisandro Olmos, Partido de La Plata, Añuri Hispanoamericana S.A. se consolidó como un grupo empresarial maduro, solvente, abierto a la utilización de nuevas tecnologías y capaz de responder con agilidad y calidad a las necesidades que requiere el mercado argentino.</value>
+  </data>
+  <data name="textBox2.Text" xml:space="preserve">
+    <value>Tanto la elaboración o evaluación de un proyecto como el cálculo estructural y diseño de detalles se llevan acabo íntegramente en nuestra Oficina Técnica, con un equipo de profesionales especializados en la materia, apoyado en un importante soporte informático.</value>
+  </data>
+  <data name="textBox3.Text" xml:space="preserve">
+    <value>Añuri Hispanoamericana S.A. enfrenta el desafío que plantea el desarrollo de la construcción en Argentina, promoviendo procesos de avanzada en la fabricación, con una mayor productividad, modernos equipos e instalaciones y personal altamente capacitado.</value>
+  </data>
+  <data name="textBox4.Text" xml:space="preserve">
+    <value>Partiendo de la fiabilidad de nuestros productos y equipos de trabajo nos permitimos rápidos y seguros sistemas de montaje de las estructuras, armando total o casi totalmente las mismas a nivel de piso, para luego izarlas mediante el uso de grúas. De esta manera se logran menores plazos de ejecución, menores riesgos de operarios y materiales, mejor inspección de las obras y óptima calidad de los trabajos.</value>
+  </data>
 </root>

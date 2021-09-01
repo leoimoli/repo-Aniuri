@@ -108,6 +108,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.pictureBox3.Image = global::Añuri.Properties.Resources.Logo_Añuri;
             this.pictureBox3.Location = new System.Drawing.Point(30, 70);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(192, 191);
