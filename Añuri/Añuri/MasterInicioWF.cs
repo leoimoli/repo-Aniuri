@@ -144,7 +144,7 @@ namespace Añuri
         }
         private void btnProveedores_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new InicioWF());
+            AbrirFormEnPanel(new ProveedoresWF());
             var imagen = new Bitmap(Añuri.Properties.Resources.repartidor__1_);
             ImagenPagina.Image = imagen;
             lblPantalla.Text = "Proveedores";
