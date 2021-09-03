@@ -92,6 +92,18 @@
       <DependentUpon>ProveedoresWF.cs</DependentUpon>
     </Compile>
     <Compile Include="Prueba.cs" />
+    <Compile Include="RegistrarStockWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarStockWF.Designer.cs">
+      <DependentUpon>RegistrarStockWF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StockWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockWF.Designer.cs">
+      <DependentUpon>StockWF.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsuariosWF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +134,12 @@
     </Compile>
     <EmbeddedResource Include="ProveedoresWF.resx">
       <DependentUpon>ProveedoresWF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarStockWF.resx">
+      <DependentUpon>RegistrarStockWF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockWF.resx">
+      <DependentUpon>StockWF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsuariosWF.resx">
       <DependentUpon>UsuariosWF.cs</DependentUpon>
@@ -231,6 +249,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Añuri Imagen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mas %282%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -129,8 +129,7 @@ namespace Añuri
         }
         private void btnStock_Click(object sender, EventArgs e)
         {
-
-            AbrirFormEnPanel(new InicioWF());
+            AbrirFormEnPanel(new StockWF());
             var imagen = new Bitmap(Añuri.Properties.Resources.cajas_de_carga_de_trabajador__1_);
             ImagenPagina.Image = imagen;
             lblPantalla.Text = "Stock";
@@ -179,7 +178,7 @@ namespace Añuri
         }
 
         private void btnModificarClave_Click(object sender, EventArgs e)
-        {           
+        {
             string clave = txtNuevaClave.Text;
             string claveCifrada = cifrar(clave);
             bool Exito = UsuarioDao.ResetearClave(claveCifrada);
