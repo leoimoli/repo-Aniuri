@@ -49,13 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases Maestras\AutoCompleteProductos.cs" />
     <Compile Include="Clases Maestras\AutoCompleteProveedores.cs" />
     <Compile Include="Clases Maestras\AutoCompleteUsuarios.cs" />
+    <Compile Include="Clases Maestras\ListarProveedores.cs" />
     <Compile Include="Clases Maestras\Sesion.cs" />
+    <Compile Include="Dao\ProductoDao.cs" />
     <Compile Include="Dao\ProveedoresDao.cs" />
+    <Compile Include="Dao\StockDao.cs" />
     <Compile Include="Dao\UsuarioDao.cs" />
     <Compile Include="Entidades\MenuPorPerfilUsuario.cs" />
+    <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\Proveedores.cs" />
+    <Compile Include="Entidades\Stock.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -81,7 +87,9 @@
     <Compile Include="MasterInicioWF.Designer.cs">
       <DependentUpon>MasterInicioWF.cs</DependentUpon>
     </Compile>
+    <Compile Include="Negocio\ProductoNeg.cs" />
     <Compile Include="Negocio\ProveedoresNeg.cs" />
+    <Compile Include="Negocio\StockNeg.cs" />
     <Compile Include="Negocio\UsuarioNeg.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
