@@ -129,7 +129,6 @@ namespace Añuri.Dao
             connection.Close();
             return _lista;
         }
-
         public static bool InsertProveedor(Proveedores proveedor)
         {
             bool exito = false;
@@ -152,7 +151,6 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
-
         public static List<Proveedores> BuscarProveedorPorID(int idProveedorSeleccionado)
         {
             connection.Close();

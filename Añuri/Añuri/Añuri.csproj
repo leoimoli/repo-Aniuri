@@ -49,16 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases Maestras\AutoCompleteLocalidades.cs" />
+    <Compile Include="Clases Maestras\AutoCompleteObras.cs" />
     <Compile Include="Clases Maestras\AutoCompleteProductos.cs" />
     <Compile Include="Clases Maestras\AutoCompleteProveedores.cs" />
+    <Compile Include="Clases Maestras\AutoCompleteProvincias.cs" />
     <Compile Include="Clases Maestras\AutoCompleteUsuarios.cs" />
     <Compile Include="Clases Maestras\ListarProveedores.cs" />
     <Compile Include="Clases Maestras\Sesion.cs" />
+    <Compile Include="Dao\ObrasDao.cs" />
     <Compile Include="Dao\ProductoDao.cs" />
     <Compile Include="Dao\ProveedoresDao.cs" />
     <Compile Include="Dao\StockDao.cs" />
     <Compile Include="Dao\UsuarioDao.cs" />
     <Compile Include="Entidades\MenuPorPerfilUsuario.cs" />
+    <Compile Include="Entidades\Obra.cs" />
     <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\Proveedores.cs" />
     <Compile Include="Entidades\Stock.cs" />
@@ -87,10 +92,17 @@
     <Compile Include="MasterInicioWF.Designer.cs">
       <DependentUpon>MasterInicioWF.cs</DependentUpon>
     </Compile>
+    <Compile Include="Negocio\ObrasNeg.cs" />
     <Compile Include="Negocio\ProductoNeg.cs" />
     <Compile Include="Negocio\ProveedoresNeg.cs" />
     <Compile Include="Negocio\StockNeg.cs" />
     <Compile Include="Negocio\UsuarioNeg.cs" />
+    <Compile Include="ObrasWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObrasWF.Designer.cs">
+      <DependentUpon>ObrasWF.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProveedoresWF.cs">
@@ -129,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterInicioWF.resx">
       <DependentUpon>MasterInicioWF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObrasWF.resx">
+      <DependentUpon>ObrasWF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

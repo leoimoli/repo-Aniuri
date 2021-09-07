@@ -442,7 +442,7 @@ namespace Añuri
                 this.dgvStock.Rows[e.RowIndex].Height = icoAtomico.Height + 8;
                 this.dgvStock.Columns[e.ColumnIndex].Width = icoAtomico.Width + 40;
                 e.Handled = true;
-            }           
+            }
         }
     }
 }

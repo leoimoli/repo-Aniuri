@@ -136,7 +136,7 @@ namespace Añuri
         }
         private void btnObras_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new InicioWF());
+            AbrirFormEnPanel(new ObrasWF());
             var imagen = new Bitmap(Añuri.Properties.Resources.ingeniero__1_);
             ImagenPagina.Image = imagen;
             lblPantalla.Text = "Obras";
