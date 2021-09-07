@@ -131,8 +131,9 @@ namespace Añuri
         }
         private void HabilitarCamposNuevaObra()
         {
-            panelNuevaObra.Enabled = true;
             panelDetalleObra.Visible = false;
+            panelNuevaObra.Enabled = true;
+            panelObra.Visible = true;            
             txtNombreObra.Focus();
             CargarProvincias();
         }
@@ -299,15 +300,15 @@ namespace Añuri
 
         private void dgvObras_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvObras.CurrentCell.ColumnIndex == 3)
+            if (dgvObras.CurrentCell.ColumnIndex == 4)
             {
-                //PanelDetalleStock.Visible = true;
-                //PanelNuevoMaterial.Visible = false;
-                //btnEditarProducto.Visible = false;
-                //lblNuevoProducto.Text = "Historial de stock seleccionado";
+                panelObra.Visible = true;
+                panelNuevaObra.Visible = false;
+                panelDetalleObra.Visible = true;                
+                btnEditar.Visible = false;
+                lblNombreObra.Text = "Detalle de la Obra"+ " " + dgvObras.CurrentRow.Cells[1].Value.ToString();
             }
         }
-
         private void txtObraBus_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -337,6 +338,10 @@ namespace Añuri
                 }
                 dgvObras.ReadOnly = true;
             }
+        }
+        private void txtMaterial_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
