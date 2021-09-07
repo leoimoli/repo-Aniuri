@@ -18,7 +18,7 @@ namespace Añuri.Clases_Maestras
             DataTable dt = new DataTable();
             MySqlConnection conexion = new MySqlConnection(Properties.Settings.Default.db);
             conexion.Open();
-            string consulta = "Select txNombreEmpresa from proveedores";
+            string consulta = "Select idProveedores, txNombreEmpresa from proveedores";
             MySqlCommand cmd = new MySqlCommand(consulta, conexion);
             MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
             adap.Fill(dt);

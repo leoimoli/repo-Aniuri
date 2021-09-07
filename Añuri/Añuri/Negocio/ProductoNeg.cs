@@ -93,5 +93,17 @@ namespace Añuri.Negocio
             }
             return _listaStock;
         }
+        public static List<Producto> BuscarProductoPorDescripcion(string descripcion)
+        {
+            List<Producto> _listaStock = new List<Producto>();
+            try
+            {
+                _listaStock = ProductoDao.BuscarProductoPorDescripcion(descripcion);
+            }
+            catch (Exception ex)
+            {
+            }
+            return _listaStock;
+        }
     }
 }

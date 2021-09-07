@@ -12,6 +12,7 @@ namespace Añuri.Entidades
         public int idProducto { get; set; }
         public string CodigoProducto { get; set; }
         public string Descripcion { get; set; }
+        public int idProveedor { get; set; }
         public string Proveedor { get; set; }
         public string Marca { get; set; }
         public string Remito { get; set; }

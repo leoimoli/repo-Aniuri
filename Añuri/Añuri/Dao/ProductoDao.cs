@@ -44,7 +44,6 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
-
         public static bool ValidarProductoExistente(string descripcionProducto)
         {
             connection.Close();
@@ -116,6 +115,34 @@ namespace Añuri.Dao
                 {
                     Producto listaStock = new Producto();
                     listaStock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _listaStocks.Add(listaStock);
+                }
+            }
+            connection.Close();
+            return _listaStocks;
+        }
+        public static List<Producto> BuscarProductoPorDescripcion(string descripcion)
+        {
+            connection.Close();
+            connection.Open();
+            List<Producto> _listaStocks = new List<Producto>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("descripcion_in", descripcion) };
+            string proceso = "ListarProductosPorDescripcionStock";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Producto listaStock = new Producto();
+                    listaStock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    listaStock.DescripcionProducto = item["DescripcionProducto"].ToString();
+                    listaStock.Stock = Convert.ToInt32(item["Stock"].ToString());
                     _listaStocks.Add(listaStock);
                 }
             }

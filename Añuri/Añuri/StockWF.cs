@@ -1,4 +1,5 @@
 ﻿using Añuri.Clases_Maestras;
+using Añuri.Dao;
 using Añuri.Entidades;
 using Añuri.Negocio;
 using System;
@@ -30,7 +31,6 @@ namespace Añuri
             catch (Exception ex)
             { }
         }
-
         #region Botones
         private void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -44,6 +44,9 @@ namespace Añuri
             btnEditarProducto.Visible = false;
             txtMaterial.Focus();
             BuscarProveedores();
+            PanelDetalleStock.Visible = false;
+            PanelNuevoMaterial.Visible = true;
+            lblNuevoProducto.Text = "Nuevo Material";
         }
         private void btnConsultaStock_Click(object sender, EventArgs e)
         {
@@ -56,6 +59,7 @@ namespace Añuri
             txtDescipcionBus.Visible = true;
             label1.Text = "Stock de Productos";
             btnEditarProducto.Visible = true;
+            FuncionListarProductos();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -73,7 +77,7 @@ namespace Añuri
                         var result2 = MessageBox.Show(message2, caption2,
                                                      MessageBoxButtons.OK,
                                                      MessageBoxIcon.Asterisk);
-                        LimpiarCampos();
+                        LimpiarCamposNuevoProducto();
                     }
                 }
             }
@@ -88,26 +92,79 @@ namespace Añuri
                     var result2 = MessageBox.Show(message2, caption2,
                                                  MessageBoxButtons.OK,
                                                  MessageBoxIcon.Asterisk);
-                    LimpiarCampos();
+                    LimpiarCamposNuevoProducto();
                 }
             }
+            FuncionListarProductos();
         }
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            txtDescripcionProducto.Focus();
             PanelNuevoMaterial.Visible = true;
             PanelNuevoMaterial.Enabled = true;
         }
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            Stock Entidad = CargarEntidadRegistroStock();
-            dgvListaCargaStock.Rows.Add(Entidad.idProducto, Entidad.Descripcion, Entidad.Cantidad, Entidad.ValorUnitario, Entidad.PrecioNeto);
-            txtProveedor.Enabled = false;
-            dtFechaCompra.Enabled = false;
-            txtRemito.Enabled = false;
-            txtCantidad.Clear();
-            txtValorUni.Clear();
-            txtDescripcionProducto.Clear();
-            txtDescipcionBus.Focus();
+            try
+            {
+                Stock Entidad = CargarEntidadRegistroStock();
+                dgvListaCargaStock.Rows.Add(Entidad.idProducto, Entidad.Descripcion, Entidad.Cantidad, Entidad.ValorUnitario, Entidad.PrecioNeto);
+                //txtProveedor.Enabled = false;
+                //dtFechaCompra.Enabled = false;
+                //txtRemito.Enabled = false;
+                txtCantidad.Clear();
+                txtValorUni.Clear();
+                txtDescripcionProducto.Clear();
+                txtDescipcionBus.Focus();
+            }
+            catch (Exception ex)
+            { }
+        }
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Stock> ListaStock = new List<Stock>();
+                ListaStock = CargarEntidadFinal();
+                bool Exito = StockNeg.CargarlistaStock(ListaStock);
+                if (Exito == true)
+                {
+                    ProgressBar2();
+                    const string message2 = "Se registro el stock exitosamente.";
+                    const string caption2 = "Éxito";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Asterisk);
+                    LimpiarCampos();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
+        }
+        private void btnEditarProducto_Click(object sender, EventArgs e)
+        {
+            Funcion = 2;
+            if (this.dgvStock.RowCount > 0)
+            {
+                PanelNuevoMaterial.Enabled = true;
+                btnCrear.Enabled = true;
+                idProductoSeleccionado = Convert.ToInt32(this.dgvStock.CurrentRow.Cells[0].Value);
+                txtDescripcionProducto.Text = dgvStock.CurrentRow.Cells[1].Value.ToString();
+                string TotalCaracteres = Convert.ToString(txtDescripcionProducto.Text.Length);
+                lblContador.Visible = true;
+                lblTotal.Visible = true;
+                lblContador.Text = TotalCaracteres;
+            }
+            else
+            {
+                const string message2 = "Debe seleccionar un Material de la grilla.";
+                const string caption2 = "Atención";
+                var result2 = MessageBox.Show(message2, caption2,
+                                             MessageBoxButtons.OK,
+                                             MessageBoxIcon.Asterisk);
+            }
         }
         #endregion
         #region Funciones
@@ -121,11 +178,26 @@ namespace Añuri
             txtProveedor.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
         }
-        private void LimpiarCampos()
+        private void LimpiarCamposNuevoProducto()
         {
             txtDescripcionProducto.Clear();
             progressBar1.Value = Convert.ToInt32(null);
             progressBar1.Visible = false;
+            txtDescripcionProducto.Focus();
+        }
+        private void LimpiarCampos()
+        {
+            txtDescipcionBus.Clear();
+            txtMaterial.Clear();
+            txtProveedor.Clear();
+            dtFechaCompra.Value = DateTime.Now;
+            txtRemito.Clear();
+            txtCantidad.Clear();
+            txtValorUni.Clear();
+            dgvListaCargaStock.Rows.Clear();
+            progressBar2.Value = Convert.ToInt32(null);
+            progressBar2.Visible = false;
+            txtMaterial.Focus();
         }
         private Producto CargarEntidad()
         {
@@ -153,6 +225,22 @@ namespace Añuri
         {
             double pow = Math.Pow(i, i);
         }
+        private void ProgressBar2()
+        {
+            progressBar2.Visible = true;
+            progressBar2.Maximum = 100000;
+            progressBar2.Step = 1;
+
+            for (int j = 0; j < 100000; j++)
+            {
+                Caluculate(j);
+                progressBar2.PerformStep();
+            }
+        }
+        private void Caluculate2(int i)
+        {
+            double pow = Math.Pow(i, i);
+        }
         private void txtDescripcionProducto_TextChanged(object sender, EventArgs e)
         {
             lblContador.Text = Convert.ToString(txtDescripcionProducto.Text.Length);
@@ -169,6 +257,7 @@ namespace Añuri
                     string cantidad = Convert.ToString(item.Stock);
                     dgvStock.Rows.Add(item.idProducto, item.DescripcionProducto, cantidad);
                 }
+                btnEditarProducto.Visible = true;
             }
             dgvStock.ReadOnly = true;
         }
@@ -177,6 +266,10 @@ namespace Añuri
             txtMaterial.AutoCompleteCustomSource = Clases_Maestras.AutoCompleteProductos.Autocomplete();
             txtMaterial.AutoCompleteMode = AutoCompleteMode.Suggest;
             txtMaterial.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            txtDescipcionBus.AutoCompleteCustomSource = Clases_Maestras.AutoCompleteProductos.Autocomplete();
+            txtDescipcionBus.AutoCompleteMode = AutoCompleteMode.Suggest;
+            txtDescipcionBus.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
         private Stock CargarEntidadRegistroStock()
         {
@@ -184,16 +277,58 @@ namespace Añuri
             _producto.idProducto = idProdcutoStatic;
             int idusuarioLogueado = Sesion.UsuarioLogueado.idUsuario;
             _producto.idUsuario = idusuarioLogueado;
-            _producto.Proveedor = txtProveedor.Text;
+            if (String.IsNullOrEmpty(txtProveedor.Text))
+            {
+                const string message = "El campo proveedor es obligatorio.";
+                const string caption = "Error";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.OK,
+                                           MessageBoxIcon.Exclamation);
+                throw new Exception();
+            }
+            else { _producto.Proveedor = txtProveedor.Text; }
+            if (String.IsNullOrEmpty(txtMaterial.Text))
+            {
+                const string message = "El campo Material es obligatorio.";
+                const string caption = "Error";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.OK,
+                                           MessageBoxIcon.Exclamation);
+                throw new Exception();
+            }
+            else { _producto.Descripcion = txtMaterial.Text; }
+
             _producto.Remito = txtRemito.Text;
-            _producto.Descripcion = txtMaterial.Text;
             _producto.FechaFactura = Convert.ToDateTime(dtFechaCompra.Text);
-            string Valor = txtValorUni.Text;
-            var temp = Valor.Replace(".", "<TEMP>");
-            var temp2 = temp.Replace(",", ",");
-            var replaced = temp2.Replace("<TEMP>", ",");
-            _producto.ValorUnitario = Convert.ToDecimal(replaced);
-            _producto.Cantidad = Convert.ToInt32(txtCantidad.Text);
+
+
+            if (String.IsNullOrEmpty(txtValorUni.Text))
+            {
+                const string message = "El campo Valor Unitario es obligatorio.";
+                const string caption = "Error";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.OK,
+                                           MessageBoxIcon.Exclamation);
+                throw new Exception();
+            }
+            else
+            {
+                string Valor = txtValorUni.Text;
+                var temp = Valor.Replace(".", "<TEMP>");
+                var temp2 = temp.Replace(",", ",");
+                var replaced = temp2.Replace("<TEMP>", ",");
+                _producto.ValorUnitario = Convert.ToDecimal(replaced);
+            }
+            if (String.IsNullOrEmpty(txtCantidad.Text))
+            {
+                const string message = "El campo Cantidad es obligatorio.";
+                const string caption = "Error";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.OK,
+                                           MessageBoxIcon.Exclamation);
+                throw new Exception();
+            }
+            else { _producto.Cantidad = Convert.ToInt32(txtCantidad.Text); }
             _producto.PrecioNeto = _producto.ValorUnitario * _producto.Cantidad;
             return _producto;
         }
@@ -240,48 +375,6 @@ namespace Añuri
                 }
             }
         }
-        #endregion
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                List<Stock> ListaStock = new List<Stock>();
-                ListaStock = CargarEntidadFinal();
-                bool Exito = StockNeg.CargarlistaStock(ListaStock);
-                if (Exito == true)
-                {
-                    ProgressBar();
-                    const string message2 = "Se registro el stock exitosamente.";
-                    const string caption2 = "Éxito";
-                    var result2 = MessageBox.Show(message2, caption2,
-                                                 MessageBoxButtons.OK,
-                                                 MessageBoxIcon.Asterisk);
-                    LimpiarCampos();
-                    const string message = "Desea adjuntar la factura de la compra?";
-                    const string caption = "Consulta";
-                    var result = MessageBox.Show(message, caption,
-                                                 MessageBoxButtons.YesNo,
-                                                 MessageBoxIcon.Question);
-                    {
-                        if (result == DialogResult.Yes)
-                        {
-                            ArchivosWF _archivo = new ArchivosWF();
-                            _archivo.Show();
-                        }
-                        else
-                        {
-
-                        }
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception();
-            }
-        }
         private List<Stock> CargarEntidadFinal()
         {
             List<Stock> ListaStock = new List<Stock>();
@@ -293,15 +386,63 @@ namespace Añuri
                 Lista.idUsuario = idusuarioLogueado;
                 Lista.CodigoProducto = row.Cells[1].Value.ToString();
                 Lista.Proveedor = txtProveedor.Text;
+                List<Proveedores> provId = new List<Proveedores>();
+                provId = ProveedoresDao.BuscarProvedorPorNombre(Lista.Proveedor);
+                Lista.idProveedor = provId[0].idProveedor;
                 Lista.Remito = txtRemito.Text;
                 Lista.Descripcion = row.Cells[2].Value.ToString();
-                Lista.FechaFactura = Convert.ToDateTime(dtFechaCompra.Text);
+                DateTime fecha = Convert.ToDateTime(dtFechaCompra.Text);
+                Lista.FechaFactura = Convert.ToDateTime(fecha.ToShortDateString());
                 Lista.PrecioNeto = Convert.ToDecimal(row.Cells[4].Value.ToString());
                 Lista.ValorUnitario = Convert.ToDecimal(row.Cells[3].Value.ToString());
                 Lista.Cantidad = Convert.ToInt32(row.Cells[2].Value.ToString());
                 ListaStock.Add(Lista);
             }
             return ListaStock;
+        }
+        private void txtDescipcionBus_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                FuncionBuscartexto();
+                dgvStock.Rows.Clear();
+                List<Producto> ListaProductos = ProductoNeg.BuscarProductoPorDescripcion(txtDescipcionBus.Text);
+                if (ListaProductos.Count > 0)
+                {
+                    foreach (var item in ListaProductos)
+                    {
+                        string cantidad = Convert.ToString(item.Stock);
+                        dgvStock.Rows.Add(item.idProducto, item.DescripcionProducto, cantidad);
+                    }
+                    btnEditarProducto.Visible = true;
+                }
+                dgvStock.ReadOnly = true;
+            }
+        }
+        #endregion
+
+        private void dgvStock_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvStock.CurrentCell.ColumnIndex == 3)
+            {
+                PanelDetalleStock.Visible = true;
+                PanelNuevoMaterial.Visible = false;
+                btnEditarProducto.Visible = false;
+                lblNuevoProducto.Text = "Historial de stock seleccionado";
+            }
+        }
+        private void dgvStock_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && this.dgvStock.Columns[e.ColumnIndex].Name == "Ver" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell BotonVer = this.dgvStock.Rows[e.RowIndex].Cells["Ver"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\" + @"ver (3).ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 20, e.CellBounds.Top + 4);
+                this.dgvStock.Rows[e.RowIndex].Height = icoAtomico.Height + 8;
+                this.dgvStock.Columns[e.ColumnIndex].Width = icoAtomico.Width + 40;
+                e.Handled = true;
+            }           
         }
     }
 }

@@ -48,6 +48,7 @@
             this.Ver = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panelGrilla = new System.Windows.Forms.Panel();
             this.PanelRegistroStock = new System.Windows.Forms.Panel();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.btnCrear = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -125,6 +126,7 @@
             this.txtDescipcionBus.Name = "txtDescipcionBus";
             this.txtDescipcionBus.Size = new System.Drawing.Size(326, 20);
             this.txtDescipcionBus.TabIndex = 59;
+            this.txtDescipcionBus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescipcionBus_KeyDown);
             // 
             // label1
             // 
@@ -181,6 +183,8 @@
             this.dgvStock.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.dgvStock.Size = new System.Drawing.Size(583, 418);
             this.dgvStock.TabIndex = 69;
+            this.dgvStock.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStock_CellClick);
+            this.dgvStock.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvStock_CellPainting);
             // 
             // idProducto
             // 
@@ -215,6 +219,7 @@
             // 
             // PanelRegistroStock
             // 
+            this.PanelRegistroStock.Controls.Add(this.progressBar2);
             this.PanelRegistroStock.Controls.Add(this.btnCrear);
             this.PanelRegistroStock.Controls.Add(this.btnCancelar);
             this.PanelRegistroStock.Controls.Add(this.btnGuardar);
@@ -232,11 +237,22 @@
             this.PanelRegistroStock.Controls.Add(this.label9);
             this.PanelRegistroStock.Controls.Add(this.lblRepitaContraseña);
             this.PanelRegistroStock.Controls.Add(this.txtRemito);
-            this.PanelRegistroStock.Location = new System.Drawing.Point(10, 30);
+            this.PanelRegistroStock.Location = new System.Drawing.Point(12, 30);
             this.PanelRegistroStock.Name = "PanelRegistroStock";
             this.PanelRegistroStock.Size = new System.Drawing.Size(588, 429);
             this.PanelRegistroStock.TabIndex = 71;
             this.PanelRegistroStock.Visible = false;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.ForeColor = System.Drawing.Color.Lime;
+            this.progressBar2.Location = new System.Drawing.Point(95, 233);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(397, 23);
+            this.progressBar2.Step = 50;
+            this.progressBar2.TabIndex = 169;
+            this.progressBar2.Value = 10;
+            this.progressBar2.Visible = false;
             // 
             // btnCrear
             // 
@@ -513,6 +529,7 @@
             // PanelDerecho
             // 
             this.PanelDerecho.BackColor = System.Drawing.Color.Gainsboro;
+            this.PanelDerecho.Controls.Add(this.PanelDetalleStock);
             this.PanelDerecho.Controls.Add(this.PanelNuevoMaterial);
             this.PanelDerecho.Controls.Add(this.lblNuevoProducto);
             this.PanelDerecho.Location = new System.Drawing.Point(629, 32);
@@ -522,7 +539,6 @@
             // 
             // PanelNuevoMaterial
             // 
-            this.PanelNuevoMaterial.Controls.Add(this.PanelDetalleStock);
             this.PanelNuevoMaterial.Controls.Add(this.lblContador);
             this.PanelNuevoMaterial.Controls.Add(this.lblTotal);
             this.PanelNuevoMaterial.Controls.Add(this.txtDescripcion);
@@ -538,7 +554,7 @@
             // PanelDetalleStock
             // 
             this.PanelDetalleStock.Enabled = false;
-            this.PanelDetalleStock.Location = new System.Drawing.Point(3, 310);
+            this.PanelDetalleStock.Location = new System.Drawing.Point(0, 31);
             this.PanelDetalleStock.Name = "PanelDetalleStock";
             this.PanelDetalleStock.Size = new System.Drawing.Size(421, 409);
             this.PanelDetalleStock.TabIndex = 167;
@@ -640,6 +656,7 @@
             this.toolTip1.SetToolTip(this.btnEditarProducto, "Editar Producto");
             this.btnEditarProducto.UseVisualStyleBackColor = false;
             this.btnEditarProducto.Visible = false;
+            this.btnEditarProducto.Click += new System.EventHandler(this.btnEditarProducto_Click);
             // 
             // StockWF
             // 
@@ -722,5 +739,6 @@
         private System.Windows.Forms.Button btnGuardarProducto;
         private System.Windows.Forms.Button btnEditarProducto;
         private System.Windows.Forms.Panel PanelDetalleStock;
+        private System.Windows.Forms.ProgressBar progressBar2;
     }
 }
