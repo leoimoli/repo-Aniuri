@@ -89,6 +89,62 @@ namespace Añuri.Dao
             connection.Close();
             return _lista;
         }
+        public static List<Stock> ObtenerStockDisponible(int idProducto, int cantidad)
+        {
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProducto_in", idProducto) };
+            string proceso = "ObtenerStockDisponible";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock listaStock = new Stock();
+                    listaStock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    listaStock.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    listaStock.Cantidad = Convert.ToInt32(item["PrecioUnitario"].ToString());
+                    _listaStocks.Add(listaStock);
+                }
+            }
+            connection.Close();
+            return _listaStocks;
+        }
+        public static List<Stock> VerificarDisponibilidadDeMaterial(string material)
+        {
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("material_in", material) };
+            string proceso = "VerificarDisponibilidadDeMaterial";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock listaStock = new Stock();
+                    listaStock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    listaStock.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaStocks.Add(listaStock);
+                }
+            }
+            connection.Close();
+            return _listaStocks;
+        }
+
         public static List<Obra> ListaDeObrasPorNombre(string obra)
         {
             connection.Close();

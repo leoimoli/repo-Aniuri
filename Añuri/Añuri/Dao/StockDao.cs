@@ -91,7 +91,6 @@ namespace Añuri.Dao
             }
             return exito;
         }
-
         private static bool InsertarStockNuevo(int idProducto, int cantidad, string codigoProducto)
         {
             bool exito = false;
@@ -107,7 +106,6 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
-
         private static bool ActualizarStock(int idProducto, int cantidadTotal)
         {
             bool exito = false;
@@ -123,7 +121,6 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
-
         private static List<int> ValidarStockExistente(int idProducto)
         {
             connection.Close();

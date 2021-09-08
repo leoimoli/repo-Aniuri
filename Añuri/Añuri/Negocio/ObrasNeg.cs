@@ -108,5 +108,29 @@ namespace Añuri.Negocio
             }
             return _listaObras;
         }
+        public static List<Stock> VerificarDisponibilidadDeMaterial(string material)
+        {
+            List<Entidades.Stock> _listaObras = new List<Entidades.Stock>();
+            try
+            {
+                _listaObras = ObrasDao.VerificarDisponibilidadDeMaterial(material);
+            }
+            catch (Exception ex)
+            {
+            }
+            return _listaObras;
+        }
+        public static List<Stock> ObtenerStockDisponible(int idProducto, int cantidad)
+        {
+            List<Entidades.Stock> _listaObras = new List<Entidades.Stock>();
+            try
+            {
+                _listaObras = ObrasDao.ObtenerStockDisponible(idProducto, cantidad);
+            }
+            catch (Exception ex)
+            {
+            }
+            return _listaObras;
+        }
     }
 }

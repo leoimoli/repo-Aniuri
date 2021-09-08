@@ -133,7 +133,7 @@ namespace Añuri
         {
             panelDetalleObra.Visible = false;
             panelNuevaObra.Enabled = true;
-            panelObra.Visible = true;            
+            panelObra.Visible = true;
             txtNombreObra.Focus();
             CargarProvincias();
         }
@@ -297,17 +297,23 @@ namespace Añuri
                 e.Handled = true;
             }
         }
-
         private void dgvObras_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvObras.CurrentCell.ColumnIndex == 4)
             {
                 panelObra.Visible = true;
                 panelNuevaObra.Visible = false;
-                panelDetalleObra.Visible = true;                
+                panelDetalleObra.Visible = true;
                 btnEditar.Visible = false;
-                lblNombreObra.Text = "Detalle de la Obra"+ " " + dgvObras.CurrentRow.Cells[1].Value.ToString();
+                lblNombreObra.Text = "Detalle de la Obra" + " " + dgvObras.CurrentRow.Cells[1].Value.ToString();
+                FuncionBuscartextoMateriales();
             }
+        }
+        private void FuncionBuscartextoMateriales()
+        {
+            txtMaterial.AutoCompleteCustomSource = Clases_Maestras.AutoCompleteProductos.Autocomplete();
+            txtMaterial.AutoCompleteMode = AutoCompleteMode.Suggest;
+            txtMaterial.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
         private void txtObraBus_KeyDown(object sender, KeyEventArgs e)
         {
@@ -342,6 +348,32 @@ namespace Añuri
         private void txtMaterial_TextChanged(object sender, EventArgs e)
         {
 
+        }
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Stock> listaMaterial = new List<Stock>();
+                List<Stock> listaMaterialObtenido = new List<Stock>();
+                string Material = txtMaterial.Text;
+                int Cantidad = Convert.ToInt32(txtCantidad.Text);
+                listaMaterial = ObrasNeg.VerificarDisponibilidadDeMaterial(Material);
+                if (listaMaterial.Count > 0)
+                {
+                    foreach (var item in listaMaterial)
+                    {
+                        if (item.Cantidad >= Cantidad)
+                        {
+                            int idProducto = item.idProducto;
+                            listaMaterialObtenido = ObrasNeg.ObtenerStockDisponible(idProducto, Cantidad);
+                        }
+                    }
+                }
+                //dgvListaCargaStock.Rows.Add(Entidad.idProducto, Entidad.Descripcion, Entidad.Cantidad, Entidad.ValorUnitario, Entidad.PrecioNeto);
+                txtCantidad.Clear();
+            }
+            catch (Exception ex)
+            { }
         }
     }
 }
