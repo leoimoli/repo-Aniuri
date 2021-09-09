@@ -20,5 +20,6 @@ namespace Añuri.Entidades
         public DateTime FechaFactura { get; set; }
         public Decimal ValorUnitario { get; set; }
         public Decimal PrecioNeto { get; set; }
+        public string TipoMovimiento { get; set; }
     }
 }

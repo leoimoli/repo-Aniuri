@@ -27,10 +27,7 @@ namespace Añuri.Dao
             DateTime fecha = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             cmd.Parameters.AddWithValue("FechaActual_in", fecha);
             cmd.Parameters.AddWithValue("idUsuario_in", listaStock[0].idUsuario);
-            cmd.Parameters.AddWithValue("Cantidad_in", listaStock[0].Cantidad);
-            cmd.Parameters.AddWithValue("ValorUnitario_in", listaStock[0].ValorUnitario);
-            cmd.Parameters.AddWithValue("PrecioNeto_in", listaStock[0].PrecioNeto);
-            cmd.Parameters.AddWithValue("idProducto_in", listaStock[0].idProducto);
+            cmd.Parameters.AddWithValue("Cantidad_in", listaStock[0].Cantidad);          
             cmd.Parameters.AddWithValue("Estado_in", "1");
 
             MySqlDataReader r = cmd.ExecuteReader();
@@ -79,6 +76,8 @@ namespace Añuri.Dao
                         ///// TipoMovimiento_in es parametro si entrada o salida de stock
                         cmd2.Parameters.AddWithValue("TipoMovimiento_in", "E");
                         cmd2.Parameters.AddWithValue("idMovimientoEntrada_in", idMovimiento);
+                        cmd2.Parameters.AddWithValue("ValorUnitario_in", item.ValorUnitario);
+                        cmd2.Parameters.AddWithValue("PrecioNeto_in", item.PrecioNeto);                       
                         cmd2.ExecuteNonQuery();
                         exito = true;
                         connection.Close();

@@ -98,7 +98,7 @@ namespace Añuri.Dao
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
             MySqlParameter[] oParam = { new MySqlParameter("idProducto_in", idProducto) };
-            string proceso = "ObtenerStockDisponible";
+            string proceso = "ObtenerEntradaAbierta";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
             dt.SelectCommand.CommandType = CommandType.StoredProcedure;
             dt.SelectCommand.Parameters.AddRange(oParam);
@@ -107,15 +107,111 @@ namespace Añuri.Dao
             {
                 foreach (DataRow item in Tabla.Rows)
                 {
-                    Stock listaStock = new Stock();
-                    listaStock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
-                    listaStock.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
-                    listaStock.Cantidad = Convert.ToInt32(item["PrecioUnitario"].ToString());
-                    _listaStocks.Add(listaStock);
+
+                    int idEntrada = Convert.ToInt32(item["idEntrada"].ToString());
+
                 }
             }
             connection.Close();
             return _listaStocks;
+        }
+        public static bool ReservarEntradaSeleccionada(int idEntrada)
+        {
+            bool exito = false;
+            connection.Close();
+            connection.Open();
+            string Actualizar = "ReservarEntradaSeleccionada";
+            MySqlCommand cmd = new MySqlCommand(Actualizar, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("idEntrada_in", idEntrada);          
+            cmd.Parameters.AddWithValue("Estado_in", 3);           
+            cmd.ExecuteNonQuery();
+            exito = true;
+            connection.Close();
+            return exito;
+        }
+        public static List<Stock> ObtenerProductoDisponible(int idEntrada)
+        {
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idEntrada_in", idEntrada) };
+            string proceso = "ObtenerProductoDisponible";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock lista = new Stock();
+                    lista.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    lista.Descripcion = item["NombreProducto"].ToString();
+                    lista.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    lista.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    _listaStocks.Add(lista);
+                }
+            }
+            connection.Close();
+            return _listaStocks;
+        }
+        public static List<Stock> ObtenerMovientosStock(int idEntrada, int idProducto)
+        {
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idEntrada_in", idEntrada),
+            new MySqlParameter("idProducto_in", idProducto)};
+            string proceso = "ObtenerMovientosStock";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock lista = new Stock();
+                    lista.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    lista.TipoMovimiento = item["TipoMovimiento"].ToString();
+                    _listaStocks.Add(lista);
+                }
+            }
+            connection.Close();
+            return _listaStocks;
+        }
+        public static List<int> ObtenerEntradaAbierta(int idProducto)
+        {
+             List<int> listaIdEntrada = new List<int>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProducto_in", idProducto) };
+            string proceso = "ObtenerEntradaAbierta";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    int idEntrada = Convert.ToInt32(item["idEntrada"].ToString());
+                    listaIdEntrada.Add(idEntrada);
+                }
+            }
+            connection.Close();
+            return listaIdEntrada;
         }
         public static List<Stock> VerificarDisponibilidadDeMaterial(string material)
         {
@@ -144,7 +240,6 @@ namespace Añuri.Dao
             connection.Close();
             return _listaStocks;
         }
-
         public static List<Obra> ListaDeObrasPorNombre(string obra)
         {
             connection.Close();

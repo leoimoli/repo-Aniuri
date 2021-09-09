@@ -356,20 +356,26 @@ namespace Añuri
                 List<Stock> listaMaterial = new List<Stock>();
                 List<Stock> listaMaterialObtenido = new List<Stock>();
                 string Material = txtMaterial.Text;
-                int Cantidad = Convert.ToInt32(txtCantidad.Text);
+                int CantidadIngresada = Convert.ToInt32(txtCantidad.Text);
                 listaMaterial = ObrasNeg.VerificarDisponibilidadDeMaterial(Material);
                 if (listaMaterial.Count > 0)
                 {
                     foreach (var item in listaMaterial)
                     {
-                        if (item.Cantidad >= Cantidad)
+                        if (item.Cantidad >= CantidadIngresada)
                         {
                             int idProducto = item.idProducto;
-                            listaMaterialObtenido = ObrasNeg.ObtenerStockDisponible(idProducto, Cantidad);
+                            listaMaterialObtenido = ObrasNeg.ObtenerStockDisponible(idProducto, CantidadIngresada);
                         }
                     }
                 }
-                //dgvListaCargaStock.Rows.Add(Entidad.idProducto, Entidad.Descripcion, Entidad.Cantidad, Entidad.ValorUnitario, Entidad.PrecioNeto);
+                if (listaMaterialObtenido.Count > 0)
+                {
+                    var material = listaMaterialObtenido.First();
+                    decimal CalculoNeto = CantidadIngresada * material.ValorUnitario;
+                    dgvListaCargaStock.Rows.Add(material.idProducto, material.Descripcion, CantidadIngresada, material.ValorUnitario, CalculoNeto);
+                }
+
                 txtCantidad.Clear();
             }
             catch (Exception ex)

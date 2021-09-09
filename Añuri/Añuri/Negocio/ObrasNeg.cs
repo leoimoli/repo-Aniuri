@@ -123,14 +123,96 @@ namespace Añuri.Negocio
         public static List<Stock> ObtenerStockDisponible(int idProducto, int cantidad)
         {
             List<Entidades.Stock> _listaObras = new List<Entidades.Stock>();
+            List<Stock> listaStock = new List<Stock>();
+            List<Stock> listaStockAcumuladora = new List<Stock>();
+            List<int> listaIdEntrada = new List<int>();
+            int Entrada = 0;
+            int Salidas = 0;
+            int ValorEnStock = 0;
+            //int idEntrada = 0;
+            //if (idEntrada > 0)
+            //{
+            //    exito = ObrasDao.ReservarEntradaSeleccionada(idEntrada);
+            //}
+            //if (exito == false)
+            //{ idEntrada = 0; }
+
             try
             {
-                _listaObras = ObrasDao.ObtenerStockDisponible(idProducto, cantidad);
+                listaIdEntrada = BuscarIdEntrada(idProducto);
+                if (listaIdEntrada.Count > 0)
+                {
+                    int contador = 1;
+                    foreach (var idEntrada in listaIdEntrada)
+                    {
+                        listaStock = ObrasDao.ObtenerMovientosStock(idEntrada, idProducto);
+                        if (listaStock.Count > 0)
+                        {
+                            foreach (var item in listaStock)
+                            {
+                                if (item.TipoMovimiento == "E")
+                                {
+                                    Entrada = Entrada + item.Cantidad;
+                                }
+                                if (item.TipoMovimiento == "S")
+                                {
+                                    Salidas = Salidas + item.Cantidad;
+                                }
+                                Stock stock = new Stock();
+                                stock.Cantidad = item.Cantidad;
+                                stock.TipoMovimiento = item.TipoMovimiento;
+                                listaStockAcumuladora.Add(stock);
+                            }
+                            ValorEnStock = Entrada - Salidas;
+                            Entrada = 0;
+                            Salidas = 0;
+                        }
+                        if (ValorEnStock > cantidad && contador <= 1)
+                        {
+                            _listaObras = ObrasDao.ObtenerProductoDisponible(idEntrada);
+                            ValorEnStock = 0;
+                            break;
+                        }
+                        else
+                        {
+                            ValorEnStock = 0;
+                        }
+                        contador = contador + 1;
+                    }
+                    if (_listaObras.Count == 0 && listaStockAcumuladora.Count > 0)
+                    {
+                        foreach (var Valor in listaStockAcumuladora)
+                        {
+                          
+                        }
+                        //_listaObras = ObrasDao.ObtenerProductoDisponible(idEntrada);
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            { }
+
+
+            return _listaObras;
+        }
+
+        private static List<int> BuscarIdEntrada(int idProducto)
+        {
+            List<int> listaIdEntrada = new List<int>();
+            int idEntrada = 0;
+            bool exito = false;
+            try
+            {
+                listaIdEntrada = ObrasDao.ObtenerEntradaAbierta(idProducto);
             }
             catch (Exception ex)
             {
             }
-            return _listaObras;
+            return listaIdEntrada;
         }
     }
 }
