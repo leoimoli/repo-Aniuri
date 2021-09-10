@@ -123,8 +123,8 @@ namespace Añuri.Dao
             string Actualizar = "ReservarEntradaSeleccionada";
             MySqlCommand cmd = new MySqlCommand(Actualizar, connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("idEntrada_in", idEntrada);          
-            cmd.Parameters.AddWithValue("Estado_in", 3);           
+            cmd.Parameters.AddWithValue("idEntrada_in", idEntrada);
+            cmd.Parameters.AddWithValue("Estado_in", 3);
             cmd.ExecuteNonQuery();
             exito = true;
             connection.Close();
@@ -179,8 +179,13 @@ namespace Añuri.Dao
                 foreach (DataRow item in Tabla.Rows)
                 {
                     Stock lista = new Stock();
+                    lista.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    lista.Descripcion = item["NombreProducto"].ToString();
                     lista.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
                     lista.TipoMovimiento = item["TipoMovimiento"].ToString();
+                    lista.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    lista.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    lista.idMovimientoEntrada = Convert.ToInt32(item["idMovimientoEntrada"].ToString());
                     _listaStocks.Add(lista);
                 }
             }
@@ -189,7 +194,7 @@ namespace Añuri.Dao
         }
         public static List<int> ObtenerEntradaAbierta(int idProducto)
         {
-             List<int> listaIdEntrada = new List<int>();
+            List<int> listaIdEntrada = new List<int>();
             connection.Close();
             connection.Open();
             List<Stock> _listaStocks = new List<Stock>();
@@ -239,6 +244,25 @@ namespace Añuri.Dao
             }
             connection.Close();
             return _listaStocks;
+        }
+        public static bool LiberarSotckReservado(List<int> ListaIdProd)
+        {
+            bool exito = false;
+            //string idsLista = string.Join(",", listaIdEntrada);
+            foreach (var item in ListaIdProd)
+            {
+                connection.Close();
+                connection.Open();
+                string Actualizar = "LiberarSotckReservado";
+                MySqlCommand cmd = new MySqlCommand(Actualizar, connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("idProducto_in", item);
+                cmd.Parameters.AddWithValue("Estado_in", 1);
+                cmd.ExecuteNonQuery();
+                exito = true;
+            }
+            connection.Close();
+            return exito;
         }
         public static List<Obra> ListaDeObrasPorNombre(string obra)
         {

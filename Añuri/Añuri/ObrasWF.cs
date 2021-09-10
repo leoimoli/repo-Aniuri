@@ -358,7 +358,8 @@ namespace Añuri
                 string Material = txtMaterial.Text;
                 int CantidadIngresada = Convert.ToInt32(txtCantidad.Text);
                 listaMaterial = ObrasNeg.VerificarDisponibilidadDeMaterial(Material);
-                if (listaMaterial.Count > 0)
+                var lista = listaMaterial.First();
+                if (lista.Cantidad >= CantidadIngresada)
                 {
                     foreach (var item in listaMaterial)
                     {
@@ -368,15 +369,50 @@ namespace Añuri
                             listaMaterialObtenido = ObrasNeg.ObtenerStockDisponible(idProducto, CantidadIngresada);
                         }
                     }
+                    if (listaMaterialObtenido.Count > 0)
+                    {
+                        foreach (var item in listaMaterialObtenido)
+                        {
+                            string MaterialLista = item.Descripcion;
+                            decimal CalculoNeto = item.Cantidad * item.ValorUnitario;
+                            dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, CalculoNeto);
+                        }
+                    }
+                    txtMaterial.Clear();
+                    txtCantidad.Clear();
                 }
-                if (listaMaterialObtenido.Count > 0)
+                else
                 {
-                    var material = listaMaterialObtenido.First();
-                    decimal CalculoNeto = CantidadIngresada * material.ValorUnitario;
-                    dgvListaCargaStock.Rows.Add(material.idProducto, material.Descripcion, CantidadIngresada, material.ValorUnitario, CalculoNeto);
+                    txtMaterial.Clear();
+                    txtCantidad.Clear();
+                    const string message2 = "Atención: No posee en estos momentos el stock igresado.";
+                    const string caption2 = "Atención";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Exclamation);
                 }
 
-                txtCantidad.Clear();
+            }
+            catch (Exception ex)
+            { }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            bool Exito = false;
+            try
+            {
+                List<int> ListaIdProd = new List<int>();
+                int idProducto = 0;
+                int idEntrada = 0;
+                foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
+                {
+                    idEntrada = Convert.ToInt32(row.Cells["idEntrada"].Value);
+                    //idProducto = Convert.ToInt32(row.Cells["idprod"].Value);
+                    ListaIdProd.Add(idEntrada);                    
+                }
+                Exito = ObrasNeg.LiberarSotckReservado(ListaIdProd);
+                dgvListaCargaStock.Rows.Clear();
             }
             catch (Exception ex)
             { }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Añuri.Entidades
 {
-   public class Stock
+    public class Stock
     {
         public int idUsuario { get; set; }
         public int idProducto { get; set; }
@@ -21,5 +21,6 @@ namespace Añuri.Entidades
         public Decimal ValorUnitario { get; set; }
         public Decimal PrecioNeto { get; set; }
         public string TipoMovimiento { get; set; }
+        public int idMovimientoEntrada { get; set; }
     }
 }
