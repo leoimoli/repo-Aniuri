@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Añuri.Clases_Maestras;
 using Añuri.Entidades;
 using MySql.Data.MySqlClient;
 
@@ -27,7 +28,7 @@ namespace Añuri.Dao
             DateTime fecha = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             cmd.Parameters.AddWithValue("FechaActual_in", fecha);
             cmd.Parameters.AddWithValue("idUsuario_in", listaStock[0].idUsuario);
-            cmd.Parameters.AddWithValue("Cantidad_in", listaStock[0].Cantidad);          
+            cmd.Parameters.AddWithValue("Cantidad_in", listaStock[0].Cantidad);
             cmd.Parameters.AddWithValue("Estado_in", "1");
 
             MySqlDataReader r = cmd.ExecuteReader();
@@ -77,7 +78,7 @@ namespace Añuri.Dao
                         cmd2.Parameters.AddWithValue("TipoMovimiento_in", "E");
                         cmd2.Parameters.AddWithValue("idMovimientoEntrada_in", idMovimiento);
                         cmd2.Parameters.AddWithValue("ValorUnitario_in", item.ValorUnitario);
-                        cmd2.Parameters.AddWithValue("PrecioNeto_in", item.PrecioNeto);                       
+                        cmd2.Parameters.AddWithValue("PrecioNeto_in", item.PrecioNeto);
                         cmd2.ExecuteNonQuery();
                         exito = true;
                         connection.Close();
@@ -98,7 +99,7 @@ namespace Añuri.Dao
             string proceso = "AltaStock";
             MySqlCommand cmd = new MySqlCommand(proceso, connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("idProducto_in", idProducto);           
+            cmd.Parameters.AddWithValue("idProducto_in", idProducto);
             cmd.Parameters.AddWithValue("Cantidad_in", cantidad);
             cmd.ExecuteNonQuery();
             exito = true;
@@ -124,7 +125,7 @@ namespace Añuri.Dao
         {
             connection.Close();
             List<int> cantidad = new List<int>();
-            connection.Open();           
+            connection.Open();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
@@ -144,6 +145,80 @@ namespace Añuri.Dao
             }
             connection.Close();
             return cantidad;
+        }
+        public static bool InsertSalidaStock(List<Stock> stockObra, int idObraSeleccionada)
+        {
+            bool exito = false;
+            int idMovimiento = 0;
+            foreach (var item in stockObra)
+            {
+                connection.Close();
+                connection.Open();
+                string proceso = "AltaStockMovimientoSalida";
+                MySqlCommand cmd = new MySqlCommand(proceso, connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("idProducto_in", item.idProducto);
+                cmd.Parameters.AddWithValue("Cantidad_in", item.Cantidad);
+                DateTime fecha = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                cmd.Parameters.AddWithValue("Fecha_in", fecha);
+                cmd.Parameters.AddWithValue("idObra_in", idObraSeleccionada);
+                cmd.Parameters.AddWithValue("idUsuario_in", Sesion.UsuarioLogueado.idUsuario);
+                cmd.Parameters.AddWithValue("FechaSalidaIngresada_in", item.FechaFactura);
+                MySqlDataReader r = cmd.ExecuteReader();
+                while (r.Read())
+                {
+                    idMovimiento = Convert.ToInt32(r["ID"].ToString());
+                }
+                if (idMovimiento > 0)
+                {
+                    exito = true;
+                }
+                else
+                {
+                    exito = false;
+                }
+
+                if (exito == true)
+                {
+                    foreach (var ValorMovimiento in stockObra)
+                    {
+                        int CantidadTotal = 0;
+                        List<int> stockExistente = new List<int>();
+                        stockExistente = ValidarStockExistente(ValorMovimiento.idProducto);
+                        if (stockExistente.Count > 0)
+                        {
+                            int cant = Convert.ToInt32(stockExistente[0].ToString());
+                            CantidadTotal = cant - ValorMovimiento.Cantidad;
+                            exito = ActualizarStock(ValorMovimiento.idProducto, CantidadTotal);
+                        }
+                        if (exito == true)
+                        {
+                            connection.Close();
+                            connection.Open();
+                            string proceso2 = "AltaMovimientoStock";
+                            MySqlCommand cmd2 = new MySqlCommand(proceso2, connection);
+                            cmd2.CommandType = CommandType.StoredProcedure;
+                            cmd2.Parameters.AddWithValue("idProducto_in", ValorMovimiento.idProducto);
+                            cmd2.Parameters.AddWithValue("Cantidad_in", ValorMovimiento.Cantidad);
+                            DateTime fechaactual = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                            cmd2.Parameters.AddWithValue("Fecha_in", fechaactual);
+                            ///// TipoMovimiento_in es parametro si entrada o salida de stock
+                            cmd2.Parameters.AddWithValue("TipoMovimiento_in", "S");
+                            cmd2.Parameters.AddWithValue("idMovimientoEntrada_in", idMovimiento);
+                            cmd2.Parameters.AddWithValue("ValorUnitario_in", ValorMovimiento.ValorUnitario);
+                            cmd2.Parameters.AddWithValue("PrecioNeto_in", ValorMovimiento.PrecioNeto);
+                            cmd2.ExecuteNonQuery();
+                            exito = true;
+                            connection.Close();
+                        }
+                        else
+                        {
+                            exito = false;
+                        }
+                    }
+                }
+            }
+            return exito;
         }
     }
 }

@@ -96,6 +96,96 @@ namespace Añuri
                                              MessageBoxIcon.Asterisk);
             }
         }
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Stock> listaMaterial = new List<Stock>();
+                List<Stock> listaMaterialObtenido = new List<Stock>();
+                string Material = txtMaterial.Text;
+                int CantidadIngresada = Convert.ToInt32(txtCantidad.Text);
+                listaMaterial = ObrasNeg.VerificarDisponibilidadDeMaterial(Material);
+                var lista = listaMaterial.First();
+                if (lista.Cantidad >= CantidadIngresada)
+                {
+                    foreach (var item in listaMaterial)
+                    {
+                        if (item.Cantidad >= CantidadIngresada)
+                        {
+                            int idProducto = item.idProducto;
+                            listaMaterialObtenido = ObrasNeg.ObtenerStockDisponible(idProducto, CantidadIngresada);
+                        }
+                    }
+                    if (listaMaterialObtenido.Count > 0)
+                    {
+                        foreach (var item in listaMaterialObtenido)
+                        {
+                            string MaterialLista = item.Descripcion;
+                            decimal CalculoNeto = item.Cantidad * item.ValorUnitario;
+                            dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, CalculoNeto);
+                        }
+                    }
+                    txtMaterial.Clear();
+                    txtCantidad.Clear();
+                }
+                else
+                {
+                    txtMaterial.Clear();
+                    txtCantidad.Clear();
+                    const string message2 = "Atención: No posee en estos momentos el stock igresado.";
+                    const string caption2 = "Atención";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Exclamation);
+                }
+
+            }
+            catch (Exception ex)
+            { }
+        }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            bool Exito = false;
+            try
+            {
+                LimpiarCamposDeExito();
+                List<int> ListaIdProd = new List<int>();
+                int idProducto = 0;
+                //int idEntrada = 0;
+                foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
+                {
+                    //idEntrada = Convert.ToInt32(row.Cells["idEntrada"].Value);
+                    idProducto = Convert.ToInt32(row.Cells["idprod"].Value);
+                    ListaIdProd.Add(idProducto);
+                }
+                Exito = ObrasNeg.LiberarSotckReservado(ListaIdProd);
+                dgvListaCargaStock.Rows.Clear();
+            }
+            catch (Exception ex)
+            { }
+        }
+        private void btnGuardarObra_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                List<Stock> StockObra = CargarEntidadStockParaObra();
+                bool Exito = ObrasNeg.GuardarDetalleObra(StockObra, idObraSeleccionada);
+                if (Exito == true)
+                {
+                    ProgressBar();
+                    const string message2 = "Se registraron los materiales para la obra seleccionada exitosamente.";
+                    const string caption2 = "Éxito";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Asterisk);
+                    LimpiarCamposDeExito();
+                    FuncionListarObras();
+                }
+            }
+            catch (Exception ex)
+            { }
+        }
         #endregion
         #region Funciones
         public static int Funcion = 0;
@@ -282,8 +372,6 @@ namespace Añuri
             txtCodArea.Text = codigo[0];
             txtTelefono.Text = codigo[1];
         }
-        #endregion
-
         private void dgvObras_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex >= 0 && this.dgvObras.Columns[e.ColumnIndex].Name == "Ver" && e.RowIndex >= 0)
@@ -301,6 +389,7 @@ namespace Añuri
         {
             if (dgvObras.CurrentCell.ColumnIndex == 4)
             {
+                idObraSeleccionada = Convert.ToInt32(this.dgvObras.CurrentRow.Cells[0].Value.ToString());
                 panelObra.Visible = true;
                 panelNuevaObra.Visible = false;
                 panelDetalleObra.Visible = true;
@@ -349,73 +438,45 @@ namespace Añuri
         {
 
         }
-        private void btnCargar_Click(object sender, EventArgs e)
+        private List<Stock> CargarEntidadStockParaObra()
         {
-            try
+
+            List<Stock> ListaStock = new List<Stock>();
+            foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
             {
-                List<Stock> listaMaterial = new List<Stock>();
-                List<Stock> listaMaterialObtenido = new List<Stock>();
-                string Material = txtMaterial.Text;
-                int CantidadIngresada = Convert.ToInt32(txtCantidad.Text);
-                listaMaterial = ObrasNeg.VerificarDisponibilidadDeMaterial(Material);
-                var lista = listaMaterial.First();
-                if (lista.Cantidad >= CantidadIngresada)
-                {
-                    foreach (var item in listaMaterial)
-                    {
-                        if (item.Cantidad >= CantidadIngresada)
-                        {
-                            int idProducto = item.idProducto;
-                            listaMaterialObtenido = ObrasNeg.ObtenerStockDisponible(idProducto, CantidadIngresada);
-                        }
-                    }
-                    if (listaMaterialObtenido.Count > 0)
-                    {
-                        foreach (var item in listaMaterialObtenido)
-                        {
-                            string MaterialLista = item.Descripcion;
-                            decimal CalculoNeto = item.Cantidad * item.ValorUnitario;
-                            dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, CalculoNeto);
-                        }
-                    }
-                    txtMaterial.Clear();
-                    txtCantidad.Clear();
-                }
-                else
-                {
-                    txtMaterial.Clear();
-                    txtCantidad.Clear();
-                    const string message2 = "Atención: No posee en estos momentos el stock igresado.";
-                    const string caption2 = "Atención";
-                    var result2 = MessageBox.Show(message2, caption2,
-                                                 MessageBoxButtons.OK,
-                                                 MessageBoxIcon.Exclamation);
-                }
-
+                Stock Stock = new Stock();
+                Stock.idMovimientoEntrada = Convert.ToInt32(row.Cells["idEntrada"].Value);
+                Stock.idProducto = Convert.ToInt32(row.Cells["idprod"].Value);
+                Stock.Cantidad = Convert.ToInt32(row.Cells["kilos"].Value);
+                Stock.ValorUnitario = Convert.ToInt32(row.Cells["PrecioUnitario"].Value);
+                Stock.PrecioNeto = Convert.ToInt32(row.Cells["PrecioNeto"].Value);
+                Stock.FechaFactura = Convert.ToDateTime(dtFechaCompra.Value.ToShortDateString());
+                ListaStock.Add(Stock);
             }
-            catch (Exception ex)
-            { }
+            return ListaStock;
         }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void LimpiarCamposDeExito()
+        {
+            dtFechaCompra.Value = DateTime.Now;
+            LimpiarGrilla();
+            txtMaterial.Clear();
+            txtCantidad.Clear();
+        }
+        private void LimpiarGrilla()
         {
             bool Exito = false;
-            try
+            List<int> ListaIdProd = new List<int>();
+            int idProducto = 0;
+            //int idEntrada = 0;
+            foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
             {
-                List<int> ListaIdProd = new List<int>();
-                int idProducto = 0;
-                int idEntrada = 0;
-                foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
-                {
-                    idEntrada = Convert.ToInt32(row.Cells["idEntrada"].Value);
-                    //idProducto = Convert.ToInt32(row.Cells["idprod"].Value);
-                    ListaIdProd.Add(idEntrada);                    
-                }
-                Exito = ObrasNeg.LiberarSotckReservado(ListaIdProd);
-                dgvListaCargaStock.Rows.Clear();
+                //idEntrada = Convert.ToInt32(row.Cells["idEntrada"].Value);
+                idProducto = Convert.ToInt32(row.Cells["idprod"].Value);
+                ListaIdProd.Add(idProducto);
             }
-            catch (Exception ex)
-            { }
+            Exito = ObrasNeg.LiberarSotckReservado(ListaIdProd);
+            dgvListaCargaStock.Rows.Clear();
         }
+        #endregion                        
     }
 }

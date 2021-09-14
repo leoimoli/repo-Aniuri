@@ -144,7 +144,7 @@ namespace Añuri.Negocio
                         {
                             if (idEntrada > 0)
                             {
-                                exito = ObrasDao.ReservarEntradaSeleccionada(idEntrada);
+                                exito = ObrasDao.ReservarStockSeleccionada(idProducto);
                             }
                             if (exito == true)
                             {
@@ -177,9 +177,9 @@ namespace Añuri.Negocio
                                 Salidas = 0;
                             }
                         }
-                        if (ValorEnStock > cantidadIngresada && contador <= 1)
+                        if (ValorEnStock >= cantidadIngresada && contador <= 1)
                         {
-                            _listaObras = ObrasDao.ObtenerProductoDisponible(idEntrada);
+                            _listaObras = ObrasDao.ObtenerProductoDisponible(idProducto, cantidadIngresada);
                             ValorEnStock = 0;
                             break;
                         }
@@ -266,6 +266,17 @@ namespace Añuri.Negocio
         {
             bool exito = false;
             exito = ObrasDao.LiberarSotckReservado(ListaIdProd);
+            return exito;
+        }
+        public static bool GuardarDetalleObra(List<Stock> stockObra, int idObraSeleccionada)
+        {
+            bool exito = false;
+            try
+            {
+                exito = StockDao.InsertSalidaStock(stockObra, idObraSeleccionada);
+            }
+            catch (Exception ex)
+            { }
             return exito;
         }
     }

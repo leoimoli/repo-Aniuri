@@ -115,22 +115,22 @@ namespace Añuri.Dao
             connection.Close();
             return _listaStocks;
         }
-        public static bool ReservarEntradaSeleccionada(int idEntrada)
+        public static bool ReservarStockSeleccionada(int idProducto)
         {
             bool exito = false;
             connection.Close();
             connection.Open();
-            string Actualizar = "ReservarEntradaSeleccionada";
+            string Actualizar = "ReservarStockSeleccionada";
             MySqlCommand cmd = new MySqlCommand(Actualizar, connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("idEntrada_in", idEntrada);
+            cmd.Parameters.AddWithValue("idProducto_in", idProducto);
             cmd.Parameters.AddWithValue("Estado_in", 3);
             cmd.ExecuteNonQuery();
             exito = true;
             connection.Close();
             return exito;
         }
-        public static List<Stock> ObtenerProductoDisponible(int idEntrada)
+        public static List<Stock> ObtenerProductoDisponible(int idProducto, int cantidadIngresada)
         {
             connection.Close();
             connection.Open();
@@ -138,7 +138,7 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
-            MySqlParameter[] oParam = { new MySqlParameter("idEntrada_in", idEntrada) };
+            MySqlParameter[] oParam = { new MySqlParameter("idProducto_in", idProducto) };
             string proceso = "ObtenerProductoDisponible";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
             dt.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -153,6 +153,7 @@ namespace Añuri.Dao
                     lista.Descripcion = item["NombreProducto"].ToString();
                     lista.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
                     lista.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    lista.Cantidad = cantidadIngresada;
                     _listaStocks.Add(lista);
                 }
             }
@@ -185,7 +186,7 @@ namespace Añuri.Dao
                     lista.TipoMovimiento = item["TipoMovimiento"].ToString();
                     lista.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
                     lista.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
-                    lista.idMovimientoEntrada = Convert.ToInt32(item["idMovimientoEntrada"].ToString());
+                    lista.idMovimientoEntrada = Convert.ToInt32(item["idMovimientoEntradaSalida"].ToString());
                     _listaStocks.Add(lista);
                 }
             }
@@ -248,7 +249,13 @@ namespace Añuri.Dao
         public static bool LiberarSotckReservado(List<int> ListaIdProd)
         {
             bool exito = false;
-            //string idsLista = string.Join(",", listaIdEntrada);
+            List<int> listaEntrada = new List<int>();
+            string idsListaProducto = string.Join(",", ListaIdProd);
+
+            //listaEntrada = SeleccionarIdEntradaParaProducto(idsListaProducto);
+
+            //string idsListaEntradas = string.Join(",", listaEntrada);
+
             foreach (var item in ListaIdProd)
             {
                 connection.Close();
@@ -261,9 +268,38 @@ namespace Añuri.Dao
                 cmd.ExecuteNonQuery();
                 exito = true;
             }
+
             connection.Close();
             return exito;
         }
+
+        private static List<int> SeleccionarIdEntradaParaProducto(string idsListaProducto)
+        {
+            List<int> listaIdEntrada = new List<int>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProducto_in", idsListaProducto) };
+            string proceso = "SeleccionarIdEntradaParaProducto";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    int idEntrada = Convert.ToInt32(item["idEntrada"].ToString());
+                    listaIdEntrada.Add(idEntrada);
+                }
+            }
+            connection.Close();
+            return listaIdEntrada;
+        }
+
         public static List<Obra> ListaDeObrasPorNombre(string obra)
         {
             connection.Close();
