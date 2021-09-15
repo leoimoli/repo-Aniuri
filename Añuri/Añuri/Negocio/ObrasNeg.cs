@@ -128,9 +128,11 @@ namespace Añuri.Negocio
             List<int> listaIdEntrada = new List<int>();
             int Entrada = 0;
             int Salidas = 0;
+            int StockDelMovimiento = 0;
             int ValorEnStock = 0;
             int stockDiferencial = 0;
             bool exito = false;
+            int EstadoEntrada = 1;
             try
             {
                 listaIdEntrada = BuscarIdEntrada(idProducto);
@@ -153,6 +155,7 @@ namespace Añuri.Negocio
                                     if (item.TipoMovimiento == "E")
                                     {
                                         Entrada = Entrada + item.Cantidad;
+                                        StockDelMovimiento = Entrada;
                                     }
                                     if (item.TipoMovimiento == "S")
                                     {
@@ -160,6 +163,7 @@ namespace Añuri.Negocio
                                     }
                                 }
                                 ValorEnStock = Entrada - Salidas;
+
                                 foreach (var item in listaStock)
                                 {
                                     Stock stock = new Stock();
@@ -170,6 +174,7 @@ namespace Añuri.Negocio
                                     stock.Cantidad = ValorEnStock;
                                     stock.TipoMovimiento = item.TipoMovimiento;
                                     stock.idMovimientoEntrada = idEntrada;
+                                    stock.EstadoEntrada = EstadoEntrada;
                                     listaStockAcumuladora.Add(stock);
                                     break;
                                 }
@@ -179,7 +184,12 @@ namespace Añuri.Negocio
                         }
                         if (ValorEnStock >= cantidadIngresada && contador <= 1)
                         {
-                            _listaObras = ObrasDao.ObtenerProductoDisponible(idProducto, cantidadIngresada);
+                            int ValorSuma = ValorEnStock + cantidadIngresada;
+                            if (cantidadIngresada == StockDelMovimiento)
+                            {
+                                EstadoEntrada = 0;
+                            }
+                            _listaObras = ObrasDao.ObtenerProductoDisponible(idProducto, cantidadIngresada, EstadoEntrada, idEntrada);
                             ValorEnStock = 0;
                             break;
                         }
@@ -218,12 +228,14 @@ namespace Añuri.Negocio
                                 if (stockDiferencial <= Valor.Cantidad)
                                 {
                                     Stock _lista = new Stock();
+                                    EstadoEntrada = 1;
                                     _lista.idProducto = Convert.ToInt32(Valor.idProducto);
                                     _lista.Descripcion = Valor.Descripcion;
                                     _lista.ValorUnitario = Convert.ToDecimal(Valor.ValorUnitario);
                                     _lista.PrecioNeto = Convert.ToDecimal(Valor.PrecioNeto);
                                     _lista.idMovimientoEntrada = Convert.ToInt32(Valor.idMovimientoEntrada);
                                     _lista.Cantidad = stockDiferencial;
+                                    _lista.EstadoEntrada = EstadoEntrada;
                                     //StockAcumulado = StockAcumulado + Valor.Cantidad;
                                     _listaObras.Add(_lista);
                                     break;

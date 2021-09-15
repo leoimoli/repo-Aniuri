@@ -22,5 +22,6 @@ namespace Añuri.Entidades
         public Decimal PrecioNeto { get; set; }
         public string TipoMovimiento { get; set; }
         public int idMovimientoEntrada { get; set; }
+        public int EstadoEntrada { get; set; }
     }
 }

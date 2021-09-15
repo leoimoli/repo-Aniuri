@@ -122,7 +122,7 @@ namespace Añuri
                         {
                             string MaterialLista = item.Descripcion;
                             decimal CalculoNeto = item.Cantidad * item.ValorUnitario;
-                            dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, CalculoNeto);
+                            dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, CalculoNeto, item.EstadoEntrada);
                         }
                     }
                     txtMaterial.Clear();
@@ -440,7 +440,6 @@ namespace Añuri
         }
         private List<Stock> CargarEntidadStockParaObra()
         {
-
             List<Stock> ListaStock = new List<Stock>();
             foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
             {
@@ -451,6 +450,7 @@ namespace Añuri
                 Stock.ValorUnitario = Convert.ToInt32(row.Cells["PrecioUnitario"].Value);
                 Stock.PrecioNeto = Convert.ToInt32(row.Cells["PrecioNeto"].Value);
                 Stock.FechaFactura = Convert.ToDateTime(dtFechaCompra.Value.ToShortDateString());
+                Stock.EstadoEntrada = Convert.ToInt32(row.Cells["EstadoEntrada"].Value);
                 ListaStock.Add(Stock);
             }
             return ListaStock;

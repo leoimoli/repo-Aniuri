@@ -130,7 +130,7 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
-        public static List<Stock> ObtenerProductoDisponible(int idProducto, int cantidadIngresada)
+        public static List<Stock> ObtenerProductoDisponible(int idProducto, int cantidadIngresada, int EstadoEntrada, int idEntrada)
         {
             connection.Close();
             connection.Open();
@@ -154,6 +154,8 @@ namespace Añuri.Dao
                     lista.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
                     lista.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
                     lista.Cantidad = cantidadIngresada;
+                    lista.EstadoEntrada = EstadoEntrada;
+                    lista.idMovimientoEntrada = idEntrada;
                     _listaStocks.Add(lista);
                 }
             }
