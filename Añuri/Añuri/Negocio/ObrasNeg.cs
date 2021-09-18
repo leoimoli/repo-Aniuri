@@ -185,7 +185,15 @@ namespace Añuri.Negocio
                         if (ValorEnStock >= cantidadIngresada && contador <= 1)
                         {
                             int ValorSuma = ValorEnStock + cantidadIngresada;
+                            if (ValorSuma == StockDelMovimiento)
+                            {
+                                EstadoEntrada = 0;
+                            }
                             if (cantidadIngresada == StockDelMovimiento)
+                            {
+                                EstadoEntrada = 0;
+                            }
+                            if (ValorEnStock == cantidadIngresada)
                             {
                                 EstadoEntrada = 0;
                             }
@@ -290,6 +298,18 @@ namespace Añuri.Negocio
             catch (Exception ex)
             { }
             return exito;
+        }
+        public static List<Stock> ListaMaterialesExistentes(int idObraSeleccionada)
+        {
+            List<Entidades.Stock> _listaMateriales = new List<Entidades.Stock>();
+            try
+            {
+                _listaMateriales = ObrasDao.ListaMaterialesExistentes(idObraSeleccionada);
+            }
+            catch (Exception ex)
+            {
+            }
+            return _listaMateriales;
         }
     }
 }

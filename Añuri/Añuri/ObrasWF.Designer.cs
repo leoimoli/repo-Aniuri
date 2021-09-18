@@ -90,6 +90,7 @@
             this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Existente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObras)).BeginInit();
             this.panelNuevaObra.SuspendLayout();
             this.panelDetalleObra.SuspendLayout();
@@ -583,7 +584,8 @@
             this.kilos,
             this.PrecioUnitario,
             this.PrecioNeto,
-            this.EstadoEntrada});
+            this.EstadoEntrada,
+            this.Existente});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -607,6 +609,7 @@
             this.dgvListaCargaStock.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvListaCargaStock.Size = new System.Drawing.Size(421, 224);
             this.dgvListaCargaStock.TabIndex = 158;
+            this.dgvListaCargaStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvListaCargaStock_KeyDown);
             // 
             // txtMaterial
             // 
@@ -716,6 +719,12 @@
             this.EstadoEntrada.Name = "EstadoEntrada";
             this.EstadoEntrada.Visible = false;
             // 
+            // Existente
+            // 
+            this.Existente.HeaderText = "Existente";
+            this.Existente.Name = "Existente";
+            this.Existente.Visible = false;
+            // 
             // ObrasWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -802,5 +811,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioNeto;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoEntrada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Existente;
     }
 }

@@ -301,7 +301,38 @@ namespace Añuri.Dao
             connection.Close();
             return listaIdEntrada;
         }
-
+        public static List<Stock> ListaMaterialesExistentes(int idObraSeleccionada)
+        {
+            List<Stock> listaMateriales = new List<Stock>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idObraSeleccionada_in", idObraSeleccionada) };
+            string proceso = "ListaMaterialesExistentes";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _listaMateriales = new Stock();
+                    _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    _listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
+                    _listaMateriales.idMovimientoEntrada = Convert.ToInt32(item["idMovimientoEntradaSalida"].ToString());
+                    listaMateriales.Add(_listaMateriales);
+                }
+            }
+            connection.Close();
+            return listaMateriales;
+        }
         public static List<Obra> ListaDeObrasPorNombre(string obra)
         {
             connection.Close();

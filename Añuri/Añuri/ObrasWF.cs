@@ -122,7 +122,7 @@ namespace Añuri
                         {
                             string MaterialLista = item.Descripcion;
                             decimal CalculoNeto = item.Cantidad * item.ValorUnitario;
-                            dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, CalculoNeto, item.EstadoEntrada);
+                            dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, CalculoNeto, item.EstadoEntrada, 0);
                         }
                     }
                     txtMaterial.Clear();
@@ -151,10 +151,8 @@ namespace Añuri
                 LimpiarCamposDeExito();
                 List<int> ListaIdProd = new List<int>();
                 int idProducto = 0;
-                //int idEntrada = 0;
                 foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
                 {
-                    //idEntrada = Convert.ToInt32(row.Cells["idEntrada"].Value);
                     idProducto = Convert.ToInt32(row.Cells["idprod"].Value);
                     ListaIdProd.Add(idProducto);
                 }
@@ -396,8 +394,24 @@ namespace Añuri
                 btnEditar.Visible = false;
                 lblNombreObra.Text = "Detalle de la Obra" + " " + dgvObras.CurrentRow.Cells[1].Value.ToString();
                 FuncionBuscartextoMateriales();
+                ListarMaterialesPreCargados();
             }
         }
+
+        private void ListarMaterialesPreCargados()
+        {
+            List<Stock> ListaMateriales = ObrasNeg.ListaMaterialesExistentes(idObraSeleccionada);
+            if (ListaMateriales.Count > 0)
+            {
+                foreach (var item in ListaMateriales)
+                {
+                    //string cantidad = Convert.ToString(item.Stock);
+                    dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, item.PrecioNeto, 0, 1);
+                }
+            }
+            dgvListaCargaStock.ReadOnly = true;
+        }
+
         private void FuncionBuscartextoMateriales()
         {
             txtMaterial.AutoCompleteCustomSource = Clases_Maestras.AutoCompleteProductos.Autocomplete();
@@ -440,18 +454,24 @@ namespace Añuri
         }
         private List<Stock> CargarEntidadStockParaObra()
         {
+            int Valor = 0;
             List<Stock> ListaStock = new List<Stock>();
+
             foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
             {
-                Stock Stock = new Stock();
-                Stock.idMovimientoEntrada = Convert.ToInt32(row.Cells["idEntrada"].Value);
-                Stock.idProducto = Convert.ToInt32(row.Cells["idprod"].Value);
-                Stock.Cantidad = Convert.ToInt32(row.Cells["kilos"].Value);
-                Stock.ValorUnitario = Convert.ToInt32(row.Cells["PrecioUnitario"].Value);
-                Stock.PrecioNeto = Convert.ToInt32(row.Cells["PrecioNeto"].Value);
-                Stock.FechaFactura = Convert.ToDateTime(dtFechaCompra.Value.ToShortDateString());
-                Stock.EstadoEntrada = Convert.ToInt32(row.Cells["EstadoEntrada"].Value);
-                ListaStock.Add(Stock);
+                Valor = Convert.ToInt32(row.Cells["Existente"].Value);
+                if (Valor == 0)
+                {
+                    Stock Stock = new Stock();
+                    Stock.idMovimientoEntrada = Convert.ToInt32(row.Cells["idEntrada"].Value);
+                    Stock.idProducto = Convert.ToInt32(row.Cells["idprod"].Value);
+                    Stock.Cantidad = Convert.ToInt32(row.Cells["kilos"].Value);
+                    Stock.ValorUnitario = Convert.ToInt32(row.Cells["PrecioUnitario"].Value);
+                    Stock.PrecioNeto = Convert.ToInt32(row.Cells["PrecioNeto"].Value);
+                    Stock.FechaFactura = Convert.ToDateTime(dtFechaCompra.Value.ToShortDateString());
+                    Stock.EstadoEntrada = Convert.ToInt32(row.Cells["EstadoEntrada"].Value);
+                    ListaStock.Add(Stock);
+                }
             }
             return ListaStock;
         }
@@ -461,6 +481,7 @@ namespace Añuri
             LimpiarGrilla();
             txtMaterial.Clear();
             txtCantidad.Clear();
+            txtMaterial.Focus();
         }
         private void LimpiarGrilla()
         {
@@ -477,6 +498,46 @@ namespace Añuri
             Exito = ObrasNeg.LiberarSotckReservado(ListaIdProd);
             dgvListaCargaStock.Rows.Clear();
         }
-        #endregion                        
+        #endregion
+
+        private void dgvListaCargaStock_KeyDown(object sender, KeyEventArgs e)
+        {
+            int Valor = 0;
+            if (e.KeyCode == Keys.Delete)
+            {
+                Valor = Convert.ToInt32(this.dgvListaCargaStock.CurrentRow.Cells[7].Value.ToString());
+                if (Valor == 0)
+                {
+                    int MaterialEliminar = Convert.ToInt32(this.dgvListaCargaStock.CurrentRow.Cells[0].Value.ToString());
+                    List<int> listaIdMaterial = new List<int>();
+                    listaIdMaterial.Add(MaterialEliminar);
+                    bool Exito = ObrasNeg.LiberarSotckReservado(listaIdMaterial);
+
+                    if (Exito == true)
+                    {
+                        foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
+                        {
+                            Valor = Convert.ToInt32(this.dgvListaCargaStock.CurrentRow.Cells[7].Value.ToString());
+                            int idMaterial = Convert.ToInt32(this.dgvListaCargaStock.CurrentRow.Cells[0].Value.ToString());
+                            if (idMaterial == MaterialEliminar && Valor == 0)
+                            {
+                                dgvListaCargaStock.Rows.Remove(dgvListaCargaStock.CurrentRow);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    txtMaterial.Clear();
+                    txtCantidad.Clear();
+                    const string message2 = "Atención: No se puede eliminar el material seleccionado.";
+                    const string caption2 = "Atención";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Exclamation);
+                }
+
+            }
+        }
     }
 }
