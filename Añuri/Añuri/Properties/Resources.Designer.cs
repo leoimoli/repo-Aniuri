@@ -93,6 +93,16 @@ namespace Añuri.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap buscar__2_ {
+            get {
+                object obj = ResourceManager.GetObject("buscar (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cajas_de_carga_de_trabajador {
             get {
                 object obj = ResourceManager.GetObject("cajas-de-carga-de-trabajador", resourceCulture);
@@ -186,6 +196,16 @@ namespace Añuri.Properties {
         internal static System.Drawing.Bitmap hogar__3_ {
             get {
                 object obj = ResourceManager.GetObject("hogar (3)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap informe_empresarial_con_crecimiento__1_ {
+            get {
+                object obj = ResourceManager.GetObject("informe-empresarial-con-crecimiento (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

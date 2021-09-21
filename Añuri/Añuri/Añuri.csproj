@@ -33,11 +33,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\SicoNew\Sico\Sico\bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\Stock\Stock\Stock\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +80,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InformeObraWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InformeObraWF.Designer.cs">
+      <DependentUpon>InformeObraWF.cs</DependentUpon>
     </Compile>
     <Compile Include="InicioWF.cs">
       <SubType>Form</SubType>
@@ -132,6 +145,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformeObraWF.resx">
+      <DependentUpon>InformeObraWF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InicioWF.resx">
       <DependentUpon>InicioWF.cs</DependentUpon>
@@ -277,6 +293,8 @@
     <None Include="Resources\mas %282%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\informe-empresarial-con-crecimiento %281%29.png" />
+    <None Include="Resources\buscar %282%29.png" />
     <Content Include="Resources\ver %283%29.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

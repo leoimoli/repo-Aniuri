@@ -37,11 +37,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvObras = new System.Windows.Forms.DataGridView();
-            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombredelaObra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Domicilio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ver = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.txtObraBus = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -77,12 +72,6 @@
             this.btnGuardarObra = new System.Windows.Forms.Button();
             this.btnCargar = new System.Windows.Forms.Button();
             this.dgvListaCargaStock = new System.Windows.Forms.DataGridView();
-            this.txtMaterial = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblNombreObra = new System.Windows.Forms.Label();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,6 +80,18 @@
             this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Existente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtMaterial = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblNombreObra = new System.Windows.Forms.Label();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombredelaObra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Domicilio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ver = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Informe = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObras)).BeginInit();
             this.panelNuevaObra.SuspendLayout();
             this.panelDetalleObra.SuspendLayout();
@@ -118,7 +119,8 @@
             this.NombredelaObra,
             this.Domicilio,
             this.Estado,
-            this.Ver});
+            this.Ver,
+            this.Informe});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -144,35 +146,6 @@
             this.dgvObras.TabIndex = 72;
             this.dgvObras.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvObras_CellClick);
             this.dgvObras.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvObras_CellPainting);
-            // 
-            // idProducto
-            // 
-            this.idProducto.HeaderText = "id";
-            this.idProducto.Name = "idProducto";
-            this.idProducto.Width = 50;
-            // 
-            // NombredelaObra
-            // 
-            this.NombredelaObra.HeaderText = "Nombre de la Obra";
-            this.NombredelaObra.Name = "NombredelaObra";
-            this.NombredelaObra.Width = 240;
-            // 
-            // Domicilio
-            // 
-            this.Domicilio.HeaderText = "Domicilio";
-            this.Domicilio.Name = "Domicilio";
-            this.Domicilio.Width = 190;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            this.Estado.Width = 80;
-            // 
-            // Ver
-            // 
-            this.Ver.HeaderText = "Ver";
-            this.Ver.Name = "Ver";
             // 
             // label5
             // 
@@ -611,6 +584,53 @@
             this.dgvListaCargaStock.TabIndex = 158;
             this.dgvListaCargaStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvListaCargaStock_KeyDown);
             // 
+            // idprod
+            // 
+            this.idprod.HeaderText = "id";
+            this.idprod.Name = "idprod";
+            this.idprod.Visible = false;
+            this.idprod.Width = 50;
+            // 
+            // idEntrada
+            // 
+            this.idEntrada.HeaderText = "idEntrada";
+            this.idEntrada.Name = "idEntrada";
+            this.idEntrada.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 180;
+            // 
+            // kilos
+            // 
+            this.kilos.HeaderText = "Kilos";
+            this.kilos.Name = "kilos";
+            this.kilos.Width = 50;
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "Precio Unitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            // 
+            // PrecioNeto
+            // 
+            this.PrecioNeto.HeaderText = "Precio Neto";
+            this.PrecioNeto.Name = "PrecioNeto";
+            // 
+            // EstadoEntrada
+            // 
+            this.EstadoEntrada.HeaderText = "EstadoEntrada";
+            this.EstadoEntrada.Name = "EstadoEntrada";
+            this.EstadoEntrada.Visible = false;
+            // 
+            // Existente
+            // 
+            this.Existente.HeaderText = "Existente";
+            this.Existente.Name = "Existente";
+            this.Existente.Visible = false;
+            // 
             // txtMaterial
             // 
             this.txtMaterial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -678,52 +698,42 @@
             this.btnEditar.UseVisualStyleBackColor = false;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // idprod
+            // idProducto
             // 
-            this.idprod.HeaderText = "id";
-            this.idprod.Name = "idprod";
-            this.idprod.Visible = false;
-            this.idprod.Width = 50;
+            this.idProducto.HeaderText = "id";
+            this.idProducto.Name = "idProducto";
+            this.idProducto.Visible = false;
+            this.idProducto.Width = 50;
             // 
-            // idEntrada
+            // NombredelaObra
             // 
-            this.idEntrada.HeaderText = "idEntrada";
-            this.idEntrada.Name = "idEntrada";
-            this.idEntrada.Visible = false;
+            this.NombredelaObra.HeaderText = "Nombre de la Obra";
+            this.NombredelaObra.Name = "NombredelaObra";
+            this.NombredelaObra.Width = 210;
             // 
-            // dataGridViewTextBoxColumn2
+            // Domicilio
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 180;
+            this.Domicilio.HeaderText = "Domicilio";
+            this.Domicilio.Name = "Domicilio";
+            this.Domicilio.Width = 205;
             // 
-            // kilos
+            // Estado
             // 
-            this.kilos.HeaderText = "Kilos";
-            this.kilos.Name = "kilos";
-            this.kilos.Width = 50;
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.Width = 80;
             // 
-            // PrecioUnitario
+            // Ver
             // 
-            this.PrecioUnitario.HeaderText = "Precio Unitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.Ver.HeaderText = "Ver";
+            this.Ver.Name = "Ver";
             // 
-            // PrecioNeto
+            // Informe
             // 
-            this.PrecioNeto.HeaderText = "Precio Neto";
-            this.PrecioNeto.Name = "PrecioNeto";
-            // 
-            // EstadoEntrada
-            // 
-            this.EstadoEntrada.HeaderText = "EstadoEntrada";
-            this.EstadoEntrada.Name = "EstadoEntrada";
-            this.EstadoEntrada.Visible = false;
-            // 
-            // Existente
-            // 
-            this.Existente.HeaderText = "Existente";
-            this.Existente.Name = "Existente";
-            this.Existente.Visible = false;
+            this.Informe.HeaderText = "Informe";
+            this.Informe.Name = "Informe";
+            this.Informe.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Informe.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // ObrasWF
             // 
@@ -788,11 +798,6 @@
         private System.Windows.Forms.TextBox txtCodigoPostal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombredelaObra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Domicilio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewButtonColumn Ver;
         private System.Windows.Forms.Label lblNombreObra;
         private System.Windows.Forms.TextBox txtMaterial;
         private System.Windows.Forms.Label label4;
@@ -812,5 +817,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioNeto;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoEntrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn Existente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombredelaObra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Domicilio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewButtonColumn Ver;
+        private System.Windows.Forms.DataGridViewButtonColumn Informe;
     }
 }

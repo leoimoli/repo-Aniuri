@@ -221,6 +221,6 @@ namespace Añuri
             byte[] resultado = convertir.TransformFinalBlock(arreglo, 0, arreglo.Length); //Arreglo de bytes donde guardaremos la cadena cifrada.
             tripledes.Clear();
             return Convert.ToBase64String(resultado, 0, resultado.Length); // Convertimos la cadena y la regresamos.
-        }
+        }     
     }
 }

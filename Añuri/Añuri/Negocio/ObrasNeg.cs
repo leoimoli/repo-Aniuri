@@ -48,6 +48,18 @@ namespace Añuri.Negocio
             }
             return exito;
         }
+        public static List<Stock> GraficoMaterialesEnPesos(int idObraSeleccionada)
+        {
+            List<Entidades.Stock> _listaMateriales = new List<Entidades.Stock>();
+            try
+            {
+                _listaMateriales = ObrasDao.GraficoMaterialesEnPesos(idObraSeleccionada);
+            }
+            catch (Exception ex)
+            {
+            }
+            return _listaMateriales;
+        }
         private static void ValidarDatos(Obra obra)
         {
             if (String.IsNullOrEmpty(obra.NombreObra))
@@ -268,6 +280,19 @@ namespace Añuri.Negocio
 
             return _listaObras;
         }
+        public static List<Stock> ListaMaterialesExistentesPorFecha(int idObraSeleccionada, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<Entidades.Stock> _listaMateriales = new List<Entidades.Stock>();
+            try
+            {
+                _listaMateriales = ObrasDao.ListaMaterialesExistentesPorFecha(idObraSeleccionada, fechaDesde, fechaHasta);
+            }
+            catch (Exception ex)
+            {
+            }
+            return _listaMateriales;
+        }
+
         private static List<int> BuscarIdEntrada(int idProducto)
         {
             List<int> listaIdEntrada = new List<int>();

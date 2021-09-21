@@ -60,6 +60,38 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
+
+        public static List<Stock> GraficoMaterialesEnPesos(int idObraSeleccionada)
+        {
+            List<Stock> listaMateriales = new List<Stock>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idObraSeleccionada_in", idObraSeleccionada) };
+            string proceso = "GraficoMaterialesEnPesos";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _listaMateriales = new Stock();
+                    _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    _listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
+                    listaMateriales.Add(_listaMateriales);
+                }
+            }
+            connection.Close();
+            return listaMateriales;
+        }
+
         public static List<Obra> BuscarInformacionLocalidad(string localidad, int idProvincia)
         {
             connection.Close();
@@ -248,6 +280,43 @@ namespace Añuri.Dao
             connection.Close();
             return _listaStocks;
         }
+
+        public static List<Stock> ListaMaterialesExistentesPorFecha(int idObraSeleccionada, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<Stock> listaMateriales = new List<Stock>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idObraSeleccionada_in", idObraSeleccionada),
+            new MySqlParameter("FechaDesde_in", fechaDesde),
+            new MySqlParameter("FechaHasta_in", fechaHasta)};
+            string proceso = "ListaMaterialesExistentesPorFecha";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _listaMateriales = new Stock();
+                    _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    // _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    _listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
+                    //_listaMateriales.idMovimientoEntrada = Convert.ToInt32(item["idMovimientoEntradaSalida"].ToString());
+                    _listaMateriales.FechaFactura = Convert.ToDateTime(item["FechaSalidaIngresada"].ToString());
+                    listaMateriales.Add(_listaMateriales);
+                }
+            }
+            connection.Close();
+            return listaMateriales;
+        }
+
         public static bool LiberarSotckReservado(List<int> ListaIdProd)
         {
             bool exito = false;
@@ -327,6 +396,7 @@ namespace Añuri.Dao
                     _listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
                     _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
                     _listaMateriales.idMovimientoEntrada = Convert.ToInt32(item["idMovimientoEntradaSalida"].ToString());
+                    _listaMateriales.FechaFactura = Convert.ToDateTime(item["FechaSalidaIngresada"].ToString());
                     listaMateriales.Add(_listaMateriales);
                 }
             }

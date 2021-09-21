@@ -132,7 +132,7 @@ namespace Añuri
                 {
                     txtMaterial.Clear();
                     txtCantidad.Clear();
-                    const string message2 = "Atención: No posee en estos momentos el stock igresado.";
+                    const string message2 = "Atención: En estos momentos no cuenta con el stock ingresado.";
                     const string caption2 = "Atención";
                     var result2 = MessageBox.Show(message2, caption2,
                                                  MessageBoxButtons.OK,
@@ -376,7 +376,17 @@ namespace Añuri
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
                 DataGridViewButtonCell BotonVer = this.dgvObras.Rows[e.RowIndex].Cells["Ver"] as DataGridViewButtonCell;
-                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\" + @"soldador.ico");
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\" + @"casco.ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 20, e.CellBounds.Top + 4);
+                this.dgvObras.Rows[e.RowIndex].Height = icoAtomico.Height + 8;
+                this.dgvObras.Columns[e.ColumnIndex].Width = icoAtomico.Width + 40;
+                e.Handled = true;
+            }
+            if (e.ColumnIndex >= 0 && this.dgvObras.Columns[e.ColumnIndex].Name == "Informe" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell BotonVer = this.dgvObras.Rows[e.RowIndex].Cells["Informe"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\" + @"informe-empresarial-con-crecimiento.ico");
                 e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 20, e.CellBounds.Top + 4);
                 this.dgvObras.Rows[e.RowIndex].Height = icoAtomico.Height + 8;
                 this.dgvObras.Columns[e.ColumnIndex].Width = icoAtomico.Width + 40;
@@ -387,6 +397,7 @@ namespace Añuri
         {
             if (dgvObras.CurrentCell.ColumnIndex == 4)
             {
+                dgvListaCargaStock.Rows.Clear();
                 idObraSeleccionada = Convert.ToInt32(this.dgvObras.CurrentRow.Cells[0].Value.ToString());
                 panelObra.Visible = true;
                 panelNuevaObra.Visible = false;
@@ -396,8 +407,15 @@ namespace Añuri
                 FuncionBuscartextoMateriales();
                 ListarMaterialesPreCargados();
             }
+            if (dgvObras.CurrentCell.ColumnIndex == 5)
+            {
+                idObraSeleccionada = Convert.ToInt32(this.dgvObras.CurrentRow.Cells[0].Value.ToString());
+                string Obra = dgvObras.CurrentRow.Cells[1].Value.ToString();
+                //this.Visible = false;              
+                InformeObraWF frm2 = new InformeObraWF(idObraSeleccionada, Obra);
+                frm2.Show();
+            }
         }
-
         private void ListarMaterialesPreCargados()
         {
             List<Stock> ListaMateriales = ObrasNeg.ListaMaterialesExistentes(idObraSeleccionada);
@@ -411,7 +429,6 @@ namespace Añuri
             }
             dgvListaCargaStock.ReadOnly = true;
         }
-
         private void FuncionBuscartextoMateriales()
         {
             txtMaterial.AutoCompleteCustomSource = Clases_Maestras.AutoCompleteProductos.Autocomplete();
@@ -499,7 +516,6 @@ namespace Añuri
             dgvListaCargaStock.Rows.Clear();
         }
         #endregion
-
         private void dgvListaCargaStock_KeyDown(object sender, KeyEventArgs e)
         {
             int Valor = 0;
