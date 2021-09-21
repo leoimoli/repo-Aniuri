@@ -12,6 +12,10 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.IO;
+using Añuri.Clases_Maestras;
+using Sico;
+using System.Text.RegularExpressions;
 
 namespace Añuri
 {
@@ -19,11 +23,13 @@ namespace Añuri
     {
         public int idObraSeleccionada;
         public string Obra;
-        public InformeObraWF(int idObraSeleccionada, string Obra)
+        public string Domicilio;
+        public InformeObraWF(int idObraSeleccionada, string Obra, string Domicilio)
         {
             InitializeComponent();
             this.idObraSeleccionada = idObraSeleccionada;
             this.Obra = Obra;
+            this.Domicilio = Domicilio;
         }
         private void InformeObraWF_Load(object sender, EventArgs e)
         {
@@ -48,16 +54,18 @@ namespace Añuri
         private void DiseñoGraficoMaterialesEnPesos(List<Stock> GraficoMaterialesEnPesos)
         {
             List<string> Nombre = new List<string>();
+            List<string> NombreValor = new List<string>();
             List<string> Total = new List<string>();
             foreach (var item in GraficoMaterialesEnPesos)
             {
-
-                Nombre.Add(item.Descripcion + "( $ " + item.PrecioNeto + ")");
+                Nombre.Add(item.Descripcion);
                 string total = Convert.ToString(item.PrecioNeto);
-                Total.Add(total);
+                string totalFinal = "$" + " " + total;
+                Total.Add(totalFinal);
             }
             chartEnPesos.Series[0].Points.DataBindXY(Nombre, Total);
         }
+        public static List<Stock> ListaMaterialesStatic;
         private void ListarMaterialesParaLaObra()
         {
             List<Stock> ListaMateriales = ObrasNeg.ListaMaterialesExistentes(idObraSeleccionada);
@@ -71,6 +79,7 @@ namespace Añuri
                 ultimo.PrecioNeto = Convert.ToDecimal(TotalPrecioNeto);
                 ultimo.ValorUnitario = 0;
                 ListaMateriales.Add(ultimo);
+                ListaMaterialesStatic = ListaMateriales;
                 string fecha = "";
                 foreach (var item in ListaMateriales)
                 {
@@ -187,6 +196,185 @@ namespace Añuri
             }
             catch (Exception ex)
             { }
+        }
+        private void btnPdf_Click(object sender, EventArgs e)
+        {
+            MemoryStream m = new MemoryStream();
+            Document doc = new Document(PageSize.LETTER);
+
+            string folderPath = "C:\\Añuri-Archivos\\PDFs\\Reporte Obra\\";
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            string ruta = folderPath;
+            //string Periodo = "Reporte de Obra";
+            PdfWriter writer = PdfWriter.GetInstance(doc,
+                                        new FileStream(ruta + Obra + ".pdf", FileMode.Create));
+            writer.PageEvent = new PDF();
+
+            doc.AddTitle("PDF");
+            doc.AddCreator("jliCode");
+
+            // Abrimos el archivo
+            doc.Open();
+            // Creamos el tipo de Font que vamos utilizar
+            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 7, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            iTextSharp.text.Font letraContenido = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 5, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            iTextSharp.text.Font UltimoRegistro = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 5, iTextSharp.text.Font.NORMAL, BaseColor.BLUE);
+            iTextSharp.text.Font DomicilioFontMenos30 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 7, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            iTextSharp.text.Font DomicilioFont30a40 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 7, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            iTextSharp.text.Font DomicilioFontHasta40a50 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 6, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            iTextSharp.text.Font DomicilioFontHasta50a60 = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 5, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            // Escribimos el encabezamiento en el documento
+            string TextoInicial = "Informe de obra - " + Obra;
+            string DomicilioTexto = "Domicilio:" + Domicilio;
+            string replaceWith = "";
+            DomicilioTexto = DomicilioTexto.Replace("\r\n", replaceWith).Replace("\n", replaceWith).Replace("\r", replaceWith);
+
+            doc.Add(new Paragraph(" "));
+            Paragraph p2 = new Paragraph(new Chunk(DomicilioTexto));
+            Paragraph p1 = new Paragraph(new Chunk(TextoInicial));
+            p1.Alignment = Element.ALIGN_LEFT;
+
+            if (Domicilio.Length <= 30)
+            { p2 = new Paragraph(new Chunk(DomicilioTexto, DomicilioFontMenos30)); }
+            if (Domicilio.Length >= 30 && Domicilio.Length <= 40)
+            { p2 = new Paragraph(new Chunk(DomicilioTexto, DomicilioFont30a40)); }
+            if (Domicilio.Length >= 40 && Domicilio.Length <= 50)
+            { p2 = new Paragraph(new Chunk(DomicilioTexto, DomicilioFontHasta40a50)); }
+            if (Domicilio.Length >= 50 && Domicilio.Length <= 60)
+            { p2 = new Paragraph(new Chunk(DomicilioTexto, DomicilioFontHasta50a60)); }
+            p2.Alignment = Element.ALIGN_LEFT;
+
+            doc.Add(new Paragraph(p1));
+            doc.Add(new Paragraph(p2));
+            doc.Add(new Paragraph(" "));
+
+            //doc.Add(Chunk.NEWLINE);
+
+            // Creamos una tabla que contendrá las cabeceras
+            // de nuestros visitante.
+            PdfPTable tblPrueba = new PdfPTable(5);
+            tblPrueba.WidthPercentage = 110;
+
+            // Configuramos el título de las columnas de la tabla
+            PdfPCell clMaterial = new PdfPCell(new Phrase("Material", _standardFont));
+            clMaterial.BorderWidth = 0;
+            clMaterial.BorderWidthBottom = 0.50f;
+            clMaterial.BorderWidthLeft = 0.50f;
+            clMaterial.BorderWidthRight = 0.50f;
+            clMaterial.BorderWidthTop = 0.50f;
+
+            PdfPCell clFecha = new PdfPCell(new Phrase("Fecha", _standardFont));
+            clFecha.BorderWidth = 0;
+            clFecha.BorderWidthBottom = 0.50f;
+            clFecha.BorderWidthLeft = 0.50f;
+            clFecha.BorderWidthRight = 0.50f;
+            clFecha.BorderWidthTop = 0.50f;
+
+            PdfPCell clKilos = new PdfPCell(new Phrase("Kilos", _standardFont));
+            clKilos.BorderWidth = 0;
+            clKilos.BorderWidthBottom = 0.50f;
+            clKilos.BorderWidthLeft = 0.50f;
+            clKilos.BorderWidthRight = 0.50f;
+            clKilos.BorderWidthTop = 0.50f;
+
+
+            PdfPCell clPrecioUnitario = new PdfPCell(new Phrase("Precio Unitario", _standardFont));
+            clPrecioUnitario.BorderWidth = 0;
+            clPrecioUnitario.BorderWidthBottom = 0.50f;
+            clPrecioUnitario.BorderWidthLeft = 0.50f;
+            clPrecioUnitario.BorderWidthRight = 0.50f;
+            clPrecioUnitario.BorderWidthTop = 0.50f;
+
+            PdfPCell clPrecioNeto = new PdfPCell(new Phrase("Precio Neto", _standardFont));
+            clPrecioNeto.BorderWidth = 0;
+            clPrecioNeto.BorderWidthBottom = 0.50f;
+            clPrecioNeto.BorderWidthLeft = 0.50f;
+            clPrecioNeto.BorderWidthRight = 0.50f;
+            clPrecioNeto.BorderWidthTop = 0.50f;
+
+            // Añadimos las celdas a la tabla
+            tblPrueba.AddCell(clMaterial);
+            tblPrueba.AddCell(clFecha);
+            tblPrueba.AddCell(clKilos);
+            tblPrueba.AddCell(clPrecioUnitario);
+            tblPrueba.AddCell(clPrecioNeto);
+
+            // Llenamos la tabla con información
+            int TotalDeElementos = ListaMaterialesStatic.Count;
+            int Contador = 0;
+            foreach (var item in ListaMaterialesStatic)
+            {
+                Contador = Contador + 1;
+                if (item.Descripcion != "")
+                {
+                    if (TotalDeElementos == Contador)
+                    {
+                        clMaterial = new PdfPCell(new Phrase(item.Descripcion, UltimoRegistro));
+                        clMaterial.BorderWidth = 0;
+
+                        string Fecha = Convert.ToString(item.FechaFactura.ToShortDateString());
+                        clFecha = new PdfPCell(new Phrase(Fecha, UltimoRegistro));
+                        clFecha.BorderWidth = 0;
+
+                        string Kilos = Convert.ToString(item.Cantidad);
+                        clKilos = new PdfPCell(new Phrase(Kilos, UltimoRegistro));
+                        clKilos.BorderWidth = 0;
+
+                        string PrecioUnitario = Convert.ToString(item.ValorUnitario);
+                        clPrecioUnitario = new PdfPCell(new Phrase(PrecioUnitario, UltimoRegistro));
+                        clPrecioUnitario.BorderWidth = 0;
+
+                        string PrecioNeto = Convert.ToString(item.PrecioNeto);
+                        clPrecioNeto = new PdfPCell(new Phrase(PrecioNeto, UltimoRegistro));
+                        clPrecioNeto.BorderWidth = 0;
+
+                        tblPrueba.AddCell(clMaterial);
+                        tblPrueba.AddCell(clFecha);
+                        tblPrueba.AddCell(clKilos);
+                        tblPrueba.AddCell(clPrecioUnitario);
+                        tblPrueba.AddCell(clPrecioNeto);
+                    }
+                    else
+                    {
+                        clMaterial = new PdfPCell(new Phrase(item.Descripcion, letraContenido));
+                        clMaterial.BorderWidth = 0;
+
+                        string Fecha = Convert.ToString(item.FechaFactura.ToShortDateString());
+                        clFecha = new PdfPCell(new Phrase(Fecha, letraContenido));
+                        clFecha.BorderWidth = 0;
+
+                        string Kilos = Convert.ToString(item.Cantidad);
+                        clKilos = new PdfPCell(new Phrase(Kilos, letraContenido));
+                        clKilos.BorderWidth = 0;
+
+                        string PrecioUnitario = Convert.ToString(item.ValorUnitario);
+                        clPrecioUnitario = new PdfPCell(new Phrase(PrecioUnitario, letraContenido));
+                        clPrecioUnitario.BorderWidth = 0;
+
+                        string PrecioNeto = Convert.ToString(item.PrecioNeto);
+                        clPrecioNeto = new PdfPCell(new Phrase(PrecioNeto, letraContenido));
+                        clPrecioNeto.BorderWidth = 0;
+
+                        tblPrueba.AddCell(clMaterial);
+                        tblPrueba.AddCell(clFecha);
+                        tblPrueba.AddCell(clKilos);
+                        tblPrueba.AddCell(clPrecioUnitario);
+                        tblPrueba.AddCell(clPrecioNeto);
+                    }
+                }
+            }
+            doc.Add(tblPrueba);
+            doc.Close();
+            writer.Close();
+            string mensaje = "Se generó el PDF exitosamente en la carpeta" + " " + folderPath;
+            string message2 = mensaje;
+            const string caption2 = "Éxito";
+            var result2 = MessageBox.Show(message2, caption2,
+                                         MessageBoxButtons.OK,
+                                         MessageBoxIcon.Asterisk);
         }
     }
 }

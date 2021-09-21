@@ -220,7 +220,7 @@ namespace Añuri.Dao
                     {
                         exito = ModificarEstadoEntrada(item.idMovimientoEntrada);
                     }
-                }               
+                }
             }
             return exito;
         }
@@ -238,6 +238,47 @@ namespace Añuri.Dao
             exito = true;
             connection.Close();
             return exito;
+        }
+        public static bool FinalizarObra(int idObraSeleccionada)
+        {
+            bool exito = false;
+            connection.Close();
+            connection.Open();
+            string Actualizar = "FinalizarObra";
+            MySqlCommand cmd = new MySqlCommand(Actualizar, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("idObraSeleccionada_in", idObraSeleccionada);
+            cmd.Parameters.AddWithValue("Estado_in", 0);
+            cmd.ExecuteNonQuery();
+            exito = true;
+            connection.Close();
+            return exito;
+        }
+
+        public static int ValidaEstadoObra(int idObraSeleccionada)
+        {
+            connection.Close();
+            int idObra = 0;
+            connection.Open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = {
+                                      new MySqlParameter("idObraSeleccionada_in", idObraSeleccionada) };
+            string proceso = "ValidaEstadoObra";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                   idObra = Convert.ToInt32(item["Estado"].ToString());
+                }
+            }
+            connection.Close();
+            return idObra;
         }
     }
 }

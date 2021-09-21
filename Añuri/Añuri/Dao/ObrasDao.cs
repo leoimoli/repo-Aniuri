@@ -397,6 +397,7 @@ namespace Añuri.Dao
                     _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
                     _listaMateriales.idMovimientoEntrada = Convert.ToInt32(item["idMovimientoEntradaSalida"].ToString());
                     _listaMateriales.FechaFactura = Convert.ToDateTime(item["FechaSalidaIngresada"].ToString());
+                    _listaMateriales.EstadoEntrada = Convert.ToInt32(item["Estado"].ToString());
                     listaMateriales.Add(_listaMateriales);
                 }
             }

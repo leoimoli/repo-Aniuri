@@ -336,5 +336,27 @@ namespace Añuri.Negocio
             }
             return _listaMateriales;
         }
+        public static bool FinalizarObra(int idObraSeleccionada)
+        {
+            bool exito = false;
+            try
+            {
+                exito = StockDao.FinalizarObra(idObraSeleccionada);
+            }
+            catch (Exception ex)
+            { }
+            return exito;
+        }
+        public static int ValidaEstadoObra(int idObraSeleccionada)
+        {
+            int estado = 0;
+            try
+            {
+                estado = StockDao.ValidaEstadoObra(idObraSeleccionada);
+            }
+            catch (Exception ex)
+            { }
+            return estado;
+        }
     }
 }

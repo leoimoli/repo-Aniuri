@@ -32,6 +32,46 @@ namespace Añuri
             }
         }
         #region Botones
+        private void btnFinalizaObra_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                const string message = "¿Usted desea finalizar la obra selccionada?";
+                const string caption = "Consulta";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+                {
+                    if (result == DialogResult.Yes)
+                    {
+                        bool Exito = ObrasNeg.FinalizarObra(idObraSeleccionada);
+                        if (Exito == true)
+                        {
+                            const string message2 = "Se finalizo la obra seleccionada exitosamente.";
+                            const string caption2 = "Éxito";
+                            var result2 = MessageBox.Show(message2, caption2,
+                                                         MessageBoxButtons.OK,
+                                                         MessageBoxIcon.Asterisk);
+                        }
+                        else
+                        {
+                            const string message2 = "Atención: No se pudo finalizar la obra seleccionada.";
+                            const string caption2 = "Atención";
+                            var result2 = MessageBox.Show(message2, caption2,
+                                                         MessageBoxButtons.OK,
+                                                         MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            { }
+        }
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             try
@@ -411,8 +451,9 @@ namespace Añuri
             {
                 idObraSeleccionada = Convert.ToInt32(this.dgvObras.CurrentRow.Cells[0].Value.ToString());
                 string Obra = dgvObras.CurrentRow.Cells[1].Value.ToString();
+                string Domicilio = dgvObras.CurrentRow.Cells[2].Value.ToString();
                 //this.Visible = false;              
-                InformeObraWF frm2 = new InformeObraWF(idObraSeleccionada, Obra);
+                InformeObraWF frm2 = new InformeObraWF(idObraSeleccionada, Obra, Domicilio);
                 frm2.Show();
             }
         }
@@ -425,6 +466,26 @@ namespace Añuri
                 {
                     //string cantidad = Convert.ToString(item.Stock);
                     dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, item.PrecioNeto, 0, 1);
+                }
+                if (ListaMateriales[0].EstadoEntrada == 1)
+                {
+                    panelDetalleObra.Enabled = true;
+                }
+                if (ListaMateriales[0].EstadoEntrada == 0)
+                {
+                    panelDetalleObra.Enabled = false;
+                }
+            }
+            else
+            {
+                int Estado = ObrasNeg.ValidaEstadoObra(idObraSeleccionada);
+                if (Estado == 1)
+                {
+                    panelDetalleObra.Enabled = true;
+                }
+                if (Estado == 0)
+                {
+                    panelDetalleObra.Enabled = false;
                 }
             }
             dgvListaCargaStock.ReadOnly = true;
@@ -515,7 +576,6 @@ namespace Añuri
             Exito = ObrasNeg.LiberarSotckReservado(ListaIdProd);
             dgvListaCargaStock.Rows.Clear();
         }
-        #endregion
         private void dgvListaCargaStock_KeyDown(object sender, KeyEventArgs e)
         {
             int Valor = 0;
@@ -555,5 +615,6 @@ namespace Añuri
 
             }
         }
+        #endregion
     }
 }
