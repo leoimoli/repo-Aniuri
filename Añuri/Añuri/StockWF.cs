@@ -423,12 +423,19 @@ namespace Añuri
 
         private void dgvStock_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvStock.CurrentCell.ColumnIndex == 3)
+            //if (dgvStock.CurrentCell.ColumnIndex == 3)
+            //{
+            //    PanelDetalleStock.Visible = true;
+            //    PanelNuevoMaterial.Visible = false;
+            //    btnEditarProducto.Visible = false;
+            //    lblNuevoProducto.Text = "Historial de stock seleccionado";
+            //}
+            if (dgvStock.CurrentCell.ColumnIndex == 4)
             {
-                PanelDetalleStock.Visible = true;
-                PanelNuevoMaterial.Visible = false;
-                btnEditarProducto.Visible = false;
-                lblNuevoProducto.Text = "Historial de stock seleccionado";
+                idProductoSeleccionado = Convert.ToInt32(this.dgvStock.CurrentRow.Cells[0].Value.ToString());
+                string Material = dgvStock.CurrentRow.Cells[1].Value.ToString();
+                InformeStockWF frm2 = new InformeStockWF(idProductoSeleccionado, Material);
+                frm2.Show();
             }
         }
         private void dgvStock_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -438,6 +445,16 @@ namespace Añuri
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
                 DataGridViewButtonCell BotonVer = this.dgvStock.Rows[e.RowIndex].Cells["Ver"] as DataGridViewButtonCell;
                 Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\" + @"ver (3).ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 20, e.CellBounds.Top + 4);
+                this.dgvStock.Rows[e.RowIndex].Height = icoAtomico.Height + 8;
+                this.dgvStock.Columns[e.ColumnIndex].Width = icoAtomico.Width + 40;
+                e.Handled = true;
+            }
+            if (e.ColumnIndex >= 0 && this.dgvStock.Columns[e.ColumnIndex].Name == "Informe" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell BotonVer = this.dgvStock.Rows[e.RowIndex].Cells["Informe"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\" + @"informe-empresarial-con-crecimiento.ico");
                 e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 20, e.CellBounds.Top + 4);
                 this.dgvStock.Rows[e.RowIndex].Height = icoAtomico.Height + 8;
                 this.dgvStock.Columns[e.ColumnIndex].Width = icoAtomico.Width + 40;

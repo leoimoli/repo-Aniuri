@@ -23,5 +23,6 @@ namespace Añuri.Entidades
         public string TipoMovimiento { get; set; }
         public int idMovimientoEntrada { get; set; }
         public int EstadoEntrada { get; set; }
+      
     }
 }

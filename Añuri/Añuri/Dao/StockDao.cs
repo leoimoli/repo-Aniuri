@@ -93,6 +93,145 @@ namespace Añuri.Dao
             }
             return exito;
         }
+        public static List<Stock> ListarMovimientosStockPorTipoMovimiento(int idProductoSeleccionado, string tipoMovimiento)
+        {
+            List<Stock> lista = new List<Stock>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProductoSeleccionado_in", idProductoSeleccionado),
+            new MySqlParameter("tipoMovimiento_in", tipoMovimiento)};
+            string proceso = "ListarMovimientosStockPorTipoMovimiento";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _listaMateriales = new Stock();
+                    _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    //_listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
+                    _listaMateriales.TipoMovimiento = item["TipoMovimiento"].ToString();
+                    _listaMateriales.FechaFactura = Convert.ToDateTime(item["Fecha"].ToString());
+                    lista.Add(_listaMateriales);
+                }
+            }
+            connection.Close();
+            return lista;
+        }
+        public static List<Stock> ListarMovimientosStockPorFecha(int idProductoSeleccionado, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<Stock> lista = new List<Stock>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProductoSeleccionado_in", idProductoSeleccionado),
+            new MySqlParameter("fechaDesde_in", fechaDesde),
+            new MySqlParameter("fechaHasta_in", fechaHasta)};
+            string proceso = "ListarMovimientosStockPorFecha";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _listaMateriales = new Stock();
+                    _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    //_listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
+                    _listaMateriales.TipoMovimiento = item["TipoMovimiento"].ToString();
+                    _listaMateriales.FechaFactura = Convert.ToDateTime(item["Fecha"].ToString());
+                    lista.Add(_listaMateriales);
+                }
+            }
+            connection.Close();
+            return lista;
+        }
+        public static List<Stock> ListarMovimientosStockPorFechaTipoMovimiento(int idProductoSeleccionado, DateTime fechaDesde, DateTime fechaHasta, string tipoMovimiento)
+        {
+
+            List<Stock> lista = new List<Stock>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProductoSeleccionado_in", idProductoSeleccionado),
+            new MySqlParameter("fechaDesde_in", fechaDesde),
+            new MySqlParameter("fechaHasta_in", fechaHasta),
+             new MySqlParameter("tipoMovimiento_in", tipoMovimiento),};
+            string proceso = "ListarMovimientosStockPorFechaTipoMovimiento";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _listaMateriales = new Stock();
+                    _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    //_listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
+                    _listaMateriales.TipoMovimiento = item["TipoMovimiento"].ToString();
+                    _listaMateriales.FechaFactura = Convert.ToDateTime(item["Fecha"].ToString());
+                    lista.Add(_listaMateriales);
+                }
+            }
+            connection.Close();
+            return lista;
+        }
+        public static List<Stock> ListarMovimientosStockPorProducto(int idProductoSeleccionado)
+        {
+            List<Stock> lista = new List<Stock>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProductoSeleccionado_in", idProductoSeleccionado) };
+            string proceso = "ListarMovimientosStockPorProducto";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _listaMateriales = new Stock();
+                    _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    //_listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
+                    _listaMateriales.TipoMovimiento = item["TipoMovimiento"].ToString();
+                    _listaMateriales.FechaFactura = Convert.ToDateTime(item["Fecha"].ToString());
+                    lista.Add(_listaMateriales);
+                }
+            }
+            connection.Close();
+            return lista;
+        }
         private static bool InsertarStockNuevo(int idProducto, int cantidad, string codigoProducto)
         {
             bool exito = false;
@@ -254,7 +393,6 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
-
         public static int ValidaEstadoObra(int idObraSeleccionada)
         {
             connection.Close();
@@ -274,7 +412,7 @@ namespace Añuri.Dao
             {
                 foreach (DataRow item in Tabla.Rows)
                 {
-                   idObra = Convert.ToInt32(item["Estado"].ToString());
+                    idObra = Convert.ToInt32(item["Estado"].ToString());
                 }
             }
             connection.Close();

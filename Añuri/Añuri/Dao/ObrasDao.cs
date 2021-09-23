@@ -280,7 +280,6 @@ namespace Añuri.Dao
             connection.Close();
             return _listaStocks;
         }
-
         public static List<Stock> ListaMaterialesExistentesPorFecha(int idObraSeleccionada, DateTime fechaDesde, DateTime fechaHasta)
         {
             List<Stock> listaMateriales = new List<Stock>();
@@ -316,7 +315,6 @@ namespace Añuri.Dao
             connection.Close();
             return listaMateriales;
         }
-
         public static bool LiberarSotckReservado(List<int> ListaIdProd)
         {
             bool exito = false;
@@ -343,7 +341,6 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
-
         private static List<int> SeleccionarIdEntradaParaProducto(string idsListaProducto)
         {
             List<int> listaIdEntrada = new List<int>();

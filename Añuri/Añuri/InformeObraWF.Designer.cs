@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
             this.idObra = new System.Windows.Forms.Label();
             this.ImagenPagina = new System.Windows.Forms.PictureBox();
@@ -134,7 +134,7 @@
             this.btnRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRestaurar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRestaurar.Image = global::Añuri.Properties.Resources.restaurar;
-            this.btnRestaurar.Location = new System.Drawing.Point(1232, 4);
+            this.btnRestaurar.Location = new System.Drawing.Point(1170, 3);
             this.btnRestaurar.Name = "btnRestaurar";
             this.btnRestaurar.Size = new System.Drawing.Size(25, 25);
             this.btnRestaurar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -166,6 +166,7 @@
             this.btnMaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMaximizar.TabIndex = 5;
             this.btnMaximizar.TabStop = false;
+            this.btnMaximizar.Visible = false;
             // 
             // btnCerrar
             // 
@@ -204,14 +205,14 @@
             this.dgvLista.BackgroundColor = System.Drawing.Color.White;
             this.dgvLista.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvLista.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idprod,
@@ -222,27 +223,27 @@
             this.PrecioUnitario,
             this.PrecioNeto,
             this.EstadoEntrada});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLista.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLista.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvLista.EnableHeadersVisualStyles = false;
             this.dgvLista.Location = new System.Drawing.Point(3, 3);
             this.dgvLista.Name = "dgvLista";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLista.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLista.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvLista.RowHeadersVisible = false;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            this.dgvLista.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.dgvLista.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvLista.Size = new System.Drawing.Size(532, 442);
             this.dgvLista.TabIndex = 159;
             // 
@@ -305,27 +306,27 @@
             // 
             // chartEnPesos
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartEnPesos.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartEnPesos.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartEnPesos.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartEnPesos.Legends.Add(legend1);
             this.chartEnPesos.Location = new System.Drawing.Point(608, 162);
             this.chartEnPesos.Name = "chartEnPesos";
             this.chartEnPesos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series2.IsValueShownAsLabel = true;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartEnPesos.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartEnPesos.Series.Add(series1);
             this.chartEnPesos.Size = new System.Drawing.Size(638, 445);
             this.chartEnPesos.TabIndex = 45;
             this.chartEnPesos.Text = "chart1";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            title2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            title2.Name = "Title1";
-            title2.Text = "Materiales Calculados en Pesos";
-            this.chartEnPesos.Titles.Add(title2);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            title1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            title1.Name = "Title1";
+            title1.Text = "Materiales Calculados en Pesos";
+            this.chartEnPesos.Titles.Add(title1);
             // 
             // panel3
             // 

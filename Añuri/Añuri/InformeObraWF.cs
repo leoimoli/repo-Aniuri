@@ -96,7 +96,6 @@ namespace Añuri
             }
             dgvLista.ReadOnly = true;
         }
-
         private int CalcularTotalKilos(List<Stock> listaMateriales)
         {
             int totalKilos = 0;
