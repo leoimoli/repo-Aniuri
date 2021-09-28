@@ -93,6 +93,75 @@ namespace Añuri.Dao
             }
             return exito;
         }
+        public static List<Stock> ListarMovimientosStockDisponiblePorFecha(int idProductoSeleccionado, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<Stock> lista = new List<Stock>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProductoSeleccionado_in", idProductoSeleccionado),
+            new MySqlParameter("FechaDesde_in", fechaDesde),
+            new MySqlParameter("FechaHasta_in", fechaHasta),};
+            string proceso = "ListarMovimientosStockDisponiblePorFecha";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _listaMateriales = new Stock();
+                    _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    _listaMateriales.idMovimientoEntrada = Convert.ToInt32(item["idEntrada"].ToString());
+                    _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
+                    _listaMateriales.TipoMovimiento = item["TipoMovimiento"].ToString();
+                    _listaMateriales.FechaFactura = Convert.ToDateTime(item["Fecha"].ToString());
+                    lista.Add(_listaMateriales);
+                }
+            }
+            connection.Close();
+            return lista;
+        }
+        public static List<Stock> ListarStockDisponible(int idProductoSeleccionado)
+        {
+            List<Stock> lista = new List<Stock>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProductoSeleccionado_in", idProductoSeleccionado) };
+            string proceso = "ListarStockDisponible";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _listaMateriales = new Stock();
+                    _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    _listaMateriales.idMovimientoEntrada = Convert.ToInt32(item["idEntrada"].ToString());
+                    _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
+                    _listaMateriales.TipoMovimiento = item["TipoMovimiento"].ToString();
+                    _listaMateriales.FechaFactura = Convert.ToDateTime(item["Fecha"].ToString());
+                    lista.Add(_listaMateriales);
+                }
+            }
+            connection.Close();
+            return lista;
+
+        }
         public static List<Stock> ListarMovimientosStockPorTipoMovimiento(int idProductoSeleccionado, string tipoMovimiento)
         {
             List<Stock> lista = new List<Stock>();
@@ -372,6 +441,7 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand(Actualizar, connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("idMovimientoEntrada_in", idMovimientoEntrada);
+            cmd.Parameters.AddWithValue("FechaCierre_in", DateTime.Now);
             cmd.Parameters.AddWithValue("EstadoEntrada_in", 0);
             cmd.ExecuteNonQuery();
             exito = true;

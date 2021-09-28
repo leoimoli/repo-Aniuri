@@ -46,6 +46,20 @@ namespace Añuri.Negocio
             }
             return _lista;
         }
+
+        public static List<Stock> ListarStockDisponible(int idProductoSeleccionado)
+        {
+            List<Stock> _lista = new List<Stock>();
+            try
+            {
+                _lista = StockDao.ListarStockDisponible(idProductoSeleccionado);
+            }
+            catch (Exception ex)
+            {
+            }
+            return _lista;
+        }
+
         public static List<Stock> ListarMovimientosStockPorFechaTipoMovimiento(int idProductoSeleccionado, DateTime fechaDesde, DateTime fechaHasta, string tipoMovimiento)
         {
             List<Stock> _lista = new List<Stock>();
@@ -64,6 +78,19 @@ namespace Añuri.Negocio
             try
             {
                 _lista = StockDao.ListarMovimientosStockPorTipoMovimiento(idProductoSeleccionado, tipoMovimiento);
+            }
+            catch (Exception ex)
+            {
+            }
+            return _lista;
+        }
+
+        public static List<Stock> ListarMovimientosStockDisponiblePorFecha(int idProductoSeleccionado, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<Stock> _lista = new List<Stock>();
+            try
+            {
+                _lista = StockDao.ListarMovimientosStockDisponiblePorFecha(idProductoSeleccionado, fechaDesde, fechaHasta);
             }
             catch (Exception ex)
             {

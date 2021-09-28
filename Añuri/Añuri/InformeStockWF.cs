@@ -30,11 +30,133 @@ namespace Añuri
             {
                 idProducto.Text = Convert.ToString(idProductoSeleccionado);
                 lblNombreProducto.Text = material;
+                ListaStockDisponible();
                 ListarMovimientosStock();
                 ArmarGraficos();
             }
             catch (Exception ex)
             { }
+        }
+
+        private void ListaStockDisponible()
+        {
+            List<Stock> ListaStock = StockNeg.ListarStockDisponible(idProductoSeleccionado);
+            if (ListaStock.Count > 0)
+            {
+                ArmarGrillaStockDisponible(ListaStock);
+            }
+        }
+        private void ArmarGrillaStockDisponible(List<Stock> ListaStock)
+        {
+            int idEntrada = 0;
+            int TotalEntrada = 0;
+            int TotalSalida = 0;
+            int Total = 0;
+            List<Stock> ListaStockFinal = new List<Stock>();
+            List<Stock> ListaStockFinal2 = new List<Stock>();
+            dgvStockDisponible.Rows.Clear();
+            foreach (var item in ListaStock)
+            {
+                if (idEntrada != 0)
+                {
+                    if (idEntrada == item.idMovimientoEntrada)
+                    {
+                        if (item.TipoMovimiento == "E")
+                        {
+                            TotalEntrada = item.Cantidad;
+
+                        }
+                        if (item.TipoMovimiento == "S")
+                        {
+                            TotalSalida = TotalSalida + item.Cantidad;
+                        }
+                        Total = TotalEntrada - TotalSalida;
+                        item.Cantidad = Total;
+                        //ListaStockFinal = ListaStock;
+                        Stock _lista = new Stock();
+
+                        _lista.idProducto = item.idProducto;
+                        _lista.Descripcion = item.Descripcion;
+                        _lista.FechaFactura = item.FechaFactura;
+                        _lista.Cantidad = Total;
+                        _lista.ValorUnitario = item.ValorUnitario;
+                        _lista.PrecioNeto = item.PrecioNeto;
+                        _lista.TipoMovimiento = item.TipoMovimiento;
+                        _lista.idMovimientoEntrada = item.idMovimientoEntrada;
+                        ListaStockFinal.Add(_lista);
+                        idEntrada = item.idMovimientoEntrada;
+                    }
+                    else
+                    {
+                        if (!ListaStockFinal2.Any(x => x.idMovimientoEntrada == idEntrada))
+                        {
+                            ListaStockFinal2.Add(ListaStockFinal[ListaStockFinal.Count - 1]);
+                        }
+                        TotalEntrada = 0;
+                        TotalSalida = 0;
+                        Total = 0;
+                        if (item.TipoMovimiento == "E")
+                        {
+                            TotalEntrada = item.Cantidad;
+
+                        }
+                        if (item.TipoMovimiento == "S")
+                        {
+                            TotalSalida = TotalSalida + item.Cantidad;
+                        }
+                        Total = TotalEntrada - TotalSalida;
+                        item.Cantidad = Total;
+                        //ListaStockFinal = ListaStock;
+                        Stock _lista = new Stock();
+
+                        _lista.idProducto = item.idProducto;
+                        _lista.Descripcion = item.Descripcion;
+                        _lista.FechaFactura = item.FechaFactura;
+                        _lista.Cantidad = Total;
+                        _lista.ValorUnitario = item.ValorUnitario;
+                        _lista.PrecioNeto = item.PrecioNeto;
+                        _lista.TipoMovimiento = item.TipoMovimiento;
+                        _lista.idMovimientoEntrada = item.idMovimientoEntrada;
+                        ListaStockFinal.Add(_lista);
+                        idEntrada = item.idMovimientoEntrada;
+                        ///// Valido si ya existe el material en la lista Final.
+                        if (!ListaStockFinal2.Any(x => x.idMovimientoEntrada == idEntrada))
+                        {
+                            ListaStockFinal2.Add(ListaStockFinal[ListaStockFinal.Count - 1]);
+                        }
+                    }
+                }
+                else
+                {
+                    TotalEntrada = 0;
+                    TotalSalida = 0;
+                    Total = 0;
+                    if (item.TipoMovimiento == "E")
+                    {
+                        TotalEntrada = item.Cantidad;
+                    }
+                    Total = TotalEntrada - TotalSalida;
+                    item.Cantidad = Total;
+                    //ListaStockFinal = ListaStock;
+                    Stock _lista = new Stock();
+
+                    _lista.idProducto = item.idProducto;
+                    _lista.Descripcion = item.Descripcion;
+                    _lista.FechaFactura = item.FechaFactura;
+                    _lista.Cantidad = Total;
+                    _lista.ValorUnitario = item.ValorUnitario;
+                    _lista.PrecioNeto = item.PrecioNeto;
+                    _lista.TipoMovimiento = item.TipoMovimiento;
+                    _lista.idMovimientoEntrada = item.idMovimientoEntrada;
+                    ListaStockFinal.Add(_lista);
+                    idEntrada = item.idMovimientoEntrada;
+                }
+            }
+            foreach (var item in ListaStockFinal2)
+            {
+                dgvStockDisponible.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, item.ValorUnitario, item.PrecioNeto, "", "");
+            }
+            dgvLista.ReadOnly = true;
         }
         private void ArmarGraficos()
         {
@@ -235,40 +357,45 @@ namespace Añuri
                 dgvLista.Rows.Clear();
                 bool filtroFecha = false;
                 bool filtroTipo = false;
-                DateTime FechaDesde = Convert.ToDateTime("1 / 1 / 1900 00:00:00");
-                DateTime FechaHasta = Convert.ToDateTime("1 / 1 / 1900 00:00:00");
+                DateTime FechaDesde = Convert.ToDateTime("1/1/1900 00:00:00");
+                DateTime FechaHasta = Convert.ToDateTime("1/1/1900 00:00:00");
                 string TipoMovimiento = "";
 
-                if (dtFechaDesde.Value.ToString() != "1 / 1 / 1900 00:00:00")
+                if (dtFechaDesde.Value.ToString() != "1/1/1900 00:00:00")
                 {
-                    if (dtFechaHasta.Value.ToString() != "1 / 1 / 1900 00:00:00")
+                    if (dtFechaHasta.Value.ToString() != "1/1/1900 00:00:00")
                     {
                         FechaDesde = Convert.ToDateTime(dtFechaDesde.Value.ToShortDateString());
                         FechaHasta = Convert.ToDateTime(dtFechaHasta.Value.ToShortDateString());
                         filtroFecha = true;
                     }
-                    filtroFecha = false;
-                    const string message2 = "Atención: Debe seleccionar una fecha Hasta.";
-                    const string caption2 = "Atención";
-                    var result2 = MessageBox.Show(message2, caption2,
-                                                 MessageBoxButtons.OK,
-                                                 MessageBoxIcon.Exclamation);
+                    else
+                    {
+                        filtroFecha = false;
+                        const string message2 = "Atención: Debe seleccionar una fecha Hasta.";
+                        const string caption2 = "Atención";
+                        var result2 = MessageBox.Show(message2, caption2,
+                                                     MessageBoxButtons.OK,
+                                                     MessageBoxIcon.Exclamation);
+                    }
                 }
-
-                if (dtFechaHasta.Value.ToString() != "1 / 1 / 1900 00:00:00")
+                else if (dtFechaHasta.Value.ToString() != "1/1/1900 00:00:00")
                 {
-                    if (dtFechaDesde.Value.ToString() != "1 / 1 / 1900 00:00:00")
+                    if (dtFechaDesde.Value.ToString() != "1/1/1900 00:00:00")
                     {
                         FechaDesde = Convert.ToDateTime(dtFechaDesde.Value.ToShortDateString());
                         FechaHasta = Convert.ToDateTime(dtFechaHasta.Value.ToShortDateString());
                         filtroFecha = true;
                     }
-                    filtroFecha = false;
-                    const string message2 = "Atención: Debe seleccionar una fecha Desde.";
-                    const string caption2 = "Atención";
-                    var result2 = MessageBox.Show(message2, caption2,
-                                                 MessageBoxButtons.OK,
-                                                 MessageBoxIcon.Exclamation);
+                    else
+                    {
+                        filtroFecha = false;
+                        const string message2 = "Atención: Debe seleccionar una fecha Desde.";
+                        const string caption2 = "Atención";
+                        var result2 = MessageBox.Show(message2, caption2,
+                                                     MessageBoxButtons.OK,
+                                                     MessageBoxIcon.Exclamation);
+                    }
                 }
                 if (cmbTipoMovimiento.Text != "Seleccione")
                 {
@@ -329,6 +456,13 @@ namespace Añuri
                             }
                         }
                         dgvLista.ReadOnly = true;
+
+                        List<Stock> ListaStockDisponible = StockNeg.ListarMovimientosStockDisponiblePorFecha(idProductoSeleccionado, FechaDesde, FechaHasta);
+                        if (ListaStockDisponible.Count > 0)
+                        {
+                            ArmarGrillaStockDisponiblePorFecha(ListaStockDisponible);
+                        }
+                        dgvLista.ReadOnly = true;
                     }
                 }
                 if (filtroTipo == true)
@@ -356,6 +490,156 @@ namespace Añuri
             }
             catch (Exception ex)
             { }
+        }
+
+        private void ArmarGrillaStockDisponiblePorFecha(List<Stock> ListaStock)
+        {
+            int idEntrada = 0;
+            int TotalEntrada = 0;
+            int TotalSalida = 0;
+            int Total = 0;
+            List<Stock> ListaStockFinal = new List<Stock>();
+            List<Stock> ListaStockFinal2 = new List<Stock>();
+            dgvStockDisponible.Rows.Clear();
+            int contadorElementos = 0;
+            foreach (var item in ListaStock)
+            {
+                contadorElementos = contadorElementos + 1;
+                if (idEntrada != 0)
+                {
+                    if (idEntrada == item.idMovimientoEntrada)
+                    {
+                        if (item.TipoMovimiento == "E")
+                        {
+                            TotalEntrada = item.Cantidad;
+
+                        }
+                        if (item.TipoMovimiento == "S")
+                        {
+                            TotalSalida = TotalSalida + item.Cantidad;
+                        }
+                        Total = TotalEntrada - TotalSalida;
+                        item.Cantidad = Total;
+                        //ListaStockFinal = ListaStock;
+                        Stock _lista = new Stock();
+
+                        _lista.idProducto = item.idProducto;
+                        _lista.Descripcion = item.Descripcion;
+                        _lista.FechaFactura = item.FechaFactura;
+                        _lista.Cantidad = Total;
+                        _lista.ValorUnitario = item.ValorUnitario;
+                        _lista.PrecioNeto = item.PrecioNeto;
+                        _lista.TipoMovimiento = item.TipoMovimiento;
+                        _lista.idMovimientoEntrada = item.idMovimientoEntrada;
+                        ListaStockFinal.Add(_lista);
+                        idEntrada = item.idMovimientoEntrada;
+                        if (!ListaStockFinal2.Any(x => x.idMovimientoEntrada == idEntrada) && contadorElementos == ListaStock.Count)
+                        {
+                            ListaStockFinal2.Add(ListaStockFinal[ListaStockFinal.Count - 1]);
+                        }
+                    }
+                    else
+                    {
+                        if (!ListaStockFinal2.Any(x => x.idMovimientoEntrada == idEntrada))
+                        {
+                            if (ListaStockFinal[ListaStockFinal.Count - 1].Cantidad > 0)
+                            {
+                                ListaStockFinal2.Add(ListaStockFinal[ListaStockFinal.Count - 1]);
+                            }
+                        }
+
+                        TotalEntrada = 0;
+                        TotalSalida = 0;
+                        Total = 0;
+                        if (item.TipoMovimiento == "E")
+                        {
+                            TotalEntrada = item.Cantidad;
+
+                        }
+                        if (item.TipoMovimiento == "S")
+                        {
+                            TotalSalida = TotalSalida + item.Cantidad;
+                        }
+                        Total = TotalEntrada - TotalSalida;
+                        item.Cantidad = Total;
+                        //ListaStockFinal = ListaStock;
+                        Stock _lista = new Stock();
+
+                        _lista.idProducto = item.idProducto;
+                        _lista.Descripcion = item.Descripcion;
+                        _lista.FechaFactura = item.FechaFactura;
+                        _lista.Cantidad = Total;
+                        _lista.ValorUnitario = item.ValorUnitario;
+                        _lista.PrecioNeto = item.PrecioNeto;
+                        _lista.TipoMovimiento = item.TipoMovimiento;
+                        _lista.idMovimientoEntrada = item.idMovimientoEntrada;
+                        ListaStockFinal.Add(_lista);
+                        idEntrada = item.idMovimientoEntrada;
+                        ///// Valido si ya existe el material en la lista Final.
+                        if (!ListaStockFinal2.Any(x => x.idMovimientoEntrada == idEntrada) && contadorElementos == ListaStock.Count)
+                        {
+                            ListaStockFinal2.Add(ListaStockFinal[ListaStockFinal.Count - 1]);
+                        }
+                    }
+                }
+                else
+                {
+                    TotalEntrada = 0;
+                    TotalSalida = 0;
+                    Total = 0;
+                    if (item.TipoMovimiento == "E")
+                    {
+                        TotalEntrada = item.Cantidad;
+                    }
+                    Total = TotalEntrada - TotalSalida;
+                    item.Cantidad = Total;
+                    //ListaStockFinal = ListaStock;
+                    Stock _lista = new Stock();
+
+                    _lista.idProducto = item.idProducto;
+                    _lista.Descripcion = item.Descripcion;
+                    _lista.FechaFactura = item.FechaFactura;
+                    _lista.Cantidad = Total;
+                    _lista.ValorUnitario = item.ValorUnitario;
+                    _lista.PrecioNeto = item.PrecioNeto;
+                    _lista.TipoMovimiento = item.TipoMovimiento;
+                    _lista.idMovimientoEntrada = item.idMovimientoEntrada;
+                    ListaStockFinal.Add(_lista);
+                    idEntrada = item.idMovimientoEntrada;
+                }              
+            }
+            foreach (var item in ListaStockFinal2)
+            {
+                dgvStockDisponible.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, item.ValorUnitario, item.PrecioNeto, "", "");
+            }
+            dgvLista.ReadOnly = true;
+        }
+
+        private void chcFechaHasta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chcFechaHasta.Checked == true)
+            {
+                dtFechaHasta.Enabled = true;
+                dtFechaHasta.Value = DateTime.Now;
+            }
+            else
+            {
+                dtFechaHasta.Value = Convert.ToDateTime("1 / 1 / 1900 00:00:00");
+                dtFechaHasta.Enabled = false;
+            }
+        }
+        private void chcFechaDesde_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chcFechaDesde.Checked == true)
+            {
+                dtFechaDesde.Enabled = true;
+                dtFechaDesde.Value = DateTime.Now;
+            }
+            else
+            {
+                dtFechaDesde.Value = Convert.ToDateTime("1 / 1 / 1900 00:00:00");
+                dtFechaDesde.Enabled = false;
+            }
         }
     }
 }
