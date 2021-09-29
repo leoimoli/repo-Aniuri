@@ -150,7 +150,7 @@ namespace Añuri
         }
         private void btnReportes_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new InicioWF());
+            AbrirFormEnPanel(new ReportesWF());
             var imagen = new Bitmap(Añuri.Properties.Resources.estadisticas__1_);
             ImagenPagina.Image = imagen;
             lblPantalla.Text = "Reportes";

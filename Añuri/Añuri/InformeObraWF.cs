@@ -166,6 +166,15 @@ namespace Añuri
         {
             try
             {
+                if (dtFechaDesde.Value > dtFechaHasta.Value)
+                {
+                    const string message2 = "Atención: La Fecha desde no puede ser mayor a la fecha Hasta.";
+                    const string caption2 = "Atención";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Exclamation);
+                    throw new Exception();
+                }
                 dgvLista.Rows.Clear();
                 DateTime FechaDesde = Convert.ToDateTime(dtFechaDesde.Value.ToShortDateString());
                 DateTime FechaHasta = Convert.ToDateTime(dtFechaHasta.Value.ToShortDateString());
