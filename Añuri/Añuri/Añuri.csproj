@@ -67,12 +67,16 @@
     <Compile Include="Dao\ObrasDao.cs" />
     <Compile Include="Dao\ProductoDao.cs" />
     <Compile Include="Dao\ProveedoresDao.cs" />
+    <Compile Include="Dao\ReporteDao.cs" />
     <Compile Include="Dao\StockDao.cs" />
     <Compile Include="Dao\UsuarioDao.cs" />
     <Compile Include="Entidades\MenuPorPerfilUsuario.cs" />
     <Compile Include="Entidades\Obra.cs" />
     <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\Proveedores.cs" />
+    <Compile Include="Entidades\Reporte_Obras.cs" />
+    <Compile Include="Entidades\Reporte_Proveedores.cs" />
+    <Compile Include="Entidades\Reporte_Stock.cs" />
     <Compile Include="Entidades\Stock.cs" />
     <Compile Include="Entidades\StockProducto.cs" />
     <Compile Include="Entidades\Usuario.cs" />
@@ -315,6 +319,7 @@
   <ItemGroup>
     <None Include="Resources\informe-empresarial-con-crecimiento %281%29.png" />
     <None Include="Resources\buscar %282%29.png" />
+    <None Include="Resources\sobresalir.png" />
     <Content Include="Resources\ver %283%29.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
