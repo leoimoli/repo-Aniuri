@@ -93,6 +93,41 @@ namespace Añuri.Dao
             }
             return exito;
         }
+        public static List<Stock> ListarMovimientosStockInventarioPorFecha(DateTime fecha)
+        {
+            List<Stock> lista = new List<Stock>();
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("FechaHasta_in", fecha) };
+            string proceso = "ListarMovimientosStockInventarioPorFecha";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _listaMateriales = new Stock();
+                    _listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
+                    _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
+                    _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                   // _listaMateriales.idMovimientoEntrada = Convert.ToInt32(item["idEntrada"].ToString());
+                    _listaMateriales.TipoMovimiento = item["TipoMovimiento"].ToString();
+                    _listaMateriales.FechaFactura = Convert.ToDateTime(item["Fecha"].ToString());
+                    lista.Add(_listaMateriales);
+                }
+            }
+            connection.Close();
+            return lista;
+        }
+
         public static List<Stock> ListarMovimientosStockDisponiblePorFecha(int idProductoSeleccionado, DateTime fechaDesde, DateTime fechaHasta)
         {
             List<Stock> lista = new List<Stock>();

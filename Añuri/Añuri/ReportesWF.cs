@@ -259,5 +259,11 @@ namespace Añuri
                 xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
             }
         }
+
+        private void btnFiltrosStock_Click(object sender, EventArgs e)
+        {
+            InventarioStockWF _inventario = new InventarioStockWF();
+            _inventario.Show();
+        }
     }
 }

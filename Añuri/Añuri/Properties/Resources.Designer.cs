@@ -363,6 +363,26 @@ namespace Añuri.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap simbolo_de_busqueda_de_lupa_en_un_grafico_de_barras {
+            get {
+                object obj = ResourceManager.GetObject("simbolo-de-busqueda-de-lupa-en-un-grafico-de-barras", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap simbolo_de_busqueda_de_lupa_en_un_grafico_de_barras__1_ {
+            get {
+                object obj = ResourceManager.GetObject("simbolo-de-busqueda-de-lupa-en-un-grafico-de-barras (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sobresalir {
             get {
                 object obj = ResourceManager.GetObject("sobresalir", resourceCulture);

@@ -436,7 +436,7 @@ namespace Añuri
                 if (chcFechaDesde.Checked == true && chcFechaHasta.Checked == true)
                 {
                     if (dtFechaDesde.Value > dtFechaHasta.Value)
-                    {                      
+                    {
                         const string message2 = "Atención: La Fecha desde no puede ser mayor a la fecha Hasta.";
                         const string caption2 = "Atención";
                         var result2 = MessageBox.Show(message2, caption2,
@@ -532,7 +532,7 @@ namespace Añuri
                     {
                         List<Stock> ListaStock = StockNeg.ListarMovimientosStockPorFecha(idProductoSeleccionado, FechaDesde, FechaHasta);
                         if (ListaStock.Count > 0)
-                        {
+                        {                          
                             foreach (var item in ListaStock)
                             {
                                 string Movimiento = "";

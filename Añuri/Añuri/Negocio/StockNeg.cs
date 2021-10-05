@@ -34,6 +34,20 @@ namespace Añuri.Negocio
             }
             return _lista;
         }
+
+        public static List<Stock> ListarMovimientosStockInventarioPorFecha(DateTime fecha)
+        {
+            List<Stock> _lista = new List<Stock>();
+            try
+            {
+                _lista = StockDao.ListarMovimientosStockInventarioPorFecha(fecha);
+            }
+            catch (Exception ex)
+            {
+            }
+            return _lista;
+        }
+
         public static List<Stock> ListarMovimientosStockPorFecha(int idProductoSeleccionado, DateTime fechaDesde, DateTime fechaHasta)
         {
             List<Stock> _lista = new List<Stock>();
