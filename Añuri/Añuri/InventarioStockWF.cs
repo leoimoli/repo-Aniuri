@@ -856,5 +856,30 @@ namespace Añuri
                                          MessageBoxButtons.OK,
                                          MessageBoxIcon.Asterisk);
         }
+
+        /// <summary>
+        /// /// 1 Inventario
+        /// 2 Kilos
+        /// 3 Pesos
+        /// </summary>
+
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            InventarioStockWF _inventario = new InventarioStockWF();
+            _inventario.Show();
+            Hide();
+        }
+        private void btnMaterialesKilos_Click(object sender, EventArgs e)
+        {
+            InventarioMaterialesKilosWF _inventario = new InventarioMaterialesKilosWF();
+            _inventario.Show();
+            Hide();
+        }
+        private void btnMaterialesEnPesos_Click(object sender, EventArgs e)
+        {
+            InventarioMaterialesPesosWF _inventario = new InventarioMaterialesPesosWF();
+            _inventario.Show();
+            Hide();
+        }
     }
 }

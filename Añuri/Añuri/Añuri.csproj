@@ -111,6 +111,18 @@
     <Compile Include="InicioWF.Designer.cs">
       <DependentUpon>InicioWF.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventarioMaterialesKilosWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventarioMaterialesKilosWF.Designer.cs">
+      <DependentUpon>InventarioMaterialesKilosWF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventarioMaterialesPesosWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventarioMaterialesPesosWF.Designer.cs">
+      <DependentUpon>InventarioMaterialesPesosWF.cs</DependentUpon>
+    </Compile>
     <Compile Include="InventarioStockWF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +200,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InicioWF.resx">
       <DependentUpon>InicioWF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventarioMaterialesKilosWF.resx">
+      <DependentUpon>InventarioMaterialesKilosWF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventarioMaterialesPesosWF.resx">
+      <DependentUpon>InventarioMaterialesPesosWF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InventarioStockWF.resx">
       <DependentUpon>InventarioStockWF.cs</DependentUpon>
@@ -343,6 +361,9 @@
     <None Include="Resources\simbolo-de-busqueda-de-lupa-en-un-grafico-de-barras %281%29.png" />
     <None Include="Resources\configuraciones.png" />
     <Content Include="Resources\configuraciones_1.png" />
+    <None Include="Resources\inventario.png" />
+    <None Include="Resources\peso.png" />
+    <None Include="Resources\dar-dinero.png" />
     <Content Include="Resources\ver %283%29.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
