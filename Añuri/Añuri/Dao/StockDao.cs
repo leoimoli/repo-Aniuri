@@ -116,11 +116,20 @@ namespace Añuri.Dao
                     _listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
                     _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
                     _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaMateriales.StockTotal = Convert.ToInt32(item["StockTotal"].ToString());
                     _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
                     _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
-                   // _listaMateriales.idMovimientoEntrada = Convert.ToInt32(item["idEntrada"].ToString());
+                    _listaMateriales.idMovimientoEntrada = Convert.ToInt32(item["idEntrada"].ToString());
+                    _listaMateriales.EstadoEntrada = Convert.ToInt32(item["Estado"].ToString());
                     _listaMateriales.TipoMovimiento = item["TipoMovimiento"].ToString();
                     _listaMateriales.FechaFactura = Convert.ToDateTime(item["Fecha"].ToString());
+                    if (item["FechaCierre"].ToString() != "" && item["FechaCierre"].ToString() != null)
+                    {
+                        _listaMateriales.FechaCierre = Convert.ToDateTime(item["FechaCierre"].ToString());
+                    }
+                    _listaMateriales.FechaMovimiento = Convert.ToDateTime(item["FechaMovimiento"].ToString());
+                    //_listaMateriales.Mes = item["mes"].ToString();
+                    //_listaMateriales.Año = item["anno"].ToString();
                     lista.Add(_listaMateriales);
                 }
             }

@@ -58,6 +58,11 @@ namespace Añuri
                         btnUsuarios.Visible = true;
                         btnPanelUsuarios.Visible = true;
                     }
+                    if (item.NombreMenu == "btnConfiguracion")
+                    {
+                        btnConfiguaracion.Visible = true;
+                        btnPanelConfiguracion.Visible = true;
+                    }
                 }
             }
             else
@@ -221,6 +226,14 @@ namespace Añuri
             byte[] resultado = convertir.TransformFinalBlock(arreglo, 0, arreglo.Length); //Arreglo de bytes donde guardaremos la cadena cifrada.
             tripledes.Clear();
             return Convert.ToBase64String(resultado, 0, resultado.Length); // Convertimos la cadena y la regresamos.
-        }     
+        }
+
+        private void btnConfiguracion_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new ConfiguracionWF());
+            var imagen = new Bitmap(Añuri.Properties.Resources.configuraciones);
+            ImagenPagina.Image = imagen;
+            lblPantalla.Text = "Configuarición";
+        }
     }
 }

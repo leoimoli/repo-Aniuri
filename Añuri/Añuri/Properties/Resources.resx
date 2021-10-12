@@ -223,10 +223,13 @@
   <data name="padlock" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\padlock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="simbolo-de-busqueda-de-lupa-en-un-grafico-de-barras (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\simbolo-de-busqueda-de-lupa-en-un-grafico-de-barras (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cajas-de-carga-de-trabajador (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cajas-de-carga-de-trabajador (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="simbolo-de-busqueda-de-lupa-en-un-grafico-de-barras (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\simbolo-de-busqueda-de-lupa-en-un-grafico-de-barras (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="configuraciones" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\configuraciones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
