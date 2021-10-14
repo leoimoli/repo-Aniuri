@@ -86,6 +86,28 @@ namespace Añuri.Negocio
             }
             return _lista;
         }
+
+        public static List<Stock> ListarInventarioMaterialesKilos(string año, string material)
+        {
+            List<Stock> _lista = new List<Stock>();
+            try
+            {
+                if (año != "")
+                {
+                    if (material != "")
+                    { _lista = StockDao.ListarInventarioMaterialesKilosPorAñoMaterial(año, material); }
+                    else
+                    {
+                        _lista = StockDao.ListarInventarioMaterialesKilosPorAño(año);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return _lista;
+        }
+
         public static List<Stock> ListarMovimientosStockPorTipoMovimiento(int idProductoSeleccionado, string tipoMovimiento)
         {
             List<Stock> _lista = new List<Stock>();

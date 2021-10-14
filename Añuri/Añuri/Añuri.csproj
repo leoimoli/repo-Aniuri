@@ -78,6 +78,7 @@
     <Compile Include="Dao\StockDao.cs" />
     <Compile Include="Dao\UsuarioDao.cs" />
     <Compile Include="Entidades\MenuPorPerfilUsuario.cs" />
+    <Compile Include="Entidades\MesProducto.cs" />
     <Compile Include="Entidades\Obra.cs" />
     <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\Proveedores.cs" />

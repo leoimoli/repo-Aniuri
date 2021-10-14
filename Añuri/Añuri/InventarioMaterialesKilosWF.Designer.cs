@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.idObra = new System.Windows.Forms.Label();
             this.ImagenPagina = new System.Windows.Forms.PictureBox();
@@ -39,12 +43,26 @@
             this.FiltroInventario = new System.Windows.Forms.Panel();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.dtFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.bntInventario = new System.Windows.Forms.Button();
             this.btnMaterialesEnPesos = new System.Windows.Forms.Button();
             this.btnMaterialesKilos = new System.Windows.Forms.Button();
+            this.dgvInventario = new System.Windows.Forms.DataGridView();
+            this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KilosTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kilos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImporteTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Indice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VRepos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValorFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtMateriales = new System.Windows.Forms.TextBox();
+            this.txtAño = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPagina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
@@ -53,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             this.FiltroInventario.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -158,9 +177,11 @@
             // FiltroInventario
             // 
             this.FiltroInventario.BackColor = System.Drawing.Color.Gainsboro;
+            this.FiltroInventario.Controls.Add(this.txtAño);
+            this.FiltroInventario.Controls.Add(this.txtMateriales);
+            this.FiltroInventario.Controls.Add(this.label1);
             this.FiltroInventario.Controls.Add(this.btnBuscar);
             this.FiltroInventario.Controls.Add(this.label10);
-            this.FiltroInventario.Controls.Add(this.dtFechaHasta);
             this.FiltroInventario.Location = new System.Drawing.Point(332, 83);
             this.FiltroInventario.Name = "FiltroInventario";
             this.FiltroInventario.Size = new System.Drawing.Size(626, 74);
@@ -179,6 +200,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(37, 34);
             this.btnBuscar.TabIndex = 171;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label10
             // 
@@ -186,19 +208,11 @@
             this.label10.BackColor = System.Drawing.Color.Gainsboro;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(118, 24);
+            this.label10.Location = new System.Drawing.Point(18, 11);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(130, 17);
+            this.label10.Size = new System.Drawing.Size(59, 17);
             this.label10.TabIndex = 169;
-            this.label10.Text = "Informe Stock al:";
-            // 
-            // dtFechaHasta
-            // 
-            this.dtFechaHasta.Location = new System.Drawing.Point(249, 20);
-            this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(200, 20);
-            this.dtFechaHasta.TabIndex = 167;
-            this.dtFechaHasta.Value = new System.DateTime(2021, 10, 12, 12, 40, 44, 0);
+            this.label10.Text = "Año(*):";
             // 
             // label2
             // 
@@ -281,11 +295,152 @@
             this.btnMaterialesKilos.UseVisualStyleBackColor = false;
             this.btnMaterialesKilos.Click += new System.EventHandler(this.btnMaterialesKilos_Click);
             // 
+            // dgvInventario
+            // 
+            this.dgvInventario.AllowUserToAddRows = false;
+            this.dgvInventario.BackgroundColor = System.Drawing.Color.White;
+            this.dgvInventario.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvInventario.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInventario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInventario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idprod,
+            this.dataGridViewTextBoxColumn2,
+            this.KilosTotal,
+            this.kilos,
+            this.Fecha,
+            this.PrecioUnitario,
+            this.PrecioNeto,
+            this.ImporteTotal,
+            this.Indice,
+            this.VRepos,
+            this.ValorFinal});
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInventario.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dgvInventario.EnableHeadersVisualStyles = false;
+            this.dgvInventario.Location = new System.Drawing.Point(218, 163);
+            this.dgvInventario.Name = "dgvInventario";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInventario.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            this.dgvInventario.RowHeadersVisible = false;
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.Black;
+            this.dgvInventario.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.dgvInventario.Size = new System.Drawing.Size(892, 427);
+            this.dgvInventario.TabIndex = 182;
+            this.dgvInventario.Visible = false;
+            // 
+            // idprod
+            // 
+            this.idprod.HeaderText = "id";
+            this.idprod.Name = "idprod";
+            this.idprod.Visible = false;
+            this.idprod.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 180;
+            // 
+            // KilosTotal
+            // 
+            this.KilosTotal.HeaderText = "KG.Total";
+            this.KilosTotal.Name = "KilosTotal";
+            // 
+            // kilos
+            // 
+            this.kilos.HeaderText = "Kilos";
+            this.kilos.Name = "kilos";
+            this.kilos.Width = 50;
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "Precio Unitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            // 
+            // PrecioNeto
+            // 
+            this.PrecioNeto.HeaderText = "Importe";
+            this.PrecioNeto.Name = "PrecioNeto";
+            // 
+            // ImporteTotal
+            // 
+            this.ImporteTotal.HeaderText = "Importe Total";
+            this.ImporteTotal.Name = "ImporteTotal";
+            // 
+            // Indice
+            // 
+            this.Indice.HeaderText = "Indice";
+            this.Indice.Name = "Indice";
+            this.Indice.Width = 50;
+            // 
+            // VRepos
+            // 
+            this.VRepos.HeaderText = "V.Repos";
+            this.VRepos.Name = "VRepos";
+            this.VRepos.Width = 60;
+            // 
+            // ValorFinal
+            // 
+            this.ValorFinal.HeaderText = "Valor Final";
+            this.ValorFinal.Name = "ValorFinal";
+            this.ValorFinal.Width = 50;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Gainsboro;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(276, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 17);
+            this.label1.TabIndex = 173;
+            this.label1.Text = "Material:";
+            // 
+            // txtMateriales
+            // 
+            this.txtMateriales.Location = new System.Drawing.Point(350, 11);
+            this.txtMateriales.Name = "txtMateriales";
+            this.txtMateriales.Size = new System.Drawing.Size(220, 20);
+            this.txtMateriales.TabIndex = 174;
+            // 
+            // txtAño
+            // 
+            this.txtAño.Location = new System.Drawing.Point(83, 11);
+            this.txtAño.Name = "txtAño";
+            this.txtAño.Size = new System.Drawing.Size(144, 20);
+            this.txtAño.TabIndex = 175;
+            // 
             // InventarioMaterialesKilosWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 650);
+            this.Controls.Add(this.dgvInventario);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.FiltroInventario);
             this.Controls.Add(this.label2);
@@ -294,6 +449,7 @@
             this.Name = "InventarioMaterialesKilosWF";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "InventarioMaterialesKilosWF";
+            this.Load += new System.EventHandler(this.InventarioMaterialesKilosWF_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPagina)).EndInit();
@@ -304,6 +460,7 @@
             this.FiltroInventario.ResumeLayout(false);
             this.FiltroInventario.PerformLayout();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,11 +479,25 @@
         private System.Windows.Forms.Panel FiltroInventario;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker dtFechaHasta;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button bntInventario;
         private System.Windows.Forms.Button btnMaterialesEnPesos;
         private System.Windows.Forms.Button btnMaterialesKilos;
+        private System.Windows.Forms.DataGridView dgvInventario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idprod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KilosTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kilos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioNeto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ImporteTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Indice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VRepos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ValorFinal;
+        private System.Windows.Forms.TextBox txtMateriales;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtAño;
     }
 }
