@@ -94,7 +94,7 @@ namespace Añuri.Dao
             return exito;
         }
 
-        public static List<Stock> ListarInventarioMaterialesKilosPorAño(string año)
+        public static List<Stock> ListarInventarioMaterialesPesosPorAño(string año)
         {
             List<Stock> lista = new List<Stock>();
             connection.Close();
@@ -104,7 +104,7 @@ namespace Añuri.Dao
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
             MySqlParameter[] oParam = { new MySqlParameter("Año_in", año) };
-            string proceso = "ListarInventarioMaterialesKilosPorAño";
+            string proceso = "ListarInventarioMaterialesPesosPorAño";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
             dt.SelectCommand.CommandType = CommandType.StoredProcedure;
             dt.SelectCommand.Parameters.AddRange(oParam);
@@ -136,7 +136,7 @@ namespace Añuri.Dao
             return lista;
         }
 
-        internal static List<Stock> ListarInventarioMaterialesKilosPorAñoMaterial(string año, string material)
+        internal static List<Stock> ListarInventarioMaterialesPesosPorAño(string año, string material)
         {
             throw new NotImplementedException();
         }

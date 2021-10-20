@@ -87,7 +87,7 @@ namespace Añuri.Negocio
             return _lista;
         }
 
-        public static List<Stock> ListarInventarioMaterialesKilos(string año, string material)
+        public static List<Stock> ListarInventarioMaterialesPesos(string año, string material)
         {
             List<Stock> _lista = new List<Stock>();
             try
@@ -95,10 +95,10 @@ namespace Añuri.Negocio
                 if (año != "")
                 {
                     if (material != "")
-                    { _lista = StockDao.ListarInventarioMaterialesKilosPorAñoMaterial(año, material); }
+                    { _lista = StockDao.ListarInventarioMaterialesPesosPorAño(año, material); }
                     else
                     {
-                        _lista = StockDao.ListarInventarioMaterialesKilosPorAño(año);
+                        _lista = StockDao.ListarInventarioMaterialesPesosPorAño(año);
                     }
                 }
             }

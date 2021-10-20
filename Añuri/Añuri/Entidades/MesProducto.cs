@@ -10,7 +10,8 @@ namespace Añuri.Entidades
     {
         public int idProducto { get; set; }
         public string Producto { get; set; }
-
+        public decimal Monto { get; set; }
         public int Mes { get; set; }
+        public string NombreMes { get; set; }
     }
 }
