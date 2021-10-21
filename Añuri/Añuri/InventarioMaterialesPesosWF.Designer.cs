@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.idObra = new System.Windows.Forms.Label();
             this.ImagenPagina = new System.Windows.Forms.PictureBox();
@@ -52,8 +52,12 @@
             this.btnMaterialesEnPesos = new System.Windows.Forms.Button();
             this.btnMaterialesKilos = new System.Windows.Forms.Button();
             this.dgvInventario = new System.Windows.Forms.DataGridView();
+            this.btnPdf = new System.Windows.Forms.Button();
+            this.btnExcel = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materiales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaldoInicial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Enero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Febrero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Marzo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,9 +70,6 @@
             this.Octubre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Noviembre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Diciembre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnPdf = new System.Windows.Forms.Button();
-            this.btnExcel = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPagina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
@@ -334,18 +335,19 @@
             this.dgvInventario.BackgroundColor = System.Drawing.Color.White;
             this.dgvInventario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvInventario.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvInventario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInventario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInventario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idprod,
             this.materiales,
+            this.SaldoInicial,
             this.Enero,
             this.Febrero,
             this.Marzo,
@@ -358,31 +360,72 @@
             this.Octubre,
             this.Noviembre,
             this.Diciembre});
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInventario.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInventario.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvInventario.EnableHeadersVisualStyles = false;
             this.dgvInventario.Location = new System.Drawing.Point(218, 163);
             this.dgvInventario.Name = "dgvInventario";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvInventario.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInventario.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvInventario.RowHeadersVisible = false;
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
-            this.dgvInventario.RowsDefaultCellStyle = dataGridViewCellStyle24;
-            this.dgvInventario.Size = new System.Drawing.Size(929, 427);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.dgvInventario.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvInventario.Size = new System.Drawing.Size(1039, 427);
             this.dgvInventario.TabIndex = 182;
             this.dgvInventario.Visible = false;
             this.dgvInventario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInventario_CellContentClick);
+            // 
+            // btnPdf
+            // 
+            this.btnPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnPdf.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.btnPdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPdf.ForeColor = System.Drawing.Color.White;
+            this.btnPdf.Location = new System.Drawing.Point(1026, 604);
+            this.btnPdf.Name = "btnPdf";
+            this.btnPdf.Size = new System.Drawing.Size(121, 34);
+            this.btnPdf.TabIndex = 184;
+            this.btnPdf.Text = "Generar PDF";
+            this.btnPdf.UseVisualStyleBackColor = false;
+            this.btnPdf.Visible = false;
+            this.btnPdf.Click += new System.EventHandler(this.btnPdf_Click);
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnExcel.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExcel.Location = new System.Drawing.Point(878, 604);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(121, 34);
+            this.btnExcel.TabIndex = 183;
+            this.btnExcel.Text = "Exportar a Excel";
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Visible = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(611, 432);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(235, 23);
+            this.progressBar1.TabIndex = 185;
+            this.progressBar1.Value = 50;
+            this.progressBar1.Visible = false;
             // 
             // idprod
             // 
@@ -396,6 +439,11 @@
             this.materiales.HeaderText = "Material";
             this.materiales.Name = "materiales";
             this.materiales.Width = 180;
+            // 
+            // SaldoInicial
+            // 
+            this.SaldoInicial.HeaderText = "Saldo Inicial";
+            this.SaldoInicial.Name = "SaldoInicial";
             // 
             // Enero
             // 
@@ -470,47 +518,7 @@
             this.Diciembre.Name = "Diciembre";
             this.Diciembre.Width = 80;
             // 
-            // btnPdf
-            // 
-            this.btnPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.btnPdf.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.btnPdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPdf.ForeColor = System.Drawing.Color.White;
-            this.btnPdf.Location = new System.Drawing.Point(1026, 604);
-            this.btnPdf.Name = "btnPdf";
-            this.btnPdf.Size = new System.Drawing.Size(121, 34);
-            this.btnPdf.TabIndex = 184;
-            this.btnPdf.Text = "Generar PDF";
-            this.btnPdf.UseVisualStyleBackColor = false;
-            this.btnPdf.Visible = false;
-            // 
-            // btnExcel
-            // 
-            this.btnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.btnExcel.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcel.ForeColor = System.Drawing.Color.White;
-            this.btnExcel.Location = new System.Drawing.Point(878, 604);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(121, 34);
-            this.btnExcel.TabIndex = 183;
-            this.btnExcel.Text = "Exportar a Excel";
-            this.btnExcel.UseVisualStyleBackColor = false;
-            this.btnExcel.Visible = false;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(611, 432);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(235, 23);
-            this.progressBar1.TabIndex = 185;
-            this.progressBar1.Value = 50;
-            this.progressBar1.Visible = false;
-            // 
-            // InventarioMaterialesKilosWF
+            // InventarioMaterialesPesosWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -524,7 +532,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "InventarioMaterialesKilosWF";
+            this.Name = "InventarioMaterialesPesosWF";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "InventarioMaterialesKilosWF";
             this.Load += new System.EventHandler(this.InventarioMaterialesKilosWF_Load);
@@ -566,8 +574,12 @@
         private System.Windows.Forms.TextBox txtMateriales;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtAño;
+        private System.Windows.Forms.Button btnPdf;
+        private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idprod;
         private System.Windows.Forms.DataGridViewTextBoxColumn materiales;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaldoInicial;
         private System.Windows.Forms.DataGridViewTextBoxColumn Enero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Febrero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Marzo;
@@ -580,8 +592,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Octubre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Noviembre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Diciembre;
-        private System.Windows.Forms.Button btnPdf;
-        private System.Windows.Forms.Button btnExcel;
-        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

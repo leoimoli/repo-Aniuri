@@ -77,6 +77,7 @@
     <Compile Include="Dao\ReporteDao.cs" />
     <Compile Include="Dao\StockDao.cs" />
     <Compile Include="Dao\UsuarioDao.cs" />
+    <Compile Include="Entidades\MaterialMesMonto.cs" />
     <Compile Include="Entidades\MenuPorPerfilUsuario.cs" />
     <Compile Include="Entidades\MesProducto.cs" />
     <Compile Include="Entidades\Obra.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Entidades\Reporte_Obras.cs" />
     <Compile Include="Entidades\Reporte_Proveedores.cs" />
     <Compile Include="Entidades\Reporte_Stock.cs" />
+    <Compile Include="Entidades\SaldoInicialEnPesos.cs" />
     <Compile Include="Entidades\Stock.cs" />
     <Compile Include="Entidades\StockProducto.cs" />
     <Compile Include="Entidades\Usuario.cs" />

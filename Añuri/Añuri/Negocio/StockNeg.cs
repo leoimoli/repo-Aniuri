@@ -95,7 +95,7 @@ namespace Añuri.Negocio
                 if (año != "")
                 {
                     if (material != "")
-                    { _lista = StockDao.ListarInventarioMaterialesPesosPorAño(año, material); }
+                    { _lista = StockDao.ListarInventarioMaterialesPesosPorAñoPorMaterial(año, material); }
                     else
                     {
                         _lista = StockDao.ListarInventarioMaterialesPesosPorAño(año);
@@ -108,6 +108,68 @@ namespace Añuri.Negocio
             return _lista;
         }
 
+        public static List<Stock> ListarSaldoInicialInventarioMaterialesPorKilos(string año, string material)
+        {
+            List<Stock> _lista = new List<Stock>();
+            try
+            {
+                if (año != "")
+                {
+                    if (material != "")
+                    { _lista = StockDao.ListarSaldoInicialInventarioMaterialesPorKilosPorMaterial(año, material); }
+                    else
+                    {
+                        _lista = StockDao.ListarSaldoInicialInventarioMaterialesPorKilos(año);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return _lista;
+        }
+
+        public static List<Stock> ListarInventarioMaterialesPorKilos(string año, string material)
+        {
+            List<Stock> _lista = new List<Stock>();
+            try
+            {
+                if (año != "")
+                {
+                    if (material != "")
+                    { _lista = StockDao.ListarInventarioMaterialesPorKilosPorMaterial(año, material); }
+                    else
+                    {
+                        _lista = StockDao.ListarInventarioMaterialesPorKilos(año);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return _lista;
+        }
+
+        public static List<Stock> ListarSaldoInicialInventarioMaterialesPesos(string año, string material)
+        {
+            List<Stock> _lista = new List<Stock>();
+            try
+            {
+                if (año != "")
+                {
+                    if (material != "")
+                    { _lista = StockDao.ListarSaldoInicialInventarioMaterialesPesosPorMaterial(año, material); }
+                    else
+                    {
+                        _lista = StockDao.ListarSaldoInicialInventarioMaterialesPesos(año);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return _lista;
+        }
         public static List<Stock> ListarMovimientosStockPorTipoMovimiento(int idProductoSeleccionado, string tipoMovimiento)
         {
             List<Stock> _lista = new List<Stock>();

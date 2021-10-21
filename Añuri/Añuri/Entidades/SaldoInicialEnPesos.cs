@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace Añuri.Entidades
 {
-   public class MesProducto
+    public class SaldoInicialEnPesos
     {
         public int idProducto { get; set; }
         public string Producto { get; set; }
-        public decimal Monto { get; set; }
-        public int Mes { get; set; }
-        public string NombreMes { get; set; }
-
-        public decimal SaldoInicial { get; set; }
-
-        public int Cantidad { get; set; }
+        public decimal Saldo { get; set; }
+        public int CantidadSaldo { get; set; }
     }
 }
