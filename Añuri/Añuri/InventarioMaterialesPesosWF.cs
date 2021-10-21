@@ -209,17 +209,24 @@ namespace Añuri
                         int PosicionGrilla = 0;
                         int PosicionAsignadaEnGrilla = 0;
                         List<MesProducto> ListaProductoMesNueva = new List<MesProducto>();
-                        
+                        List<int> listaMeses = new List<int>();
+                        //List<MesProducto> listaMeses = new List<MesProducto>();
+
+
                         ////// Recorremos la lista existente y le cargamos los saldos de meses anteriores.
                         foreach (var item in ListaProductoMes)
                         {
+
                             bool ExisteProd = ListaProducto.Any(x => x == item.idProducto);
                             if (ExisteProd == false)
                             {
+                                listaMeses.Clear();
                                 ListaProducto.Add(item.idProducto);
+                                listaMeses.Add(item.Mes);
                             }
                             else
                             {
+                                //listaMeses.Add(item.Mes);
                                 int Mes = item.Mes - 1;
                                 var valor = ListaProductoMes.FirstOrDefault(x => x.Mes == Mes && x.idProducto == item.idProducto);
 
@@ -229,10 +236,19 @@ namespace Añuri
                                 }
                                 else
                                 {
-                                    var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto);
+                                    //var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto);
+                                    listaMeses = listaMeses.OrderBy(o => o.ToString()).ToList();
+                                    var UltimoMes = listaMeses.LastOrDefault();
+                                    var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto && x.Mes == UltimoMes);
                                     if (ValorMasProximo != null)
                                     {
                                         var diferencia = item.Mes - ValorMasProximo.Mes;
+
+                                       bool existeMesEnLista = listaMeses.Any(x => x == item.Mes);
+                                        if (existeMesEnLista == false)
+                                        {
+                                            listaMeses.Add(item.Mes);
+                                        }
                                         for (int i = 1; i < diferencia; i++)
                                         {
                                             int MesDos = item.Mes - i;
@@ -247,7 +263,9 @@ namespace Añuri
                                                 Lista.idProducto = valor2.idProducto;
                                                 Lista.Producto = valor2.Producto;
                                                 ListaProductoMesNueva.Add(Lista);
-                                                item.Monto = item.Monto + valor2.Monto;
+                                                listaMeses.Add(MesDos);
+                                                if (item.Mes - MesDos == 1)
+                                                { item.Monto = item.Monto + valor2.Monto; }
                                             }
                                         }
                                     }

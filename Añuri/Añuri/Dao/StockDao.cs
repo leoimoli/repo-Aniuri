@@ -73,7 +73,7 @@ namespace Añuri.Dao
                         cmd2.Parameters.AddWithValue("idProducto_in", item.idProducto);
                         cmd2.Parameters.AddWithValue("Cantidad_in", item.Cantidad);
                         DateTime fechaactual = Convert.ToDateTime(DateTime.Now);
-                        cmd2.Parameters.AddWithValue("Fecha_in", fechaactual);
+                        cmd2.Parameters.AddWithValue("Fecha_in", item.FechaFactura);
                         ///// TipoMovimiento_in es parametro si entrada o salida de stock
                         cmd2.Parameters.AddWithValue("TipoMovimiento_in", "E");
                         cmd2.Parameters.AddWithValue("idMovimientoEntrada_in", idMovimiento);
@@ -501,7 +501,7 @@ namespace Añuri.Dao
                         cmd2.Parameters.AddWithValue("idProducto_in", item.idProducto);
                         cmd2.Parameters.AddWithValue("Cantidad_in", item.Cantidad);
                         DateTime fechaactual = Convert.ToDateTime(DateTime.Now);
-                        cmd2.Parameters.AddWithValue("Fecha_in", fechaactual);
+                        cmd2.Parameters.AddWithValue("Fecha_in", item.FechaFactura);
                         ///// TipoMovimiento_in es parametro si entrada o salida de stock
                         cmd2.Parameters.AddWithValue("TipoMovimiento_in", "S");
                         cmd2.Parameters.AddWithValue("idMovimientoEntrada_in", item.idMovimientoEntrada);
