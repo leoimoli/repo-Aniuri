@@ -307,20 +307,36 @@ namespace Añuri
 
                         ///// Le volvemos a pasar a la lista final la nueva lista ordenada por producto y mes.
                         ListaProductoMes = ListaProductoMes2;
-
-
-                        //var data2 = ListaProductoMes.Select(k => new { k.Mes, k.idProducto }).GroupBy(x => new { x.Mes, x.idProducto }, (key, group) => new
-                        //{
-                        //    mes = key.Mes,
-                        //    id = key.idProducto,                           
-                        //}).ToList();
-
+                        int contador = 0;
+                        List<int> listaMes = new List<int>();
                         foreach (var item in ListaProductoMes)
                         {
                             dgvInventario.Visible = true;
                             bool ExisteProd = ListaidProducto.Any(x => x == item.idProducto);
                             if (ExisteProd == false)
                             {
+                                contador = contador + 1;
+                                if (listaMes.Count > 0)
+                                {
+                                    if (listaMes.Count == 1)
+                                    {
+                                        int MesMayor = listaMes.Max();
+                                        int idProd = ListaidProducto.Last();
+                                        var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
+                                        if (MesMayor > 0)
+                                        { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla + 1, valorMes.Monto); }
+                                    }
+                                    else
+                                    {
+                                        int MesMayor = listaMes.Max();
+                                        int idProd = ListaidProducto.Last();
+                                        var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
+                                        if (MesMayor > 0)
+                                        { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Monto); }
+                                    }
+                                }
+                                listaMes.Clear();
+                                listaMes.Add(item.Mes);
                                 ListaidProducto.Add(item.idProducto);
                                 dgvInventario.Rows.Add(item.idProducto, item.Producto);
                                 dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value = item.SaldoInicial;
@@ -392,7 +408,7 @@ namespace Añuri
                                 {
                                     dgvInventario.Rows[PosicionGrilla].Cells["Septiembre"].Value = item.Monto;
                                 }
-                                else 
+                                else
                                 {
                                     dgvInventario.Rows[PosicionGrilla].Cells["Septiembre"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
                                 }
@@ -425,6 +441,7 @@ namespace Añuri
 
                             else
                             {
+                                listaMes.Add(item.Mes);
                                 foreach (DataGridViewRow Row in dgvInventario.Rows)
                                 {
                                     for (int i = 0; i < dgvInventario.Rows.Count; i++)
@@ -484,6 +501,18 @@ namespace Añuri
                                 {
                                     dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Diciembre"].Value = item.Monto;
                                 }
+                                contador = contador + 1;
+                            }
+                        }
+                        if (contador == ListaProductoMes.Count)
+                        {
+                            if (listaMes.Count > 0)
+                            {
+                                int MesMayor = listaMes.Max();
+                                int idProd = ListaidProducto.Last();
+                                var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
+                                if (MesMayor > 0)
+                                { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Monto); }
                             }
                         }
                         ListaMontoMes = ListaProductoMes;
@@ -505,6 +534,58 @@ namespace Añuri
             }
             catch (Exception ex)
             { }
+        }
+
+        private void ReformularGrilla(int MesMayor, int posicionEnGrilla, decimal monto)
+        {
+            if (1 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Enero"].Value = monto;
+            }
+            if (2 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Febrero"].Value = monto;
+            }
+            if (3 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Marzo"].Value = monto;
+            }
+            if (4 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Abril"].Value = monto;
+            }
+            if (5 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Mayo"].Value = monto;
+            }
+            if (6 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Junio"].Value = monto;
+            }
+            if (7 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Julio"].Value = monto;
+            }
+            if (8 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Agosto"].Value = monto;
+            }
+            if (9 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Septiembre"].Value = monto;
+            }
+            if (10 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Octubre"].Value = monto;
+            }
+            if (11 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Noviembre"].Value = monto;
+            }
+            if (12 > MesMayor)
+            {
+                dgvInventario.Rows[posicionEnGrilla].Cells["Diciembre"].Value = monto;
+            }
         }
 
         private List<SaldoInicialEnPesos> CalcularSaldoInicial(List<Stock> listaStockSaldoInicial)
@@ -569,7 +650,6 @@ namespace Añuri
             }
             return ListaSaldo;
         }
-
         public string ObtenerMes(int mes)
         {
             string NombreMes = "";
@@ -999,160 +1079,175 @@ namespace Añuri
                     string SaldoInicial = Convert.ToString(item.SaldoInicial);
                     clSaldoInicial = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
                     clSaldoInicial.BorderWidth = 0;
+                    string SiguienteValor = "";
 
                     string Enero = Convert.ToString(item.Enero);
                     if (Enero == "0")
                     {
                         clEnero = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
                         clEnero.BorderWidth = 0;
+                        SiguienteValor = SaldoInicial;
                     }
                     else
                     {
                         clEnero = new PdfPCell(new Phrase(Enero, letraContenido));
                         clEnero.BorderWidth = 0;
+                        SiguienteValor = Enero;
                     }
                     string Febrero = Convert.ToString(item.Febrero);
                     if (Febrero == "0")
                     {
-                        clFebrero = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clFebrero = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clFebrero.BorderWidth = 0;
+
                     }
                     else
                     {
                         clFebrero = new PdfPCell(new Phrase(Febrero, letraContenido));
                         clFebrero.BorderWidth = 0;
+                        SiguienteValor = Febrero;
                     }
-                 
+
 
                     string Marzo = Convert.ToString(item.Marzo);
                     if (Marzo == "0")
                     {
-                        clMarzo = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clMarzo = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clMarzo.BorderWidth = 0;
                     }
                     else
                     {
                         clMarzo = new PdfPCell(new Phrase(Marzo, letraContenido));
                         clMarzo.BorderWidth = 0;
+                        SiguienteValor = Marzo;
                     }
-              
+
 
                     string Abril = Convert.ToString(item.Abril);
                     if (Abril == "0")
                     {
-                        clAbril = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clAbril = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clAbril.BorderWidth = 0;
                     }
                     else
                     {
                         clAbril = new PdfPCell(new Phrase(Abril, letraContenido));
                         clAbril.BorderWidth = 0;
+                        SiguienteValor = Abril;
                     }
-                    
+
 
                     string Mayo = Convert.ToString(item.Mayo);
                     if (Mayo == "0")
                     {
-                        clMayo = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clMayo = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clMayo.BorderWidth = 0;
                     }
                     else
                     {
                         clMayo = new PdfPCell(new Phrase(Mayo, letraContenido));
                         clMayo.BorderWidth = 0;
+                        SiguienteValor = Mayo;
                     }
-                   
+
 
                     string Junio = Convert.ToString(item.Junio);
                     if (Junio == "0")
                     {
-                        clJunio = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clJunio = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clJunio.BorderWidth = 0;
                     }
                     else
                     {
                         clJunio = new PdfPCell(new Phrase(Junio, letraContenido));
                         clJunio.BorderWidth = 0;
+                        SiguienteValor = Junio;
                     }
-                  
+
 
                     string Julio = Convert.ToString(item.Julio);
                     if (Julio == "0")
                     {
-                        clJulio = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clJulio = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clJulio.BorderWidth = 0;
                     }
                     else
                     {
                         clJulio = new PdfPCell(new Phrase(Julio, letraContenido));
                         clJulio.BorderWidth = 0;
+                        SiguienteValor = Julio;
                     }
-                   
+
 
                     string Agosto = Convert.ToString(item.Agosto);
                     if (Agosto == "0")
                     {
-                        clAgosto = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clAgosto = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clAgosto.BorderWidth = 0;
                     }
                     else
                     {
                         clAgosto = new PdfPCell(new Phrase(Agosto, letraContenido));
                         clAgosto.BorderWidth = 0;
+                        SiguienteValor = Agosto;
                     }
-                 
+
 
                     string Septiembre = Convert.ToString(item.Septiembre);
                     if (Septiembre == "0")
                     {
-                        clSeptiembre = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clSeptiembre = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clSeptiembre.BorderWidth = 0;
                     }
                     else
                     {
                         clSeptiembre = new PdfPCell(new Phrase(Septiembre, letraContenido));
                         clSeptiembre.BorderWidth = 0;
+                        SiguienteValor = Septiembre;
                     }
-                   
+
 
                     string Octubre = Convert.ToString(item.Octubre);
                     if (Octubre == "0")
                     {
-                        clOctubre = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clOctubre = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clOctubre.BorderWidth = 0;
                     }
                     else
                     {
                         clOctubre = new PdfPCell(new Phrase(Octubre, letraContenido));
                         clOctubre.BorderWidth = 0;
+                        SiguienteValor = Octubre;
                     }
-                    
+
 
                     string Noviembre = Convert.ToString(item.Noviembre);
                     if (Noviembre == "0")
                     {
-                        clNoviembre = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clNoviembre = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clNoviembre.BorderWidth = 0;
                     }
                     else
                     {
                         clNoviembre = new PdfPCell(new Phrase(Noviembre, letraContenido));
                         clNoviembre.BorderWidth = 0;
+                        SiguienteValor = Noviembre;
                     }
-                  
+
 
                     string Diciembre = Convert.ToString(item.Diciembre);
                     if (Diciembre == "0")
                     {
-                        clDiciembre = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clDiciembre = new PdfPCell(new Phrase(SiguienteValor, letraContenido));
                         clDiciembre.BorderWidth = 0;
                     }
                     else
                     {
                         clDiciembre = new PdfPCell(new Phrase(Diciembre, letraContenido));
                         clDiciembre.BorderWidth = 0;
+                        SiguienteValor = Diciembre;
                     }
-                   
+
 
                     tblPrueba.AddCell(clMaterial);
                     tblPrueba.AddCell(clSaldoInicial);

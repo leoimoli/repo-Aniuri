@@ -358,6 +358,7 @@ namespace Añuri
             _proveedor.Altura = txtAltura.Text;
             string telefono = txtCodArea.Text + "-" + txtTelefono.Text;
             _proveedor.Telefono = telefono;
+            _proveedor.FechaDeAlta = dateTimePicker1.Value;
             _proveedor.idUsuario = idusuarioLogueado;
             return _proveedor;
         }

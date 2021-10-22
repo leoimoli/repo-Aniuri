@@ -16,6 +16,8 @@ namespace Añuri.Entidades
 
         public decimal SaldoInicial { get; set; }
 
+        public int CantidadSaldoInicial { get; set; }
+
         public int Cantidad { get; set; }
     }
 }

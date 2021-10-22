@@ -56,6 +56,13 @@
             this.chartProveedores = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartMateriales = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnFiltrosStock = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnExportarObrasEnCurso = new System.Windows.Forms.Button();
+            this.btnExportarStock = new System.Windows.Forms.Button();
+            this.btnExportarComprasproveedores = new System.Windows.Forms.Button();
+            this.btnExportarMaterialesMasVendido = new System.Windows.Forms.Button();
             this.dgvmateriales = new System.Windows.Forms.DataGridView();
             this.Material = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,14 +75,6 @@
             this.dgvproveedores = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnFiltrosStock = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnExportarObrasEnCurso = new System.Windows.Forms.Button();
-            this.btnExportarStock = new System.Windows.Forms.Button();
-            this.btnExportarComprasproveedores = new System.Windows.Forms.Button();
-            this.btnExportarMaterialesMasVendido = new System.Windows.Forms.Button();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartObras)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartStock)).BeginInit();
@@ -188,7 +187,7 @@
             title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             title2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             title2.Name = "Title1";
-            title2.Text = "Materiales con mayor Stock";
+            title2.Text = "Stock de Materiales";
             this.chartStock.Titles.Add(title2);
             // 
             // chartProveedores
@@ -258,98 +257,6 @@
             title4.Text = "Materiales con mayor uso";
             this.chartMateriales.Titles.Add(title4);
             // 
-            // dgvmateriales
-            // 
-            this.dgvmateriales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvmateriales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Material,
-            this.Cantidad});
-            this.dgvmateriales.Location = new System.Drawing.Point(693, 480);
-            this.dgvmateriales.Name = "dgvmateriales";
-            this.dgvmateriales.RowHeadersVisible = false;
-            this.dgvmateriales.Size = new System.Drawing.Size(204, 37);
-            this.dgvmateriales.TabIndex = 186;
-            this.dgvmateriales.Visible = false;
-            // 
-            // Material
-            // 
-            this.Material.HeaderText = "Material";
-            this.Material.Name = "Material";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            // 
-            // dgvStock
-            // 
-            this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.dgvStock.Location = new System.Drawing.Point(693, 246);
-            this.dgvStock.Name = "dgvStock";
-            this.dgvStock.RowHeadersVisible = false;
-            this.dgvStock.Size = new System.Drawing.Size(204, 28);
-            this.dgvStock.TabIndex = 187;
-            this.dgvStock.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Material";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dgvObra
-            // 
-            this.dgvObra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvObra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            this.dgvObra.Location = new System.Drawing.Point(171, 246);
-            this.dgvObra.Name = "dgvObra";
-            this.dgvObra.RowHeadersVisible = false;
-            this.dgvObra.Size = new System.Drawing.Size(204, 28);
-            this.dgvObra.TabIndex = 188;
-            this.dgvObra.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Mes";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dgvproveedores
-            // 
-            this.dgvproveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvproveedores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
-            this.dgvproveedores.Location = new System.Drawing.Point(171, 480);
-            this.dgvproveedores.Name = "dgvproveedores";
-            this.dgvproveedores.RowHeadersVisible = false;
-            this.dgvproveedores.Size = new System.Drawing.Size(204, 28);
-            this.dgvproveedores.TabIndex = 189;
-            this.dgvproveedores.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Prooveedor";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Total";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
             // btnFiltrosStock
             // 
             this.btnFiltrosStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
@@ -366,22 +273,6 @@
             this.toolTip1.SetToolTip(this.btnFiltrosStock, "Filtrar Busquedas");
             this.btnFiltrosStock.UseVisualStyleBackColor = false;
             this.btnFiltrosStock.Click += new System.EventHandler(this.btnFiltrosStock_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(998, 477);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(36, 28);
-            this.button3.TabIndex = 184;
-            this.button3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.toolTip1.SetToolTip(this.button3, "Filtrar Busquedas");
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
@@ -483,6 +374,98 @@
             this.btnExportarMaterialesMasVendido.UseVisualStyleBackColor = false;
             this.btnExportarMaterialesMasVendido.Click += new System.EventHandler(this.btnExportarMaterialesMasVendido_Click);
             // 
+            // dgvmateriales
+            // 
+            this.dgvmateriales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvmateriales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Material,
+            this.Cantidad});
+            this.dgvmateriales.Location = new System.Drawing.Point(693, 480);
+            this.dgvmateriales.Name = "dgvmateriales";
+            this.dgvmateriales.RowHeadersVisible = false;
+            this.dgvmateriales.Size = new System.Drawing.Size(204, 37);
+            this.dgvmateriales.TabIndex = 186;
+            this.dgvmateriales.Visible = false;
+            // 
+            // Material
+            // 
+            this.Material.HeaderText = "Material";
+            this.Material.Name = "Material";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            // 
+            // dgvStock
+            // 
+            this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dgvStock.Location = new System.Drawing.Point(693, 246);
+            this.dgvStock.Name = "dgvStock";
+            this.dgvStock.RowHeadersVisible = false;
+            this.dgvStock.Size = new System.Drawing.Size(204, 28);
+            this.dgvStock.TabIndex = 187;
+            this.dgvStock.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Material";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dgvObra
+            // 
+            this.dgvObra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvObra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dgvObra.Location = new System.Drawing.Point(171, 246);
+            this.dgvObra.Name = "dgvObra";
+            this.dgvObra.RowHeadersVisible = false;
+            this.dgvObra.Size = new System.Drawing.Size(204, 28);
+            this.dgvObra.TabIndex = 188;
+            this.dgvObra.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Mes";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dgvproveedores
+            // 
+            this.dgvproveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvproveedores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            this.dgvproveedores.Location = new System.Drawing.Point(171, 480);
+            this.dgvproveedores.Name = "dgvproveedores";
+            this.dgvproveedores.RowHeadersVisible = false;
+            this.dgvproveedores.Size = new System.Drawing.Size(204, 28);
+            this.dgvproveedores.TabIndex = 189;
+            this.dgvproveedores.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Prooveedor";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Total";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
             // ReportesWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -493,7 +476,6 @@
             this.Controls.Add(this.dgvStock);
             this.Controls.Add(this.dgvmateriales);
             this.Controls.Add(this.btnFiltrosStock);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnExportarObrasEnCurso);
@@ -509,9 +491,10 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReportesWF";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ReportesWF";
+            this.Text = "Añuri";
             this.Load += new System.EventHandler(this.ReportesWF_Load);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
@@ -545,7 +528,6 @@
         private System.Windows.Forms.Button btnExportarObrasEnCurso;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnFiltrosStock;
         private System.Windows.Forms.DataGridView dgvmateriales;
         private System.Windows.Forms.DataGridViewTextBoxColumn Material;
