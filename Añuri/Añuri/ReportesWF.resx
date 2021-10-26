@@ -133,30 +133,6 @@
         xq3fh6F/WVKHW20gcy7/LQxqyVEIoekThUgF7EWlneYAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAB3RJTUUH5QoEERIPuiALYgAAAUhJREFU
-        OE+t0k0rRGEYxnFkJlspUXwAyn52LChbyc7CQl4W4itIWROyoLAjCVEiZRYsKG8lKzZsRNmw1eN/nbnG
-        mROnKFf9esx9P/etM2fKigkhZDCIY7zhHWcYQ5Wv/Rwu1OAEyjlmMYm8CuQKDb6eDI0KFC+OotytKHxu
-        xysukHU5DsUeKAfIuRyFzx24xwiUIbfiUNzAA7QoWsDZiAH0Q2nGKfLRUGko3mAL3eiEFvVBGfepBTN4
-        8lgcipfYgxYMQ5nyWbpgBY8ei0NxGS/oRdqCFtxhx2NxKLbqBrnGZuHP6LegHPrc9tnlsWRoLBX6YRr1
-        qLZaTOAD+p4Sr/grNLJYgKJ3ru9kF88qkFXoMfQPKj32PTRzmIceQb/MRbS5tw9lDelL0sKQHkevXFlH
-        xq3fh6F/WVKHW20gcy7/LQxqyVEIoekThUgF7EWlneYAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAB3RJTUUH5QoEERIPuiALYgAAAUhJREFU
-        OE+t0k0rRGEYxnFkJlspUXwAyn52LChbyc7CQl4W4itIWROyoLAjCVEiZRYsKG8lKzZsRNmw1eN/nbnG
-        mROnKFf9esx9P/etM2fKigkhZDCIY7zhHWcYQ5Wv/Rwu1OAEyjlmMYm8CuQKDb6eDI0KFC+OotytKHxu
-        xysukHU5DsUeKAfIuRyFzx24xwiUIbfiUNzAA7QoWsDZiAH0Q2nGKfLRUGko3mAL3eiEFvVBGfepBTN4
-        8lgcipfYgxYMQ5nyWbpgBY8ei0NxGS/oRdqCFtxhx2NxKLbqBrnGZuHP6LegHPrc9tnlsWRoLBX6YRr1
-        qLZaTOAD+p4Sr/grNLJYgKJ3ru9kF88qkFXoMfQPKj32PTRzmIceQb/MRbS5tw9lDelL0sKQHkevXFlH
-        xq3fh6F/WVKHW20gcy7/LQxqyVEIoekThUgF7EWlneYAAAAASUVORK5CYII=
-</value>
-  </data>
   <metadata name="Material.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

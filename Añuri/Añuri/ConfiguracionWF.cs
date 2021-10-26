@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using Añuri.Dao;
 
 namespace Añuri
 {
@@ -32,6 +33,8 @@ namespace Añuri
 
             config = ConfigurationManager.OpenExeConfiguration(path);
             cargaConf();
+
+            txtVariableStockFaltante.Text = DaoConsultasGenerales.ConsultaVariableStockFaltante();
         }
 
         private void cargaConf()
@@ -49,6 +52,20 @@ namespace Añuri
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             grabaConf();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int variableStockFalntante = Convert.ToInt32(txtVariableStockFaltante.Text);
+            bool exito = DaoConsultasGenerales.UpdateVariableStockFaltante(variableStockFalntante);
+            if (exito == true)
+            {
+                const string message2 = "Se modifico la variable con exito..";
+                const string caption2 = "Exito:";
+                var result2 = MessageBox.Show(message2, caption2,
+                                             MessageBoxButtons.OK,
+                                             MessageBoxIcon.Asterisk);
+            }
         }
 
         private void grabaConf()

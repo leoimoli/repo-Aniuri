@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Añuri.Dao;
+using Añuri.Entidades;
+using Añuri.Negocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,6 +39,87 @@ namespace Añuri
                 int month = Convert.ToInt32(Month);
                 int year = Convert.ToInt32(Year);
                 lblDia.Text = Dia + "," + " " + FechaDia + " " + "de" + " " + Mes + " " + Year;
+
+                ///// Armo Panel de Informacion
+                int totalProvedores = DaoConsultasGenerales.ContadorProveedores();               
+                int Materiales = DaoConsultasGenerales.ContadorProductos();             
+                int Obras = DaoConsultasGenerales.ContadorObras();
+                int Usuarios = DaoConsultasGenerales.ContadorUsuarios();
+                if (Obras > 9999)
+                {
+                    lblContadorVentas.Text = "+ 10.000";
+                }
+                if (Obras > 99999)
+                {
+                    lblContadorVentas.Text = "+ 100.000";
+                }
+                if (Obras > 999999)
+                {
+                    lblContadorVentas.Text = "+ 1.000.000";
+                }
+                else
+                {
+                    lblContadorVentas.Text = Convert.ToString(Obras);
+                }
+                if (Materiales > 9999)
+                {
+                    lblContadorProdcutos.Text = "+ 10.000";
+                }
+                if (Materiales > 99999)
+                {
+                    lblContadorProdcutos.Text = "+ 100.000";
+                }
+                if (Materiales > 999999)
+                {
+                    lblContadorProdcutos.Text = "+ 1.000.000";
+                }
+                else
+                {
+                    lblContadorProdcutos.Text = Convert.ToString(Materiales);
+                }               
+                if (totalProvedores > 9999)
+                {
+                    lblContadorProveedores.Text = "+ 10.000";
+                }
+                if (totalProvedores > 99999)
+                {
+                    lblContadorProveedores.Text = "+ 100.000";
+                }
+                if (totalProvedores > 999999)
+                {
+                    lblContadorProveedores.Text = "+ 1.000.000";
+                }
+                else
+                {
+                    lblContadorProveedores.Text = Convert.ToString(totalProvedores);
+                }               
+                if (Usuarios > 9999)
+                {
+                    lblContadorUsuarios.Text = "+ 10.000";
+                }
+                if (Usuarios > 99999)
+                {
+                    lblContadorUsuarios.Text = "+ 100.000";
+                }
+                if (Usuarios > 999999)
+                {
+                    lblContadorUsuarios.Text = "+ 1.000.000";
+                }
+                else
+                {
+                    lblContadorUsuarios.Text = Convert.ToString(Usuarios);
+                }
+                ///// Completo Grilla con informacion
+                List<Stock> ListaStockFaltante = new List<Stock>();
+                ListaStockFaltante = StockNeg.ListaStockFaltante();
+                if (ListaStockFaltante.Count > 0)
+                {
+                    foreach (var item in ListaStockFaltante)
+                    {
+                        dgvInicio.Rows.Add(item.idProducto, item.Descripcion, item.Cantidad);
+                    }
+                }
+                dgvInicio.ReadOnly = true;
             }
             catch (Exception ex)
             { }

@@ -263,6 +263,7 @@ namespace Añuri
             panelNuevaObra.Enabled = true;
             panelObra.Visible = true;
             txtNombreObra.Focus();
+            txtNombreObra.Enabled = true;
             CargarProvincias();
         }
         private void SoloNumeros(object sender, KeyPressEventArgs e)

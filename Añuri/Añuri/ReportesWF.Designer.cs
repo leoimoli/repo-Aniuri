@@ -57,8 +57,6 @@
             this.chartMateriales = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnFiltrosStock = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnExportarObrasEnCurso = new System.Windows.Forms.Button();
             this.btnExportarStock = new System.Windows.Forms.Button();
             this.btnExportarComprasproveedores = new System.Windows.Forms.Button();
@@ -274,38 +272,6 @@
             this.btnFiltrosStock.UseVisualStyleBackColor = false;
             this.btnFiltrosStock.Click += new System.EventHandler(this.btnFiltrosStock_Click);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(457, 477);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(36, 28);
-            this.button2.TabIndex = 183;
-            this.button2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.toolTip1.SetToolTip(this.button2, "Filtrar Busquedas");
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(457, 246);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(36, 28);
-            this.button1.TabIndex = 182;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.toolTip1.SetToolTip(this.button1, "Filtrar Busquedas");
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // btnExportarObrasEnCurso
             // 
             this.btnExportarObrasEnCurso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
@@ -476,8 +442,6 @@
             this.Controls.Add(this.dgvStock);
             this.Controls.Add(this.dgvmateriales);
             this.Controls.Add(this.btnFiltrosStock);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnExportarObrasEnCurso);
             this.Controls.Add(this.btnExportarStock);
             this.Controls.Add(this.btnExportarComprasproveedores);
@@ -526,8 +490,6 @@
         private System.Windows.Forms.Button btnExportarComprasproveedores;
         private System.Windows.Forms.Button btnExportarStock;
         private System.Windows.Forms.Button btnExportarObrasEnCurso;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnFiltrosStock;
         private System.Windows.Forms.DataGridView dgvmateriales;
         private System.Windows.Forms.DataGridViewTextBoxColumn Material;

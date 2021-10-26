@@ -93,6 +93,36 @@ namespace Añuri.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap barrow_con_materiales_de_construccion {
+            get {
+                object obj = ResourceManager.GetObject("barrow-con-materiales-de-construccion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap barrow_con_materiales_de_construccion__1_ {
+            get {
+                object obj = ResourceManager.GetObject("barrow-con-materiales-de-construccion (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap barrow_con_materiales_de_construccion__2_ {
+            get {
+                object obj = ResourceManager.GetObject("barrow-con-materiales-de-construccion (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap buscar__2_ {
             get {
                 object obj = ResourceManager.GetObject("buscar (2)", resourceCulture);
@@ -223,6 +253,16 @@ namespace Añuri.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hook {
+            get {
+                object obj = ResourceManager.GetObject("hook", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap informe_empresarial_con_crecimiento__1_ {
             get {
                 object obj = ResourceManager.GetObject("informe-empresarial-con-crecimiento (1)", resourceCulture);
@@ -276,6 +316,16 @@ namespace Añuri.Properties {
         internal static System.Drawing.Bitmap Logo_Añuri1 {
             get {
                 object obj = ResourceManager.GetObject("Logo Añuri1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap los_usuarios_del_grupo {
+            get {
+                object obj = ResourceManager.GetObject("los-usuarios-del-grupo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -436,6 +486,16 @@ namespace Añuri.Properties {
         internal static System.Drawing.Bitmap trabajando {
             get {
                 object obj = ResourceManager.GetObject("trabajando", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transporte_de_camiones_con_materiales_de_construccion__1_ {
+            get {
+                object obj = ResourceManager.GetObject("transporte-de-camiones-con-materiales-de-construccion (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

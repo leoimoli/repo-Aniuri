@@ -149,7 +149,18 @@ namespace Añuri.Negocio
             }
             return _lista;
         }
-
+        public static List<Stock> ListaStockFaltante()
+        {
+            List<Stock> _lista = new List<Stock>();
+            try
+            {
+                _lista = StockDao.ListaStockFaltante();
+            }
+            catch (Exception ex)
+            {
+            }
+            return _lista;
+        }
         public static List<Stock> ListarSaldoInicialInventarioMaterialesPesos(string año, string material)
         {
             List<Stock> _lista = new List<Stock>();

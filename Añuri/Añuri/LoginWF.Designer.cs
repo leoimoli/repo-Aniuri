@@ -83,6 +83,7 @@
             this.txtClave.Size = new System.Drawing.Size(328, 27);
             this.txtClave.TabIndex = 15;
             this.txtClave.Text = "Clave";
+            this.txtClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClave_KeyDown);
             // 
             // txtUsuario
             // 
@@ -95,6 +96,7 @@
             this.txtUsuario.Size = new System.Drawing.Size(328, 27);
             this.txtUsuario.TabIndex = 14;
             this.txtUsuario.Text = "Usuario";
+            this.txtUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsuario_KeyDown);
             // 
             // panel1
             // 

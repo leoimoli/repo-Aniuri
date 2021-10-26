@@ -135,6 +135,37 @@ namespace Añuri.Dao
             connection.Close();
             return lista;
         }
+        public static List<Stock> ListaStockFaltante()
+        {
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+
+            string variable = DaoConsultasGenerales.ConsultaVariableStockFaltante();
+
+            MySqlParameter[] oParam = { new MySqlParameter("variable_in", variable) };
+            string proceso = "ListaStockFaltante";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock listaStock = new Stock();
+                    listaStock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    listaStock.Descripcion = item["DescripcionProducto"].ToString();                   
+                    listaStock.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                    _listaStocks.Add(listaStock);
+                }
+            }
+            connection.Close();
+            return _listaStocks;
+        }
         public static List<Stock> ListarSaldoInicialInventarioMaterialesPorKilos(string año)
         {
             List<Stock> lista = new List<Stock>();

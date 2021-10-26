@@ -99,6 +99,7 @@ namespace Añuri
         }
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            txtDescripcionProducto.Clear();
             txtDescripcionProducto.Focus();
             PanelNuevoMaterial.Visible = true;
             PanelNuevoMaterial.Enabled = true;

@@ -223,7 +223,6 @@
             // panelNuevaObra
             // 
             this.panelNuevaObra.BackColor = System.Drawing.Color.Gainsboro;
-            this.panelNuevaObra.Controls.Add(this.panelDetalleObra);
             this.panelNuevaObra.Controls.Add(this.label15);
             this.panelNuevaObra.Controls.Add(this.dateTimePicker1);
             this.panelNuevaObra.Controls.Add(this.txtCodigoPostal);
@@ -269,7 +268,7 @@
             this.panelDetalleObra.Controls.Add(this.txtCantidad);
             this.panelDetalleObra.Controls.Add(this.label7);
             this.panelDetalleObra.Controls.Add(this.lblNombreObra);
-            this.panelDetalleObra.Location = new System.Drawing.Point(0, 4);
+            this.panelDetalleObra.Location = new System.Drawing.Point(3, 3);
             this.panelDetalleObra.Name = "panelDetalleObra";
             this.panelDetalleObra.Size = new System.Drawing.Size(425, 434);
             this.panelDetalleObra.TabIndex = 111;
@@ -742,6 +741,7 @@
             // 
             // panelObra
             // 
+            this.panelObra.Controls.Add(this.panelDetalleObra);
             this.panelObra.Controls.Add(this.panelNuevaObra);
             this.panelObra.Location = new System.Drawing.Point(646, 36);
             this.panelObra.Name = "panelObra";
