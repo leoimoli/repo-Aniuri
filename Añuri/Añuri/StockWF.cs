@@ -108,15 +108,36 @@ namespace Añuri
         {
             try
             {
-                Stock Entidad = CargarEntidadRegistroStock();
-                dgvListaCargaStock.Rows.Add(Entidad.idProducto, Entidad.Descripcion, Entidad.Cantidad, Entidad.ValorUnitario, Entidad.PrecioNeto);
-                //txtProveedor.Enabled = false;
-                //dtFechaCompra.Enabled = false;
-                //txtRemito.Enabled = false;
-                txtCantidad.Clear();
-                txtValorUni.Clear();
-                txtDescripcionProducto.Clear();
-                txtDescipcionBus.Focus();
+                bool existeProducto = StockDao.ValidarProductoExistente(txtMaterial.Text);
+                if (existeProducto == false)
+                {
+                    const string message2 = "Atención: El material ingresado no existe.";
+                    const string caption2 = "Atención";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Exclamation);
+                }
+                bool existeProveedor = ProveedoresDao.ValidarProveedorExistente(txtProveedor.Text);
+                if (existeProveedor == false)
+                {
+                    const string message2 = "Atención: El proveedor ingresado no existe.";
+                    const string caption2 = "Atención";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    Stock Entidad = CargarEntidadRegistroStock();
+                    dgvListaCargaStock.Rows.Add(Entidad.idProducto, Entidad.Descripcion, Entidad.Cantidad, Entidad.ValorUnitario, Entidad.PrecioNeto);
+                    //txtProveedor.Enabled = false;
+                    //dtFechaCompra.Enabled = false;
+                    //txtRemito.Enabled = false;
+                    txtCantidad.Clear();
+                    txtValorUni.Clear();
+                    txtDescripcionProducto.Clear();
+                    txtDescipcionBus.Focus();
+                }
             }
             catch (Exception ex)
             { }
@@ -461,6 +482,25 @@ namespace Añuri
                 this.dgvStock.Columns[e.ColumnIndex].Width = icoAtomico.Width + 40;
                 e.Handled = true;
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCamposStock();
+        }
+
+        private void LimpiarCamposStock()
+        {
+            txtDescipcionBus.Clear();
+            txtMaterial.Clear();
+            txtProveedor.Clear();
+            dtFechaCompra.Value = DateTime.Now;
+            txtRemito.Clear();
+            txtCantidad.Clear();
+            txtValorUni.Clear();
+            dgvListaCargaStock.Rows.Clear();
+            progressBar1.Value = Convert.ToInt32(null);
+            progressBar1.Visible = false;
         }
     }
 }

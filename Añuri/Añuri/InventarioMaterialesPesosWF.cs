@@ -314,10 +314,10 @@ namespace Añuri
                             dgvInventario.Visible = true;
                             bool ExisteProd = ListaidProducto.Any(x => x == item.idProducto);
                             if (ExisteProd == false)
-                            {
+                            {                                
                                 contador = contador + 1;
                                 if (listaMes.Count > 0)
-                                {
+                                {                                  
                                     if (listaMes.Count == 1)
                                     {
                                         int MesMayor = listaMes.Max();
@@ -326,14 +326,14 @@ namespace Añuri
                                         if (MesMayor > 0)
                                         { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla + 1, valorMes.Monto); }
                                     }
-                                    else
-                                    {
-                                        int MesMayor = listaMes.Max();
-                                        int idProd = ListaidProducto.Last();
-                                        var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
-                                        if (MesMayor > 0)
-                                        { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Monto); }
-                                    }
+                                    //else
+                                    //{
+                                    //    int MesMayor = listaMes.Max();
+                                    //    int idProd = ListaidProducto.Last();
+                                    //    var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
+                                    //    if (MesMayor > 0)
+                                    //    { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Monto); }
+                                    //}
                                 }
                                 listaMes.Clear();
                                 listaMes.Add(item.Mes);
@@ -438,7 +438,6 @@ namespace Añuri
                                 }
                                 PosicionGrilla = PosicionGrilla + 1;
                             }
-
                             else
                             {
                                 listaMes.Add(item.Mes);
@@ -508,11 +507,26 @@ namespace Añuri
                         {
                             if (listaMes.Count > 0)
                             {
-                                int MesMayor = listaMes.Max();
-                                int idProd = ListaidProducto.Last();
-                                var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
-                                if (MesMayor > 0)
-                                { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Monto); }
+                                PosicionAsignadaEnGrilla = 0;
+                                foreach (var item in ListaidProducto)
+                                {                                  
+                                    //var info = ListaProductoMes.Where(n => n.idProducto == item);
+                                    var info1 = ListaProductoMes.Where(n => n.idProducto == item).ToList();
+                                    var info2 = info1.OrderByDescending(x => x.Mes).ToList().First();
+                                    int MesMayor = info2.Mes;
+                                    int idProd = info2.idProducto;
+                                    var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
+                                    if (MesMayor > 0)
+                                    {
+                                        ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Monto);
+                                        PosicionAsignadaEnGrilla = PosicionAsignadaEnGrilla + 1;
+                                    }
+                                }
+                                //int MesMayor = listaMes.Max();
+                                //int idProd = ListaidProducto.Last();
+                                //var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
+                                //if (MesMayor > 0)
+                                //{ ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Monto); }
                             }
                         }
                         ListaMontoMes = ListaProductoMes;
@@ -602,14 +616,17 @@ namespace Añuri
                 if (existeEnLista == false)
                 {
                     Contador = Contador + 1;
-                    ListaIdProducto.Add(item.idProducto);
                     if (Total > 0)
                     {
                         SaldoInicialEnPesos lista = new SaldoInicialEnPesos();
-                        lista.idProducto = item.idProducto;
+                        lista.idProducto = ListaIdProducto.Last();
                         lista.Saldo = Total;
                         ListaSaldo.Add(lista);
                     }
+                    ListaIdProducto.Add(item.idProducto);
+                    SumaEntrada = 0;
+                    SumaSalida = 0;
+                    //Total = 0;
                     if (item.TipoMovimiento == "E")
                     {
                         SumaEntrada = SumaEntrada + item.PrecioNeto;
@@ -639,6 +656,13 @@ namespace Añuri
                         lista.Saldo = Total;
                         ListaSaldo.Add(lista);
                     }
+                }
+                if (Contador == listaStockSaldoInicial.Count)
+                {
+                    SaldoInicialEnPesos lista = new SaldoInicialEnPesos();
+                    lista.idProducto = ListaIdProducto.Last();
+                    lista.Saldo = Total;
+                    ListaSaldo.Add(lista);
                 }
             }
             if (listaStockSaldoInicial.Count == 1 && Total > 0)

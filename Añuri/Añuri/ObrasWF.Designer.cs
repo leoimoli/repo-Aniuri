@@ -48,27 +48,6 @@
             this.txtObraBus = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelNuevaObra = new System.Windows.Forms.Panel();
-            this.panelDetalleObra = new System.Windows.Forms.Panel();
-            this.btnFinalizaObra = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.dtFechaCompra = new System.Windows.Forms.DateTimePicker();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGuardarObra = new System.Windows.Forms.Button();
-            this.btnCargar = new System.Windows.Forms.Button();
-            this.dgvListaCargaStock = new System.Windows.Forms.DataGridView();
-            this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kilos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstadoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Existente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtMaterial = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblNombreObra = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtCodigoPostal = new System.Windows.Forms.TextBox();
@@ -93,6 +72,27 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblObra = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.panelDetalleObra = new System.Windows.Forms.Panel();
+            this.btnFinalizaObra = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dtFechaCompra = new System.Windows.Forms.DateTimePicker();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnGuardarObra = new System.Windows.Forms.Button();
+            this.btnCargar = new System.Windows.Forms.Button();
+            this.dgvListaCargaStock = new System.Windows.Forms.DataGridView();
+            this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kilos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Existente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtMaterial = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblNombreObra = new System.Windows.Forms.Label();
             this.panelObra = new System.Windows.Forms.Panel();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
@@ -252,254 +252,6 @@
             this.panelNuevaObra.Name = "panelNuevaObra";
             this.panelNuevaObra.Size = new System.Drawing.Size(420, 444);
             this.panelNuevaObra.TabIndex = 73;
-            // 
-            // panelDetalleObra
-            // 
-            this.panelDetalleObra.BackColor = System.Drawing.Color.Gainsboro;
-            this.panelDetalleObra.Controls.Add(this.btnFinalizaObra);
-            this.panelDetalleObra.Controls.Add(this.label10);
-            this.panelDetalleObra.Controls.Add(this.dtFechaCompra);
-            this.panelDetalleObra.Controls.Add(this.btnCancelar);
-            this.panelDetalleObra.Controls.Add(this.btnGuardarObra);
-            this.panelDetalleObra.Controls.Add(this.btnCargar);
-            this.panelDetalleObra.Controls.Add(this.dgvListaCargaStock);
-            this.panelDetalleObra.Controls.Add(this.txtMaterial);
-            this.panelDetalleObra.Controls.Add(this.label4);
-            this.panelDetalleObra.Controls.Add(this.txtCantidad);
-            this.panelDetalleObra.Controls.Add(this.label7);
-            this.panelDetalleObra.Controls.Add(this.lblNombreObra);
-            this.panelDetalleObra.Location = new System.Drawing.Point(3, 3);
-            this.panelDetalleObra.Name = "panelDetalleObra";
-            this.panelDetalleObra.Size = new System.Drawing.Size(425, 434);
-            this.panelDetalleObra.TabIndex = 111;
-            this.panelDetalleObra.Visible = false;
-            // 
-            // btnFinalizaObra
-            // 
-            this.btnFinalizaObra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.btnFinalizaObra.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.btnFinalizaObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFinalizaObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinalizaObra.ForeColor = System.Drawing.Color.White;
-            this.btnFinalizaObra.Location = new System.Drawing.Point(18, 387);
-            this.btnFinalizaObra.Name = "btnFinalizaObra";
-            this.btnFinalizaObra.Size = new System.Drawing.Size(105, 38);
-            this.btnFinalizaObra.TabIndex = 164;
-            this.btnFinalizaObra.Text = "Finalizar Obra";
-            this.btnFinalizaObra.UseVisualStyleBackColor = false;
-            this.btnFinalizaObra.Click += new System.EventHandler(this.btnFinalizaObra_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Gainsboro;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(110, 29);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 17);
-            this.label10.TabIndex = 163;
-            this.label10.Text = "Fecha:";
-            // 
-            // dtFechaCompra
-            // 
-            this.dtFechaCompra.Location = new System.Drawing.Point(174, 25);
-            this.dtFechaCompra.Name = "dtFechaCompra";
-            this.dtFechaCompra.Size = new System.Drawing.Size(198, 20);
-            this.dtFechaCompra.TabIndex = 0;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(147, 387);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(105, 38);
-            this.btnCancelar.TabIndex = 5;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnGuardarObra
-            // 
-            this.btnGuardarObra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.btnGuardarObra.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.btnGuardarObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardarObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarObra.ForeColor = System.Drawing.Color.White;
-            this.btnGuardarObra.Location = new System.Drawing.Point(278, 387);
-            this.btnGuardarObra.Name = "btnGuardarObra";
-            this.btnGuardarObra.Size = new System.Drawing.Size(105, 38);
-            this.btnGuardarObra.TabIndex = 4;
-            this.btnGuardarObra.Text = "Guardar";
-            this.btnGuardarObra.UseVisualStyleBackColor = false;
-            this.btnGuardarObra.Click += new System.EventHandler(this.btnGuardarObra_Click);
-            // 
-            // btnCargar
-            // 
-            this.btnCargar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.btnCargar.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.btnCargar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargar.ForeColor = System.Drawing.Color.White;
-            this.btnCargar.Location = new System.Drawing.Point(182, 106);
-            this.btnCargar.Name = "btnCargar";
-            this.btnCargar.Size = new System.Drawing.Size(70, 34);
-            this.btnCargar.TabIndex = 3;
-            this.btnCargar.Text = "Cargar";
-            this.btnCargar.UseVisualStyleBackColor = false;
-            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
-            // 
-            // dgvListaCargaStock
-            // 
-            this.dgvListaCargaStock.AllowUserToAddRows = false;
-            this.dgvListaCargaStock.BackgroundColor = System.Drawing.Color.White;
-            this.dgvListaCargaStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvListaCargaStock.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaCargaStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvListaCargaStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListaCargaStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idprod,
-            this.idEntrada,
-            this.dataGridViewTextBoxColumn2,
-            this.kilos,
-            this.PrecioUnitario,
-            this.PrecioNeto,
-            this.EstadoEntrada,
-            this.Existente});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaCargaStock.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvListaCargaStock.EnableHeadersVisualStyles = false;
-            this.dgvListaCargaStock.Location = new System.Drawing.Point(3, 152);
-            this.dgvListaCargaStock.Name = "dgvListaCargaStock";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaCargaStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvListaCargaStock.RowHeadersVisible = false;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            this.dgvListaCargaStock.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvListaCargaStock.Size = new System.Drawing.Size(421, 224);
-            this.dgvListaCargaStock.TabIndex = 158;
-            this.dgvListaCargaStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvListaCargaStock_KeyDown);
-            // 
-            // idprod
-            // 
-            this.idprod.HeaderText = "id";
-            this.idprod.Name = "idprod";
-            this.idprod.Visible = false;
-            this.idprod.Width = 50;
-            // 
-            // idEntrada
-            // 
-            this.idEntrada.HeaderText = "idEntrada";
-            this.idEntrada.Name = "idEntrada";
-            this.idEntrada.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 180;
-            // 
-            // kilos
-            // 
-            this.kilos.HeaderText = "Kilos";
-            this.kilos.Name = "kilos";
-            this.kilos.Width = 50;
-            // 
-            // PrecioUnitario
-            // 
-            this.PrecioUnitario.HeaderText = "Precio Unitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            // 
-            // PrecioNeto
-            // 
-            this.PrecioNeto.HeaderText = "Precio Neto";
-            this.PrecioNeto.Name = "PrecioNeto";
-            // 
-            // EstadoEntrada
-            // 
-            this.EstadoEntrada.HeaderText = "EstadoEntrada";
-            this.EstadoEntrada.Name = "EstadoEntrada";
-            this.EstadoEntrada.Visible = false;
-            // 
-            // Existente
-            // 
-            this.Existente.HeaderText = "Existente";
-            this.Existente.Name = "Existente";
-            this.Existente.Visible = false;
-            // 
-            // txtMaterial
-            // 
-            this.txtMaterial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMaterial.Location = new System.Drawing.Point(173, 51);
-            this.txtMaterial.Name = "txtMaterial";
-            this.txtMaterial.Size = new System.Drawing.Size(199, 20);
-            this.txtMaterial.TabIndex = 1;
-            this.txtMaterial.TextChanged += new System.EventHandler(this.txtMaterial_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Gainsboro;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(80, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 17);
-            this.label4.TabIndex = 157;
-            this.label4.Text = "Material(*):";
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCantidad.Location = new System.Drawing.Point(174, 79);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(198, 20);
-            this.txtCantidad.TabIndex = 2;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Gainsboro;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(31, 80);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(136, 17);
-            this.label7.TabIndex = 155;
-            this.label7.Text = "Cantidad o KG(*):";
-            // 
-            // lblNombreObra
-            // 
-            this.lblNombreObra.AutoSize = true;
-            this.lblNombreObra.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreObra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.lblNombreObra.Location = new System.Drawing.Point(104, 5);
-            this.lblNombreObra.Name = "lblNombreObra";
-            this.lblNombreObra.Size = new System.Drawing.Size(80, 16);
-            this.lblNombreObra.TabIndex = 43;
-            this.lblNombreObra.Text = "Nueva Obra";
             // 
             // label15
             // 
@@ -738,6 +490,255 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // panelDetalleObra
+            // 
+            this.panelDetalleObra.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelDetalleObra.Controls.Add(this.btnFinalizaObra);
+            this.panelDetalleObra.Controls.Add(this.label10);
+            this.panelDetalleObra.Controls.Add(this.dtFechaCompra);
+            this.panelDetalleObra.Controls.Add(this.btnCancelar);
+            this.panelDetalleObra.Controls.Add(this.btnGuardarObra);
+            this.panelDetalleObra.Controls.Add(this.btnCargar);
+            this.panelDetalleObra.Controls.Add(this.dgvListaCargaStock);
+            this.panelDetalleObra.Controls.Add(this.txtMaterial);
+            this.panelDetalleObra.Controls.Add(this.label4);
+            this.panelDetalleObra.Controls.Add(this.txtCantidad);
+            this.panelDetalleObra.Controls.Add(this.label7);
+            this.panelDetalleObra.Controls.Add(this.lblNombreObra);
+            this.panelDetalleObra.Location = new System.Drawing.Point(3, 3);
+            this.panelDetalleObra.Name = "panelDetalleObra";
+            this.panelDetalleObra.Size = new System.Drawing.Size(425, 434);
+            this.panelDetalleObra.TabIndex = 111;
+            this.panelDetalleObra.Visible = false;
+            this.panelDetalleObra.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDetalleObra_Paint);
+            // 
+            // btnFinalizaObra
+            // 
+            this.btnFinalizaObra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnFinalizaObra.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.btnFinalizaObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinalizaObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinalizaObra.ForeColor = System.Drawing.Color.White;
+            this.btnFinalizaObra.Location = new System.Drawing.Point(18, 387);
+            this.btnFinalizaObra.Name = "btnFinalizaObra";
+            this.btnFinalizaObra.Size = new System.Drawing.Size(105, 38);
+            this.btnFinalizaObra.TabIndex = 164;
+            this.btnFinalizaObra.Text = "Finalizar Obra";
+            this.btnFinalizaObra.UseVisualStyleBackColor = false;
+            this.btnFinalizaObra.Click += new System.EventHandler(this.btnFinalizaObra_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Gainsboro;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(110, 29);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(57, 17);
+            this.label10.TabIndex = 163;
+            this.label10.Text = "Fecha:";
+            // 
+            // dtFechaCompra
+            // 
+            this.dtFechaCompra.Location = new System.Drawing.Point(174, 25);
+            this.dtFechaCompra.Name = "dtFechaCompra";
+            this.dtFechaCompra.Size = new System.Drawing.Size(198, 20);
+            this.dtFechaCompra.TabIndex = 0;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.Color.White;
+            this.btnCancelar.Location = new System.Drawing.Point(147, 387);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(105, 38);
+            this.btnCancelar.TabIndex = 5;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnGuardarObra
+            // 
+            this.btnGuardarObra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnGuardarObra.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.btnGuardarObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarObra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardarObra.ForeColor = System.Drawing.Color.White;
+            this.btnGuardarObra.Location = new System.Drawing.Point(278, 387);
+            this.btnGuardarObra.Name = "btnGuardarObra";
+            this.btnGuardarObra.Size = new System.Drawing.Size(105, 38);
+            this.btnGuardarObra.TabIndex = 4;
+            this.btnGuardarObra.Text = "Guardar";
+            this.btnGuardarObra.UseVisualStyleBackColor = false;
+            this.btnGuardarObra.Click += new System.EventHandler(this.btnGuardarObra_Click);
+            // 
+            // btnCargar
+            // 
+            this.btnCargar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnCargar.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.btnCargar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargar.ForeColor = System.Drawing.Color.White;
+            this.btnCargar.Location = new System.Drawing.Point(182, 106);
+            this.btnCargar.Name = "btnCargar";
+            this.btnCargar.Size = new System.Drawing.Size(70, 34);
+            this.btnCargar.TabIndex = 3;
+            this.btnCargar.Text = "Cargar";
+            this.btnCargar.UseVisualStyleBackColor = false;
+            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
+            // 
+            // dgvListaCargaStock
+            // 
+            this.dgvListaCargaStock.AllowUserToAddRows = false;
+            this.dgvListaCargaStock.BackgroundColor = System.Drawing.Color.White;
+            this.dgvListaCargaStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvListaCargaStock.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaCargaStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvListaCargaStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListaCargaStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idprod,
+            this.idEntrada,
+            this.dataGridViewTextBoxColumn2,
+            this.kilos,
+            this.PrecioUnitario,
+            this.PrecioNeto,
+            this.EstadoEntrada,
+            this.Existente});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaCargaStock.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvListaCargaStock.EnableHeadersVisualStyles = false;
+            this.dgvListaCargaStock.Location = new System.Drawing.Point(3, 152);
+            this.dgvListaCargaStock.Name = "dgvListaCargaStock";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaCargaStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvListaCargaStock.RowHeadersVisible = false;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            this.dgvListaCargaStock.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvListaCargaStock.Size = new System.Drawing.Size(421, 224);
+            this.dgvListaCargaStock.TabIndex = 158;
+            this.dgvListaCargaStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvListaCargaStock_KeyDown);
+            // 
+            // idprod
+            // 
+            this.idprod.HeaderText = "id";
+            this.idprod.Name = "idprod";
+            this.idprod.Visible = false;
+            this.idprod.Width = 50;
+            // 
+            // idEntrada
+            // 
+            this.idEntrada.HeaderText = "idEntrada";
+            this.idEntrada.Name = "idEntrada";
+            this.idEntrada.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 180;
+            // 
+            // kilos
+            // 
+            this.kilos.HeaderText = "Kilos";
+            this.kilos.Name = "kilos";
+            this.kilos.Width = 50;
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "Precio Unitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            // 
+            // PrecioNeto
+            // 
+            this.PrecioNeto.HeaderText = "Precio Neto";
+            this.PrecioNeto.Name = "PrecioNeto";
+            // 
+            // EstadoEntrada
+            // 
+            this.EstadoEntrada.HeaderText = "EstadoEntrada";
+            this.EstadoEntrada.Name = "EstadoEntrada";
+            this.EstadoEntrada.Visible = false;
+            // 
+            // Existente
+            // 
+            this.Existente.HeaderText = "Existente";
+            this.Existente.Name = "Existente";
+            this.Existente.Visible = false;
+            // 
+            // txtMaterial
+            // 
+            this.txtMaterial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaterial.Location = new System.Drawing.Point(173, 51);
+            this.txtMaterial.Name = "txtMaterial";
+            this.txtMaterial.Size = new System.Drawing.Size(199, 20);
+            this.txtMaterial.TabIndex = 1;
+            this.txtMaterial.TextChanged += new System.EventHandler(this.txtMaterial_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Gainsboro;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(80, 52);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 17);
+            this.label4.TabIndex = 157;
+            this.label4.Text = "Material(*):";
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCantidad.Location = new System.Drawing.Point(174, 79);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(198, 20);
+            this.txtCantidad.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Gainsboro;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(31, 80);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(136, 17);
+            this.label7.TabIndex = 155;
+            this.label7.Text = "Cantidad o KG(*):";
+            // 
+            // lblNombreObra
+            // 
+            this.lblNombreObra.AutoSize = true;
+            this.lblNombreObra.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreObra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.lblNombreObra.Location = new System.Drawing.Point(104, 5);
+            this.lblNombreObra.Name = "lblNombreObra";
+            this.lblNombreObra.Size = new System.Drawing.Size(80, 16);
+            this.lblNombreObra.TabIndex = 43;
+            this.lblNombreObra.Text = "Nueva Obra";
             // 
             // panelObra
             // 

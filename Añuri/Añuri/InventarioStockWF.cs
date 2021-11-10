@@ -63,10 +63,20 @@ namespace Añuri
             int Total = 0;
             List<Stock> ListaStockFinal = new List<Stock>();
             List<Stock> ListaStockFinal2 = new List<Stock>();
+            List<int> ListaIdMaterial = new List<int>();
+
             int contadorElementos = 0;
             dgvInventario.Rows.Clear();
             foreach (var item in ListaStock)
             {
+                //bool RecuentoStock = false;
+                //bool existe = ListaIdMaterial.Any(x => x == item.idProducto);
+                //if (existe == false)
+                //{
+                //    StockTotalFinal = 0;
+                //    ListaIdMaterial.Add(item.idProducto);
+                //    RecuentoStock = true;
+                //}
                 if (item.Descripcion == "TOTALES")
                 {
                     ListaStockFinal2.Add(item);
@@ -248,7 +258,6 @@ namespace Añuri
                                     if (item.TipoMovimiento == "E")
                                     {
                                         TotalEntrada = item.Cantidad;
-
                                     }
                                     if (item.TipoMovimiento == "S")
                                     {
@@ -266,6 +275,10 @@ namespace Añuri
                                     _lista.StockTotal = StockTotalFinal;
                                     _lista.Cantidad = Total;
                                     StockTotalFinal = Total + StockTotalFinal;
+                                    //if (RecuentoStock == true)
+                                    //{
+                                    //    _lista.StockTotal = StockTotalFinal;
+                                    //}
                                     _lista.ValorUnitario = item.ValorUnitario;
                                     _lista.PrecioNeto = item.PrecioNeto;
                                     _lista.TipoMovimiento = item.TipoMovimiento;
@@ -329,7 +342,6 @@ namespace Añuri
             int posicion = 0;
             for (int i = 0; i < ListaStockFinal2.Count; i++)
             {
-
                 if (Contador == 0)
                 {
                     idProducto = ListaStockFinal2[i].idProducto;
@@ -340,9 +352,9 @@ namespace Añuri
                 else
                 {
                     bool existe = Lista.Any(x => x == ListaStockFinal2[i].idProducto);
-
                     if (existe == false)
                     {
+                        Contador = Contador + 1;
                         Lista.Add(ListaStockFinal2[i].idProducto);
                         ListaStockFinal2[posicion].StockTotal = cantidad;
                         cantidad = 0;
@@ -351,11 +363,13 @@ namespace Añuri
                     }
                     else
                     {
+                        Contador = Contador + 1;
                         if (Contador == ListaStockFinal2.Count)
                         {
-                            ListaStockFinal2[0].StockTotal = cantidad;
-                            cantidad = 0;
-                            Contador = 0;
+                            cantidad = cantidad + ListaStockFinal2[i].Cantidad;
+                            ListaStockFinal2[posicion].StockTotal = cantidad;
+                            //cantidad = 0;
+                            //Contador = 0;
                         }
                         cantidad = cantidad + ListaStockFinal2[i].Cantidad;
                     }

@@ -93,6 +93,28 @@ namespace Añuri.Dao
             }
             return exito;
         }
+        public static bool ValidarProductoExistente(string text)
+        {
+            connection.Close();
+            bool existe = false;
+            connection.Open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = {
+                                      new MySqlParameter("DescripcionProducto_in", text) };
+            string proceso = "ValidarProductoExistente";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                existe = true;
+            }
+            connection.Close();
+            return existe;
+        }
         public static List<Stock> ListarSaldoInicialInventarioMaterialesPorKilosPorMaterial(string año, string material)
         {
             List<Stock> lista = new List<Stock>();
@@ -158,7 +180,7 @@ namespace Añuri.Dao
                 {
                     Stock listaStock = new Stock();
                     listaStock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
-                    listaStock.Descripcion = item["DescripcionProducto"].ToString();                   
+                    listaStock.Descripcion = item["DescripcionProducto"].ToString();
                     listaStock.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
                     _listaStocks.Add(listaStock);
                 }

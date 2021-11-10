@@ -618,5 +618,10 @@ namespace Añuri
             }
         }
         #endregion
+
+        private void panelDetalleObra_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

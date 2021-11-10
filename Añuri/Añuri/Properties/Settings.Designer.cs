@@ -25,8 +25,8 @@ namespace Añuri.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;Port=3307;User Id=root;password=admin;database=aniuri_desarrollo" +
-            ";Persist Security Info=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=25.59.35.12;Port=3307;User Id=root;password=admin;database=aniuri_testing_" +
+            "usuario;Persist Security Info=True")]
         public string db {
             get {
                 return ((string)(this["db"]));

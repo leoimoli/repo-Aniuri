@@ -228,52 +228,43 @@ namespace Añuri
                                 listaMeses.Clear();
                                 ListaProducto.Add(item.idProducto);
                                 listaMeses.Add(item.Mes);
+                                item.Cantidad = item.Cantidad + item.CantidadSaldoInicial;
                             }
                             else
                             {
-                                int Mes = item.Mes - 1;
-                                var valor = ListaProductoMes.FirstOrDefault(x => x.Mes == Mes && x.idProducto == item.idProducto);
+                                listaMeses = listaMeses.OrderBy(o => o.ToString()).ToList();
+                                var UltimoMes = listaMeses.LastOrDefault();
+                                var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto && x.Mes == UltimoMes);
+                                if (ValorMasProximo != null)
+                                {
+                                    var diferencia = item.Mes - ValorMasProximo.Mes;
 
-                                if (valor != null)
-                                {
-                                    item.Cantidad = item.Cantidad + valor.Cantidad;
-                                }
-                                else
-                                {
-                                    //var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto);
-                                    listaMeses = listaMeses.OrderBy(o => o.ToString()).ToList();
-                                    var UltimoMes = listaMeses.LastOrDefault();
-                                    var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto && x.Mes == UltimoMes);
-                                    if (ValorMasProximo != null)
+                                    bool existeMesEnLista = listaMeses.Any(x => x == item.Mes);
+                                    if (existeMesEnLista == false)
                                     {
-                                        var diferencia = item.Mes - ValorMasProximo.Mes;
-
-                                        bool existeMesEnLista = listaMeses.Any(x => x == item.Mes);
-                                        if (existeMesEnLista == false)
+                                        listaMeses.Add(item.Mes);
+                                    }
+                                    for (int i = 1; i < diferencia; i++)
+                                    {
+                                        int MesDos = item.Mes - i;
+                                        var valor2 = ListaProductoMes.FirstOrDefault(x => x.Mes == ValorMasProximo.Mes && x.idProducto == item.idProducto);
+                                        if (valor2 != null)
                                         {
-                                            listaMeses.Add(item.Mes);
-                                        }
-                                        for (int i = 1; i < diferencia; i++)
-                                        {
-                                            int MesDos = item.Mes - i;
-                                            var valor2 = ListaProductoMes.FirstOrDefault(x => x.Mes == ValorMasProximo.Mes && x.idProducto == item.idProducto);
-                                            if (valor2 != null)
-                                            {
-                                                MesProducto Lista = new MesProducto();
-                                                string MesNuevo = ObtenerMes(MesDos);
-                                                Lista.Mes = MesDos;
-                                                Lista.NombreMes = MesNuevo;
-                                                Lista.Cantidad = valor2.Cantidad;
-                                                Lista.idProducto = valor2.idProducto;
-                                                Lista.Producto = valor2.Producto;
-                                                ListaProductoMesNueva.Add(Lista);
-                                                listaMeses.Add(MesDos);
-                                                if (item.Mes - MesDos == 1)
-                                                { item.Cantidad = item.Cantidad + valor2.Cantidad; }
-                                            }
+                                            MesProducto Lista = new MesProducto();
+                                            string MesNuevo = ObtenerMes(MesDos);
+                                            Lista.Mes = MesDos;
+                                            Lista.NombreMes = MesNuevo;
+                                            Lista.Cantidad = valor2.Cantidad;
+                                            Lista.idProducto = valor2.idProducto;
+                                            Lista.Producto = valor2.Producto;
+                                            ListaProductoMesNueva.Add(Lista);
+                                            listaMeses.Add(MesDos);
+                                            if (item.Mes - MesDos == 1)
+                                            { item.Cantidad = item.Cantidad + valor2.Cantidad; }
                                         }
                                     }
                                 }
+
                             }
                         }
                         ///// Le paso los nuevos valores a la lista ListaProductoMes
@@ -312,6 +303,14 @@ namespace Añuri
                                     if (MesMayor > 0)
                                     { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Cantidad); }
                                 }
+                                //else
+                                //{
+                                //    int MesMayor = listaMes.Max();
+                                //    int idProd = ListaidProducto.Last();
+                                //    var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
+                                //    if (MesMayor > 0)
+                                //    { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Cantidad); }
+                                //}
                                 listaMes.Clear();
                                 listaMes.Add(item.Mes);
                                 ListaidProducto.Add(item.idProducto);
@@ -485,11 +484,25 @@ namespace Añuri
                         {
                             if (listaMes.Count > 0)
                             {
-                                int MesMayor = listaMes.Max();
-                                int idProd = ListaidProducto.Last();
-                                var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
-                                if (MesMayor > 0)
-                                { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Cantidad); }
+                                PosicionAsignadaEnGrilla = 0;
+                                foreach (var item in ListaidProducto)
+                                {                                   
+                                    var info1 = ListaProductoMes.Where(n => n.idProducto == item).ToList();
+                                    var info2 = info1.OrderByDescending(x => x.Mes).ToList().First();
+                                    int MesMayor = info2.Mes;
+                                    int idProd = info2.idProducto;
+                                    var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
+                                    if (MesMayor > 0)
+                                    {
+                                        ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Cantidad);
+                                        PosicionAsignadaEnGrilla = PosicionAsignadaEnGrilla + 1;
+                                    }
+                                }
+                                //int MesMayor = listaMes.Max();
+                                //int idProd = ListaidProducto.Last();
+                                //var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
+                                //if (MesMayor > 0)
+                                //{ ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Cantidad); }
                             }
                         }
                         ListaCantidadMes = ListaProductoMes;
@@ -631,15 +644,17 @@ namespace Añuri
                 bool existeEnLista = ListaIdProducto.Any(x => x == item.idProducto);
                 if (existeEnLista == false)
                 {
-                    Contador = Contador + 1;
-                    ListaIdProducto.Add(item.idProducto);
+                    Contador = Contador + 1;                  
                     if (Total > 0)
                     {
                         SaldoInicialEnPesos lista = new SaldoInicialEnPesos();
-                        lista.idProducto = item.idProducto;
+                        lista.idProducto = ListaIdProducto.Last();
                         lista.CantidadSaldo = Total;
                         ListaSaldo.Add(lista);
                     }
+                    ListaIdProducto.Add(item.idProducto);
+                    SumaEntrada = 0;
+                    SumaSalida = 0;
                     if (item.TipoMovimiento == "E")
                     {
                         SumaEntrada = SumaEntrada + item.Cantidad;
@@ -669,6 +684,13 @@ namespace Añuri
                         lista.CantidadSaldo = Total;
                         ListaSaldo.Add(lista);
                     }
+                }
+                if (Contador == listaStockSaldoInicial.Count)
+                {
+                    SaldoInicialEnPesos lista = new SaldoInicialEnPesos();
+                    lista.idProducto = ListaIdProducto.Last();
+                    lista.CantidadSaldo = Total;
+                    ListaSaldo.Add(lista);
                 }
             }
             if (listaStockSaldoInicial.Count == 1 && Total > 0)
@@ -982,7 +1004,7 @@ namespace Añuri
                 }
                 else
                 {
-                    lista.SaldoInicial = item.CantidadSaldoInicial;
+                    //lista.SaldoInicial = item.CantidadSaldoInicial;
                     lista.Producto = item.Producto;
                     lista.idProducto = item.idProducto;
                     if (item.Mes == 1)

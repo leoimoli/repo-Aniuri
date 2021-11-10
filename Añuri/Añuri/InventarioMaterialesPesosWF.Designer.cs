@@ -103,7 +103,7 @@
             this.idObra.AutoSize = true;
             this.idObra.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.idObra.ForeColor = System.Drawing.Color.White;
-            this.idObra.Location = new System.Drawing.Point(190, 7);
+            this.idObra.Location = new System.Drawing.Point(259, 7);
             this.idObra.Name = "idObra";
             this.idObra.Size = new System.Drawing.Size(64, 19);
             this.idObra.TabIndex = 7;
@@ -127,9 +127,9 @@
             this.lblPantalla.ForeColor = System.Drawing.Color.White;
             this.lblPantalla.Location = new System.Drawing.Point(47, 7);
             this.lblPantalla.Name = "lblPantalla";
-            this.lblPantalla.Size = new System.Drawing.Size(113, 19);
+            this.lblPantalla.Size = new System.Drawing.Size(206, 19);
             this.lblPantalla.TabIndex = 4;
-            this.lblPantalla.Text = "Reporte Stock";
+            this.lblPantalla.Text = "Reporte Stock por Efectivo";
             // 
             // btnRestaurar
             // 
