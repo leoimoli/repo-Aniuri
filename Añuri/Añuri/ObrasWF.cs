@@ -103,10 +103,10 @@ namespace Añuri
             else
             {
                 Entidades.Obra _obra = CargarEntidad();
-                ProgressBar();
                 bool Exito = ObrasNeg.InsertObra(_obra);
                 if (Exito == true)
                 {
+                    ProgressBar();
                     const string message2 = "Se registro  la obra exitosamente.";
                     const string caption2 = "Éxito";
                     var result2 = MessageBox.Show(message2, caption2,
@@ -145,30 +145,7 @@ namespace Añuri
                 string Material = txtMaterial.Text;
                 int CantidadIngresada = Convert.ToInt32(txtCantidad.Text);
                 listaMaterial = ObrasNeg.VerificarDisponibilidadDeMaterial(Material);
-                var lista = listaMaterial.First();
-                if (lista.Cantidad >= CantidadIngresada)
-                {
-                    foreach (var item in listaMaterial)
-                    {
-                        if (item.Cantidad >= CantidadIngresada)
-                        {
-                            int idProducto = item.idProducto;
-                            listaMaterialObtenido = ObrasNeg.ObtenerStockDisponible(idProducto, CantidadIngresada);
-                        }
-                    }
-                    if (listaMaterialObtenido.Count > 0)
-                    {
-                        foreach (var item in listaMaterialObtenido)
-                        {
-                            string MaterialLista = item.Descripcion;
-                            decimal CalculoNeto = item.Cantidad * item.ValorUnitario;
-                            dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, CalculoNeto, item.EstadoEntrada, 0);
-                        }
-                    }
-                    txtMaterial.Clear();
-                    txtCantidad.Clear();
-                }
-                else
+                if (listaMaterial.Count == 0)
                 {
                     txtMaterial.Clear();
                     txtCantidad.Clear();
@@ -178,7 +155,42 @@ namespace Añuri
                                                  MessageBoxButtons.OK,
                                                  MessageBoxIcon.Exclamation);
                 }
-
+                else
+                {
+                    var lista = listaMaterial.First();
+                    if (lista.Cantidad >= CantidadIngresada)
+                    {
+                        foreach (var item in listaMaterial)
+                        {
+                            if (item.Cantidad >= CantidadIngresada)
+                            {
+                                int idProducto = item.idProducto;
+                                listaMaterialObtenido = ObrasNeg.ObtenerStockDisponible(idProducto, CantidadIngresada);
+                            }
+                        }
+                        if (listaMaterialObtenido.Count > 0)
+                        {
+                            foreach (var item in listaMaterialObtenido)
+                            {
+                                string MaterialLista = item.Descripcion;
+                                decimal CalculoNeto = item.Cantidad * item.ValorUnitario;
+                                dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, CalculoNeto, item.EstadoEntrada, 0);
+                            }
+                        }
+                        txtMaterial.Clear();
+                        txtCantidad.Clear();
+                    }
+                    else
+                    {
+                        txtMaterial.Clear();
+                        txtCantidad.Clear();
+                        const string message2 = "Atención: En estos momentos no cuenta con el stock ingresado.";
+                        const string caption2 = "Atención";
+                        var result2 = MessageBox.Show(message2, caption2,
+                                                     MessageBoxButtons.OK,
+                                                     MessageBoxIcon.Exclamation);
+                    }
+                }
             }
             catch (Exception ex)
             { }

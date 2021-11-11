@@ -71,6 +71,24 @@ namespace Añuri.Negocio
                                            MessageBoxIcon.Exclamation);
                 throw new Exception();
             }
+            if (obra.idProvincia == 0)
+            {
+                const string message = "El campo Provincia es obligatorio.";
+                const string caption = "Error";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.OK,
+                                           MessageBoxIcon.Exclamation);
+                throw new Exception();
+            }
+            if (obra.idLocalidad == 0)
+            {
+                const string message = "El campo Localidad es obligatorio.";
+                const string caption = "Error";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.OK,
+                                           MessageBoxIcon.Exclamation);
+                throw new Exception();
+            }
         }
         public static bool InsertObra(Obra obra)
         {

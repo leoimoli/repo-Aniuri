@@ -304,11 +304,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(93, 208);
+            this.label3.Location = new System.Drawing.Point(75, 208);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 17);
+            this.label3.Size = new System.Drawing.Size(98, 17);
             this.label3.TabIndex = 110;
-            this.label3.Text = "Provincia:";
+            this.label3.Text = "Provincia(*):";
             // 
             // txtTelefono
             // 
@@ -391,11 +391,11 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(92, 243);
+            this.label6.Location = new System.Drawing.Point(73, 243);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 17);
+            this.label6.Size = new System.Drawing.Size(101, 17);
             this.label6.TabIndex = 102;
-            this.label6.Text = "Localidad:";
+            this.label6.Text = "Localidad(*):";
             // 
             // txtEmail
             // 
