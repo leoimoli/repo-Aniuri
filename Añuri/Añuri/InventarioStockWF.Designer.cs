@@ -44,7 +44,6 @@
             this.FiltroInventario = new System.Windows.Forms.Panel();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.dtFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.dgvInventario = new System.Windows.Forms.DataGridView();
@@ -65,6 +64,7 @@
             this.bntInventario = new System.Windows.Forms.Button();
             this.btnMaterialesEnPesos = new System.Windows.Forms.Button();
             this.btnMaterialesKilos = new System.Windows.Forms.Button();
+            this.dtFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPagina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
@@ -180,9 +180,9 @@
             // FiltroInventario
             // 
             this.FiltroInventario.BackColor = System.Drawing.Color.Gainsboro;
+            this.FiltroInventario.Controls.Add(this.dtFechaHasta);
             this.FiltroInventario.Controls.Add(this.btnBuscar);
             this.FiltroInventario.Controls.Add(this.label10);
-            this.FiltroInventario.Controls.Add(this.dtFechaHasta);
             this.FiltroInventario.Location = new System.Drawing.Point(332, 83);
             this.FiltroInventario.Name = "FiltroInventario";
             this.FiltroInventario.Size = new System.Drawing.Size(626, 74);
@@ -214,14 +214,6 @@
             this.label10.Size = new System.Drawing.Size(130, 17);
             this.label10.TabIndex = 169;
             this.label10.Text = "Informe Stock al:";
-            // 
-            // dtFechaHasta
-            // 
-            this.dtFechaHasta.Location = new System.Drawing.Point(249, 20);
-            this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(200, 20);
-            this.dtFechaHasta.TabIndex = 167;
-            this.dtFechaHasta.Value = new System.DateTime(2021, 10, 12, 12, 40, 44, 0);
             // 
             // label2
             // 
@@ -459,6 +451,13 @@
             this.btnMaterialesKilos.UseVisualStyleBackColor = false;
             this.btnMaterialesKilos.Click += new System.EventHandler(this.btnMaterialesKilos_Click);
             // 
+            // dtFechaHasta
+            // 
+            this.dtFechaHasta.Location = new System.Drawing.Point(254, 20);
+            this.dtFechaHasta.Name = "dtFechaHasta";
+            this.dtFechaHasta.Size = new System.Drawing.Size(191, 20);
+            this.dtFechaHasta.TabIndex = 172;
+            // 
             // InventarioStockWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -506,7 +505,6 @@
         private System.Windows.Forms.PictureBox btnCerrar;
         private System.Windows.Forms.Panel FiltroInventario;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.DateTimePicker dtFechaHasta;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ProgressBar progressBar1;
@@ -528,5 +526,6 @@
         private System.Windows.Forms.Button bntInventario;
         private System.Windows.Forms.Button btnMaterialesEnPesos;
         private System.Windows.Forms.Button btnMaterialesKilos;
+        private System.Windows.Forms.DateTimePicker dtFechaHasta;
     }
 }

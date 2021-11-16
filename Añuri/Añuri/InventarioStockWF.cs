@@ -243,6 +243,11 @@ namespace Añuri
                                         {
                                             ListaStockFinal2.Add(ListaStockFinal[ListaStockFinal.Count - 1]);
                                         }
+                                        else
+                                        {
+                                            ListaStockFinal2.RemoveAll(r => r.idMovimientoEntrada == idEntrada);
+                                            ListaStockFinal2.Add(item);
+                                        }
                                     }
                                     else
                                     {

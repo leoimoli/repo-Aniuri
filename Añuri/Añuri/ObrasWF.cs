@@ -560,8 +560,8 @@ namespace Añuri
                     Stock.idMovimientoEntrada = Convert.ToInt32(row.Cells["idEntrada"].Value);
                     Stock.idProducto = Convert.ToInt32(row.Cells["idprod"].Value);
                     Stock.Cantidad = Convert.ToInt32(row.Cells["kilos"].Value);
-                    Stock.ValorUnitario = Convert.ToInt32(row.Cells["PrecioUnitario"].Value);
-                    Stock.PrecioNeto = Convert.ToInt32(row.Cells["PrecioNeto"].Value);
+                    Stock.ValorUnitario = Convert.ToDecimal(row.Cells["PrecioUnitario"].Value);
+                    Stock.PrecioNeto = Convert.ToDecimal(row.Cells["PrecioNeto"].Value);
                     Stock.FechaFactura = Convert.ToDateTime(dtFechaCompra.Value.ToShortDateString());
                     Stock.EstadoEntrada = Convert.ToInt32(row.Cells["EstadoEntrada"].Value);
                     ListaStock.Add(Stock);
