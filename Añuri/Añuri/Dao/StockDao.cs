@@ -863,6 +863,7 @@ namespace Añuri.Dao
         private static bool ModificarEstadoEntrada(int idMovimientoEntrada)
         {
             bool exito = false;
+            int Estado = 0;
             connection.Close();
             connection.Open();
             string Actualizar = "ModificarEstadoEntrada";
@@ -870,7 +871,7 @@ namespace Añuri.Dao
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("idMovimientoEntrada_in", idMovimientoEntrada);
             cmd.Parameters.AddWithValue("FechaCierre_in", DateTime.Now);
-            cmd.Parameters.AddWithValue("EstadoEntrada_in", 0);
+            cmd.Parameters.AddWithValue("EstadoEntrada_in", Estado);
             cmd.ExecuteNonQuery();
             exito = true;
             connection.Close();

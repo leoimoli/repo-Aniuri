@@ -244,7 +244,7 @@ namespace Añuri
                                     {
                                         listaMeses.Add(item.Mes);
                                     }
-                                    for (int i = 1; i < diferencia; i++)
+                                    for (int i = 1; i <= diferencia; i++)
                                     {
                                         int MesDos = item.Mes - i;
                                         var valor2 = ListaProductoMes.FirstOrDefault(x => x.Mes == ValorMasProximo.Mes && x.idProducto == item.idProducto);

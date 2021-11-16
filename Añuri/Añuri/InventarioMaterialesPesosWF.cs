@@ -245,44 +245,76 @@ namespace Añuri
                             }
                             else
                             {
-                                int Mes = item.Mes - 1;
-                                var valor = ListaProductoMes.FirstOrDefault(x => x.Mes == Mes && x.idProducto == item.idProducto);
-                                if (valor != null)
+                                listaMeses = listaMeses.OrderBy(o => o.ToString()).ToList();
+                                var UltimoMes = listaMeses.LastOrDefault();
+                                var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto && x.Mes == UltimoMes);
+                                if (ValorMasProximo != null)
                                 {
-                                    item.Monto = item.Monto + valor.Monto;
-                                }
-                                else
-                                {
-                                    listaMeses = listaMeses.OrderBy(o => o.ToString()).ToList();
-                                    var UltimoMes = listaMeses.LastOrDefault();
-                                    var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto && x.Mes == UltimoMes);
-                                    if (ValorMasProximo != null)
-                                    {
-                                        var diferencia = item.Mes - ValorMasProximo.Mes;
+                                    var diferencia = item.Mes - ValorMasProximo.Mes;
 
-                                        bool existeMesEnLista = listaMeses.Any(x => x == item.Mes);
-                                        if (existeMesEnLista == false)
+                                    bool existeMesEnLista = listaMeses.Any(x => x == item.Mes);
+                                    if (existeMesEnLista == false)
+                                    {
+                                        listaMeses.Add(item.Mes);
+                                    }
+                                    for (int i = 1; i <= diferencia; i++)
+                                    {
+                                        int MesDos = item.Mes - i;
+                                        var valor2 = ListaProductoMes.FirstOrDefault(x => x.Mes == ValorMasProximo.Mes && x.idProducto == item.idProducto);
+                                        if (valor2 != null)
                                         {
-                                            listaMeses.Add(item.Mes);
-                                        }
-                                        for (int i = 1; i < diferencia; i++)
-                                        {
-                                            int MesDos = item.Mes - i;
-                                            var valor2 = ListaProductoMes.FirstOrDefault(x => x.Mes == ValorMasProximo.Mes && x.idProducto == item.idProducto);
-                                            if (valor2 != null)
-                                            {
-                                                MesProducto Lista = new MesProducto();
-                                                string MesNuevo = ObtenerMes(MesDos);
-                                                Lista.Mes = MesDos;
-                                                Lista.NombreMes = MesNuevo;
-                                                Lista.Monto = valor2.Monto;
-                                                Lista.idProducto = valor2.idProducto;
-                                                Lista.Producto = valor2.Producto;
-                                                ListaProductoMesNueva.Add(Lista);
-                                                listaMeses.Add(MesDos);
-                                                if (item.Mes - MesDos == 1)
-                                                { item.Monto = item.Monto + valor2.Monto; }
-                                            }
+                                            MesProducto Lista = new MesProducto();
+                                            string MesNuevo = ObtenerMes(MesDos);
+                                            Lista.Mes = MesDos;
+                                            Lista.NombreMes = MesNuevo;
+                                            Lista.Monto = valor2.Monto;
+                                            Lista.idProducto = valor2.idProducto;
+                                            Lista.Producto = valor2.Producto;
+                                            ListaProductoMesNueva.Add(Lista);
+                                            listaMeses.Add(MesDos);
+                                            if (item.Mes - MesDos == 1)
+                                            { item.Monto = item.Monto + valor2.Monto; }
+                                            //int Mes = item.Mes - 1;
+                                            //var valor = ListaProductoMes.FirstOrDefault(x => x.Mes == Mes && x.idProducto == item.idProducto);
+                                            //if (valor != null)
+                                            //{
+                                            //    item.Monto = item.Monto + valor.Monto;
+                                            //}
+                                            //else
+                                            //{
+                                            //    listaMeses = listaMeses.OrderBy(o => o.ToString()).ToList();
+                                            //    var UltimoMes = listaMeses.LastOrDefault();
+                                            //    var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto && x.Mes == UltimoMes);
+                                            //    if (ValorMasProximo != null)
+                                            //    {
+                                            //        var diferencia = item.Mes - ValorMasProximo.Mes;
+
+                                            //        bool existeMesEnLista = listaMeses.Any(x => x == item.Mes);
+                                            //        if (existeMesEnLista == false)
+                                            //        {
+                                            //            listaMeses.Add(item.Mes);
+                                            //        }
+                                            //        for (int i = 1; i <= diferencia; i++)
+                                            //        {
+                                            //            int MesDos = item.Mes - i;
+                                            //            var valor2 = ListaProductoMes.FirstOrDefault(x => x.Mes == ValorMasProximo.Mes && x.idProducto == item.idProducto);
+                                            //            if (valor2 != null)
+                                            //            {
+                                            //                MesProducto Lista = new MesProducto();
+                                            //                string MesNuevo = ObtenerMes(MesDos);
+                                            //                Lista.Mes = MesDos;
+                                            //                Lista.NombreMes = MesNuevo;
+                                            //                Lista.Monto = valor2.Monto;
+                                            //                Lista.idProducto = valor2.idProducto;
+                                            //                Lista.Producto = valor2.Producto;
+                                            //                ListaProductoMesNueva.Add(Lista);
+                                            //                listaMeses.Add(MesDos);
+                                            //                if (item.Mes - MesDos == 1)
+                                            //                { item.Monto = item.Monto + valor2.Monto; }
+                                            //            }
+                                            //        }
+                                            //    }
+                                            //}
                                         }
                                     }
                                 }
@@ -314,10 +346,10 @@ namespace Añuri
                             dgvInventario.Visible = true;
                             bool ExisteProd = ListaidProducto.Any(x => x == item.idProducto);
                             if (ExisteProd == false)
-                            {                                
+                            {
                                 contador = contador + 1;
                                 if (listaMes.Count > 0)
-                                {                                  
+                                {
                                     if (listaMes.Count == 1)
                                     {
                                         int MesMayor = listaMes.Max();
@@ -509,7 +541,7 @@ namespace Añuri
                             {
                                 PosicionAsignadaEnGrilla = 0;
                                 foreach (var item in ListaidProducto)
-                                {                                  
+                                {
                                     //var info = ListaProductoMes.Where(n => n.idProducto == item);
                                     var info1 = ListaProductoMes.Where(n => n.idProducto == item).ToList();
                                     var info2 = info1.OrderByDescending(x => x.Mes).ToList().First();

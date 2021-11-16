@@ -200,6 +200,8 @@ namespace Añuri
             bool Exito = false;
             try
             {
+                lblNombreObra.Visible = false;
+                idObraSeleccionada = 0;
                 LimpiarCamposDeExito();
                 List<int> ListaIdProd = new List<int>();
                 int idProducto = 0;
