@@ -99,6 +99,8 @@ namespace Añuri
         }
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            idProductoSeleccionado = 0;
+            Funcion = 1;
             txtDescripcionProducto.Clear();
             txtDescripcionProducto.Focus();
             PanelNuevoMaterial.Visible = true;
@@ -130,9 +132,9 @@ namespace Añuri
                 {
                     Stock Entidad = CargarEntidadRegistroStock();
                     dgvListaCargaStock.Rows.Add(Entidad.idProducto, Entidad.Descripcion, Entidad.Cantidad, Entidad.ValorUnitario, Entidad.PrecioNeto);
-                    //txtProveedor.Enabled = false;
-                    //dtFechaCompra.Enabled = false;
-                    //txtRemito.Enabled = false;
+                    txtProveedor.Enabled = false;
+                    dtFechaCompra.Enabled = false;
+                    txtRemito.Enabled = false;
                     txtCantidad.Clear();
                     txtValorUni.Clear();
                     txtDescripcionProducto.Clear();
@@ -209,6 +211,9 @@ namespace Añuri
         }
         private void LimpiarCampos()
         {
+            txtProveedor.Enabled = true;
+            dtFechaCompra.Enabled = true;
+            txtRemito.Enabled = true;
             txtDescipcionBus.Clear();
             txtMaterial.Clear();
             txtProveedor.Clear();
