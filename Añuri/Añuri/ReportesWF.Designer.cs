@@ -338,6 +338,7 @@
             this.btnExportarMaterialesMasVendido.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.toolTip1.SetToolTip(this.btnExportarMaterialesMasVendido, "Exportar a Excel");
             this.btnExportarMaterialesMasVendido.UseVisualStyleBackColor = false;
+            this.btnExportarMaterialesMasVendido.Visible = false;
             this.btnExportarMaterialesMasVendido.Click += new System.EventHandler(this.btnExportarMaterialesMasVendido_Click);
             // 
             // dgvmateriales

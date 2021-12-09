@@ -64,6 +64,7 @@ namespace Añuri
             listaMateriales = ReporteDao.BuscarMaterialesMasUtilizados();
             if (listaMateriales.Count > 0)
             {
+                btnExportarMaterialesMasVendido.Visible = true;
                 listaMaterialesStatic = listaMateriales;
                 DiseñoGraficoMateriales(listaMateriales);
             }

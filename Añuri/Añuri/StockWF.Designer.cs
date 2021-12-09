@@ -437,6 +437,7 @@
             this.txtValorUni.Name = "txtValorUni";
             this.txtValorUni.Size = new System.Drawing.Size(170, 20);
             this.txtValorUni.TabIndex = 6;
+            this.txtValorUni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloNumerosyDecimales);
             // 
             // label12
             // 
@@ -476,6 +477,7 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(170, 20);
             this.txtCantidad.TabIndex = 5;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloNumeros);
             // 
             // label7
             // 

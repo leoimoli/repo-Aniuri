@@ -507,5 +507,22 @@ namespace Añuri
             progressBar1.Value = Convert.ToInt32(null);
             progressBar1.Visible = false;
         }
+        private void SoloNumerosyDecimales(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+            // solo 1 punto decimal
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+            //e.Handled = !char.IsNumber(e.KeyChar) && e.KeyChar != Convert.ToChar(Keys.Back);
+        }
+        private void SoloNumeros(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsNumber(e.KeyChar) && e.KeyChar != Convert.ToChar(Keys.Back);
+        }
     }
 }

@@ -149,5 +149,33 @@ namespace Añuri.Dao
             connection.Close();
             return _listaStocks;
         }
+
+        public static int GuardarCargaMasivaProductos(List<Producto> listaStatic)
+        {
+            int Exito = 0;
+            foreach (var item in listaStatic)
+            {
+                bool ProductoExistente = Negocio.ProductoNeg.ValidarProductoExistente(item.DescripcionProducto);
+                if (ProductoExistente == true)
+                {
+                    continue;
+                }
+                else
+                {
+                    connection.Close();
+                    connection.Open();
+                    string proceso = "AltaProducto";
+                    MySqlCommand cmd = new MySqlCommand(proceso, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;                  
+                    cmd.Parameters.AddWithValue("DescripcionProducto_in", item.DescripcionProducto);
+                    cmd.Parameters.AddWithValue("FechaDeAlta_in", item.FechaDeAlta);
+                    cmd.Parameters.AddWithValue("idUsuario_in", item.idUsuario);                
+                    cmd.ExecuteNonQuery();
+                }
+                Exito = 1;
+            }
+            connection.Close();
+            return Exito;
+        }
     }
 }

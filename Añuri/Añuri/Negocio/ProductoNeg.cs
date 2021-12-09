@@ -64,7 +64,7 @@ namespace Añuri.Negocio
             }
             return exito;
         }
-        private static bool ValidarProductoExistente(string descripcionProducto)
+        public static bool ValidarProductoExistente(string descripcionProducto)
         {
             bool existe = ProductoDao.ValidarProductoExistente(descripcionProducto);
             return existe;

@@ -47,8 +47,24 @@
             this.txtVariableStockFaltante = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtRuta = new System.Windows.Forms.TextBox();
+            this.btnCargarArchivo = new System.Windows.Forms.Button();
+            this.btnImportar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Material = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnGuardarImportacion = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.chcMateriales = new System.Windows.Forms.CheckBox();
+            this.chcProveedores = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -66,7 +82,7 @@
             this.panel1.Controls.Add(this.txtServidor);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(4, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(417, 381);
             this.panel1.TabIndex = 0;
@@ -199,7 +215,7 @@
             this.panel2.Controls.Add(this.txtVariableStockFaltante);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label12);
-            this.panel2.Location = new System.Drawing.Point(435, 12);
+            this.panel2.Location = new System.Drawing.Point(4, 399);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(417, 140);
             this.panel2.TabIndex = 1;
@@ -249,11 +265,170 @@
             this.label12.TabIndex = 59;
             this.label12.Text = "Configuración variable Stock Faltante";
             // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.chcProveedores);
+            this.panel3.Controls.Add(this.chcMateriales);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.label7);
+            this.panel3.Controls.Add(this.txtRuta);
+            this.panel3.Controls.Add(this.btnCargarArchivo);
+            this.panel3.Controls.Add(this.btnImportar);
+            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Controls.Add(this.btnGuardarImportacion);
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Location = new System.Drawing.Point(425, 12);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(394, 418);
+            this.panel3.TabIndex = 2;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(303, 355);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 17);
+            this.label9.TabIndex = 171;
+            this.label9.Text = "label9";
+            this.label9.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(166, 355);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(133, 17);
+            this.label10.TabIndex = 170;
+            this.label10.Text = "Total de materiales:";
+            this.label10.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(3, 76);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(107, 17);
+            this.label7.TabIndex = 169;
+            this.label7.Text = "Buscar Archivo:";
+            // 
+            // txtRuta
+            // 
+            this.txtRuta.Location = new System.Drawing.Point(113, 75);
+            this.txtRuta.Name = "txtRuta";
+            this.txtRuta.Size = new System.Drawing.Size(217, 20);
+            this.txtRuta.TabIndex = 168;
+            // 
+            // btnCargarArchivo
+            // 
+            this.btnCargarArchivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnCargarArchivo.Location = new System.Drawing.Point(339, 64);
+            this.btnCargarArchivo.Name = "btnCargarArchivo";
+            this.btnCargarArchivo.Size = new System.Drawing.Size(46, 35);
+            this.btnCargarArchivo.TabIndex = 167;
+            this.btnCargarArchivo.UseVisualStyleBackColor = false;
+            this.btnCargarArchivo.Click += new System.EventHandler(this.btnCargarArchivo_Click);
+            // 
+            // btnImportar
+            // 
+            this.btnImportar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnImportar.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.btnImportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportar.ForeColor = System.Drawing.Color.White;
+            this.btnImportar.Location = new System.Drawing.Point(75, 375);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(105, 38);
+            this.btnImportar.TabIndex = 166;
+            this.btnImportar.Text = "Importar";
+            this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Material});
+            this.dataGridView1.Location = new System.Drawing.Point(9, 101);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(345, 250);
+            this.dataGridView1.TabIndex = 165;
+            // 
+            // Material
+            // 
+            this.Material.HeaderText = "Material";
+            this.Material.Name = "Material";
+            this.Material.Width = 300;
+            // 
+            // btnGuardarImportacion
+            // 
+            this.btnGuardarImportacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnGuardarImportacion.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.btnGuardarImportacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarImportacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardarImportacion.ForeColor = System.Drawing.Color.White;
+            this.btnGuardarImportacion.Location = new System.Drawing.Point(203, 375);
+            this.btnGuardarImportacion.Name = "btnGuardarImportacion";
+            this.btnGuardarImportacion.Size = new System.Drawing.Size(105, 38);
+            this.btnGuardarImportacion.TabIndex = 164;
+            this.btnGuardarImportacion.Text = "Guardar";
+            this.btnGuardarImportacion.UseVisualStyleBackColor = false;
+            this.btnGuardarImportacion.Click += new System.EventHandler(this.btnGuardarImportacion_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.label8.Location = new System.Drawing.Point(3, 6);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(225, 24);
+            this.label8.TabIndex = 59;
+            this.label8.Text = "Importación de Materiales";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // chcMateriales
+            // 
+            this.chcMateriales.AutoSize = true;
+            this.chcMateriales.Checked = true;
+            this.chcMateriales.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chcMateriales.ForeColor = System.Drawing.Color.Black;
+            this.chcMateriales.Location = new System.Drawing.Point(6, 33);
+            this.chcMateriales.Name = "chcMateriales";
+            this.chcMateriales.Size = new System.Drawing.Size(74, 17);
+            this.chcMateriales.TabIndex = 3;
+            this.chcMateriales.Text = "Materiales";
+            this.chcMateriales.UseVisualStyleBackColor = true;
+            this.chcMateriales.CheckedChanged += new System.EventHandler(this.chcMateriales_CheckedChanged);
+            // 
+            // chcProveedores
+            // 
+            this.chcProveedores.AutoSize = true;
+            this.chcProveedores.ForeColor = System.Drawing.Color.Black;
+            this.chcProveedores.Location = new System.Drawing.Point(86, 33);
+            this.chcProveedores.Name = "chcProveedores";
+            this.chcProveedores.Size = new System.Drawing.Size(86, 17);
+            this.chcProveedores.TabIndex = 172;
+            this.chcProveedores.Text = "Proveedores";
+            this.chcProveedores.UseVisualStyleBackColor = true;
+            this.chcProveedores.CheckedChanged += new System.EventHandler(this.chcProveedores_CheckedChanged);
+            // 
             // ConfiguracionWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 564);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -266,6 +441,9 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -290,5 +468,19 @@
         private System.Windows.Forms.TextBox txtVariableStockFaltante;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnImportar;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Material;
+        private System.Windows.Forms.Button btnGuardarImportacion;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtRuta;
+        private System.Windows.Forms.Button btnCargarArchivo;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.CheckBox chcMateriales;
+        private System.Windows.Forms.CheckBox chcProveedores;
     }
 }
