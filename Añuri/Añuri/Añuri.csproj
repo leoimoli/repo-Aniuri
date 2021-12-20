@@ -375,6 +375,8 @@
     <None Include="Resources\transporte-de-camiones-con-materiales-de-construccion %281%29.png" />
     <None Include="Resources\hook.png" />
     <None Include="Resources\los-usuarios-del-grupo.png" />
+    <None Include="Resources\usuario11.png" />
+    <None Include="Resources\play2.png" />
     <Content Include="Resources\ver %283%29.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
