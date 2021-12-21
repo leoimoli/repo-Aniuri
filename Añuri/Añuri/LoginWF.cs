@@ -128,5 +128,11 @@ namespace Añuri
                 Login();
             }
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            ConexionWF _cone = new ConexionWF();
+            _cone.Show();
+        }
     }
 }

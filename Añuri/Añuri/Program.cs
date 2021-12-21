@@ -17,6 +17,7 @@ namespace Añuri
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginWF());
+            //Application.Run(new ConfiguracionWF());
         }
     }
 }

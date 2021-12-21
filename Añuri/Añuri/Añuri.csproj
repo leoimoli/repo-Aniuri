@@ -65,6 +65,12 @@
     <Compile Include="Clases Maestras\AutoCompleteUsuarios.cs" />
     <Compile Include="Clases Maestras\ListarProveedores.cs" />
     <Compile Include="Clases Maestras\Sesion.cs" />
+    <Compile Include="ConexionWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConexionWF.Designer.cs">
+      <DependentUpon>ConexionWF.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfiguracionWF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,9 @@
     <Compile Include="UsuariosWF.Designer.cs">
       <DependentUpon>UsuariosWF.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ConexionWF.resx">
+      <DependentUpon>ConexionWF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfiguracionWF.resx">
       <DependentUpon>ConfiguracionWF.cs</DependentUpon>
     </EmbeddedResource>

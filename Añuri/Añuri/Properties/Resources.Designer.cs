@@ -503,6 +503,16 @@ namespace Añuri.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap trabajando1 {
+            get {
+                object obj = ResourceManager.GetObject("trabajando1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap transporte_de_camiones_con_materiales_de_construccion__1_ {
             get {
                 object obj = ResourceManager.GetObject("transporte-de-camiones-con-materiales-de-construccion (1)", resourceCulture);

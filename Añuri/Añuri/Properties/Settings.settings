@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="db" Type="System.String" Scope="User">
-      <Value Profile="(Default)">server=25.59.35.12;Port=3307;User Id=root;password=admin;database=aniuri_testing_usuario;Persist Security Info=True</Value>
+      <Value Profile="(Default)">server=192.168.1.130;Port=3306;User Id=root;password=ofelia;database=aniuri;Persist Security Info=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
