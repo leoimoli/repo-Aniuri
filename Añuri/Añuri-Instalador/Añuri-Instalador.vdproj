@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_3186407F66FD4B21B1C14D996585DCB7"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_1684E500E9C491CA1A00B2C211466123"
+        "OwnerKey" = "8:_3186407F66FD4B21B1C14D996585DCB7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_337E0370F05F4CA29796DEBA7352D8B0"
+        "MsmKey" = "8:_3186407F66FD4B21B1C14D996585DCB7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,74 +33,32 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_406000BB28A24FF6B20A9AE44EF4F42C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5C41597FA6D9A2E18084F2A2B7055956"
+        "MsmKey" = "8:_7EF1AABB5E317A0E429F2C29B6343292"
         "OwnerKey" = "8:_3186407F66FD4B21B1C14D996585DCB7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7EFCD74EE2B046419A1E821B73468E31"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_856014EC99EC49AC837306B5537B6FA7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B3E8E34D7CB34F649D8820DF0AB965FA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D646F86A7D19FFFBC517C5FA122A979B"
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3186407F66FD4B21B1C14D996585DCB7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E43531EF1149472B800AC6F3FA1BCA76"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1684E500E9C491CA1A00B2C211466123"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_FF882A05946242B4827429BF395DFAB7"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7EF1AABB5E317A0E429F2C29B6343292"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3DF0781DD2F9BD7501F4F57E76037535"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3186407F66FD4B21B1C14D996585DCB7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D646F86A7D19FFFBC517C5FA122A979B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5C41597FA6D9A2E18084F2A2B7055956"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -121,6 +79,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -137,6 +103,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -166,10 +140,21 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_337E0370F05F4CA29796DEBA7352D8B0"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1684E500E9C491CA1A00B2C211466123"
             {
-            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\ver (3).ico"
-            "TargetName" = "8:ver (3).ico"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_1684E500E9C491CA1A00B2C211466123"
+                    {
+                    "Name" = "8:MySql.Data.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MySql.Data.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_ABE9FA1FFCCC47E58EE4B0D0159F46FF"
             "Condition" = "8:"
@@ -183,7 +168,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3DF0781DD2F9BD7501F4F57E76037535"
@@ -217,34 +202,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_406000BB28A24FF6B20A9AE44EF4F42C"
-            {
-            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\soldador.ico"
-            "TargetName" = "8:soldador.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_ABE9FA1FFCCC47E58EE4B0D0159F46FF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5C41597FA6D9A2E18084F2A2B7055956"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7EF1AABB5E317A0E429F2C29B6343292"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:itextsharp, Version=5.5.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5C41597FA6D9A2E18084F2A2B7055956"
+                    "_7EF1AABB5E317A0E429F2C29B6343292"
                     {
                     "Name" = "8:itextsharp.dll"
                     "Attributes" = "3:512"
@@ -266,137 +231,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7EFCD74EE2B046419A1E821B73468E31"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\Desktop\\Leo\\Añuri\\Logo Añuri.png"
-            "TargetName" = "8:Logo Añuri.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ABE9FA1FFCCC47E58EE4B0D0159F46FF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_856014EC99EC49AC837306B5537B6FA7"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\Downloads\\Logo Añuri (1).ico"
-            "TargetName" = "8:Logo Añuri (1).ico"
-            "Tag" = "8:"
-            "Folder" = "8:_ABE9FA1FFCCC47E58EE4B0D0159F46FF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B3E8E34D7CB34F649D8820DF0AB965FA"
-            {
-            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\Añuri_Imagen_PDF.png"
-            "TargetName" = "8:Añuri_Imagen_PDF.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ABE9FA1FFCCC47E58EE4B0D0159F46FF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D646F86A7D19FFFBC517C5FA122A979B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_D646F86A7D19FFFBC517C5FA122A979B"
-                    {
-                    "Name" = "8:MySql.Data.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MySql.Data.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_ABE9FA1FFCCC47E58EE4B0D0159F46FF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E43531EF1149472B800AC6F3FA1BCA76"
-            {
-            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\casco.ico"
-            "TargetName" = "8:casco.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_ABE9FA1FFCCC47E58EE4B0D0159F46FF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF882A05946242B4827429BF395DFAB7"
-            {
-            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\informe-empresarial-con-crecimiento.ico"
-            "TargetName" = "8:informe-empresarial-con-crecimiento.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_ABE9FA1FFCCC47E58EE4B0D0159F46FF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -587,7 +421,7 @@
             "Target" = "8:_3186407F66FD4B21B1C14D996585DCB7"
             "Folder" = "8:_8C08C09F72E64EF7859A5E2D756726F8"
             "WorkingFolder" = "8:_ABE9FA1FFCCC47E58EE4B0D0159F46FF"
-            "Icon" = "8:_856014EC99EC49AC837306B5537B6FA7"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FE47986E06754561A98D939DAC47D708"
@@ -598,7 +432,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_856014EC99EC49AC837306B5537B6FA7"
+            "Target" = "8:"
             "Folder" = "8:_702D28C7C6E64968849951C806F7AC73"
             "WorkingFolder" = "8:_ABE9FA1FFCCC47E58EE4B0D0159F46FF"
             "Icon" = "8:"
