@@ -114,7 +114,8 @@ namespace Añuri
                             _lista.FechaFactura = item.FechaFactura;
                             _lista.Cantidad = Total;
                             _lista.ValorUnitario = item.ValorUnitario;
-                            _lista.PrecioNeto = item.PrecioNeto;
+                            _lista.PrecioNeto = Total * item.ValorUnitario;
+                            //_lista.PrecioNeto = item.PrecioNeto;
                             _lista.TipoMovimiento = item.TipoMovimiento;
                             _lista.idMovimientoEntrada = item.idMovimientoEntrada;
                             ListaStockFinal.Add(_lista);
@@ -155,7 +156,8 @@ namespace Añuri
                             _lista.FechaFactura = item.FechaFactura;
                             _lista.Cantidad = Total;
                             _lista.ValorUnitario = item.ValorUnitario;
-                            _lista.PrecioNeto = item.PrecioNeto;
+                            _lista.PrecioNeto = Total * item.ValorUnitario;
+                            // _lista.PrecioNeto = item.PrecioNeto;
                             _lista.TipoMovimiento = item.TipoMovimiento;
                             _lista.idMovimientoEntrada = item.idMovimientoEntrada;
                             ListaStockFinal.Add(_lista);
@@ -532,7 +534,7 @@ namespace Añuri
                     {
                         List<Stock> ListaStock = StockNeg.ListarMovimientosStockPorFecha(idProductoSeleccionado, FechaDesde, FechaHasta);
                         if (ListaStock.Count > 0)
-                        {                          
+                        {
                             foreach (var item in ListaStock)
                             {
                                 string Movimiento = "";
