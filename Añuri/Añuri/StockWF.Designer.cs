@@ -50,16 +50,13 @@
             this.Informe = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panelGrilla = new System.Windows.Forms.Panel();
             this.PanelRegistroStock = new System.Windows.Forms.Panel();
+            this.lblTotalPagarReal = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.btnCrear = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.dgvListaCargaStock = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtMaterial = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtProveedor = new System.Windows.Forms.TextBox();
@@ -86,6 +83,14 @@
             this.lblNuevoProducto = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnEditarProducto = new System.Windows.Forms.Button();
+            this.txtObservaciones = new System.Windows.Forms.TextBox();
+            this.lblObservaciones = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             this.panelGrilla.SuspendLayout();
             this.PanelRegistroStock.SuspendLayout();
@@ -230,6 +235,10 @@
             // 
             // PanelRegistroStock
             // 
+            this.PanelRegistroStock.Controls.Add(this.txtObservaciones);
+            this.PanelRegistroStock.Controls.Add(this.lblObservaciones);
+            this.PanelRegistroStock.Controls.Add(this.lblTotalPagarReal);
+            this.PanelRegistroStock.Controls.Add(this.label8);
             this.PanelRegistroStock.Controls.Add(this.progressBar2);
             this.PanelRegistroStock.Controls.Add(this.btnCrear);
             this.PanelRegistroStock.Controls.Add(this.btnCancelar);
@@ -254,10 +263,34 @@
             this.PanelRegistroStock.TabIndex = 71;
             this.PanelRegistroStock.Visible = false;
             // 
+            // lblTotalPagarReal
+            // 
+            this.lblTotalPagarReal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.lblTotalPagarReal.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.lblTotalPagarReal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTotalPagarReal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPagarReal.ForeColor = System.Drawing.Color.White;
+            this.lblTotalPagarReal.Location = new System.Drawing.Point(459, 341);
+            this.lblTotalPagarReal.Name = "lblTotalPagarReal";
+            this.lblTotalPagarReal.Size = new System.Drawing.Size(121, 43);
+            this.lblTotalPagarReal.TabIndex = 174;
+            this.lblTotalPagarReal.UseVisualStyleBackColor = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.label8.Location = new System.Drawing.Point(355, 341);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(98, 39);
+            this.label8.TabIndex = 173;
+            this.label8.Text = "Total";
+            // 
             // progressBar2
             // 
             this.progressBar2.ForeColor = System.Drawing.Color.Lime;
-            this.progressBar2.Location = new System.Drawing.Point(95, 233);
+            this.progressBar2.Location = new System.Drawing.Point(95, 264);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(397, 23);
             this.progressBar2.Step = 50;
@@ -288,7 +321,7 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(175, 384);
+            this.btnCancelar.Location = new System.Drawing.Point(175, 387);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(105, 38);
             this.btnCancelar.TabIndex = 9;
@@ -303,7 +336,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.Color.White;
-            this.btnGuardar.Location = new System.Drawing.Point(312, 384);
+            this.btnGuardar.Location = new System.Drawing.Point(312, 387);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(105, 38);
             this.btnGuardar.TabIndex = 8;
@@ -332,7 +365,8 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.PrecioUnitario,
-            this.PrecioNeto});
+            this.PrecioNeto,
+            this.Observaciones});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -342,7 +376,7 @@
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvListaCargaStock.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvListaCargaStock.EnableHeadersVisualStyles = false;
-            this.dgvListaCargaStock.Location = new System.Drawing.Point(3, 150);
+            this.dgvListaCargaStock.Location = new System.Drawing.Point(3, 181);
             this.dgvListaCargaStock.Name = "dgvListaCargaStock";
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
@@ -354,39 +388,9 @@
             this.dgvListaCargaStock.RowHeadersVisible = false;
             dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
             this.dgvListaCargaStock.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvListaCargaStock.Size = new System.Drawing.Size(577, 173);
+            this.dgvListaCargaStock.Size = new System.Drawing.Size(577, 154);
             this.dgvListaCargaStock.TabIndex = 155;
             this.dgvListaCargaStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvListaCargaStock_KeyDown);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 240;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Kilos";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // PrecioUnitario
-            // 
-            this.PrecioUnitario.HeaderText = "Precio Unitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            this.PrecioUnitario.Width = 120;
-            // 
-            // PrecioNeto
-            // 
-            this.PrecioNeto.HeaderText = "Precio Neto";
-            this.PrecioNeto.Name = "PrecioNeto";
-            this.PrecioNeto.Width = 120;
             // 
             // txtMaterial
             // 
@@ -411,7 +415,7 @@
             // 
             // txtProveedor
             // 
-            this.txtProveedor.Location = new System.Drawing.Point(19, 63);
+            this.txtProveedor.Location = new System.Drawing.Point(19, 57);
             this.txtProveedor.Name = "txtProveedor";
             this.txtProveedor.Size = new System.Drawing.Size(170, 20);
             this.txtProveedor.TabIndex = 2;
@@ -423,7 +427,7 @@
             this.btnCargar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCargar.ForeColor = System.Drawing.Color.White;
-            this.btnCargar.Location = new System.Drawing.Point(443, 106);
+            this.btnCargar.Location = new System.Drawing.Point(259, 142);
             this.btnCargar.Name = "btnCargar";
             this.btnCargar.Size = new System.Drawing.Size(70, 34);
             this.btnCargar.TabIndex = 7;
@@ -433,7 +437,7 @@
             // 
             // txtValorUni
             // 
-            this.txtValorUni.Location = new System.Drawing.Point(213, 120);
+            this.txtValorUni.Location = new System.Drawing.Point(213, 116);
             this.txtValorUni.Name = "txtValorUni";
             this.txtValorUni.Size = new System.Drawing.Size(170, 20);
             this.txtValorUni.TabIndex = 6;
@@ -445,7 +449,7 @@
             this.label12.BackColor = System.Drawing.SystemColors.Control;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(210, 101);
+            this.label12.Location = new System.Drawing.Point(210, 97);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(108, 17);
             this.label12.TabIndex = 151;
@@ -457,7 +461,7 @@
             this.label3.BackColor = System.Drawing.SystemColors.Control;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(206, 40);
+            this.label3.Location = new System.Drawing.Point(206, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(155, 17);
             this.label3.TabIndex = 147;
@@ -465,7 +469,7 @@
             // 
             // dtFechaCompra
             // 
-            this.dtFechaCompra.Location = new System.Drawing.Point(208, 60);
+            this.dtFechaCompra.Location = new System.Drawing.Point(208, 54);
             this.dtFechaCompra.Name = "dtFechaCompra";
             this.dtFechaCompra.Size = new System.Drawing.Size(191, 20);
             this.dtFechaCompra.TabIndex = 3;
@@ -473,7 +477,7 @@
             // txtCantidad
             // 
             this.txtCantidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCantidad.Location = new System.Drawing.Point(18, 120);
+            this.txtCantidad.Location = new System.Drawing.Point(18, 116);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(170, 20);
             this.txtCantidad.TabIndex = 5;
@@ -485,7 +489,7 @@
             this.label7.BackColor = System.Drawing.SystemColors.Control;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(17, 43);
+            this.label7.Location = new System.Drawing.Point(17, 37);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(101, 17);
             this.label7.TabIndex = 148;
@@ -497,7 +501,7 @@
             this.label9.BackColor = System.Drawing.SystemColors.Control;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(16, 101);
+            this.label9.Location = new System.Drawing.Point(16, 97);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(131, 17);
             this.label9.TabIndex = 150;
@@ -509,7 +513,7 @@
             this.lblRepitaContraseña.BackColor = System.Drawing.SystemColors.Control;
             this.lblRepitaContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRepitaContraseña.ForeColor = System.Drawing.Color.Black;
-            this.lblRepitaContraseña.Location = new System.Drawing.Point(407, 45);
+            this.lblRepitaContraseña.Location = new System.Drawing.Point(407, 39);
             this.lblRepitaContraseña.Name = "lblRepitaContraseña";
             this.lblRepitaContraseña.Size = new System.Drawing.Size(163, 17);
             this.lblRepitaContraseña.TabIndex = 149;
@@ -518,7 +522,7 @@
             // txtRemito
             // 
             this.txtRemito.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtRemito.Location = new System.Drawing.Point(410, 63);
+            this.txtRemito.Location = new System.Drawing.Point(410, 57);
             this.txtRemito.Name = "txtRemito";
             this.txtRemito.Size = new System.Drawing.Size(170, 20);
             this.txtRemito.TabIndex = 4;
@@ -672,6 +676,62 @@
             this.btnEditarProducto.Visible = false;
             this.btnEditarProducto.Click += new System.EventHandler(this.btnEditarProducto_Click);
             // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtObservaciones.Location = new System.Drawing.Point(408, 116);
+            this.txtObservaciones.MaxLength = 50;
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(172, 20);
+            this.txtObservaciones.TabIndex = 194;
+            // 
+            // lblObservaciones
+            // 
+            this.lblObservaciones.AutoSize = true;
+            this.lblObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObservaciones.ForeColor = System.Drawing.Color.Black;
+            this.lblObservaciones.Location = new System.Drawing.Point(407, 90);
+            this.lblObservaciones.Name = "lblObservaciones";
+            this.lblObservaciones.Size = new System.Drawing.Size(121, 17);
+            this.lblObservaciones.TabIndex = 193;
+            this.lblObservaciones.Text = "Observaciones:";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 240;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Kilos";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "Precio Unitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.Width = 120;
+            // 
+            // PrecioNeto
+            // 
+            this.PrecioNeto.HeaderText = "Precio Neto";
+            this.PrecioNeto.Name = "PrecioNeto";
+            this.PrecioNeto.Width = 120;
+            // 
+            // Observaciones
+            // 
+            this.Observaciones.HeaderText = "Observaciones";
+            this.Observaciones.Name = "Observaciones";
+            // 
             // StockWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -731,11 +791,6 @@
         private System.Windows.Forms.DataGridView dgvListaCargaStock;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioNeto;
         private System.Windows.Forms.Button btnConsultaStock;
         private System.Windows.Forms.Panel PanelDerecho;
         private System.Windows.Forms.Label lblNuevoProducto;
@@ -756,5 +811,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
         private System.Windows.Forms.DataGridViewButtonColumn Ver;
         private System.Windows.Forms.DataGridViewButtonColumn Informe;
+        private System.Windows.Forms.Button lblTotalPagarReal;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtObservaciones;
+        private System.Windows.Forms.Label lblObservaciones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioNeto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Observaciones;
     }
 }

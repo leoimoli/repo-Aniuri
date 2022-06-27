@@ -191,6 +191,7 @@
             // 
             this.txtDni.Location = new System.Drawing.Point(61, 156);
             this.txtDni.Name = "txtDni";
+            this.txtDni.PasswordChar = '*';
             this.txtDni.Size = new System.Drawing.Size(683, 20);
             this.txtDni.TabIndex = 2;
             this.txtDni.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDni_KeyDown);

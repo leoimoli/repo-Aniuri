@@ -131,12 +131,20 @@ namespace Añuri
                 else
                 {
                     Stock Entidad = CargarEntidadRegistroStock();
-                    dgvListaCargaStock.Rows.Add(Entidad.idProducto, Entidad.Descripcion, Entidad.Cantidad, Entidad.ValorUnitario, Entidad.PrecioNeto);
+                    dgvListaCargaStock.Rows.Add(Entidad.idProducto, Entidad.Descripcion, Entidad.Cantidad, Entidad.ValorUnitario, Entidad.PrecioNeto, Entidad.Observaciones);
+                    decimal PrecioTotalFinal = 0;
+                    foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
+                    {
+                        if (row.Cells[4].Value != null)
+                            PrecioTotalFinal += Convert.ToDecimal(row.Cells[4].Value.ToString());
+                    }
+                    lblTotalPagarReal.Text = Convert.ToString(PrecioTotalFinal);
                     txtProveedor.Enabled = false;
                     dtFechaCompra.Enabled = false;
                     txtRemito.Enabled = false;
                     txtCantidad.Clear();
                     txtValorUni.Clear();
+                    txtObservaciones.Clear();
                     txtDescripcionProducto.Clear();
                     txtDescipcionBus.Focus();
                 }
@@ -225,6 +233,7 @@ namespace Añuri
             progressBar2.Value = Convert.ToInt32(null);
             progressBar2.Visible = false;
             txtMaterial.Focus();
+            txtObservaciones.Clear();
         }
         private Producto CargarEntidad()
         {
@@ -357,6 +366,7 @@ namespace Añuri
             }
             else { _producto.Cantidad = Convert.ToInt32(txtCantidad.Text); }
             _producto.PrecioNeto = _producto.ValorUnitario * _producto.Cantidad;
+            _producto.Observaciones = txtObservaciones.Text;
             return _producto;
         }
         private void dgvListaCargaStock_KeyDown(object sender, KeyEventArgs e)
@@ -382,9 +392,9 @@ namespace Añuri
 
                     txtProveedor.Focus();
                     txtDescipcionBus.Clear();
-                    txtProveedor.Enabled = true;
-                    txtRemito.Enabled = true;
-                    dtFechaCompra.Enabled = true;
+                    //txtProveedor.Enabled = true;
+                    //txtRemito.Enabled = true;
+                    //dtFechaCompra.Enabled = true;
                 }
                 else
                 {
@@ -423,6 +433,7 @@ namespace Añuri
                 Lista.PrecioNeto = Convert.ToDecimal(row.Cells[4].Value.ToString());
                 Lista.ValorUnitario = Convert.ToDecimal(row.Cells[3].Value.ToString());
                 Lista.Cantidad = Convert.ToInt32(row.Cells[2].Value.ToString());
+                Lista.Observaciones = Convert.ToString(row.Cells[5].Value.ToString());
                 ListaStock.Add(Lista);
             }
             return ListaStock;
@@ -506,6 +517,8 @@ namespace Añuri
             dgvListaCargaStock.Rows.Clear();
             progressBar1.Value = Convert.ToInt32(null);
             progressBar1.Visible = false;
+            lblTotalPagarReal.Text = Convert.ToString(0);
+            txtObservaciones.Clear();
         }
         private void SoloNumerosyDecimales(object sender, KeyPressEventArgs e)
         {

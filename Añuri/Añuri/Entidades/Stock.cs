@@ -31,5 +31,6 @@ namespace Añuri.Entidades
         public Decimal ImporteTotalMateriales { get; set; }
         public DateTime FechaCierre { get; set; }
         public DateTime FechaMovimiento { get; set; }
+        public string Observaciones { get; set; }
     }
 }
