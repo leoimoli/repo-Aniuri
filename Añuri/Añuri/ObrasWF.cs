@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -174,7 +175,11 @@ namespace Añuri
                             {
                                 string MaterialLista = item.Descripcion;
                                 decimal CalculoNeto = item.Cantidad * item.ValorUnitario;
-                                dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, CalculoNeto, item.EstadoEntrada, 0);
+                                //Agrego Punto De Miles...
+                                string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
+                                string ValorNeto = CalculoNeto.ToString("N", new CultureInfo("es-CL"));
+
+                                dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, ValorUnitario, ValorNeto, item.EstadoEntrada, 0);
                             }
                         }
                         txtMaterial.Clear();
@@ -481,7 +486,12 @@ namespace Añuri
                 foreach (var item in ListaMateriales)
                 {
                     //string cantidad = Convert.ToString(item.Stock);
-                    dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, item.ValorUnitario, item.PrecioNeto, 0, 1);
+
+                    //Agrego Punto De Miles...
+                    string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
+                    string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+
+                    dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, ValorUnitario, ValorNeto, 0, 1);
                 }
                 if (ListaMateriales[0].EstadoEntrada == 1)
                 {

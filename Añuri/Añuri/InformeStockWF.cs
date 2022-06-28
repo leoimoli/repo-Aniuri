@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -224,8 +225,10 @@ namespace Añuri
                 {
                     fecha = item.FechaFactura.ToShortDateString();
                 }
-
-                dgvStockDisponible.Rows.Add(item.idProducto, item.Descripcion, fecha, item.Cantidad, item.ValorUnitario, item.PrecioNeto, "", "");
+                //Agrego Punto De Miles...
+                string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
+                string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+                dgvStockDisponible.Rows.Add(item.idProducto, item.Descripcion, fecha, item.Cantidad, ValorUnitario, ValorNeto, "", "");
             }
             dgvLista.ReadOnly = true;
         }
@@ -345,8 +348,11 @@ namespace Añuri
             foreach (var item in graficoProductoEnPesos)
             {
                 Nombre.Add(item.TipoMovimiento);
-                string total = Convert.ToString(item.Valor);
-                string totalFinal = "$" + " " + total;
+                //Agrego Punto De Miles...
+                string ValorConPuntos = item.Valor.ToString("N", new CultureInfo("es-CL"));
+                //string total = Convert.ToString(item.Valor);
+                string totalFinal = "$" + " " + ValorConPuntos;
+
                 Total.Add(totalFinal);
             }
             chartEnPesos.Series[0].Points.DataBindXY(Nombre, Total);
@@ -422,7 +428,10 @@ namespace Añuri
                     {
                         Movimiento = "Salida";
                     }
-                    dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, item.ValorUnitario, item.PrecioNeto, Movimiento);
+                    //Agrego Punto De Miles...
+                    string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
+                    string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+                    dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, ValorUnitario, ValorNeto, Movimiento);
                 }
             }
             dgvLista.ReadOnly = true;

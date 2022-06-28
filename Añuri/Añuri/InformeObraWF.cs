@@ -16,6 +16,7 @@ using System.IO;
 using Añuri.Clases_Maestras;
 using Sico;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Añuri
 {
@@ -59,7 +60,12 @@ namespace Añuri
             foreach (var item in GraficoMaterialesEnPesos)
             {
                 Nombre.Add(item.Descripcion);
-                string total = Convert.ToString(item.PrecioNeto);
+
+                //Agrego Punto De Miles...
+                string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+
+                //string total = Convert.ToString(item.PrecioNeto);
+                string total = Convert.ToString(ValorNeto);
                 string totalFinal = "$" + " " + total;
                 Total.Add(totalFinal);
             }
@@ -91,7 +97,11 @@ namespace Añuri
                     {
                         fecha = item.FechaFactura.ToShortDateString();
                     }
-                    dgvLista.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, fecha, item.Cantidad, item.ValorUnitario, item.PrecioNeto, 0, 1);
+                    //Agrego Punto De Miles...
+                    string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
+                    string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+
+                    dgvLista.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, fecha, item.Cantidad, ValorUnitario, ValorNeto, 0, 1);
                 }
             }
             dgvLista.ReadOnly = true;
@@ -198,7 +208,12 @@ namespace Añuri
                     {
                         fecha = item.FechaFactura.ToShortDateString();
                     }
-                    dgvLista.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, fecha, item.Cantidad, item.ValorUnitario, item.PrecioNeto, 0, 1);
+
+                    //Agrego Punto De Miles...
+                    string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
+                    string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+
+                    dgvLista.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, fecha, item.Cantidad, ValorUnitario, ValorNeto, 0, 1);
                 }
                 dgvLista.ReadOnly = true;
             }
@@ -315,6 +330,10 @@ namespace Añuri
             int Contador = 0;
             foreach (var item in ListaMaterialesStatic)
             {
+                //Agrego Punto De Miles...
+                string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
+                string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+
                 Contador = Contador + 1;
                 if (item.Descripcion != "")
                 {
@@ -331,11 +350,11 @@ namespace Añuri
                         clKilos = new PdfPCell(new Phrase(Kilos, UltimoRegistro));
                         clKilos.BorderWidth = 0;
 
-                        string PrecioUnitario = Convert.ToString(item.ValorUnitario);
+                        string PrecioUnitario = Convert.ToString(ValorUnitario);
                         clPrecioUnitario = new PdfPCell(new Phrase(PrecioUnitario, UltimoRegistro));
                         clPrecioUnitario.BorderWidth = 0;
 
-                        string PrecioNeto = Convert.ToString(item.PrecioNeto);
+                        string PrecioNeto = Convert.ToString(ValorNeto);
                         clPrecioNeto = new PdfPCell(new Phrase(PrecioNeto, UltimoRegistro));
                         clPrecioNeto.BorderWidth = 0;
 
@@ -358,11 +377,11 @@ namespace Añuri
                         clKilos = new PdfPCell(new Phrase(Kilos, letraContenido));
                         clKilos.BorderWidth = 0;
 
-                        string PrecioUnitario = Convert.ToString(item.ValorUnitario);
+                        string PrecioUnitario = Convert.ToString(ValorUnitario);
                         clPrecioUnitario = new PdfPCell(new Phrase(PrecioUnitario, letraContenido));
                         clPrecioUnitario.BorderWidth = 0;
 
-                        string PrecioNeto = Convert.ToString(item.PrecioNeto);
+                        string PrecioNeto = Convert.ToString(ValorNeto);
                         clPrecioNeto = new PdfPCell(new Phrase(PrecioNeto, letraContenido));
                         clPrecioNeto.BorderWidth = 0;
 

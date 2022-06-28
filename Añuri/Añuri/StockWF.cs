@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -138,7 +139,9 @@ namespace Añuri
                         if (row.Cells[4].Value != null)
                             PrecioTotalFinal += Convert.ToDecimal(row.Cells[4].Value.ToString());
                     }
-                    lblTotalPagarReal.Text = Convert.ToString(PrecioTotalFinal);
+                    string PrecioMostrar = PrecioTotalFinal.ToString("N", new CultureInfo("es-CL"));
+                    //lblTotalPagarReal.Text = Convert.ToString(PrecioTotalFinal);
+                    lblTotalPagarReal.Text = Convert.ToString(PrecioMostrar);
                     txtProveedor.Enabled = false;
                     dtFechaCompra.Enabled = false;
                     txtRemito.Enabled = false;
