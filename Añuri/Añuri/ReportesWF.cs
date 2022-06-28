@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -238,7 +239,10 @@ namespace Añuri
             {
                 foreach (var item in listaProveedoresStatic)
                 {
-                    dgvproveedores.Rows.Add(item.NombreEmpresa, item.TotalComprasEnPesos);
+                    //Agrego Punto De Miles...
+                    string TotalComprasEnPesos = item.TotalComprasEnPesos.ToString("N", new CultureInfo("es-CL"));
+                    
+                    dgvproveedores.Rows.Add(item.NombreEmpresa, TotalComprasEnPesos);
                 }
                 dgvproveedores.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
                 dgvproveedores.MultiSelect = true;

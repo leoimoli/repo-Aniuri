@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -466,7 +467,14 @@ namespace Añuri
                     ImporteTotal = item.ImporteTotalMateriales;
                     StockTotal = Convert.ToString(item.StockTotal);
                 }
-                dgvInventario.Rows.Add(item.idProducto, Descripcion, StockTotal, item.Cantidad, fecha, item.ValorUnitario, Importe, ImporteTotal, "", "", "");
+
+                //Agrego Punto De Miles...
+                string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
+                string ImporteDos = Importe.ToString("N", new CultureInfo("es-CL"));
+                string ImporteTotalDos = ImporteTotal.ToString("N", new CultureInfo("es-CL"));
+
+                //dgvInventario.Rows.Add(item.idProducto, Descripcion, StockTotal, item.Cantidad, fecha, item.ValorUnitario, Importe, ImporteTotal, "", "", "");
+                dgvInventario.Rows.Add(item.idProducto, Descripcion, StockTotal, item.Cantidad, fecha, ValorUnitario, ImporteDos, ImporteTotalDos, "", "", "");
             }
             dgvInventario.ReadOnly = true;
         }

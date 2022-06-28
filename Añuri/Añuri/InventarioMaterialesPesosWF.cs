@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -371,10 +372,17 @@ namespace Añuri
                                 listaMes.Add(item.Mes);
                                 ListaidProducto.Add(item.idProducto);
                                 dgvInventario.Rows.Add(item.idProducto, item.Producto);
-                                dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value = item.SaldoInicial;
+
+                                //Agrego Punto De Miles...
+                                string ValorSaldo = item.SaldoInicial.ToString("N", new CultureInfo("es-CL"));
+
+                                //dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value = item.SaldoInicial;
+                                dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value = ValorSaldo;
                                 if (item.NombreMes == "Enero")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Enero"].Value = item.Monto;
+                                    //Agrego Punto De Miles...
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Enero"].Value = Valor;
                                 }
                                 else
                                 {
@@ -382,7 +390,9 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Febrero")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Febrero"].Value = item.Monto;
+                                    //Agrego Punto De Miles...
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Febrero"].Value = Valor;
                                 }
                                 else
                                 {
@@ -390,7 +400,8 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Marzo")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Marzo"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Marzo"].Value = Valor;
                                 }
                                 else
                                 {
@@ -398,7 +409,8 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Abril")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Abril"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Abril"].Value = Valor;
                                 }
                                 else
                                 {
@@ -406,7 +418,8 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Mayo")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Mayo"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Mayo"].Value = Valor;
                                 }
                                 else
                                 {
@@ -414,7 +427,8 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Junio")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Junio"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Junio"].Value = Valor;
                                 }
                                 else
                                 {
@@ -422,7 +436,8 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Julio")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Julio"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Julio"].Value = Valor;
                                 }
                                 else
                                 {
@@ -430,7 +445,8 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Agosto")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Agosto"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Agosto"].Value = Valor;
                                 }
                                 else
                                 {
@@ -438,7 +454,8 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Septiembre")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Septiembre"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Septiembre"].Value = Valor;
                                 }
                                 else
                                 {
@@ -446,7 +463,8 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Octubre")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Octubre"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Octubre"].Value = Valor;
                                 }
                                 else
                                 {
@@ -454,7 +472,8 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Noviembre")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Noviembre"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Noviembre"].Value = Valor;
                                 }
                                 else
                                 {
@@ -462,7 +481,8 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Diciembre")
                                 {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Diciembre"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionGrilla].Cells["Diciembre"].Value = Valor;
                                 }
                                 else
                                 {
@@ -486,51 +506,63 @@ namespace Añuri
                                 }
                                 if (item.NombreMes == "Enero")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Enero"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Enero"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Febrero")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Febrero"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Febrero"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Marzo")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Marzo"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Marzo"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Abril")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Abril"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Abril"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Mayo")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Mayo"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Mayo"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Junio")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Junio"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Junio"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Julio")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Julio"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Julio"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Agosto")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Agosto"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Agosto"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Septiembre")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Septiembre"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Septiembre"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Octubre")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Octubre"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Octubre"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Noviembre")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Noviembre"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Noviembre"].Value = Valor;
                                 }
                                 if (item.NombreMes == "Diciembre")
                                 {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Diciembre"].Value = item.Monto;
+                                    string Valor = item.Monto.ToString("N", new CultureInfo("es-CL"));
+                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Diciembre"].Value = Valor;
                                 }
                                 contador = contador + 1;
                             }
@@ -582,8 +614,9 @@ namespace Añuri
             { }
         }
 
-        private void ReformularGrilla(int MesMayor, int posicionEnGrilla, decimal monto)
+        private void ReformularGrilla(int MesMayor, int posicionEnGrilla, decimal montoDecimal)
         {
+            string monto = montoDecimal.ToString("N", new CultureInfo("es-CL"));
             if (1 > MesMayor)
             {
                 dgvInventario.Rows[posicionEnGrilla].Cells["Enero"].Value = monto;
@@ -1125,6 +1158,10 @@ namespace Añuri
             ListaIdProducto.Clear();
             foreach (var item in ListaPdfFinal)
             {
+                //Agrego Punto De Miles...
+                string ValorSaldo = item.SaldoInicial.ToString("N", new CultureInfo("es-CL"));
+                //string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+
                 bool ExisteProd = ListaIdProducto.Any(x => x == item.idProducto);
                 if (ExisteProd == false)
                 {
@@ -1133,14 +1170,17 @@ namespace Añuri
                     clMaterial.BorderWidth = 0;
 
                     string SaldoInicial = Convert.ToString(item.SaldoInicial);
-                    clSaldoInicial = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                    clSaldoInicial = new PdfPCell(new Phrase(ValorSaldo, letraContenido));
                     clSaldoInicial.BorderWidth = 0;
                     string SiguienteValor = "";
 
+                    //Agrego Punto De Miles...
+                    string ValorEnero = item.Enero.ToString("N", new CultureInfo("es-CL"));
+                    //string Enero = Convert.ToString(ValorEnero);
                     string Enero = Convert.ToString(item.Enero);
                     if (Enero == "0")
                     {
-                        clEnero = new PdfPCell(new Phrase(SaldoInicial, letraContenido));
+                        clEnero = new PdfPCell(new Phrase(ValorSaldo, letraContenido));
                         clEnero.BorderWidth = 0;
                         SiguienteValor = SaldoInicial;
                     }
@@ -1150,6 +1190,8 @@ namespace Añuri
                         clEnero.BorderWidth = 0;
                         SiguienteValor = Enero;
                     }
+                    //Agrego Punto De Miles...
+                    string ValorFebrero = item.Febrero.ToString("N", new CultureInfo("es-CL"));
                     string Febrero = Convert.ToString(item.Febrero);
                     if (Febrero == "0")
                     {
@@ -1164,7 +1206,8 @@ namespace Añuri
                         SiguienteValor = Febrero;
                     }
 
-
+                    //Agrego Punto De Miles...
+                    string ValorMarzo = item.Marzo.ToString("N", new CultureInfo("es-CL"));
                     string Marzo = Convert.ToString(item.Marzo);
                     if (Marzo == "0")
                     {
@@ -1178,7 +1221,8 @@ namespace Añuri
                         SiguienteValor = Marzo;
                     }
 
-
+                    //Agrego Punto De Miles...
+                    string ValorAbril = item.Abril.ToString("N", new CultureInfo("es-CL"));
                     string Abril = Convert.ToString(item.Abril);
                     if (Abril == "0")
                     {
@@ -1192,7 +1236,8 @@ namespace Añuri
                         SiguienteValor = Abril;
                     }
 
-
+                    //Agrego Punto De Miles...
+                    string ValorMayo = item.Mayo.ToString("N", new CultureInfo("es-CL"));
                     string Mayo = Convert.ToString(item.Mayo);
                     if (Mayo == "0")
                     {
@@ -1206,7 +1251,8 @@ namespace Añuri
                         SiguienteValor = Mayo;
                     }
 
-
+                    //Agrego Punto De Miles...
+                    string ValorJunio = item.Junio.ToString("N", new CultureInfo("es-CL"));
                     string Junio = Convert.ToString(item.Junio);
                     if (Junio == "0")
                     {
@@ -1220,7 +1266,8 @@ namespace Añuri
                         SiguienteValor = Junio;
                     }
 
-
+                    //Agrego Punto De Miles...
+                    string ValorJulio = item.Julio.ToString("N", new CultureInfo("es-CL"));
                     string Julio = Convert.ToString(item.Julio);
                     if (Julio == "0")
                     {
@@ -1234,7 +1281,8 @@ namespace Añuri
                         SiguienteValor = Julio;
                     }
 
-
+                    //Agrego Punto De Miles...
+                    string ValorAgosto = item.Agosto.ToString("N", new CultureInfo("es-CL"));
                     string Agosto = Convert.ToString(item.Agosto);
                     if (Agosto == "0")
                     {
@@ -1248,7 +1296,8 @@ namespace Añuri
                         SiguienteValor = Agosto;
                     }
 
-
+                    //Agrego Punto De Miles...
+                    string ValorSeptiembre = item.Septiembre.ToString("N", new CultureInfo("es-CL"));
                     string Septiembre = Convert.ToString(item.Septiembre);
                     if (Septiembre == "0")
                     {
@@ -1262,7 +1311,8 @@ namespace Añuri
                         SiguienteValor = Septiembre;
                     }
 
-
+                    //Agrego Punto De Miles...
+                    string ValorOctubre = item.Octubre.ToString("N", new CultureInfo("es-CL"));
                     string Octubre = Convert.ToString(item.Octubre);
                     if (Octubre == "0")
                     {
@@ -1276,7 +1326,8 @@ namespace Añuri
                         SiguienteValor = Octubre;
                     }
 
-
+                    //Agrego Punto De Miles...
+                    string ValorNoviembre = item.Noviembre.ToString("N", new CultureInfo("es-CL"));
                     string Noviembre = Convert.ToString(item.Noviembre);
                     if (Noviembre == "0")
                     {
@@ -1290,7 +1341,8 @@ namespace Añuri
                         SiguienteValor = Noviembre;
                     }
 
-
+                    //Agrego Punto De Miles...
+                    string ValorDiciembre = item.Diciembre.ToString("N", new CultureInfo("es-CL"));
                     string Diciembre = Convert.ToString(item.Diciembre);
                     if (Diciembre == "0")
                     {
