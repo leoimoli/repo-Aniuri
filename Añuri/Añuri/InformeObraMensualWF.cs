@@ -117,6 +117,8 @@ namespace Añuri
                 List<Stock> ListaDeObras = ObrasNeg.BuscarObrasPorMes(FechaDesde, FechaHasta);
                 if (ListaDeObras.Count > 0)
                 {
+                    btnExcel.Visible = true;
+                    btnPdf.Visible = true;
                     ListaDeObrasStatic = ListaDeObras;
                     string fecha = "";
                     List<int> ListaIdObra = new List<int>();
@@ -169,6 +171,11 @@ namespace Añuri
                         dgvLista.ReadOnly = true;
                     }
                     DiseñoGraficoMaterialesEnPesos(ListaDeObrasStatic);
+                }
+                else
+                {
+                    btnExcel.Visible = false;
+                    btnPdf.Visible = false;
                 }
             }
             catch (Exception ex)

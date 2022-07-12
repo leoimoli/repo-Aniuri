@@ -737,7 +737,7 @@
             this.lblNombreObra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.lblNombreObra.Location = new System.Drawing.Point(104, 5);
             this.lblNombreObra.Name = "lblNombreObra";
-            this.lblNombreObra.Size = new System.Drawing.Size(79, 16);
+            this.lblNombreObra.Size = new System.Drawing.Size(80, 16);
             this.lblNombreObra.TabIndex = 43;
             this.lblNombreObra.Text = "Nueva Obra";
             // 
@@ -789,7 +789,7 @@
             this.btnInformeMensual.ForeColor = System.Drawing.Color.White;
             this.btnInformeMensual.Location = new System.Drawing.Point(173, 480);
             this.btnInformeMensual.Name = "btnInformeMensual";
-            this.btnInformeMensual.Size = new System.Drawing.Size(115, 28);
+            this.btnInformeMensual.Size = new System.Drawing.Size(133, 28);
             this.btnInformeMensual.TabIndex = 113;
             this.btnInformeMensual.Text = "Informe Mensual";
             this.btnInformeMensual.UseVisualStyleBackColor = false;

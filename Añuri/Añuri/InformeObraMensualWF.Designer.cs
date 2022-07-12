@@ -54,10 +54,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgvLista = new System.Windows.Forms.DataGridView();
-            this.chartEnPesos = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnPdf = new System.Windows.Forms.Button();
-            this.btnExcel = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Obra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +63,10 @@
             this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chartEnPesos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnPdf = new System.Windows.Forms.Button();
+            this.btnExcel = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPagina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
@@ -331,69 +331,6 @@
             this.dgvLista.Size = new System.Drawing.Size(626, 442);
             this.dgvLista.TabIndex = 169;
             // 
-            // chartEnPesos
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chartEnPesos.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartEnPesos.Legends.Add(legend1);
-            this.chartEnPesos.Location = new System.Drawing.Point(719, 153);
-            this.chartEnPesos.Name = "chartEnPesos";
-            this.chartEnPesos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series1.IsValueShownAsLabel = true;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartEnPesos.Series.Add(series1);
-            this.chartEnPesos.Size = new System.Drawing.Size(538, 445);
-            this.chartEnPesos.TabIndex = 167;
-            this.chartEnPesos.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            title1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            title1.Name = "Title1";
-            title1.Text = "Obras Calculados en Pesos";
-            this.chartEnPesos.Titles.Add(title1);
-            // 
-            // btnPdf
-            // 
-            this.btnPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.btnPdf.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.btnPdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPdf.ForeColor = System.Drawing.Color.White;
-            this.btnPdf.Location = new System.Drawing.Point(542, 604);
-            this.btnPdf.Name = "btnPdf";
-            this.btnPdf.Size = new System.Drawing.Size(121, 34);
-            this.btnPdf.TabIndex = 172;
-            this.btnPdf.Text = "Generar PDF";
-            this.btnPdf.UseVisualStyleBackColor = false;
-            this.btnPdf.Click += new System.EventHandler(this.btnPdf_Click);
-            // 
-            // btnExcel
-            // 
-            this.btnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.btnExcel.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
-            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcel.ForeColor = System.Drawing.Color.White;
-            this.btnExcel.Location = new System.Drawing.Point(394, 604);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(121, 34);
-            this.btnExcel.TabIndex = 171;
-            this.btnExcel.Text = "Exportar a Excel";
-            this.btnExcel.UseVisualStyleBackColor = false;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(228, 427);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(235, 23);
-            this.progressBar1.TabIndex = 173;
-            this.progressBar1.Value = 50;
-            this.progressBar1.Visible = false;
-            // 
             // idprod
             // 
             this.idprod.HeaderText = "id";
@@ -447,6 +384,71 @@
             this.EstadoEntrada.HeaderText = "EstadoEntrada";
             this.EstadoEntrada.Name = "EstadoEntrada";
             this.EstadoEntrada.Visible = false;
+            // 
+            // chartEnPesos
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartEnPesos.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartEnPesos.Legends.Add(legend1);
+            this.chartEnPesos.Location = new System.Drawing.Point(719, 153);
+            this.chartEnPesos.Name = "chartEnPesos";
+            this.chartEnPesos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartEnPesos.Series.Add(series1);
+            this.chartEnPesos.Size = new System.Drawing.Size(538, 445);
+            this.chartEnPesos.TabIndex = 167;
+            this.chartEnPesos.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            title1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            title1.Name = "Title1";
+            title1.Text = "Obras Calculados en Pesos";
+            this.chartEnPesos.Titles.Add(title1);
+            // 
+            // btnPdf
+            // 
+            this.btnPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnPdf.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.btnPdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPdf.ForeColor = System.Drawing.Color.White;
+            this.btnPdf.Location = new System.Drawing.Point(542, 604);
+            this.btnPdf.Name = "btnPdf";
+            this.btnPdf.Size = new System.Drawing.Size(121, 34);
+            this.btnPdf.TabIndex = 172;
+            this.btnPdf.Text = "Generar PDF";
+            this.btnPdf.UseVisualStyleBackColor = false;
+            this.btnPdf.Visible = false;
+            this.btnPdf.Click += new System.EventHandler(this.btnPdf_Click);
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.btnExcel.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExcel.Location = new System.Drawing.Point(394, 604);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(121, 34);
+            this.btnExcel.TabIndex = 171;
+            this.btnExcel.Text = "Exportar a Excel";
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Visible = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(228, 427);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(235, 23);
+            this.progressBar1.TabIndex = 173;
+            this.progressBar1.Value = 50;
+            this.progressBar1.Visible = false;
             // 
             // InformeObraMensualWF
             // 
