@@ -102,6 +102,20 @@ namespace Añuri.Negocio
             { }
             return exito;
         }
+
+        public static List<Stock> BuscarObrasPorMes(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<Stock> _listaObras = new List<Stock>();
+            try
+            {
+                _listaObras = ObrasDao.BuscarObrasPorMes(fechaDesde, fechaHasta);
+            }
+            catch (Exception ex)
+            {
+            }
+            return _listaObras;
+        }
+
         public static List<Obra> ListaDeObras()
         {
             List<Entidades.Obra> _listaObras = new List<Entidades.Obra>();

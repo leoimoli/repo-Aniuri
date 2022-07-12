@@ -92,6 +92,41 @@ namespace Añuri.Dao
             return listaMateriales;
         }
 
+        public static List<Stock> BuscarObrasPorMes(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            connection.Close();
+            connection.Open();
+            List<Stock> _ListaObras = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("FechaDesde_in", fechaDesde),
+            new MySqlParameter("FechaHasta_in", fechaHasta)};
+            string proceso = "BuscarObrasReporteMensual";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock _stock = new Stock();
+                    _stock.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
+                
+                    _stock.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
+                    _stock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _stock.Descripcion = item["DescripcionProducto"].ToString();                  
+                    _stock.FechaFactura = Convert.ToDateTime(item["FechaSalidaIngresada"].ToString());
+                    _stock.NombreObra = item["NombreObra"].ToString();
+                    _stock.idObra = Convert.ToInt32(item["idObra"].ToString());
+                    _ListaObras.Add(_stock);
+                }
+            }
+            connection.Close();
+            return _ListaObras;
+        }
+
         public static List<Obra> BuscarInformacionLocalidad(string localidad, int idProvincia)
         {
             connection.Close();

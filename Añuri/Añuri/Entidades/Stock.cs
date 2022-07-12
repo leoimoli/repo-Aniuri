@@ -32,5 +32,7 @@ namespace Añuri.Entidades
         public DateTime FechaCierre { get; set; }
         public DateTime FechaMovimiento { get; set; }
         public string Observaciones { get; set; }
+        public string NombreObra { get; set; }
+        public int idObra { get; set; }
     }
 }

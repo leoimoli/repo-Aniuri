@@ -845,6 +845,7 @@ namespace Añuri.Dao
                         cmd2.Parameters.AddWithValue("ValorUnitario_in", item.ValorUnitario);
                         cmd2.Parameters.AddWithValue("PrecioNeto_in", item.PrecioNeto);
                         cmd2.Parameters.AddWithValue("idSalida_in", idMovimiento);
+                        cmd2.Parameters.AddWithValue("Observaciones_in", item.Observaciones);
                         cmd2.ExecuteNonQuery();
                         exito = true;
                         connection.Close();

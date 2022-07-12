@@ -104,6 +104,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="InformeObraMensualWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InformeObraMensualWF.Designer.cs">
+      <DependentUpon>InformeObraMensualWF.cs</DependentUpon>
+    </Compile>
     <Compile Include="InformeObraWF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformeObraMensualWF.resx">
+      <DependentUpon>InformeObraMensualWF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformeObraWF.resx">
       <DependentUpon>InformeObraWF.cs</DependentUpon>

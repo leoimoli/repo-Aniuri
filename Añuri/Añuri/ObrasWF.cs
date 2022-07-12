@@ -647,5 +647,11 @@ namespace Añuri
         {
 
         }
+
+        private void btnInformeMensual_Click(object sender, EventArgs e)
+        {
+            InformeObraMensualWF frm2 = new InformeObraMensualWF();
+            frm2.Show();
+        }
     }
 }
