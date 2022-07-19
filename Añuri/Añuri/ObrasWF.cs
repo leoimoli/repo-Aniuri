@@ -180,6 +180,7 @@ namespace Añuri
                                 string ValorNeto = CalculoNeto.ToString("N", new CultureInfo("es-CL"));
 
                                 dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, ValorUnitario, ValorNeto, item.EstadoEntrada, 0);
+                                //dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, ValorUnitario, ValorNeto, 0, 1, item.FechaFactura, idMovimiento);
                             }
                         }
                         txtMaterial.Clear();
@@ -491,7 +492,7 @@ namespace Añuri
                     string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
                     string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
 
-                    dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, ValorUnitario, ValorNeto, 0, 1);
+                    dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, ValorUnitario, ValorNeto, 0, 1, item.FechaFactura, item.idMovimiento);
                 }
                 if (ListaMateriales[0].EstadoEntrada == 1)
                 {
@@ -652,6 +653,60 @@ namespace Añuri
         {
             InformeObraMensualWF frm2 = new InformeObraMensualWF();
             frm2.Show();
+        }
+
+        private void dgvListaCargaStock_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && this.dgvListaCargaStock.Columns[e.ColumnIndex].Name == "Quitar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell BotonVer = this.dgvListaCargaStock.Rows[e.RowIndex].Cells["Quitar"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\" + @"Quitar.ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 20, e.CellBounds.Top + 4);
+                this.dgvListaCargaStock.Rows[e.RowIndex].Height = icoAtomico.Height + 8;
+                this.dgvListaCargaStock.Columns[e.ColumnIndex].Width = icoAtomico.Width + 40;
+                e.Handled = true;
+            }
+        }
+        private void dgvListaCargaStock_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvListaCargaStock.CurrentCell.ColumnIndex == 10)
+            {
+                int idMaterial = Convert.ToInt32(this.dgvListaCargaStock.CurrentRow.Cells[0].Value.ToString());
+                int idMovimientoEntradaSeleccionado = Convert.ToInt32(this.dgvListaCargaStock.CurrentRow.Cells[1].Value.ToString());
+                DateTime FechaMovimiento = Convert.ToDateTime(this.dgvListaCargaStock.CurrentRow.Cells[8].Value.ToString());
+                int Kilos = Convert.ToInt32(this.dgvListaCargaStock.CurrentRow.Cells[3].Value.ToString());
+                int idMovimiento = Convert.ToInt32(this.dgvListaCargaStock.CurrentRow.Cells[9].Value.ToString());
+                bool EsValido = ObrasNeg.ValidarEliminacionDeRegistro(idMaterial, idMovimientoEntradaSeleccionado, FechaMovimiento);
+                if (EsValido == true)
+                {
+                    bool Exito = ObrasNeg.ReintegrarStock(idMaterial, idMovimientoEntradaSeleccionado, idMovimiento, Kilos);
+                    if (Exito == true)
+                    {
+                        const string message2 = "Se registro el reintrego de Stock exitosamente.";
+                        const string caption2 = "Atención";
+                        var result2 = MessageBox.Show(message2, caption2,
+                                                     MessageBoxButtons.OK,
+                                                     MessageBoxIcon.Asterisk);
+                    }
+                    else
+                    {
+                        const string message2 = "Atención: No se pudo registrar el reintrego de Stock.";
+                        const string caption2 = "Atención";
+                        var result2 = MessageBox.Show(message2, caption2,
+                                                     MessageBoxButtons.OK,
+                                                     MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    const string message2 = "Atención: No se puede eliminar el registro seleccionado, porque existen movimientos ingresados posteriormente.";
+                    const string caption2 = "Atención";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Exclamation);
+                }
+            }
         }
     }
 }

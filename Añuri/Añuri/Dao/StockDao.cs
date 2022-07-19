@@ -748,7 +748,7 @@ namespace Añuri.Dao
         }
         private static bool ActualizarStock(int idProducto, int cantidadTotal)
         {
-            bool exito = false;
+            bool exito = false;           
             connection.Close();
             connection.Open();
             string Actualizar = "EditarStock";
@@ -761,6 +761,33 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
+
+        public static string ObteneridStock(int idProducto)
+        {
+            connection.Close();
+            string Stock = "0";
+            connection.Open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = {
+                                      new MySqlParameter("idProducto_in", idProducto) };
+            string proceso = "ObteneridStock";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Stock = item["idStock"].ToString() +","+ item["Cantidad"].ToString();
+                }
+            }
+            connection.Close();
+            return Stock;
+        }
+
         private static List<int> ValidarStockExistente(int idProducto)
         {
             connection.Close();

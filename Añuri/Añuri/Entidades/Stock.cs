@@ -34,5 +34,6 @@ namespace Añuri.Entidades
         public string Observaciones { get; set; }
         public string NombreObra { get; set; }
         public int idObra { get; set; }
+        public int idMovimiento { get; set; }
     }
 }

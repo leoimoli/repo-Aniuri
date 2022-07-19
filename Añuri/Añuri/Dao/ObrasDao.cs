@@ -1,4 +1,5 @@
-﻿using Añuri.Entidades;
+﻿using Añuri.Clases_Maestras;
+using Añuri.Entidades;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -113,10 +114,10 @@ namespace Añuri.Dao
                 {
                     Stock _stock = new Stock();
                     _stock.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
-                
+
                     _stock.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
                     _stock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
-                    _stock.Descripcion = item["DescripcionProducto"].ToString();                  
+                    _stock.Descripcion = item["DescripcionProducto"].ToString();
                     _stock.FechaFactura = Convert.ToDateTime(item["FechaSalidaIngresada"].ToString());
                     _stock.NombreObra = item["NombreObra"].ToString();
                     _stock.idObra = Convert.ToInt32(item["idObra"].ToString());
@@ -350,6 +351,105 @@ namespace Añuri.Dao
             connection.Close();
             return listaMateriales;
         }
+        public static bool ReintegrarStock(int idMaterial, int idMovimientoSeleccionado, int idMovimiento, int Kilos)
+        {
+            bool Exito = false;
+            int MovimientoReintegro = 0;
+            connection.Close();
+            connection.Open();
+            ///PROCEDIMIENTO
+            string proceso = "EliminarMovimientoStock";
+            MySqlCommand cmd = new MySqlCommand(proceso, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("idMovimiento_in", idMovimiento);
+            cmd.ExecuteNonQuery();
+            Exito = true;
+            connection.Close();
+            if (Exito == true)
+            {
+                MovimientoReintegro = RegistrarMovimientosEliminados(idMaterial, idMovimientoSeleccionado, idMovimiento);
+            }
+            if (MovimientoReintegro > 0)
+            {
+                Exito = ReintegroActualizarStock(idMaterial, Kilos);
+            }
+
+            return Exito;
+        }
+
+        private static bool ReintegroActualizarStock(int idMaterial, int kilos)
+        {
+            bool exito = false;
+            string Stock = StockDao.ObteneridStock(idMaterial);
+            var variable = Stock.Split(',');
+           
+            int idStock = Convert.ToInt32(variable[0]);
+            int StockViejo = Convert.ToInt32(variable[1]);
+
+            int NuevoStock = StockViejo + kilos;
+            connection.Close();
+            connection.Open();
+            string Actualizar = "ReintegroStock";
+            MySqlCommand cmd = new MySqlCommand(Actualizar, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("idStock_in", idStock);
+            cmd.Parameters.AddWithValue("cantidad_in", NuevoStock);
+            cmd.ExecuteNonQuery();
+            exito = true;
+            connection.Close();
+            return exito;
+        }
+
+        private static int RegistrarMovimientosEliminados(int idMaterial, int idMovimientoEntradaSeleccionado, int idMovimiento)
+        {
+            int idReintegro = 0;
+            connection.Close();
+            connection.Open();
+            string proceso = "RegistrarMovimientosEliminados";
+            MySqlCommand cmd = new MySqlCommand(proceso, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("idMaterial_in", idMaterial);
+            cmd.Parameters.AddWithValue("idMovimientoEntrada_in", idMovimientoEntradaSeleccionado);
+            cmd.Parameters.AddWithValue("idMovimiento_in", idMovimiento);
+            cmd.Parameters.AddWithValue("FechaDeBaja_in", DateTime.Now);
+            cmd.Parameters.AddWithValue("idUsuario_in", Sesion.UsuarioLogueado.idUsuario);
+            MySqlDataReader r = cmd.ExecuteReader();
+            while (r.Read())
+            {
+                idReintegro = Convert.ToInt32(r["ID"].ToString());
+            }
+            connection.Close();
+            return idReintegro;
+        }
+
+        public static bool ValidarEliminacionDeRegistro(int idMaterial, int idMovimientoEntradaSeleccionado, DateTime fechaMovimiento)
+        {
+            bool esValido = true;
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idMaterial_in", idMaterial),
+               new MySqlParameter("idMovimientoSeleccionado_in", idMovimientoEntradaSeleccionado),
+            new MySqlParameter("fechaMovimiento_in", fechaMovimiento)};
+            string proceso = "ValidarEliminacionDeRegistro";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            ///// Si es mayor a 1 xq siempre va a traer su mismo registro
+            if (Tabla.Rows.Count > 1)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    esValido = false;
+                }
+            }
+            connection.Close();
+            return esValido;
+        }
         public static bool LiberarSotckReservado(List<int> ListaIdProd)
         {
             bool exito = false;
@@ -430,6 +530,7 @@ namespace Añuri.Dao
                     _listaMateriales.idMovimientoEntrada = Convert.ToInt32(item["idMovimientoEntradaSalida"].ToString());
                     _listaMateriales.FechaFactura = Convert.ToDateTime(item["FechaSalidaIngresada"].ToString());
                     _listaMateriales.EstadoEntrada = Convert.ToInt32(item["Estado"].ToString());
+                    _listaMateriales.idMovimiento = Convert.ToInt32(item["idMovimiento"].ToString());
                     listaMateriales.Add(_listaMateriales);
                 }
             }

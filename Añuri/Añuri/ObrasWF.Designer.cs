@@ -80,14 +80,6 @@
             this.btnGuardarObra = new System.Windows.Forms.Button();
             this.btnCargar = new System.Windows.Forms.Button();
             this.dgvListaCargaStock = new System.Windows.Forms.DataGridView();
-            this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kilos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstadoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Existente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtMaterial = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCantidad = new System.Windows.Forms.TextBox();
@@ -97,6 +89,17 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnInformeMensual = new System.Windows.Forms.Button();
+            this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kilos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Existente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaSalida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idMovimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quitar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObras)).BeginInit();
             this.panelNuevaObra.SuspendLayout();
             this.panelDetalleObra.SuspendLayout();
@@ -616,7 +619,10 @@
             this.PrecioUnitario,
             this.PrecioNeto,
             this.EstadoEntrada,
-            this.Existente});
+            this.Existente,
+            this.FechaSalida,
+            this.idMovimiento,
+            this.Quitar});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -640,54 +646,9 @@
             this.dgvListaCargaStock.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvListaCargaStock.Size = new System.Drawing.Size(421, 224);
             this.dgvListaCargaStock.TabIndex = 158;
+            this.dgvListaCargaStock.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaCargaStock_CellClick);
+            this.dgvListaCargaStock.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvListaCargaStock_CellPainting);
             this.dgvListaCargaStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvListaCargaStock_KeyDown);
-            // 
-            // idprod
-            // 
-            this.idprod.HeaderText = "id";
-            this.idprod.Name = "idprod";
-            this.idprod.Visible = false;
-            this.idprod.Width = 50;
-            // 
-            // idEntrada
-            // 
-            this.idEntrada.HeaderText = "idEntrada";
-            this.idEntrada.Name = "idEntrada";
-            this.idEntrada.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 180;
-            // 
-            // kilos
-            // 
-            this.kilos.HeaderText = "Kilos";
-            this.kilos.Name = "kilos";
-            this.kilos.Width = 50;
-            // 
-            // PrecioUnitario
-            // 
-            this.PrecioUnitario.HeaderText = "Precio Unitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            // 
-            // PrecioNeto
-            // 
-            this.PrecioNeto.HeaderText = "Precio Neto";
-            this.PrecioNeto.Name = "PrecioNeto";
-            // 
-            // EstadoEntrada
-            // 
-            this.EstadoEntrada.HeaderText = "EstadoEntrada";
-            this.EstadoEntrada.Name = "EstadoEntrada";
-            this.EstadoEntrada.Visible = false;
-            // 
-            // Existente
-            // 
-            this.Existente.HeaderText = "Existente";
-            this.Existente.Name = "Existente";
-            this.Existente.Visible = false;
             // 
             // txtMaterial
             // 
@@ -795,6 +756,72 @@
             this.btnInformeMensual.UseVisualStyleBackColor = false;
             this.btnInformeMensual.Click += new System.EventHandler(this.btnInformeMensual_Click);
             // 
+            // idprod
+            // 
+            this.idprod.HeaderText = "id";
+            this.idprod.Name = "idprod";
+            this.idprod.Visible = false;
+            this.idprod.Width = 50;
+            // 
+            // idEntrada
+            // 
+            this.idEntrada.HeaderText = "idEntrada";
+            this.idEntrada.Name = "idEntrada";
+            this.idEntrada.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 140;
+            // 
+            // kilos
+            // 
+            this.kilos.HeaderText = "Kilos";
+            this.kilos.Name = "kilos";
+            this.kilos.Width = 50;
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "Precio Unitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.Width = 80;
+            // 
+            // PrecioNeto
+            // 
+            this.PrecioNeto.HeaderText = "Precio Neto";
+            this.PrecioNeto.Name = "PrecioNeto";
+            this.PrecioNeto.Width = 80;
+            // 
+            // EstadoEntrada
+            // 
+            this.EstadoEntrada.HeaderText = "EstadoEntrada";
+            this.EstadoEntrada.Name = "EstadoEntrada";
+            this.EstadoEntrada.Visible = false;
+            // 
+            // Existente
+            // 
+            this.Existente.HeaderText = "Existente";
+            this.Existente.Name = "Existente";
+            this.Existente.Visible = false;
+            // 
+            // FechaSalida
+            // 
+            this.FechaSalida.HeaderText = "FechaSalida";
+            this.FechaSalida.Name = "FechaSalida";
+            // 
+            // idMovimiento
+            // 
+            this.idMovimiento.HeaderText = "idMovimiento";
+            this.idMovimiento.Name = "idMovimiento";
+            this.idMovimiento.Visible = false;
+            // 
+            // Quitar
+            // 
+            this.Quitar.HeaderText = "Quitar";
+            this.Quitar.Name = "Quitar";
+            this.Quitar.Width = 80;
+            // 
             // ObrasWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -870,14 +897,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dtFechaCompra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idprod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idEntrada;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kilos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioNeto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoEntrada;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Existente;
         private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombredelaObra;
         private System.Windows.Forms.DataGridViewTextBoxColumn Domicilio;
@@ -888,5 +907,16 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnInformeMensual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idprod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idEntrada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kilos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioNeto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoEntrada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Existente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaSalida;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idMovimiento;
+        private System.Windows.Forms.DataGridViewButtonColumn Quitar;
     }
 }
