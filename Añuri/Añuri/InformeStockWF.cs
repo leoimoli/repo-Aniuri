@@ -431,7 +431,7 @@ namespace Añuri
                     //Agrego Punto De Miles...
                     string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
                     string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
-                    dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, ValorUnitario, ValorNeto, Movimiento);
+                    dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, ValorUnitario, ValorNeto, Movimiento, item.idMovimiento);
                 }
             }
             dgvLista.ReadOnly = true;
@@ -532,7 +532,7 @@ namespace Añuri
                                 {
                                     Movimiento = "Salida";
                                 }
-                                dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, item.ValorUnitario, item.PrecioNeto, Movimiento);
+                                dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, item.ValorUnitario, item.PrecioNeto, Movimiento, item.idMovimiento);
                                 ArmarGraficos();
                             }
                         }
@@ -555,7 +555,7 @@ namespace Añuri
                                 {
                                     Movimiento = "Salida";
                                 }
-                                dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, item.ValorUnitario, item.PrecioNeto, Movimiento);
+                                dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, item.ValorUnitario, item.PrecioNeto, Movimiento, item.idMovimiento);
                                 ArmarGraficos();
                             }
                         }
@@ -586,7 +586,7 @@ namespace Añuri
                             {
                                 Movimiento = "Salida";
                             }
-                            dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, item.ValorUnitario, item.PrecioNeto, Movimiento);
+                            dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, item.ValorUnitario, item.PrecioNeto, Movimiento, item.idMovimiento);
                             ArmarGraficos();
                         }
                     }
@@ -1220,6 +1220,100 @@ namespace Añuri
             var result2 = MessageBox.Show(message2, caption2,
                                          MessageBoxButtons.OK,
                                          MessageBoxIcon.Asterisk);
+        }
+
+        private void dgvLista_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && this.dgvLista.Columns[e.ColumnIndex].Name == "Quitar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell BotonVer = this.dgvLista.Rows[e.RowIndex].Cells["Quitar"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\" + @"eliminar.ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 20, e.CellBounds.Top + 4);
+                this.dgvLista.Rows[e.RowIndex].Height = icoAtomico.Height + 8;
+                this.dgvLista.Columns[e.ColumnIndex].Width = icoAtomico.Width + 40;
+                e.Handled = true;
+            }
+        }
+
+        private void dgvLista_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvLista.CurrentCell.ColumnIndex == 8)
+            {
+                string TipoMovimiento = this.dgvLista.CurrentRow.Cells[6].Value.ToString();
+                if (TipoMovimiento == "Entrada")
+                {
+
+                    //int idMaterial = Convert.ToInt32(this.dgvLista.CurrentRow.Cells[0].Value.ToString());
+                    int idMaterial = idProductoSeleccionado;
+                    int kilos = Convert.ToInt32(this.dgvLista.CurrentRow.Cells[3].Value.ToString());
+                    int idMovimiento = Convert.ToInt32(this.dgvLista.CurrentRow.Cells[7].Value.ToString());
+                    bool EsValido = ObrasNeg.ValidarBajaDeStock(idMaterial, idMovimiento);
+                    if (EsValido == true)
+                    {
+                        const string message = "¿Usted desea Eliminar el Stock selccionado?";
+                        const string caption = "Consulta";
+                        var result = MessageBox.Show(message, caption,
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question);
+                        {
+                            if (result == DialogResult.Yes)
+                            {
+
+                                bool ExitoEliminar = ObrasNeg.EliminarMovientoEntradaStock(idMaterial, idMovimiento);
+                                if (ExitoEliminar == true)
+                                {
+                                    bool ExitoActualizar = ObrasNeg.ActualizarStockResta(idMaterial, kilos);
+                                    if (ExitoActualizar == true)
+                                    {
+                                        const string message2 = "Se elimino el stock seleccionado exitosamente.";
+                                        const string caption2 = "Exito";
+                                        var result2 = MessageBox.Show(message2, caption2,
+                                                                     MessageBoxButtons.OK,
+                                                                     MessageBoxIcon.Asterisk);
+                                        ListaStockDisponible();
+                                        ListarMovimientosStock();
+                                        ArmarGraficos();
+                                    }
+                                    else
+                                    {
+                                        const string message2 = "Atención: No se puede actualizar el Stock seleccionada.";
+                                        const string caption2 = "Atención";
+                                        var result2 = MessageBox.Show(message2, caption2,
+                                                                     MessageBoxButtons.OK,
+                                                                     MessageBoxIcon.Exclamation);
+                                    }
+                                }
+                                else
+                                {
+                                    const string message2 = "Atención: No se puede eliminar el Stock seleccionada.";
+                                    const string caption2 = "Atención";
+                                    var result2 = MessageBox.Show(message2, caption2,
+                                                                 MessageBoxButtons.OK,
+                                                                 MessageBoxIcon.Exclamation);
+                                }
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        const string message2 = "Atención: No se puede eliminar el stock seleccionado, porque el mismo tiene salidas asignadas a obras.";
+                        const string caption2 = "Atención";
+                        var result2 = MessageBox.Show(message2, caption2,
+                                                     MessageBoxButtons.OK,
+                                                     MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    const string message2 = "Atención: No se puede eliminar la salida seleccionada.";
+                    const string caption2 = "Atención";
+                    var result2 = MessageBox.Show(message2, caption2,
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Exclamation);
+                }
+            }
         }
     }
 }

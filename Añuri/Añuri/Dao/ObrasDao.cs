@@ -351,6 +351,53 @@ namespace Añuri.Dao
             connection.Close();
             return listaMateriales;
         }
+
+        public static bool ValidarBajaDeStock(int idMaterial, int idMovimiento)
+        {
+            bool esValido = true;
+            connection.Close();
+            connection.Open();
+            List<Stock> _listaStocks = new List<Stock>();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idMaterial_in", idMaterial),
+               new MySqlParameter("idMovimientoSeleccionado_in", idMovimiento)};
+            string proceso = "ValidarBajaDeStock";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            ///// Si es mayor a 1 xq siempre va a traer su mismo registro
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    esValido = false;
+                }
+            }
+            connection.Close();
+            return esValido;
+        }
+
+        public static bool EliminarMovientoEntradaStock(int idMaterial, int idMovimiento)
+        {
+            bool Exito = false;
+            int MovimientoReintegro = 0;
+            connection.Close();
+            connection.Open();
+            ///PROCEDIMIENTO
+            string proceso = "EliminarMovientoEntradaStock";
+            MySqlCommand cmd = new MySqlCommand(proceso, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("idMaterial_in", idMaterial);
+            cmd.Parameters.AddWithValue("idMovimiento_in", idMovimiento);
+            cmd.ExecuteNonQuery();
+            Exito = true;
+            connection.Close();
+            return Exito;
+        }
+
         public static bool ReintegrarStock(int idMaterial, int idMovimientoSeleccionado, int idMovimiento, int Kilos)
         {
             bool Exito = false;
@@ -371,22 +418,26 @@ namespace Añuri.Dao
             }
             if (MovimientoReintegro > 0)
             {
-                Exito = ReintegroActualizarStock(idMaterial, Kilos);
+                string Condicion = "SUMA";
+                Exito = ReintegroActualizarStock(idMaterial, Kilos, Condicion);
             }
 
             return Exito;
         }
 
-        private static bool ReintegroActualizarStock(int idMaterial, int kilos)
+        public static bool ReintegroActualizarStock(int idMaterial, int kilos, string Condicion)
         {
             bool exito = false;
             string Stock = StockDao.ObteneridStock(idMaterial);
             var variable = Stock.Split(',');
-           
+
             int idStock = Convert.ToInt32(variable[0]);
             int StockViejo = Convert.ToInt32(variable[1]);
-
-            int NuevoStock = StockViejo + kilos;
+            int NuevoStock = 0;
+            if (Condicion == "SUMA")
+            { NuevoStock = StockViejo + kilos; }
+            if (Condicion == "RESTA")
+            { NuevoStock = StockViejo - kilos; }
             connection.Close();
             connection.Open();
             string Actualizar = "ReintegroStock";

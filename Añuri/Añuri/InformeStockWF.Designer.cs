@@ -55,13 +55,6 @@
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.lblNombreProducto = new System.Windows.Forms.Label();
             this.dgvLista = new System.Windows.Forms.DataGridView();
-            this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kilos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoMovimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnPdf = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
@@ -92,6 +85,15 @@
             this.btnPdf2 = new System.Windows.Forms.Button();
             this.btnExcel2 = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kilos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoMovimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idMovimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPagina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
@@ -239,7 +241,9 @@
             this.kilos,
             this.PrecioUnitario,
             this.PrecioNeto,
-            this.TipoMovimiento});
+            this.TipoMovimiento,
+            this.idMovimiento,
+            this.Quitar});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -263,45 +267,8 @@
             this.dgvLista.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvLista.Size = new System.Drawing.Size(634, 189);
             this.dgvLista.TabIndex = 160;
-            // 
-            // idprod
-            // 
-            this.idprod.HeaderText = "id";
-            this.idprod.Name = "idprod";
-            this.idprod.Visible = false;
-            this.idprod.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 180;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            // 
-            // kilos
-            // 
-            this.kilos.HeaderText = "Kilos";
-            this.kilos.Name = "kilos";
-            this.kilos.Width = 50;
-            // 
-            // PrecioUnitario
-            // 
-            this.PrecioUnitario.HeaderText = "Precio Unitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            // 
-            // PrecioNeto
-            // 
-            this.PrecioNeto.HeaderText = "Precio Neto";
-            this.PrecioNeto.Name = "PrecioNeto";
-            // 
-            // TipoMovimiento
-            // 
-            this.TipoMovimiento.HeaderText = "Tipo de Movimiento";
-            this.TipoMovimiento.Name = "TipoMovimiento";
+            this.dgvLista.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_CellClick);
+            this.dgvLista.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvLista_CellPainting);
             // 
             // progressBar1
             // 
@@ -680,6 +647,55 @@
             this.progressBar2.Value = 50;
             this.progressBar2.Visible = false;
             // 
+            // idprod
+            // 
+            this.idprod.HeaderText = "id";
+            this.idprod.Name = "idprod";
+            this.idprod.Visible = false;
+            this.idprod.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            // 
+            // kilos
+            // 
+            this.kilos.HeaderText = "Kilos";
+            this.kilos.Name = "kilos";
+            this.kilos.Width = 50;
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "Precio Unitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            // 
+            // PrecioNeto
+            // 
+            this.PrecioNeto.HeaderText = "Precio Neto";
+            this.PrecioNeto.Name = "PrecioNeto";
+            // 
+            // TipoMovimiento
+            // 
+            this.TipoMovimiento.HeaderText = "Tipo de Movimiento";
+            this.TipoMovimiento.Name = "TipoMovimiento";
+            // 
+            // idMovimiento
+            // 
+            this.idMovimiento.HeaderText = "idMovimiento";
+            this.idMovimiento.Name = "idMovimiento";
+            this.idMovimiento.Visible = false;
+            // 
+            // Quitar
+            // 
+            this.Quitar.HeaderText = "Quitar";
+            this.Quitar.Name = "Quitar";
+            // 
             // InformeStockWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -740,13 +756,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnPdf;
         private System.Windows.Forms.Button btnExcel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idprod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kilos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioNeto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoMovimiento;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnBuscar;
@@ -774,5 +783,14 @@
         private System.Windows.Forms.Button btnPdf2;
         private System.Windows.Forms.Button btnExcel2;
         private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idprod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kilos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioNeto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoMovimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idMovimiento;
+        private System.Windows.Forms.DataGridViewButtonColumn Quitar;
     }
 }

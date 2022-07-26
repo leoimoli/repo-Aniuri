@@ -414,5 +414,42 @@ namespace Añuri.Negocio
             { }
             return Exito;
         }
+
+        public static bool ValidarBajaDeStock(int idMaterial, int idMovimiento)
+        {
+            bool Exito = false;
+            try
+            {
+                Exito = ObrasDao.ValidarBajaDeStock(idMaterial, idMovimiento);
+            }
+            catch (Exception ex)
+            { }
+            return Exito;
+        }
+
+        public static bool ActualizarStockResta(int idMaterial, int kilos)
+        {
+            bool Exito = false;
+            try
+            {
+                string Condicion = "RESTA";
+                Exito = ObrasDao.ReintegroActualizarStock(idMaterial, kilos, Condicion);
+            }
+            catch (Exception ex)
+            { }
+            return Exito;
+        }
+
+        public static bool EliminarMovientoEntradaStock(int idMaterial, int idMovimiento)
+        {
+            bool Exito = false;
+            try
+            {
+                Exito = ObrasDao.EliminarMovientoEntradaStock(idMaterial, idMovimiento);
+            }
+            catch (Exception ex)
+            { }
+            return Exito;
+        }
     }
 }

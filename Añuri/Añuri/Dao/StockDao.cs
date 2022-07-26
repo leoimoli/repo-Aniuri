@@ -720,7 +720,7 @@ namespace Añuri.Dao
                     _listaMateriales.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
                     _listaMateriales.ValorUnitario = Convert.ToDecimal(item["PrecioUnitario"].ToString());
                     _listaMateriales.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
-                    //_listaMateriales.idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                    _listaMateriales.idMovimiento = Convert.ToInt32(item["idMovimientoEntradaSalida"].ToString());
                     _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
                     _listaMateriales.TipoMovimiento = item["TipoMovimiento"].ToString();
                     _listaMateriales.FechaFactura = Convert.ToDateTime(item["Fecha"].ToString());
