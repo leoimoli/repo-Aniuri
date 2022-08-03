@@ -773,7 +773,7 @@
             // 
             this.dataGridViewTextBoxColumn2.HeaderText = "Material";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 140;
+            this.dataGridViewTextBoxColumn2.Width = 110;
             // 
             // kilos
             // 
@@ -807,8 +807,9 @@
             // 
             // FechaSalida
             // 
-            this.FechaSalida.HeaderText = "FechaSalida";
+            this.FechaSalida.HeaderText = "Fecha";
             this.FechaSalida.Name = "FechaSalida";
+            this.FechaSalida.Width = 80;
             // 
             // idMovimiento
             // 

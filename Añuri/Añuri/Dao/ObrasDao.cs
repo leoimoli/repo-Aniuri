@@ -382,8 +382,7 @@ namespace Añuri.Dao
 
         public static bool EliminarMovientoEntradaStock(int idMaterial, int idMovimiento)
         {
-            bool Exito = false;
-            int MovimientoReintegro = 0;
+            bool Exito = false;         
             connection.Close();
             connection.Open();
             ///PROCEDIMIENTO
@@ -393,7 +392,7 @@ namespace Añuri.Dao
             cmd.Parameters.AddWithValue("idMaterial_in", idMaterial);
             cmd.Parameters.AddWithValue("idMovimiento_in", idMovimiento);
             cmd.ExecuteNonQuery();
-            Exito = true;
+            Exito = true;          
             connection.Close();
             return Exito;
         }

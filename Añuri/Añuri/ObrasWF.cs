@@ -492,7 +492,7 @@ namespace Añuri
                     string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
                     string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
 
-                    dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, ValorUnitario, ValorNeto, 0, 1, item.FechaFactura, item.idMovimiento);
+                    dgvListaCargaStock.Rows.Add(item.idProducto, item.idMovimientoEntrada, item.Descripcion, item.Cantidad, ValorUnitario, ValorNeto, 0, 1, item.FechaFactura.ToShortDateString(), item.idMovimiento);
                 }
                 if (ListaMateriales[0].EstadoEntrada == 1)
                 {
