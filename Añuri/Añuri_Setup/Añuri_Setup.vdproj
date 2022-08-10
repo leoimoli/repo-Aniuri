@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_09B3F7C9547143E08DEFD4461399C470"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0D1CDB6B8D6B4DFB99F602E7A635877D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -196,6 +202,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_09B3F7C9547143E08DEFD4461399C470"
+            {
+            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\eliminar.ico"
+            "TargetName" = "8:eliminar.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_BD8D391C86714F2A9037213DF2EBDEDA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D1CDB6B8D6B4DFB99F602E7A635877D"
             {
             "SourcePath" = "8:..\\Añuri\\bin\\Debug\\Logo Añuri (1).ico"
@@ -506,7 +532,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Añuri_Setup"
         "ProductCode" = "8:{8C213287-DB62-489B-9155-3F6EE8A40C9B}"
-        "PackageCode" = "8:{EB02CE14-4939-42E5-A508-5387B0113E5F}"
+        "PackageCode" = "8:{539C04AB-49E5-4DB4-9B02-EAC323AE3EAF}"
         "UpgradeCode" = "8:{DE780D4F-2F49-43F9-931C-18E5A9D7C85F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

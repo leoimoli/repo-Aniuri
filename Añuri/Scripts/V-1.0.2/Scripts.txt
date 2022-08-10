@@ -1,0 +1,176 @@
+///// Modificar Tabla stock_movimientos
+
+ALTER TABLE `aniuri_desarrollo`.`stock_movimientos` 
+ADD COLUMN `Observaciones` VARCHAR(50) NULL DEFAULT NULL COMMENT '' AFTER `idSalida`;
+
+
+///// Modificar Procedure ListaMaterialesExistentes
+
+select SM.idMovimiento, SM.Cantidad, SM.PrecioUnitario, SM.PrecioNeto,SS.idProducto, P.Descripcionproducto,SM.idMovimientoEntradaSalida,SS.FechaSalidaIngresada, O.Estado  from stock_movimientos as SM
+inner join stock_salida as SS on(SM.idSalida = SS.idSalida)
+inner join obra as O on(SS.idObra = O.idObra)
+inner join productos as P on(SS.idProducto = P.idProducto)
+where O.idObra = idObraSeleccionada_in
+order by SS.FechaSalidaIngresada asc;
+
+
+///// Modificar Procedure
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AltaMovimientoStock`(IN 
+idProducto_in int,
+Cantidad_in int,
+Fecha_in datetime,
+TipoMovimiento_in varchar(45),
+idMovimientoEntrada_in int,
+ValorUnitario_in decimal(10,3),
+PrecioNeto_in decimal(10,3),
+idSalida_in int,
+Observaciones_in varchar(50))
+BEGIN insert into stock_movimientos
+(idProducto,
+Cantidad,
+Fecha,
+TipoMovimiento,
+idMovimientoEntradaSalida,
+PrecioUnitario,
+PrecioNeto,
+idSalida,
+Observaciones) 
+values (idProducto_in,Cantidad_in,Fecha_in,TipoMovimiento_in,idMovimientoEntrada_in,ValorUnitario_in,PrecioNeto_in, idSalida_in, Observaciones_in);
+END$$
+
+//// Nuevo Procedure
+
+USE `aniuri_desarrollo`;
+DROP procedure IF EXISTS `BuscarObrasReporteMensual`;
+
+DELIMITER $$
+USE `aniuri_desarrollo`$$
+CREATE DEFINER=`root`@`%` PROCEDURE `BuscarObrasReporteMensual`(IN FechaDesde_in datetime, FechaHasta_in datetime)
+BEGIN
+select SUM(SM.PrecioNeto)as PrecioNeto, SUM(SM.Cantidad) as Cantidad, SS.idProducto,
+P.Descripcionproducto, SS.FechaSalidaIngresada, O.idObra, O.NombreObra as NombreObra from stock_movimientos as SM
+inner join stock_salida as SS on(SM.idSalida = SS.idSalida)
+inner join obra as O on(SS.idObra = O.idObra)
+inner join productos as P on(SS.idProducto = P.idProducto)
+where SS.FechaSalidaIngresada between FechaDesde_in and  FechaHasta_in
+GROUP BY  SS.idProducto
+order by idObra asc;
+END$$
+
+DELIMITER ;
+
+//// Nuevo Procedure 
+
+USE `aniuri_desarrollo`;
+DROP procedure IF EXISTS `ValidarEliminacionDeRegistro`;
+
+DELIMITER $$
+USE `aniuri_desarrollo`$$
+CREATE DEFINER=`root`@`%` PROCEDURE `ValidarEliminacionDeRegistro`
+(IN idMovimientoSeleccionado_in int, fechaMovimiento_in datetime)
+BEGIN
+select SM.* from stock_movimientos as SM
+where SM.idProducto = idMaterial_in
+and SM.idMovimientoEntradaSalida = idMovimientoSeleccionado_in 
+and SM.TipoMovimiento = 'S'
+and SM.Fecha >= fechaMovimiento_in;
+END$$
+
+DELIMITER ;
+
+
+
+//// Crear Nueva Tabla
+
+CREATE TABLE `aniuri_desarrollo`.`stock_movimientos_eliminados` (
+  `idstockmovimientoseliminados` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `idMovimiento` INT NOT NULL COMMENT '',
+  `idMaterial` VARCHAR(45) NOT NULL COMMENT '',
+  `idMovimientoEntrada` VARCHAR(45) NOT NULL COMMENT '',
+  `FechaDeBaja` DATETIME NOT NULL COMMENT '',
+  `idUsuario` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`idstockmovimientoseliminados`)  COMMENT '');
+
+
+//// Nuevo Procedure
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarMovimientoStock`(IN 
+idMovimiento_in int)
+BEGIN
+delete from stock_movimientos
+where idMovimiento = idMovimiento_in;
+END
+
+
+//// Nuevo Procedure
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarMovimientosEliminados`(IN 
+idMovimiento_in int,
+idMaterial_in int,
+idMovimientoEntrada_in int,
+FechaDeBaja_in datetime,
+idUsuario_in int)
+BEGIN insert into stock_movimientos_eliminados
+(
+idMovimiento,
+idMaterial,
+idMovimientoEntrada,
+FechaDeBaja,
+idUsuario)  
+values (idMovimiento_in,idMaterial_in, idMovimientoEntrada_in,FechaDeBaja_in,idUsuario_in);
+select LAST_INSERT_ID() as ID;
+END
+
+
+//// Nuevo Procedure
+CREATE DEFINER=`root`@`%` PROCEDURE `ObteneridStock`(IN idProducto_in int)
+BEGIN
+select idStock, Cantidad From stock
+where idProducto = idProducto_in;
+END
+
+
+//// Nuevo Procedure
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ReintegroStock`(IN 
+idStock_in int,
+cantidad_in int)
+BEGIN
+update stock 
+set Cantidad = cantidad_in 
+where idStock = idStock_in;
+END
+
+
+///// Modificar Procedure `ListarMovimientosStockPorProducto`
+
+CREATE DEFINER=`root`@`%` PROCEDURE `ListarMovimientosStockPorProducto`(IN idProductoSeleccionado_in int)
+BEGIN
+select SM.Cantidad, SM.PrecioUnitario, SM.PrecioNeto, SM.idMovimientoEntradaSalida, P.DescripcionProducto,SM.TipoMovimiento, SM.Fecha
+from stock_movimientos as SM
+inner join productos as P on(SM.idProducto = P.idProducto)
+where SM.idProducto = idProductoSeleccionado_in
+order by SM.Fecha asc;
+END
+
+
+
+//// Nuevo Procedure
+
+CREATE DEFINER=`root`@`%` PROCEDURE `ValidarBajaDeStock`(
+IN idMaterial_in int, idMovimientoSeleccionado_in int)
+BEGIN
+select SM.* from stock_movimientos as SM
+where SM.idProducto = idMaterial_in
+and SM.idMovimientoEntradaSalida = idMovimientoSeleccionado_in 
+and SM.TipoMovimiento = 'S'; 
+END
+
+//// Nuevo Procedure
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarMovientoEntradaStock`(IN 
+idMovimiento_in int, idMaterial_in int)
+BEGIN
+delete from stock_movimientos
+where idMovimientoEntradaSalida = idMovimiento_in and idProducto = idMaterial_in;
+END
