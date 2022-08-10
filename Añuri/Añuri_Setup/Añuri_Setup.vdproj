@@ -51,14 +51,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CB35318AB3A04438B42AD34596177ABF"
+        "MsmKey" = "8:_4BBF321B92CC158B4006356B4704A739"
+        "OwnerKey" = "8:_283A50E9410B4DB09198008649F30A1E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_674A22F8173D4F859EEAE9222727C90A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CEBD65D8C377AA8E692A74CF377DE6C0"
-        "OwnerKey" = "8:_283A50E9410B4DB09198008649F30A1E"
+        "MsmKey" = "8:_CB35318AB3A04438B42AD34596177ABF"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,25 +88,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DC605FD5A029CADE189D20AFC4DC015A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_283A50E9410B4DB09198008649F30A1E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CEBD65D8C377AA8E692A74CF377DE6C0"
+        "OwnerKey" = "8:_4BBF321B92CC158B4006356B4704A739"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_0FC7C515D060C14C7D832AA5E439BF6B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DC605FD5A029CADE189D20AFC4DC015A"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -121,6 +127,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -137,6 +159,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -277,34 +307,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB35318AB3A04438B42AD34596177ABF"
-            {
-            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\casco.ico"
-            "TargetName" = "8:casco.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_BD8D391C86714F2A9037213DF2EBDEDA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CEBD65D8C377AA8E692A74CF377DE6C0"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4BBF321B92CC158B4006356B4704A739"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.3.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_CEBD65D8C377AA8E692A74CF377DE6C0"
+                    "_4BBF321B92CC158B4006356B4704A739"
                     {
                     "Name" = "8:MySql.Data.dll"
                     "Attributes" = "3:512"
@@ -326,6 +336,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_674A22F8173D4F859EEAE9222727C90A"
+            {
+            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\Quitar.ico"
+            "TargetName" = "8:Quitar.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_BD8D391C86714F2A9037213DF2EBDEDA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB35318AB3A04438B42AD34596177ABF"
+            {
+            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\casco.ico"
+            "TargetName" = "8:casco.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_BD8D391C86714F2A9037213DF2EBDEDA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DC605FD5A029CADE189D20AFC4DC015A"
@@ -456,7 +506,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Añuri_Setup"
         "ProductCode" = "8:{8C213287-DB62-489B-9155-3F6EE8A40C9B}"
-        "PackageCode" = "8:{CD5B760B-F43B-4D9E-8C37-CA713C7224B7}"
+        "PackageCode" = "8:{EB02CE14-4939-42E5-A508-5387B0113E5F}"
         "UpgradeCode" = "8:{DE780D4F-2F49-43F9-931C-18E5A9D7C85F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
