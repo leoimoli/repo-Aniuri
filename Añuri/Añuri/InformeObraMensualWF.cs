@@ -97,6 +97,8 @@ namespace Añuri
         {
             try
             {
+                decimal TotalPrecioNeto = 0;
+                int TotalKilos = 0;
                 int anio = DateTime.Now.Year;
                 txtAño.Text = Convert.ToString(anio);
                 int mes = ValidarMes(cmbMes.Text);
@@ -119,7 +121,8 @@ namespace Añuri
                 {
                     btnExcel.Visible = true;
                     btnPdf.Visible = true;
-                    ListaDeObrasStatic = ListaDeObras;
+
+                    int TotalListaOriginal = ListaDeObras.Count;
                     string fecha = "";
                     List<int> ListaIdObra = new List<int>();
                     int ContadorElementos = 0;
@@ -131,8 +134,25 @@ namespace Añuri
                         {
                             if (ContadorElementos > 0)
                             {
+                                string STRINGTotalPrecioNeto = TotalPrecioNeto.ToString("N", new CultureInfo("es-CL"));
+
+
+
+                                dgvLista.Rows.Add("", "", "", "", "", TotalKilos, "", STRINGTotalPrecioNeto, "", "");
+
+                                Stock _stock = new Stock();
+                                _stock.Cantidad = TotalKilos;
+                                _stock.PrecioNeto = Convert.ToDecimal(STRINGTotalPrecioNeto);
+                                ListaDeObras.Insert(ContadorElementos, _stock);
+                                //ListaDeObras.Add(_stock);
+
+                                dgvLista.Rows[ContadorElementos].Cells[5].Style.ForeColor = Color.Red;
+                                dgvLista.Rows[ContadorElementos].Cells[7].Style.ForeColor = Color.Red;
                                 ///// Dejo un renglon en Excel.
                                 dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
+
+                                TotalKilos = 0;
+                                TotalPrecioNeto = 0;
                             }
 
                             if (item.FechaFactura == Convert.ToDateTime("1/1/0001 00:00:00"))
@@ -143,13 +163,37 @@ namespace Añuri
                             {
                                 fecha = item.FechaFactura.ToShortDateString();
                             }
+
+                            //Cuento el Total en Precio Neto...
+                            TotalPrecioNeto = TotalPrecioNeto + item.PrecioNeto;
+                            //Cuento el Total en kilos...
+                            TotalKilos = TotalKilos + item.Cantidad;
                             //Agrego Punto De Miles...
                             string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
                             string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+
+
+
                             ListaIdObra.Add(item.idObra);
                             dgvLista.Rows.Add(item.idObra, item.NombreObra, item.idMovimientoEntrada, item.Descripcion, fecha, item.Cantidad, 0, ValorNeto, 0, 1);
 
                             ContadorElementos = ContadorElementos + 1;
+                            //// VALIDO SI ES EL ULTIMO VALOR DE LA LISTA....
+                            if (ContadorElementos == TotalListaOriginal)
+                            {
+                                string STRINGTotalPrecioNeto = TotalPrecioNeto.ToString("N", new CultureInfo("es-CL"));
+                                dgvLista.Rows.Add("", "", "", "", "", TotalKilos, "", STRINGTotalPrecioNeto, "", "");
+                                Stock _stock = new Stock();
+                                _stock.Cantidad = TotalKilos;
+                                _stock.PrecioNeto = Convert.ToDecimal(STRINGTotalPrecioNeto);
+                                ListaDeObras.Add(_stock);
+                                dgvLista.Rows[dgvLista.RowCount - 1].Cells[5].Style.ForeColor = Color.Red;
+                                dgvLista.Rows[dgvLista.RowCount - 1].Cells[7].Style.ForeColor = Color.Red;
+                                ///// Dejo un renglon en Excel.
+                                dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
+                                TotalKilos = 0;
+                                TotalPrecioNeto = 0;
+                            }
                         }
                         else
                         {
@@ -161,6 +205,10 @@ namespace Añuri
                             {
                                 fecha = item.FechaFactura.ToShortDateString();
                             }
+                            //Cuento el Total en Precio Neto...
+                            TotalPrecioNeto = TotalPrecioNeto + item.PrecioNeto;
+                            //Cuento el Total en kilos...
+                            TotalKilos = TotalKilos + item.Cantidad;
                             //Agrego Punto De Miles...
                             string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
                             string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
@@ -169,14 +217,16 @@ namespace Añuri
                             ContadorElementos = ContadorElementos + 1;
                         }
                         dgvLista.ReadOnly = true;
+                        ListaDeObrasStatic = ListaDeObras;
+                        DiseñoGraficoMaterialesEnPesos(ListaDeObrasStatic);
                     }
-                    DiseñoGraficoMaterialesEnPesos(ListaDeObrasStatic);
                 }
                 else
                 {
                     btnExcel.Visible = false;
                     btnPdf.Visible = false;
                 }
+                ListaDeObrasStatic = ListaDeObras;
             }
             catch (Exception ex)
             { }
