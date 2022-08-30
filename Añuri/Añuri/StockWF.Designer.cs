@@ -50,6 +50,8 @@
             this.Informe = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panelGrilla = new System.Windows.Forms.Panel();
             this.PanelRegistroStock = new System.Windows.Forms.Panel();
+            this.txtObservaciones = new System.Windows.Forms.TextBox();
+            this.lblObservaciones = new System.Windows.Forms.Label();
             this.lblTotalPagarReal = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
@@ -57,6 +59,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.dgvListaCargaStock = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtMaterial = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtProveedor = new System.Windows.Forms.TextBox();
@@ -83,14 +91,6 @@
             this.lblNuevoProducto = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnEditarProducto = new System.Windows.Forms.Button();
-            this.txtObservaciones = new System.Windows.Forms.TextBox();
-            this.lblObservaciones = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             this.panelGrilla.SuspendLayout();
             this.PanelRegistroStock.SuspendLayout();
@@ -263,6 +263,27 @@
             this.PanelRegistroStock.TabIndex = 71;
             this.PanelRegistroStock.Visible = false;
             // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtObservaciones.Location = new System.Drawing.Point(408, 116);
+            this.txtObservaciones.MaxLength = 50;
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(172, 20);
+            this.txtObservaciones.TabIndex = 194;
+            // 
+            // lblObservaciones
+            // 
+            this.lblObservaciones.AutoSize = true;
+            this.lblObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObservaciones.ForeColor = System.Drawing.Color.Black;
+            this.lblObservaciones.Location = new System.Drawing.Point(407, 90);
+            this.lblObservaciones.Name = "lblObservaciones";
+            this.lblObservaciones.Size = new System.Drawing.Size(121, 17);
+            this.lblObservaciones.TabIndex = 193;
+            this.lblObservaciones.Text = "Observaciones:";
+            // 
             // lblTotalPagarReal
             // 
             this.lblTotalPagarReal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
@@ -270,9 +291,9 @@
             this.lblTotalPagarReal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblTotalPagarReal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPagarReal.ForeColor = System.Drawing.Color.White;
-            this.lblTotalPagarReal.Location = new System.Drawing.Point(459, 341);
+            this.lblTotalPagarReal.Location = new System.Drawing.Point(390, 341);
             this.lblTotalPagarReal.Name = "lblTotalPagarReal";
-            this.lblTotalPagarReal.Size = new System.Drawing.Size(121, 43);
+            this.lblTotalPagarReal.Size = new System.Drawing.Size(190, 43);
             this.lblTotalPagarReal.TabIndex = 174;
             this.lblTotalPagarReal.UseVisualStyleBackColor = false;
             // 
@@ -281,7 +302,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.label8.Location = new System.Drawing.Point(355, 341);
+            this.label8.Location = new System.Drawing.Point(287, 341);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(98, 39);
             this.label8.TabIndex = 173;
@@ -392,6 +413,41 @@
             this.dgvListaCargaStock.TabIndex = 155;
             this.dgvListaCargaStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvListaCargaStock_KeyDown);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 240;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Kilos";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "Precio Unitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.Width = 120;
+            // 
+            // PrecioNeto
+            // 
+            this.PrecioNeto.HeaderText = "Precio Neto";
+            this.PrecioNeto.Name = "PrecioNeto";
+            this.PrecioNeto.Width = 120;
+            // 
+            // Observaciones
+            // 
+            this.Observaciones.HeaderText = "Observaciones";
+            this.Observaciones.Name = "Observaciones";
+            // 
             // txtMaterial
             // 
             this.txtMaterial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -399,7 +455,7 @@
             this.txtMaterial.Name = "txtMaterial";
             this.txtMaterial.Size = new System.Drawing.Size(273, 20);
             this.txtMaterial.TabIndex = 0;
-            this.txtMaterial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaterial_KeyDown);
+            this.txtMaterial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescipcionBus_KeyDown);
             // 
             // label2
             // 
@@ -675,62 +731,6 @@
             this.btnEditarProducto.UseVisualStyleBackColor = false;
             this.btnEditarProducto.Visible = false;
             this.btnEditarProducto.Click += new System.EventHandler(this.btnEditarProducto_Click);
-            // 
-            // txtObservaciones
-            // 
-            this.txtObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtObservaciones.Location = new System.Drawing.Point(408, 116);
-            this.txtObservaciones.MaxLength = 50;
-            this.txtObservaciones.Multiline = true;
-            this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(172, 20);
-            this.txtObservaciones.TabIndex = 194;
-            // 
-            // lblObservaciones
-            // 
-            this.lblObservaciones.AutoSize = true;
-            this.lblObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblObservaciones.ForeColor = System.Drawing.Color.Black;
-            this.lblObservaciones.Location = new System.Drawing.Point(407, 90);
-            this.lblObservaciones.Name = "lblObservaciones";
-            this.lblObservaciones.Size = new System.Drawing.Size(121, 17);
-            this.lblObservaciones.TabIndex = 193;
-            this.lblObservaciones.Text = "Observaciones:";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 240;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Kilos";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // PrecioUnitario
-            // 
-            this.PrecioUnitario.HeaderText = "Precio Unitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            this.PrecioUnitario.Width = 120;
-            // 
-            // PrecioNeto
-            // 
-            this.PrecioNeto.HeaderText = "Precio Neto";
-            this.PrecioNeto.Name = "PrecioNeto";
-            this.PrecioNeto.Width = 120;
-            // 
-            // Observaciones
-            // 
-            this.Observaciones.HeaderText = "Observaciones";
-            this.Observaciones.Name = "Observaciones";
             // 
             // StockWF
             // 

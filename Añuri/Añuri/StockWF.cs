@@ -382,38 +382,7 @@ namespace Añuri
         }
         private void txtMaterial_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                string Descripcion = txtMaterial.Text;
-                List<Producto> ListaProductos = ProductoNeg.ListaProductoPorDescripcion(Descripcion);
-                if (ListaProductos.Count > 0)
-                {
-                    foreach (var item in ListaProductos)
-                    {
-                        idProdcutoStatic = item.idProducto;
-                    }
 
-                    txtProveedor.Focus();
-                    txtDescipcionBus.Clear();
-                    //txtProveedor.Enabled = true;
-                    //txtRemito.Enabled = true;
-                    //dtFechaCompra.Enabled = true;
-                }
-                else
-                {
-                    const string message = "El producto no existe. Desea agregar un nuevo producto ?";
-                    const string caption = "Producto Inexistente";
-                    var result = MessageBox.Show(message, caption,
-                                                 MessageBoxButtons.YesNo,
-                                                 MessageBoxIcon.Question);
-                    {
-                        if (result == DialogResult.Yes)
-                        {
-                        }
-                    }
-                    dgvListaCargaStock.ReadOnly = true;
-                }
-            }
         }
         private List<Stock> CargarEntidadFinal()
         {
@@ -522,6 +491,8 @@ namespace Añuri
             progressBar1.Visible = false;
             lblTotalPagarReal.Text = Convert.ToString(0);
             txtObservaciones.Clear();
+            txtProveedor.Enabled = true;
+            txtRemito.Enabled = true;
         }
         private void SoloNumerosyDecimales(object sender, KeyPressEventArgs e)
         {
