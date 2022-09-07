@@ -21,8 +21,9 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand(Actualizar, connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("idProducto_in", idProductoSeleccionado);
+            cmd.Parameters.AddWithValue("idProducto_in", idProductoSeleccionado);       
             cmd.Parameters.AddWithValue("DescripcionProducto_in", producto.DescripcionProducto);
+            cmd.Parameters.AddWithValue("TipoMedicion_in", producto.TipoMedicion);
             cmd.ExecuteNonQuery();
             exito = true;
             connection.Close();
@@ -36,6 +37,7 @@ namespace Añuri.Dao
             string proceso = "AltaProducto";
             MySqlCommand cmd = new MySqlCommand(proceso, connection);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("TipoMedicion_in", producto.TipoMedicion);
             cmd.Parameters.AddWithValue("DescripcionProducto_in", producto.DescripcionProducto);
             cmd.Parameters.AddWithValue("FechaDeAlta_in", producto.FechaDeAlta);
             cmd.Parameters.AddWithValue("idUsuario_in", producto.idUsuario);
@@ -166,16 +168,41 @@ namespace Añuri.Dao
                     connection.Open();
                     string proceso = "AltaProducto";
                     MySqlCommand cmd = new MySqlCommand(proceso, connection);
-                    cmd.CommandType = CommandType.StoredProcedure;                  
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("DescripcionProducto_in", item.DescripcionProducto);
                     cmd.Parameters.AddWithValue("FechaDeAlta_in", item.FechaDeAlta);
-                    cmd.Parameters.AddWithValue("idUsuario_in", item.idUsuario);                
+                    cmd.Parameters.AddWithValue("idUsuario_in", item.idUsuario);
                     cmd.ExecuteNonQuery();
                 }
                 Exito = 1;
             }
             connection.Close();
             return Exito;
+        }
+
+        public static string BuscarTipoMedicionPorIdProducto(int idProductoSeleccionado)
+        {
+            connection.Close();
+            connection.Open();
+            string TipoMedicion = "";
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProductoSeleccionado_in", idProductoSeleccionado) };
+            string proceso = "BuscarTipoMedicionPorIdProducto";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    TipoMedicion = item["TipoMedicion"].ToString();
+                }
+            }
+            connection.Close();
+            return TipoMedicion;
         }
     }
 }

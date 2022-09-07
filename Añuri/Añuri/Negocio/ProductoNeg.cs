@@ -36,6 +36,15 @@ namespace Añuri.Negocio
                                            MessageBoxIcon.Exclamation);
                 throw new Exception();
             }
+            if (producto.TipoMedicion == "Seleccione")
+            {
+                const string message = "El campo Unidad de Medición es obligatorio.";
+                const string caption = "Error";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.OK,
+                                           MessageBoxIcon.Exclamation);
+                throw new Exception();
+            }
         }
         internal static bool CargarProducto(Producto producto)
         {

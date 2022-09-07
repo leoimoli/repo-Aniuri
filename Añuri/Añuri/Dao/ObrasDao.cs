@@ -118,6 +118,7 @@ namespace Añuri.Dao
                     _stock.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
                     _stock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
                     _stock.Descripcion = item["DescripcionProducto"].ToString();
+                    _stock.TipoMedicion = item["TipoMedicion"].ToString();
                     _stock.FechaFactura = Convert.ToDateTime(item["FechaSalidaIngresada"].ToString());
                     _stock.NombreObra = item["NombreObra"].ToString();
                     _stock.idObra = Convert.ToInt32(item["idObra"].ToString());

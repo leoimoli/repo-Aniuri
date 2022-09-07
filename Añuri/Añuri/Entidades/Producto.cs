@@ -17,5 +17,6 @@ namespace Añuri.Entidades
         public int Stock { get; set; }
         public int idProveedor { get; set; }
         public int Unidades { get; set; }
+        public string TipoMedicion { get; set; }
     }
 }

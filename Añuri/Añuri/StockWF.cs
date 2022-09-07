@@ -100,6 +100,7 @@ namespace Añuri
         }
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            CargarCombo();
             idProductoSeleccionado = 0;
             Funcion = 1;
             txtDescripcionProducto.Clear();
@@ -107,6 +108,17 @@ namespace Añuri
             PanelNuevoMaterial.Visible = true;
             PanelNuevoMaterial.Enabled = true;
         }
+
+        private void CargarCombo()
+        {
+            cmbTipoMedicion.Items.Clear();
+            cmbTipoMedicion.Text = "Seleccione";
+            cmbTipoMedicion.Items.Add("Seleccione");
+            cmbTipoMedicion.Items.Add("KILOS");
+            cmbTipoMedicion.Items.Add("UNIDAD");
+
+        }
+
         private void btnCargar_Click(object sender, EventArgs e)
         {
             try
@@ -186,7 +198,12 @@ namespace Añuri
                 PanelNuevoMaterial.Enabled = true;
                 btnCrear.Enabled = true;
                 idProductoSeleccionado = Convert.ToInt32(this.dgvStock.CurrentRow.Cells[0].Value);
+                string TipoMedicion = ProductoDao.BuscarTipoMedicionPorIdProducto(idProductoSeleccionado);
                 txtDescripcionProducto.Text = dgvStock.CurrentRow.Cells[1].Value.ToString();
+                cmbTipoMedicion.Items.Clear();
+                cmbTipoMedicion.Text = TipoMedicion;
+                cmbTipoMedicion.Items.Add("KILOS");
+                cmbTipoMedicion.Items.Add("UNIDAD");
                 string TotalCaracteres = Convert.ToString(txtDescripcionProducto.Text.Length);
                 lblContador.Visible = true;
                 lblTotal.Visible = true;
@@ -219,6 +236,7 @@ namespace Añuri
             progressBar1.Value = Convert.ToInt32(null);
             progressBar1.Visible = false;
             txtDescripcionProducto.Focus();
+            CargarCombo();
         }
         private void LimpiarCampos()
         {
@@ -246,6 +264,7 @@ namespace Añuri
             DateTime fechaActual = DateTime.Now;
             _producto.FechaDeAlta = fechaActual;
             _producto.idUsuario = idusuarioLogueado;
+            _producto.TipoMedicion = cmbTipoMedicion.Text;
             return _producto;
         }
         private void ProgressBar()

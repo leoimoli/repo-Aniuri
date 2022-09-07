@@ -12,6 +12,7 @@ namespace Añuri.Entidades
         public int idProducto { get; set; }
         public string CodigoProducto { get; set; }
         public string Descripcion { get; set; }
+        public string TipoMedicion { get; set; }
         public int idProveedor { get; set; }
         public string Proveedor { get; set; }
         public string Marca { get; set; }
@@ -35,5 +36,6 @@ namespace Añuri.Entidades
         public string NombreObra { get; set; }
         public int idObra { get; set; }
         public int idMovimiento { get; set; }
+        public int PosicionEnLista { get; set; }
     }
 }

@@ -416,6 +416,7 @@ namespace Añuri
             List<Stock> ListaStock = StockNeg.ListarMovimientosStock(idProductoSeleccionado);
             if (ListaStock.Count > 0)
             {
+                dgvLista.Rows.Clear();
                 ListaMaterialesStatic = ListaStock;
                 foreach (var item in ListaStock)
                 {
