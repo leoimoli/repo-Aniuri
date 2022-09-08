@@ -401,7 +401,23 @@ namespace Añuri
         }
         private void txtMaterial_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                FuncionBuscartexto();
+                dgvStock.Rows.Clear();
+                List<Producto> ListaProductos = ProductoNeg.ListaProductoPorDescripcion(txtMaterial.Text);
+                if (ListaProductos.Count > 0)
+                {
+                    foreach (var item in ListaProductos)
+                    {
+                        //string cantidad = Convert.ToString(item.Stock);
+                        //dgvStock.Rows.Add(item.idProducto, item.DescripcionProducto, cantidad);
+                        idProdcutoStatic = item.idProducto;
+                    }
+                    btnEditarProducto.Visible = true;
+                }
+                dgvStock.ReadOnly = true;
+            }
         }
         private List<Stock> CargarEntidadFinal()
         {
@@ -409,7 +425,7 @@ namespace Añuri
             foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
             {
                 Stock Lista = new Stock();
-                Lista.idProducto = Convert.ToInt32(row.Cells[0].Value.ToString());
+                Lista.idProducto = Convert.ToInt32(row.Cells[0].Value.ToString());                
                 int idusuarioLogueado = Sesion.UsuarioLogueado.idUsuario;
                 Lista.idUsuario = idusuarioLogueado;
                 Lista.CodigoProducto = row.Cells[1].Value.ToString();

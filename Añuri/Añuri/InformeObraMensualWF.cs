@@ -130,6 +130,9 @@ namespace Añuri
                     List<int> ListaIdObra = new List<int>();
                     int ContadorElementos = 0;
                     int ContadorElementosTotales = 0;
+
+                    //ListaDeObras = ListaDeObras.OrderBy(x => x.FechaFactura).ToList();
+
                     foreach (var item in ListaDeObras)
                     {
                         bool Existe = ListaIdObra.Any(x => x == item.idObra);
@@ -248,6 +251,18 @@ namespace Añuri
 
                             ContadorElementos = ContadorElementos + 1;
                             ContadorElementosTotales = ContadorElementosTotales + 1;
+                            if (item.TipoMedicion != "KILOS")
+                            {
+                                Stock _listaTipoMedicion = new Stock();
+                                _listaTipoMedicion.idObra = item.idObra;
+                                _listaTipoMedicion.NombreObra = item.NombreObra;
+                                _listaTipoMedicion.idMovimientoEntrada = item.idMovimientoEntrada;
+                                _listaTipoMedicion.Descripcion = item.Descripcion;
+                                _listaTipoMedicion.FechaFactura = item.FechaFactura;
+                                _listaTipoMedicion.Cantidad = item.Cantidad;
+                                _listaTipoMedicion.PrecioNeto = item.PrecioNeto;
+                                ListaTipoMedicion.Add(_listaTipoMedicion);
+                            }
                             //// VALIDO SI ES EL ULTIMO VALOR DE LA LISTA....
                             if (ContadorElementos == TotalListaOriginal)
                             {

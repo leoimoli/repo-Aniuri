@@ -21,7 +21,7 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand(Actualizar, connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("idProducto_in", idProductoSeleccionado);       
+            cmd.Parameters.AddWithValue("idProducto_in", idProductoSeleccionado);
             cmd.Parameters.AddWithValue("DescripcionProducto_in", producto.DescripcionProducto);
             cmd.Parameters.AddWithValue("TipoMedicion_in", producto.TipoMedicion);
             cmd.ExecuteNonQuery();
@@ -150,6 +150,31 @@ namespace Añuri.Dao
             }
             connection.Close();
             return _listaStocks;
+        }
+
+        public static int BuscarIDProductoPorDescripcion(string descripcion)
+        {
+            connection.Close();
+            connection.Open();
+            int idProducto = 0;
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("descripcion_in", descripcion) };
+            string proceso = "ListarProductosPorDescripcionStock";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    idProducto = Convert.ToInt32(item["idProducto"].ToString());
+                }
+            }
+            connection.Close();
+            return idProducto;
         }
 
         public static int GuardarCargaMasivaProductos(List<Producto> listaStatic)

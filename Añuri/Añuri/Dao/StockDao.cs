@@ -51,6 +51,7 @@ namespace Añuri.Dao
                 {
                     int CantidadTotal = 0;
                     List<int> stockExistente = new List<int>();
+                    //item.idProducto = ProductoDao.BuscarIDProductoPorDescripcion(item.);
                     stockExistente = ValidarStockExistente(item.idProducto);
                     if (stockExistente.Count > 0)
                     {

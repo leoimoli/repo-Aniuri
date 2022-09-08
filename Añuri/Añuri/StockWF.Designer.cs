@@ -80,8 +80,9 @@
             this.txtRemito = new System.Windows.Forms.TextBox();
             this.btnConsultaStock = new System.Windows.Forms.Button();
             this.PanelDerecho = new System.Windows.Forms.Panel();
-            this.PanelDetalleStock = new System.Windows.Forms.Panel();
             this.PanelNuevoMaterial = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbTipoMedicion = new System.Windows.Forms.ComboBox();
             this.lblContador = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.Label();
@@ -89,10 +90,9 @@
             this.txtDescripcionProducto = new System.Windows.Forms.TextBox();
             this.btnGuardarProducto = new System.Windows.Forms.Button();
             this.lblNuevoProducto = new System.Windows.Forms.Label();
+            this.PanelDetalleStock = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnEditarProducto = new System.Windows.Forms.Button();
-            this.cmbTipoMedicion = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             this.panelGrilla.SuspendLayout();
             this.PanelRegistroStock.SuspendLayout();
@@ -457,7 +457,7 @@
             this.txtMaterial.Name = "txtMaterial";
             this.txtMaterial.Size = new System.Drawing.Size(273, 20);
             this.txtMaterial.TabIndex = 0;
-            this.txtMaterial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescipcionBus_KeyDown);
+            this.txtMaterial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaterial_KeyDown);
             // 
             // label2
             // 
@@ -613,15 +613,6 @@
             this.PanelDerecho.Size = new System.Drawing.Size(427, 444);
             this.PanelDerecho.TabIndex = 73;
             // 
-            // PanelDetalleStock
-            // 
-            this.PanelDetalleStock.Enabled = false;
-            this.PanelDetalleStock.Location = new System.Drawing.Point(3, 28);
-            this.PanelDetalleStock.Name = "PanelDetalleStock";
-            this.PanelDetalleStock.Size = new System.Drawing.Size(421, 409);
-            this.PanelDetalleStock.TabIndex = 167;
-            this.PanelDetalleStock.Visible = false;
-            // 
             // PanelNuevoMaterial
             // 
             this.PanelNuevoMaterial.Controls.Add(this.label4);
@@ -637,6 +628,25 @@
             this.PanelNuevoMaterial.Name = "PanelNuevoMaterial";
             this.PanelNuevoMaterial.Size = new System.Drawing.Size(421, 409);
             this.PanelNuevoMaterial.TabIndex = 166;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(6, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 17);
+            this.label4.TabIndex = 172;
+            this.label4.Text = "Un.Medición(*):";
+            // 
+            // cmbTipoMedicion
+            // 
+            this.cmbTipoMedicion.FormattingEnabled = true;
+            this.cmbTipoMedicion.Location = new System.Drawing.Point(143, 18);
+            this.cmbTipoMedicion.Name = "cmbTipoMedicion";
+            this.cmbTipoMedicion.Size = new System.Drawing.Size(262, 21);
+            this.cmbTipoMedicion.TabIndex = 75;
             // 
             // lblContador
             // 
@@ -719,6 +729,15 @@
             this.lblNuevoProducto.TabIndex = 42;
             this.lblNuevoProducto.Text = "Nuevo Material";
             // 
+            // PanelDetalleStock
+            // 
+            this.PanelDetalleStock.Enabled = false;
+            this.PanelDetalleStock.Location = new System.Drawing.Point(3, 28);
+            this.PanelDetalleStock.Name = "PanelDetalleStock";
+            this.PanelDetalleStock.Size = new System.Drawing.Size(421, 409);
+            this.PanelDetalleStock.TabIndex = 167;
+            this.PanelDetalleStock.Visible = false;
+            // 
             // btnEditarProducto
             // 
             this.btnEditarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
@@ -735,25 +754,6 @@
             this.btnEditarProducto.UseVisualStyleBackColor = false;
             this.btnEditarProducto.Visible = false;
             this.btnEditarProducto.Click += new System.EventHandler(this.btnEditarProducto_Click);
-            // 
-            // cmbTipoMedicion
-            // 
-            this.cmbTipoMedicion.FormattingEnabled = true;
-            this.cmbTipoMedicion.Location = new System.Drawing.Point(143, 18);
-            this.cmbTipoMedicion.Name = "cmbTipoMedicion";
-            this.cmbTipoMedicion.Size = new System.Drawing.Size(262, 21);
-            this.cmbTipoMedicion.TabIndex = 75;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(6, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 17);
-            this.label4.TabIndex = 172;
-            this.label4.Text = "Un.Medición(*):";
             // 
             // StockWF
             // 
