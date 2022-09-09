@@ -255,6 +255,8 @@ namespace Añuri
             progressBar2.Visible = false;
             txtMaterial.Focus();
             txtObservaciones.Clear();
+            lblTotalPagarReal.Text = "0";
+            dtFechaCompra.Enabled = true;
         }
         private Producto CargarEntidad()
         {
@@ -528,6 +530,7 @@ namespace Añuri
             txtObservaciones.Clear();
             txtProveedor.Enabled = true;
             txtRemito.Enabled = true;
+            dtFechaCompra.Enabled = true;
         }
         private void SoloNumerosyDecimales(object sender, KeyPressEventArgs e)
         {
