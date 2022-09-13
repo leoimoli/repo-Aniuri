@@ -130,11 +130,12 @@ namespace Añuri
                     List<int> ListaIdObra = new List<int>();
                     int ContadorElementos = 0;
                     int ContadorElementosTotales = 0;
-
+                    int ContadorInicial = 0;
                     //ListaDeObras = ListaDeObras.OrderBy(x => x.FechaFactura).ToList();
 
                     foreach (var item in ListaDeObras)
                     {
+                        ContadorInicial = ContadorInicial + 1;
                         bool Existe = ListaIdObra.Any(x => x == item.idObra);
                         ///// Valido que el nombre de la obra ya este en la grilla.
                         if (Existe == false)
@@ -177,6 +178,19 @@ namespace Añuri
                                     Stock _stock = new Stock();
                                     _stock.Cantidad = TotalKilos;
                                     _stock.PrecioNeto = Convert.ToDecimal(STRINGTotalPrecioNeto);
+                                    ////// hago una validacion para completar la lista Aux... con valores en blanco y que no rompa.
+                                    int ValorLista = ListaAux.Count;
+                                    if (ValorLista != ContadorElementos)
+                                    {
+                                        int ValorResta = ContadorElementos - ValorLista;
+                                        for (int i = 0; i < ValorResta; i++)
+                                        {
+                                            Stock _stockEnBlanco = new Stock();
+                                            _stock.Cantidad = 0;
+                                            _stock.PrecioNeto = 0;
+                                            ListaAux.Insert(i, _stockEnBlanco);
+                                        }
+                                    }
                                     ListaAux.Insert(ContadorElementos, _stock);
                                     //ListaDeObras.Add(_stock);
                                     ///// Dejo un renglon en Excel.
@@ -264,7 +278,8 @@ namespace Añuri
                                 ListaTipoMedicion.Add(_listaTipoMedicion);
                             }
                             //// VALIDO SI ES EL ULTIMO VALOR DE LA LISTA....
-                            if (ContadorElementos == TotalListaOriginal)
+                            //if (ContadorElementos == TotalListaOriginal)
+                            if (ContadorInicial == TotalListaOriginal)
                             {
                                 string STRINGTotalPrecioNeto = TotalPrecioNeto.ToString("N", new CultureInfo("es-CL"));
                                 dgvLista.Rows.Add("", "", "", "", "", TotalKilos, "", STRINGTotalPrecioNeto, "", "");
@@ -272,8 +287,8 @@ namespace Añuri
                                 _stock.Cantidad = TotalKilos;
                                 _stock.PrecioNeto = Convert.ToDecimal(STRINGTotalPrecioNeto);
                                 ListaAux.Add(_stock);
-                                dgvLista.Rows[dgvLista.RowCount - 1].Cells[5].Style.ForeColor = Color.Red;
-                                dgvLista.Rows[dgvLista.RowCount - 1].Cells[7].Style.ForeColor = Color.Red;
+                                //dgvLista.Rows[dgvLista.RowCount - 1].Cells[5].Style.ForeColor = Color.Red;
+                                //dgvLista.Rows[dgvLista.RowCount - 1].Cells[7].Style.ForeColor = Color.Red;
                                 ///// Dejo un renglon en Excel.
                                 dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
                                 TotalKilos = 0;
@@ -322,7 +337,8 @@ namespace Añuri
                         dgvLista.ReadOnly = true;
                         ListaDeObrasStatic = ListaAux;
                         //DiseñoGraficoMaterialesEnPesos(ListaDeObrasStatic);
-                        if (ContadorElementosTotales == TotalListaOriginal)
+                        // if (ContadorElementosTotales == TotalListaOriginal)
+                        if (ContadorInicial == TotalListaOriginal)
                         {
                             if (ListaTipoMedicion.Count > 0)
                             {
@@ -336,8 +352,8 @@ namespace Añuri
                                 _stock.PosicionEnLista = ContadorElementos;
                                 ListaAux.Add(_stock);
 
-                                dgvLista.Rows[ContadorElementosTotales + 1].Cells[5].Style.ForeColor = Color.Red;
-                                dgvLista.Rows[ContadorElementosTotales + 1].Cells[7].Style.ForeColor = Color.Red;
+                                //dgvLista.Rows[ContadorElementosTotales + 1].Cells[5].Style.ForeColor = Color.Red;
+                                //dgvLista.Rows[ContadorElementosTotales + 1].Cells[7].Style.ForeColor = Color.Red;
                                 foreach (var item2 in ListaTipoMedicion)
                                 {
                                     //Agrego Punto De Miles...
@@ -345,6 +361,39 @@ namespace Añuri
                                     string ValorNeto2 = item2.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
                                     dgvLista.Rows.Add(item2.idObra, " ", item2.idMovimientoEntrada, item2.Descripcion, fecha, item2.Cantidad, 0, ValorNeto2, 0, 1);
                                 }
+                            }
+                            else
+                            {
+                                string STRINGTotalPrecioNeto = TotalPrecioNeto.ToString("N", new CultureInfo("es-CL"));
+                                dgvLista.Rows.Add("", "", "", "", "", TotalKilos, "", STRINGTotalPrecioNeto, "", "");
+                                Stock _stock = new Stock();
+                                _stock.Cantidad = TotalKilos;
+                                _stock.PrecioNeto = Convert.ToDecimal(STRINGTotalPrecioNeto);
+                                ////// hago una validacion para completar la lista Aux... con valores en blanco y que no rompa.
+                                int ValorLista = ListaAux.Count;
+                                if (ValorLista != ContadorElementos)
+                                {
+                                    int ValorResta = ContadorElementos - ValorLista;
+                                    for (int i = 0; i < ValorResta; i++)
+                                    {
+                                        Stock _stockEnBlanco = new Stock();
+                                        _stock.Cantidad = 0;
+                                        _stock.PrecioNeto = 0;
+                                        ListaAux.Insert(i, _stockEnBlanco);
+                                    }
+                                }
+                                ListaAux.Insert(ContadorElementos, _stock);
+                                //ListaDeObras.Add(_stock);
+                                ///// Dejo un renglon en Excel.
+                                dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
+
+                                TotalKilos = 0;
+                                TotalPrecioNeto = 0;
+                                ///// Dejo un renglon en Excel.
+                                dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
+
+                                TotalKilos = 0;
+                                TotalPrecioNeto = 0;
                             }
                         }
                     }
@@ -387,62 +436,69 @@ namespace Añuri
             int ListaIdObraContadora = 0;
             foreach (var item in listaDeObrasStatic)
             {
-                bool Existe = ListaIdObra.Any(x => x == item.idObra);
-                if (Existe == false && item.idObra != 0)
+                if (item.idObra == 0 && item.idProducto == 0)
                 {
-                    if (ContadorElementos > 0)
-                    {
-                        Nombre.Add(NombreObra);
-                        string total = Convert.ToString(Monto);
-                        string totalFinal = "$" + " " + total;
-                        Total.Add(totalFinal);
-                        Monto = 0;
-                        NombreObra = "";
-                        Monto = Monto + item.PrecioNeto;
-                        NombreObra = item.NombreObra;
-                        ListaIdObra.Add(item.idObra);
-                        ContadorElementos = ContadorElementos + 1;
-                        //ListaIdObraContadora = ListaIdObra.Count;
-                        //if (ContadorElementos + 1 == listaDeObrasStatic.Count)
-                        ////if (ListaIdObraContadora != ListaIdObra.Count)
-                        //{
-                        //    Nombre.Add(NombreObra);
-                        //    total = Convert.ToString(Monto);
-                        //    totalFinal = "$" + " " + total;
-                        //    Total.Add(totalFinal);
-                        //}
-                    }
-                    else
-                    {
-                        Monto = 0;
-                        NombreObra = "";
-                        Monto = Monto + item.PrecioNeto;
-                        NombreObra = item.NombreObra;
-                        ListaIdObra.Add(item.idObra);
-                        ContadorElementos = ContadorElementos + 1;
-                    }
+                    continue;
                 }
                 else
                 {
-                    if (item.idObra != 0)
+                    bool Existe = ListaIdObra.Any(x => x == item.idObra);
+                    if (Existe == false && item.idObra != 0)
                     {
-                        ListaIdObraContadora = ListaIdObra.Count;
-                        Monto = Monto + item.PrecioNeto;
-                        ContadorElementos = ContadorElementos + 1;
+                        if (ContadorElementos > 0)
+                        {
+                            Nombre.Add(NombreObra);
+                            string total = Convert.ToString(Monto);
+                            string totalFinal = "$" + " " + total;
+                            Total.Add(totalFinal);
+                            Monto = 0;
+                            NombreObra = "";
+                            Monto = Monto + item.PrecioNeto;
+                            NombreObra = item.NombreObra;
+                            ListaIdObra.Add(item.idObra);
+                            ContadorElementos = ContadorElementos + 1;
+                            //ListaIdObraContadora = ListaIdObra.Count;
+                            //if (ContadorElementos + 1 == listaDeObrasStatic.Count)
+                            ////if (ListaIdObraContadora != ListaIdObra.Count)
+                            //{
+                            //    Nombre.Add(NombreObra);
+                            //    total = Convert.ToString(Monto);
+                            //    totalFinal = "$" + " " + total;
+                            //    Total.Add(totalFinal);
+                            //}
+                        }
+                        else
+                        {
+                            Monto = 0;
+                            NombreObra = "";
+                            Monto = Monto + item.PrecioNeto;
+                            NombreObra = item.NombreObra;
+                            ListaIdObra.Add(item.idObra);
+                            ContadorElementos = ContadorElementos + 1;
+                        }
                     }
                     else
-                    { ContadorElementos = ContadorElementos + 1; }
-                    if (listaDeObrasStatic.Count == ContadorElementos)
                     {
-                        Nombre.Add(NombreObra);
-                        string total = Convert.ToString(Monto);
-                        string totalFinal = "$" + " " + total;
-                        Total.Add(totalFinal);
-                        Monto = 0;
-                        NombreObra = "";
-                        Monto = Monto + item.PrecioNeto;
-                        NombreObra = item.NombreObra;
-                        ListaIdObra.Add(item.idObra);
+                        if (item.idObra != 0)
+                        {
+                            ListaIdObraContadora = ListaIdObra.Count;
+                            Monto = Monto + item.PrecioNeto;
+                            ContadorElementos = ContadorElementos + 1;
+                        }
+                        else
+                        { ContadorElementos = ContadorElementos + 1; }
+                        if (listaDeObrasStatic.Count == ContadorElementos)
+                        {
+                            Nombre.Add(NombreObra);
+                            string total = Convert.ToString(Monto);
+                            string totalFinal = "$" + " " + total;
+                            Total.Add(totalFinal);
+                            Monto = 0;
+                            NombreObra = "";
+                            Monto = Monto + item.PrecioNeto;
+                            NombreObra = item.NombreObra;
+                            ListaIdObra.Add(item.idObra);
+                        }
                     }
                 }
             }
