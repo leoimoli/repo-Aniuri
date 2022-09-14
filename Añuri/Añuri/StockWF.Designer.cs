@@ -93,6 +93,8 @@
             this.PanelDetalleStock = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnEditarProducto = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbGrupo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             this.panelGrilla.SuspendLayout();
             this.PanelRegistroStock.SuspendLayout();
@@ -615,6 +617,8 @@
             // 
             // PanelNuevoMaterial
             // 
+            this.PanelNuevoMaterial.Controls.Add(this.label6);
+            this.PanelNuevoMaterial.Controls.Add(this.cmbGrupo);
             this.PanelNuevoMaterial.Controls.Add(this.label4);
             this.PanelNuevoMaterial.Controls.Add(this.cmbTipoMedicion);
             this.PanelNuevoMaterial.Controls.Add(this.lblContador);
@@ -634,7 +638,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(6, 19);
+            this.label4.Location = new System.Drawing.Point(6, 63);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(120, 17);
             this.label4.TabIndex = 172;
@@ -643,7 +647,7 @@
             // cmbTipoMedicion
             // 
             this.cmbTipoMedicion.FormattingEnabled = true;
-            this.cmbTipoMedicion.Location = new System.Drawing.Point(143, 18);
+            this.cmbTipoMedicion.Location = new System.Drawing.Point(143, 62);
             this.cmbTipoMedicion.Name = "cmbTipoMedicion";
             this.cmbTipoMedicion.Size = new System.Drawing.Size(262, 21);
             this.cmbTipoMedicion.TabIndex = 75;
@@ -653,7 +657,7 @@
             this.lblContador.AutoSize = true;
             this.lblContador.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContador.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.lblContador.Location = new System.Drawing.Point(338, 130);
+            this.lblContador.Location = new System.Drawing.Point(338, 174);
             this.lblContador.Name = "lblContador";
             this.lblContador.Size = new System.Drawing.Size(32, 18);
             this.lblContador.TabIndex = 171;
@@ -664,7 +668,7 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.lblTotal.Location = new System.Drawing.Point(366, 130);
+            this.lblTotal.Location = new System.Drawing.Point(366, 174);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(39, 18);
             this.lblTotal.TabIndex = 170;
@@ -675,7 +679,7 @@
             this.txtDescripcion.AutoSize = true;
             this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.ForeColor = System.Drawing.Color.Black;
-            this.txtDescripcion.Location = new System.Drawing.Point(37, 85);
+            this.txtDescripcion.Location = new System.Drawing.Point(37, 129);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(89, 17);
             this.txtDescripcion.TabIndex = 169;
@@ -684,7 +688,7 @@
             // progressBar1
             // 
             this.progressBar1.ForeColor = System.Drawing.Color.Lime;
-            this.progressBar1.Location = new System.Drawing.Point(8, 170);
+            this.progressBar1.Location = new System.Drawing.Point(8, 204);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(397, 23);
             this.progressBar1.Step = 50;
@@ -695,7 +699,7 @@
             // txtDescripcionProducto
             // 
             this.txtDescripcionProducto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDescripcionProducto.Location = new System.Drawing.Point(143, 51);
+            this.txtDescripcionProducto.Location = new System.Drawing.Point(143, 95);
             this.txtDescripcionProducto.MaxLength = 200;
             this.txtDescripcionProducto.Multiline = true;
             this.txtDescripcionProducto.Name = "txtDescripcionProducto";
@@ -710,7 +714,7 @@
             this.btnGuardarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardarProducto.ForeColor = System.Drawing.Color.White;
-            this.btnGuardarProducto.Location = new System.Drawing.Point(83, 217);
+            this.btnGuardarProducto.Location = new System.Drawing.Point(83, 251);
             this.btnGuardarProducto.Name = "btnGuardarProducto";
             this.btnGuardarProducto.Size = new System.Drawing.Size(289, 38);
             this.btnGuardarProducto.TabIndex = 166;
@@ -754,6 +758,25 @@
             this.btnEditarProducto.UseVisualStyleBackColor = false;
             this.btnEditarProducto.Visible = false;
             this.btnEditarProducto.Click += new System.EventHandler(this.btnEditarProducto_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(50, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 17);
+            this.label6.TabIndex = 174;
+            this.label6.Text = "Grupo(*):";
+            // 
+            // cmbGrupo
+            // 
+            this.cmbGrupo.FormattingEnabled = true;
+            this.cmbGrupo.Location = new System.Drawing.Point(143, 24);
+            this.cmbGrupo.Name = "cmbGrupo";
+            this.cmbGrupo.Size = new System.Drawing.Size(262, 21);
+            this.cmbGrupo.TabIndex = 173;
             // 
             // StockWF
             // 
@@ -846,5 +869,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Observaciones;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbTipoMedicion;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbGrupo;
     }
 }

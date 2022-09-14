@@ -100,7 +100,8 @@ namespace Añuri
         }
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            CargarCombo();
+            CargarComboGrupo();
+            CargarComboUnidadDeMedicion();
             idProductoSeleccionado = 0;
             Funcion = 1;
             txtDescripcionProducto.Clear();
@@ -109,7 +110,22 @@ namespace Añuri
             PanelNuevoMaterial.Enabled = true;
         }
 
-        private void CargarCombo()
+        private void CargarComboGrupo()
+        {
+            List<string> Grupo = new List<string>();
+            Grupo = StockDao.CargarComboGrupo();
+            cmbGrupo.Items.Clear();
+            cmbGrupo.Text = "Seleccione";
+            cmbGrupo.Items.Add("Seleccione");
+            foreach (string item in Grupo)
+            {
+                cmbGrupo.Text = "Seleccione";
+                cmbGrupo.Items.Add(item);
+
+            }
+        }
+
+        private void CargarComboUnidadDeMedicion()
         {
             cmbTipoMedicion.Items.Clear();
             cmbTipoMedicion.Text = "Seleccione";
@@ -199,8 +215,12 @@ namespace Añuri
                 btnCrear.Enabled = true;
                 idProductoSeleccionado = Convert.ToInt32(this.dgvStock.CurrentRow.Cells[0].Value);
                 string TipoMedicion = ProductoDao.BuscarTipoMedicionPorIdProducto(idProductoSeleccionado);
+                string Grupo = ProductoDao.BuscarGrupoPorIdProducto(idProductoSeleccionado);
                 txtDescripcionProducto.Text = dgvStock.CurrentRow.Cells[1].Value.ToString();
                 cmbTipoMedicion.Items.Clear();
+                cmbGrupo.Items.Clear();
+                cmbGrupo.Text = Grupo;
+                //CargarComboGrupo();
                 cmbTipoMedicion.Text = TipoMedicion;
                 cmbTipoMedicion.Items.Add("KILOS");
                 cmbTipoMedicion.Items.Add("UNIDAD");
@@ -236,7 +256,8 @@ namespace Añuri
             progressBar1.Value = Convert.ToInt32(null);
             progressBar1.Visible = false;
             txtDescripcionProducto.Focus();
-            CargarCombo();
+            CargarComboUnidadDeMedicion();
+            CargarComboGrupo();
         }
         private void LimpiarCampos()
         {

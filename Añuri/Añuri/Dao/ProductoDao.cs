@@ -205,6 +205,31 @@ namespace Añuri.Dao
             return Exito;
         }
 
+        public static string BuscarGrupoPorIdProducto(int idProductoSeleccionado)
+        {
+            connection.Close();
+            connection.Open();
+            string NombreGrupo = "";
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("idProductoSeleccionado_in", idProductoSeleccionado) };
+            string proceso = "BuscarGrupoPorIdProducto";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    NombreGrupo = item["Nombre"].ToString();
+                }
+            }
+            connection.Close();
+            return NombreGrupo;
+        }
+
         public static string BuscarTipoMedicionPorIdProducto(int idProductoSeleccionado)
         {
             connection.Close();
