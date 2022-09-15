@@ -288,6 +288,10 @@ namespace Añuri
             _producto.FechaDeAlta = fechaActual;
             _producto.idUsuario = idusuarioLogueado;
             _producto.TipoMedicion = cmbTipoMedicion.Text;
+
+            string Grupo = cmbGrupo.Text;
+            int idGrupo = ProductoDao.BuscarIDGrupoPorNombre(Grupo);
+            _producto.idGrupo = idGrupo;
             return _producto;
         }
         private void ProgressBar()
@@ -448,7 +452,7 @@ namespace Añuri
             foreach (DataGridViewRow row in dgvListaCargaStock.Rows)
             {
                 Stock Lista = new Stock();
-                Lista.idProducto = Convert.ToInt32(row.Cells[0].Value.ToString());                
+                Lista.idProducto = Convert.ToInt32(row.Cells[0].Value.ToString());
                 int idusuarioLogueado = Sesion.UsuarioLogueado.idUsuario;
                 Lista.idUsuario = idusuarioLogueado;
                 Lista.CodigoProducto = row.Cells[1].Value.ToString();
@@ -569,6 +573,11 @@ namespace Añuri
         private void SoloNumeros(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsNumber(e.KeyChar) && e.KeyChar != Convert.ToChar(Keys.Back);
+        }
+
+        private void cmbGrupo_Click(object sender, EventArgs e)
+        {
+            CargarComboGrupo();
         }
     }
 }

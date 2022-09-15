@@ -24,6 +24,7 @@ namespace Añuri.Dao
             cmd.Parameters.AddWithValue("idProducto_in", idProductoSeleccionado);
             cmd.Parameters.AddWithValue("DescripcionProducto_in", producto.DescripcionProducto);
             cmd.Parameters.AddWithValue("TipoMedicion_in", producto.TipoMedicion);
+            cmd.Parameters.AddWithValue("idGrupo_in", producto.idGrupo);
             cmd.ExecuteNonQuery();
             exito = true;
             connection.Close();
@@ -40,6 +41,7 @@ namespace Añuri.Dao
             cmd.Parameters.AddWithValue("TipoMedicion_in", producto.TipoMedicion);
             cmd.Parameters.AddWithValue("DescripcionProducto_in", producto.DescripcionProducto);
             cmd.Parameters.AddWithValue("FechaDeAlta_in", producto.FechaDeAlta);
+            cmd.Parameters.AddWithValue("idGrupo_in", producto.idGrupo);
             cmd.Parameters.AddWithValue("idUsuario_in", producto.idUsuario);
             cmd.ExecuteNonQuery();
             exito = true;
@@ -253,6 +255,30 @@ namespace Añuri.Dao
             }
             connection.Close();
             return TipoMedicion;
+        }
+        public static int BuscarIDGrupoPorNombre(string grupo)
+        {
+            connection.Close();
+            connection.Open();
+            int idGrupo = 0;
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connection;
+            DataTable Tabla = new DataTable();
+            MySqlParameter[] oParam = { new MySqlParameter("Grupo_in", grupo) };
+            string proceso = "BuscarIDGrupoPorNombre";
+            MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
+            dt.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dt.SelectCommand.Parameters.AddRange(oParam);
+            dt.Fill(Tabla);
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    idGrupo = Convert.ToInt32(item["idGrupo"].ToString());
+                }
+            }
+            connection.Close();
+            return idGrupo;
         }
     }
 }

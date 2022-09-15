@@ -81,6 +81,8 @@
             this.btnConsultaStock = new System.Windows.Forms.Button();
             this.PanelDerecho = new System.Windows.Forms.Panel();
             this.PanelNuevoMaterial = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbGrupo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbTipoMedicion = new System.Windows.Forms.ComboBox();
             this.lblContador = new System.Windows.Forms.Label();
@@ -93,8 +95,6 @@
             this.PanelDetalleStock = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnEditarProducto = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmbGrupo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             this.panelGrilla.SuspendLayout();
             this.PanelRegistroStock.SuspendLayout();
@@ -633,6 +633,26 @@
             this.PanelNuevoMaterial.Size = new System.Drawing.Size(421, 409);
             this.PanelNuevoMaterial.TabIndex = 166;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(50, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 17);
+            this.label6.TabIndex = 174;
+            this.label6.Text = "Grupo(*):";
+            // 
+            // cmbGrupo
+            // 
+            this.cmbGrupo.FormattingEnabled = true;
+            this.cmbGrupo.Location = new System.Drawing.Point(143, 24);
+            this.cmbGrupo.Name = "cmbGrupo";
+            this.cmbGrupo.Size = new System.Drawing.Size(262, 21);
+            this.cmbGrupo.TabIndex = 173;
+            this.cmbGrupo.Click += new System.EventHandler(this.cmbGrupo_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -758,25 +778,6 @@
             this.btnEditarProducto.UseVisualStyleBackColor = false;
             this.btnEditarProducto.Visible = false;
             this.btnEditarProducto.Click += new System.EventHandler(this.btnEditarProducto_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(50, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 17);
-            this.label6.TabIndex = 174;
-            this.label6.Text = "Grupo(*):";
-            // 
-            // cmbGrupo
-            // 
-            this.cmbGrupo.FormattingEnabled = true;
-            this.cmbGrupo.Location = new System.Drawing.Point(143, 24);
-            this.cmbGrupo.Name = "cmbGrupo";
-            this.cmbGrupo.Size = new System.Drawing.Size(262, 21);
-            this.cmbGrupo.TabIndex = 173;
             // 
             // StockWF
             // 
