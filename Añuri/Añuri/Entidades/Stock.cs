@@ -38,4 +38,26 @@ namespace Añuri.Entidades
         public int idMovimiento { get; set; }
         public int PosicionEnLista { get; set; }
     }
+    public class ObraReporte
+    {
+        public string NombreObra { get; set; }
+        public int idObra { get; set; }
+        public List<KiloReporte> ListaKilos { get; set; }
+        public List<UnidadReporte> ListaUnidad { get; set; }
+    }
+    public class KiloReporte
+    {
+        public int idProducto { get; set; }
+        public string Descripcion { get; set; }
+        public int Cantidad { get; set; }
+        public Decimal PrecioNeto { get; set; }
+    }
+    public class UnidadReporte
+    {
+        public int idProducto { get; set; }
+        public string Descripcion { get; set; }
+        public int Cantidad { get; set; }
+        public Decimal PrecioNeto { get; set; }
+    }
 }
+

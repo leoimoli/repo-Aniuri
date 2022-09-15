@@ -117,304 +117,22 @@ namespace Añuri
                 }
                 dgvLista.Rows.Clear();
                 List<Stock> ListaTipoMedicion = new List<Stock>();
-                List<Stock> ListaDeObras = ObrasNeg.BuscarObrasPorMes(FechaDesde, FechaHasta);
 
-                if (ListaDeObras.Count > 0)
-                {
-                    btnExcel.Visible = true;
-                    btnPdf.Visible = true;
-                    //ListaAux = ListaDeObras;
-                    int TotalListaOriginal = ListaDeObras.Count;
+                ///// Inicio Consulta para Grupo Perfileria
+                string Titulo = "PERFILERIA";
+                List<Stock> ListaDeObras = ObrasNeg.BuscarObrasPorMesPerfileria(FechaDesde, FechaHasta, 1);
+                List<ObraReporte> ListaDeObra = GrillaPerfileria(ListaDeObras);
+                int posicionSiguiente = DiseñoGrillaPerfileria(ListaDeObra, Titulo, 0);
 
-                    string fecha = "";
-                    List<int> ListaIdObra = new List<int>();
-                    int ContadorElementos = 0;
-                    int ContadorElementosTotales = 0;
-                    int ContadorInicial = 0;
-                    //ListaDeObras = ListaDeObras.OrderBy(x => x.FechaFactura).ToList();
+                ///// Duplica Consulta para Grupo Chapas
+                Titulo = "CHAPAS";
+                List<Stock> ListaDeObrasChapas = ObrasNeg.BuscarObrasPorMesPerfileria(FechaDesde, FechaHasta, 2);
+                List<ObraReporte> ListaDeObraChapas = GrillaPerfileria(ListaDeObrasChapas);
+                DiseñoGrillaPerfileria(ListaDeObraChapas, Titulo, posicionSiguiente);
 
-                    foreach (var item in ListaDeObras)
-                    {
-                        ContadorInicial = ContadorInicial + 1;
-                        bool Existe = ListaIdObra.Any(x => x == item.idObra);
-                        ///// Valido que el nombre de la obra ya este en la grilla.
-                        if (Existe == false)
-                        {
-                            if (ContadorElementos > 0)
-                            {
-                                ///// Luego de listar todos los materiales por Kilos de la obra valido si existe en la lista otros materailes con otro topo de medición....
-                                if (ListaTipoMedicion.Count > 0)
-                                {
-                                    string STRINGTotalPrecioNeto = TotalPrecioNeto.ToString("N", new CultureInfo("es-CL"));
+                List<Stock> ListaGraficoFinal = ListaDeObras.Concat(ListaDeObrasChapas).OrderBy(x => x.idObra).ToList();
 
-                                    dgvLista.Rows.Add("", "", "", "", "", TotalKilos, "", STRINGTotalPrecioNeto, "", "");
-
-                                    Stock _stock = new Stock();
-                                    _stock.Cantidad = TotalKilos;
-                                    _stock.PrecioNeto = Convert.ToDecimal(STRINGTotalPrecioNeto);
-                                    _stock.PosicionEnLista = ContadorElementos;
-                                    //ListaAux.Insert(ContadorElementos, _stock);
-                                    ListaAux.Add(_stock);
-
-                                    dgvLista.Rows[ContadorElementos].Cells[5].Style.ForeColor = Color.Red;
-                                    dgvLista.Rows[ContadorElementos].Cells[7].Style.ForeColor = Color.Red;
-                                    foreach (var item2 in ListaTipoMedicion)
-                                    {
-                                        //Agrego Punto De Miles...
-                                        string ValorUnitario2 = item2.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
-                                        string ValorNeto2 = item2.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
-                                        dgvLista.Rows.Add(item2.idObra, " ", item2.idMovimientoEntrada, item2.Descripcion, fecha, item2.Cantidad, 0, ValorNeto2, 0, 1);
-                                    }
-                                    ///// Dejo un renglon en Excel.
-                                    dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
-                                    ListaTipoMedicion.Clear();
-                                    TotalKilos = 0;
-                                    TotalPrecioNeto = 0;
-                                }
-                                else
-                                {
-                                    string STRINGTotalPrecioNeto = TotalPrecioNeto.ToString("N", new CultureInfo("es-CL"));
-                                    dgvLista.Rows.Add("", "", "", "", "", TotalKilos, "", STRINGTotalPrecioNeto, "", "");
-                                    Stock _stock = new Stock();
-                                    _stock.Cantidad = TotalKilos;
-                                    _stock.PrecioNeto = Convert.ToDecimal(STRINGTotalPrecioNeto);
-                                    ////// hago una validacion para completar la lista Aux... con valores en blanco y que no rompa.
-                                    int ValorLista = ListaAux.Count;
-                                    if (ValorLista != ContadorElementos)
-                                    {
-                                        int ValorResta = ContadorElementos - ValorLista;
-                                        for (int i = 0; i < ValorResta; i++)
-                                        {
-                                            Stock _stockEnBlanco = new Stock();
-                                            _stock.Cantidad = 0;
-                                            _stock.PrecioNeto = 0;
-                                            ListaAux.Insert(i, _stockEnBlanco);
-                                        }
-                                    }
-                                    ListaAux.Insert(ContadorElementos, _stock);
-                                    //ListaDeObras.Add(_stock);
-                                    ///// Dejo un renglon en Excel.
-                                    dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
-
-                                    TotalKilos = 0;
-                                    TotalPrecioNeto = 0;
-                                    ///// Dejo un renglon en Excel.
-                                    dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
-
-                                    TotalKilos = 0;
-                                    TotalPrecioNeto = 0;
-                                }
-
-                                if (item.TipoMedicion == "KILOS")
-                                {
-                                    //if (item.FechaFactura == Convert.ToDateTime("1/1/0001 00:00:00"))
-                                    //{
-                                    //    fecha = " ";
-                                    //}
-                                    //else
-                                    //{
-                                    //    fecha = item.FechaFactura.ToShortDateString();
-                                    //}
-                                    ////Cuento el Total en Precio Neto...
-                                    //TotalPrecioNeto = TotalPrecioNeto + item.PrecioNeto;
-                                    ////Cuento el Total en kilos...
-                                    //TotalKilos = TotalKilos + item.Cantidad;
-                                    ////Agrego Punto De Miles...
-                                    //string ValorUnitario3 = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
-                                    //string ValorNeto3 = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
-
-                                    //dgvLista.Rows.Add(item.idObra, " ", item.idMovimientoEntrada, item.Descripcion, fecha, item.Cantidad, 0, ValorNeto3, 0, 1);
-                                    //ContadorElementos = ContadorElementos + 1;
-                                }
-                                else
-                                {
-                                    ///// Si la medición del material no es Kilos lo agrego en una lista auxiliar para despues meterlo en el final de la obra....
-                                    Stock _listaTipoMedicion = new Stock();
-                                    _listaTipoMedicion.idObra = item.idObra;
-                                    _listaTipoMedicion.NombreObra = item.NombreObra;
-                                    _listaTipoMedicion.idMovimientoEntrada = item.idMovimientoEntrada;
-                                    _listaTipoMedicion.Descripcion = item.Descripcion;
-                                    _listaTipoMedicion.FechaFactura = item.FechaFactura;
-                                    _listaTipoMedicion.Cantidad = item.Cantidad;
-                                    _listaTipoMedicion.PrecioNeto = item.PrecioNeto;
-                                    ListaTipoMedicion.Add(_listaTipoMedicion);
-                                    ContadorElementosTotales = ContadorElementosTotales + 1;
-                                }
-                            }
-
-                            if (item.FechaFactura == Convert.ToDateTime("1/1/0001 00:00:00"))
-                            {
-                                fecha = " ";
-                            }
-                            else
-                            {
-                                fecha = item.FechaFactura.ToShortDateString();
-                            }
-
-                            //Cuento el Total en Precio Neto...
-                            TotalPrecioNeto = TotalPrecioNeto + item.PrecioNeto;
-                            //Cuento el Total en kilos...
-                            TotalKilos = TotalKilos + item.Cantidad;
-                            //Agrego Punto De Miles...
-                            string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
-                            string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
-
-
-                            ListaIdObra.Add(item.idObra);
-                            dgvLista.Rows.Add(item.idObra, item.NombreObra, item.idMovimientoEntrada, item.Descripcion, fecha, item.Cantidad, 0, ValorNeto, 0, 1);
-
-                            ContadorElementos = ContadorElementos + 1;
-                            ContadorElementosTotales = ContadorElementosTotales + 1;
-                            if (item.TipoMedicion != "KILOS")
-                            {
-                                Stock _listaTipoMedicion = new Stock();
-                                _listaTipoMedicion.idObra = item.idObra;
-                                _listaTipoMedicion.NombreObra = item.NombreObra;
-                                _listaTipoMedicion.idMovimientoEntrada = item.idMovimientoEntrada;
-                                _listaTipoMedicion.Descripcion = item.Descripcion;
-                                _listaTipoMedicion.FechaFactura = item.FechaFactura;
-                                _listaTipoMedicion.Cantidad = item.Cantidad;
-                                _listaTipoMedicion.PrecioNeto = item.PrecioNeto;
-                                ListaTipoMedicion.Add(_listaTipoMedicion);
-                            }
-                            //// VALIDO SI ES EL ULTIMO VALOR DE LA LISTA....
-                            //if (ContadorElementos == TotalListaOriginal)
-                            if (ContadorInicial == TotalListaOriginal)
-                            {
-                                string STRINGTotalPrecioNeto = TotalPrecioNeto.ToString("N", new CultureInfo("es-CL"));
-                                dgvLista.Rows.Add("", "", "", "", "", TotalKilos, "", STRINGTotalPrecioNeto, "", "");
-                                Stock _stock = new Stock();
-                                _stock.Cantidad = TotalKilos;
-                                _stock.PrecioNeto = Convert.ToDecimal(STRINGTotalPrecioNeto);
-                                ListaAux.Add(_stock);
-                                //dgvLista.Rows[dgvLista.RowCount - 1].Cells[5].Style.ForeColor = Color.Red;
-                                //dgvLista.Rows[dgvLista.RowCount - 1].Cells[7].Style.ForeColor = Color.Red;
-                                ///// Dejo un renglon en Excel.
-                                dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
-                                TotalKilos = 0;
-                                TotalPrecioNeto = 0;
-                            }
-                        }
-                        else
-                        {
-                            if (item.TipoMedicion == "KILOS")
-                            {
-                                if (item.FechaFactura == Convert.ToDateTime("1/1/0001 00:00:00"))
-                                {
-                                    fecha = " ";
-                                }
-                                else
-                                {
-                                    fecha = item.FechaFactura.ToShortDateString();
-                                }
-                                //Cuento el Total en Precio Neto...
-                                TotalPrecioNeto = TotalPrecioNeto + item.PrecioNeto;
-                                //Cuento el Total en kilos...
-                                TotalKilos = TotalKilos + item.Cantidad;
-                                //Agrego Punto De Miles...
-                                string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
-                                string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
-
-                                dgvLista.Rows.Add(item.idObra, " ", item.idMovimientoEntrada, item.Descripcion, fecha, item.Cantidad, 0, ValorNeto, 0, 1);
-                                ContadorElementos = ContadorElementos + 1;
-                                ContadorElementosTotales = ContadorElementosTotales + 1;
-                            }
-                            else
-                            {
-                                ///// Si la medicio del material no es Kilos lo agrego en una lista auxiliar para despues meterlo en el final de la obra....
-                                Stock _listaTipoMedicion = new Stock();
-                                _listaTipoMedicion.idObra = item.idObra;
-                                _listaTipoMedicion.NombreObra = item.NombreObra;
-                                _listaTipoMedicion.idMovimientoEntrada = item.idMovimientoEntrada;
-                                _listaTipoMedicion.Descripcion = item.Descripcion;
-                                _listaTipoMedicion.FechaFactura = item.FechaFactura;
-                                _listaTipoMedicion.Cantidad = item.Cantidad;
-                                _listaTipoMedicion.PrecioNeto = item.PrecioNeto;
-                                ListaTipoMedicion.Add(_listaTipoMedicion);
-                                ContadorElementosTotales = ContadorElementosTotales + 1;
-                            }
-                        }
-                        dgvLista.ReadOnly = true;
-                        ListaDeObrasStatic = ListaAux;
-                        //DiseñoGraficoMaterialesEnPesos(ListaDeObrasStatic);
-                        // if (ContadorElementosTotales == TotalListaOriginal)
-                        if (ContadorInicial == TotalListaOriginal)
-                        {
-                            if (ListaTipoMedicion.Count > 0)
-                            {
-                                string STRINGTotalPrecioNeto = TotalPrecioNeto.ToString("N", new CultureInfo("es-CL"));
-
-                                dgvLista.Rows.Add("", "", "", "", "", TotalKilos, "", STRINGTotalPrecioNeto, "", "");
-
-                                Stock _stock = new Stock();
-                                _stock.Cantidad = TotalKilos;
-                                _stock.PrecioNeto = Convert.ToDecimal(STRINGTotalPrecioNeto);
-                                _stock.PosicionEnLista = ContadorElementos;
-                                ListaAux.Add(_stock);
-
-                                //dgvLista.Rows[ContadorElementosTotales + 1].Cells[5].Style.ForeColor = Color.Red;
-                                //dgvLista.Rows[ContadorElementosTotales + 1].Cells[7].Style.ForeColor = Color.Red;
-                                foreach (var item2 in ListaTipoMedicion)
-                                {
-                                    //Agrego Punto De Miles...
-                                    string ValorUnitario2 = item2.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
-                                    string ValorNeto2 = item2.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
-                                    dgvLista.Rows.Add(item2.idObra, " ", item2.idMovimientoEntrada, item2.Descripcion, fecha, item2.Cantidad, 0, ValorNeto2, 0, 1);
-                                }
-                            }
-                            else
-                            {
-                                string STRINGTotalPrecioNeto = TotalPrecioNeto.ToString("N", new CultureInfo("es-CL"));
-                                dgvLista.Rows.Add("", "", "", "", "", TotalKilos, "", STRINGTotalPrecioNeto, "", "");
-                                Stock _stock = new Stock();
-                                _stock.Cantidad = TotalKilos;
-                                _stock.PrecioNeto = Convert.ToDecimal(STRINGTotalPrecioNeto);
-                                ////// hago una validacion para completar la lista Aux... con valores en blanco y que no rompa.
-                                int ValorLista = ListaAux.Count;
-                                if (ValorLista != ContadorElementos)
-                                {
-                                    int ValorResta = ContadorElementos - ValorLista;
-                                    for (int i = 0; i < ValorResta; i++)
-                                    {
-                                        Stock _stockEnBlanco = new Stock();
-                                        _stock.Cantidad = 0;
-                                        _stock.PrecioNeto = 0;
-                                        ListaAux.Insert(i, _stockEnBlanco);
-                                    }
-                                }
-                                ListaAux.Insert(ContadorElementos, _stock);
-                                //ListaDeObras.Add(_stock);
-                                ///// Dejo un renglon en Excel.
-                                dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
-
-                                TotalKilos = 0;
-                                TotalPrecioNeto = 0;
-                                ///// Dejo un renglon en Excel.
-                                dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
-
-                                TotalKilos = 0;
-                                TotalPrecioNeto = 0;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    btnExcel.Visible = false;
-                    btnPdf.Visible = false;
-                }
-                if (ListaAux.Count > 0)
-                {
-                    foreach (var item in ListaAux)
-                    {
-                        Stock _stock = new Stock();
-                        _stock.Cantidad = item.Cantidad;
-                        _stock.PrecioNeto = item.PrecioNeto;
-                        ListaDeObras.Insert(item.PosicionEnLista, _stock);
-                    }
-                }
-
-                ListaDeObrasStatic = ListaDeObras;
+                ListaDeObrasStatic = ListaGraficoFinal;
                 DiseñoGraficoMaterialesEnPesos(ListaDeObrasStatic);
             }
             catch (Exception ex)
@@ -422,6 +140,99 @@ namespace Añuri
 
         }
 
+        private int DiseñoGrillaPerfileria(List<ObraReporte> listaDeObra, string Titulo, int posicion)
+        {
+            int posicionSiguiente = 0;
+            dgvLista.Rows.Add("", Titulo, "", "", "", "", "", "", "", "");
+            posicionSiguiente++;
+            dgvLista.Rows[posicion].Cells[1].Style.ForeColor = Color.Red;
+
+            foreach (var item in listaDeObra)
+            {
+                string nombreObra = item.NombreObra;
+                int cantidadKilos = 0;
+                decimal montoKilos = 0;
+
+                int cantidadUnidad = 0;
+                decimal montoUnidad = 0;
+
+                foreach (var Kilo in item.ListaKilos)
+                {
+                    cantidadKilos += Kilo.Cantidad;
+                    montoKilos += Kilo.PrecioNeto;
+                    dgvLista.Rows.Add(item.idObra, nombreObra, "", Kilo.Descripcion, DateTime.Now, Kilo.Cantidad, 0, Kilo.PrecioNeto, 0, 1);
+                    posicionSiguiente++;
+                    nombreObra = string.Empty;
+                }
+                if (item.ListaKilos.Count > 0)
+                {
+                    dgvLista.Rows.Add(item.idObra, nombreObra, "", "", DateTime.Now, cantidadKilos, 0, montoKilos, 0, 1);
+                    posicionSiguiente++;
+                }
+
+                foreach (var Unidad in item.ListaUnidad)
+                {
+                    cantidadUnidad += Unidad.Cantidad;
+                    montoUnidad += Unidad.PrecioNeto;
+                    dgvLista.Rows.Add(item.idObra, nombreObra, "", Unidad.Descripcion, DateTime.Now, Unidad.Cantidad, 0, Unidad.PrecioNeto, 0, 1);
+                    posicionSiguiente++;
+                    nombreObra = string.Empty;
+                }
+                if (item.ListaUnidad.Count > 0)
+                {
+                    dgvLista.Rows.Add(item.idObra, nombreObra, "", "", DateTime.Now, cantidadUnidad, 0, montoUnidad, 0, 1);
+                    posicionSiguiente++;
+                }
+                dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
+                posicionSiguiente++;
+            }
+            return posicionSiguiente;
+        }
+        private List<ObraReporte> GrillaPerfileria(List<Stock> listaDeObras)
+        {
+            List<ObraReporte> ListaObrasReportes = new List<ObraReporte>();
+            if (listaDeObras.Count > 0)
+            {
+                btnExcel.Visible = true;
+                btnPdf.Visible = true;
+                ObraReporte _ObraReporte = new ObraReporte();
+                foreach (var item in listaDeObras)
+                {
+                    bool Existe = ListaObrasReportes.Any(x => x.idObra == item.idObra);
+                    if (Existe == false)
+                    {
+                        _ObraReporte = new ObraReporte();
+                        _ObraReporte.idObra = item.idObra;
+                        _ObraReporte.NombreObra = item.NombreObra;
+                        _ObraReporte.ListaKilos = new List<KiloReporte>();
+                        _ObraReporte.ListaUnidad = new List<UnidadReporte>();
+                    }
+                    if (item.TipoMedicion == "KILOS")
+                    {
+                        KiloReporte _KiloReporte = new KiloReporte();
+                        _KiloReporte.idProducto = item.idProducto;
+                        _KiloReporte.Descripcion = item.Descripcion;
+                        _KiloReporte.Cantidad = item.Cantidad;
+                        _KiloReporte.PrecioNeto = item.PrecioNeto;
+                        _ObraReporte.ListaKilos.Add(_KiloReporte);
+                    }
+                    if (item.TipoMedicion == "UNIDAD")
+                    {
+                        UnidadReporte _UnidadReporte = new UnidadReporte();
+                        _UnidadReporte.idProducto = item.idProducto;
+                        _UnidadReporte.Descripcion = item.Descripcion;
+                        _UnidadReporte.Cantidad = item.Cantidad;
+                        _UnidadReporte.PrecioNeto = item.PrecioNeto;
+                        _ObraReporte.ListaUnidad.Add(_UnidadReporte);
+                    }
+                    if (Existe == false)
+                    {
+                        ListaObrasReportes.Add(_ObraReporte);
+                    }
+                }
+            }
+            return ListaObrasReportes;
+        }
         private void DiseñoGraficoMaterialesEnPesos(List<Stock> listaDeObrasStatic)
         {
             List<int> ListaIdObra = new List<int>();
@@ -457,15 +268,13 @@ namespace Añuri
                             NombreObra = item.NombreObra;
                             ListaIdObra.Add(item.idObra);
                             ContadorElementos = ContadorElementos + 1;
-                            //ListaIdObraContadora = ListaIdObra.Count;
-                            //if (ContadorElementos + 1 == listaDeObrasStatic.Count)
-                            ////if (ListaIdObraContadora != ListaIdObra.Count)
-                            //{
-                            //    Nombre.Add(NombreObra);
-                            //    total = Convert.ToString(Monto);
-                            //    totalFinal = "$" + " " + total;
-                            //    Total.Add(totalFinal);
-                            //}
+                            if (ContadorElementos == listaDeObrasStatic.Count)
+                            {
+                                Nombre.Add(NombreObra);
+                                total = Convert.ToString(Monto);
+                                totalFinal = "$" + " " + total;
+                                Total.Add(totalFinal);
+                            }
                         }
                         else
                         {
@@ -504,7 +313,6 @@ namespace Añuri
             }
             chartEnPesos.Series[0].Points.DataBindXY(Nombre, Total);
         }
-
         private void ProgressBar()
         {
             progressBar1.Visible = true;

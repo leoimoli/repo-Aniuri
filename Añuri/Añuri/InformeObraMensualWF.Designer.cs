@@ -54,6 +54,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgvLista = new System.Windows.Forms.DataGridView();
+            this.chartEnPesos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnPdf = new System.Windows.Forms.Button();
+            this.btnExcel = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.idprod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Obra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,10 +67,6 @@
             this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chartEnPesos = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnPdf = new System.Windows.Forms.Button();
-            this.btnExcel = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPagina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
@@ -331,60 +331,6 @@
             this.dgvLista.Size = new System.Drawing.Size(626, 442);
             this.dgvLista.TabIndex = 169;
             // 
-            // idprod
-            // 
-            this.idprod.HeaderText = "id";
-            this.idprod.Name = "idprod";
-            this.idprod.Visible = false;
-            this.idprod.Width = 50;
-            // 
-            // Obra
-            // 
-            this.Obra.HeaderText = "Obra";
-            this.Obra.Name = "Obra";
-            this.Obra.Width = 230;
-            // 
-            // idEntrada
-            // 
-            this.idEntrada.HeaderText = "idEntrada";
-            this.idEntrada.Name = "idEntrada";
-            this.idEntrada.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 230;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.Visible = false;
-            // 
-            // kilos
-            // 
-            this.kilos.HeaderText = "Kilos";
-            this.kilos.Name = "kilos";
-            this.kilos.Width = 50;
-            // 
-            // PrecioUnitario
-            // 
-            this.PrecioUnitario.HeaderText = "Precio Unitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            this.PrecioUnitario.Visible = false;
-            // 
-            // PrecioNeto
-            // 
-            this.PrecioNeto.HeaderText = "Precio Neto";
-            this.PrecioNeto.Name = "PrecioNeto";
-            // 
-            // EstadoEntrada
-            // 
-            this.EstadoEntrada.HeaderText = "EstadoEntrada";
-            this.EstadoEntrada.Name = "EstadoEntrada";
-            this.EstadoEntrada.Visible = false;
-            // 
             // chartEnPesos
             // 
             chartArea1.Name = "ChartArea1";
@@ -449,6 +395,60 @@
             this.progressBar1.TabIndex = 173;
             this.progressBar1.Value = 50;
             this.progressBar1.Visible = false;
+            // 
+            // idprod
+            // 
+            this.idprod.HeaderText = "id";
+            this.idprod.Name = "idprod";
+            this.idprod.Visible = false;
+            this.idprod.Width = 50;
+            // 
+            // Obra
+            // 
+            this.Obra.HeaderText = "Obra";
+            this.Obra.Name = "Obra";
+            this.Obra.Width = 230;
+            // 
+            // idEntrada
+            // 
+            this.idEntrada.HeaderText = "idEntrada";
+            this.idEntrada.Name = "idEntrada";
+            this.idEntrada.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Material";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 230;
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.Visible = false;
+            // 
+            // kilos
+            // 
+            this.kilos.HeaderText = "Kg/Un";
+            this.kilos.Name = "kilos";
+            this.kilos.Width = 50;
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "Precio Unitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.Visible = false;
+            // 
+            // PrecioNeto
+            // 
+            this.PrecioNeto.HeaderText = "Precio Neto";
+            this.PrecioNeto.Name = "PrecioNeto";
+            // 
+            // EstadoEntrada
+            // 
+            this.EstadoEntrada.HeaderText = "EstadoEntrada";
+            this.EstadoEntrada.Name = "EstadoEntrada";
+            this.EstadoEntrada.Visible = false;
             // 
             // InformeObraMensualWF
             // 

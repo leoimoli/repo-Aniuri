@@ -93,7 +93,7 @@ namespace Añuri.Dao
             return listaMateriales;
         }
 
-        public static List<Stock> BuscarObrasPorMes(DateTime fechaDesde, DateTime fechaHasta)
+        public static List<Stock> BuscarObrasPorMesPerfileria(DateTime fechaDesde, DateTime fechaHasta, int idGrupo)
         {
             connection.Close();
             connection.Open();
@@ -101,7 +101,8 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
-            MySqlParameter[] oParam = { new MySqlParameter("FechaDesde_in", fechaDesde),
+            MySqlParameter[] oParam = { new MySqlParameter("idGrupo_in", idGrupo),
+            new MySqlParameter("FechaDesde_in", fechaDesde),
             new MySqlParameter("FechaHasta_in", fechaHasta)};
             string proceso = "BuscarObrasReporteMensual";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
@@ -114,7 +115,6 @@ namespace Añuri.Dao
                 {
                     Stock _stock = new Stock();
                     _stock.Cantidad = Convert.ToInt32(item["Cantidad"].ToString());
-
                     _stock.PrecioNeto = Convert.ToDecimal(item["PrecioNeto"].ToString());
                     _stock.idProducto = Convert.ToInt32(item["idProducto"].ToString());
                     _stock.Descripcion = item["DescripcionProducto"].ToString();
