@@ -484,6 +484,7 @@ namespace Añuri
             List<Stock> ListaMateriales = ObrasNeg.ListaMaterialesExistentes(idObraSeleccionada);
             if (ListaMateriales.Count > 0)
             {
+                dgvListaCargaStock.Rows.Clear();
                 foreach (var item in ListaMateriales)
                 {
                     //string cantidad = Convert.ToString(item.Stock);
@@ -688,6 +689,7 @@ namespace Añuri
                         var result2 = MessageBox.Show(message2, caption2,
                                                      MessageBoxButtons.OK,
                                                      MessageBoxIcon.Asterisk);
+                        ListarMaterialesPreCargados();
                     }
                     else
                     {

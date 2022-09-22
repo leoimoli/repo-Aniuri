@@ -160,13 +160,19 @@ namespace Añuri
                 {
                     cantidadKilos += Kilo.Cantidad;
                     montoKilos += Kilo.PrecioNeto;
-                    dgvLista.Rows.Add(item.idObra, nombreObra, "", Kilo.Descripcion, DateTime.Now, Kilo.Cantidad, 0, Kilo.PrecioNeto, 0, 1);
+
+                    //Agrego Punto De Miles...
+                    string PrecioNeto = Kilo.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+                  
+                    dgvLista.Rows.Add(item.idObra, nombreObra, "", Kilo.Descripcion, DateTime.Now, Kilo.Cantidad, 0, PrecioNeto, 0, 1);
                     posicionSiguiente++;
                     nombreObra = string.Empty;
                 }
                 if (item.ListaKilos.Count > 0)
                 {
-                    dgvLista.Rows.Add(item.idObra, nombreObra, "", "", DateTime.Now, cantidadKilos, 0, montoKilos, 0, 1);
+                    //Agrego Punto De Miles...
+                    string montoKilosString = montoKilos.ToString("N", new CultureInfo("es-CL"));
+                    dgvLista.Rows.Add(item.idObra, nombreObra, "", "", DateTime.Now, cantidadKilos, 0, montoKilosString, 0, 1);
                     posicionSiguiente++;
                 }
 
@@ -174,13 +180,17 @@ namespace Añuri
                 {
                     cantidadUnidad += Unidad.Cantidad;
                     montoUnidad += Unidad.PrecioNeto;
-                    dgvLista.Rows.Add(item.idObra, nombreObra, "", Unidad.Descripcion, DateTime.Now, Unidad.Cantidad, 0, Unidad.PrecioNeto, 0, 1);
+                    //Agrego Punto De Miles...
+                    string PrecioNetoString= Unidad.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
+                    dgvLista.Rows.Add(item.idObra, nombreObra, "", Unidad.Descripcion, DateTime.Now, Unidad.Cantidad, 0, PrecioNetoString, 0, 1);
                     posicionSiguiente++;
                     nombreObra = string.Empty;
                 }
                 if (item.ListaUnidad.Count > 0)
                 {
-                    dgvLista.Rows.Add(item.idObra, nombreObra, "", "", DateTime.Now, cantidadUnidad, 0, montoUnidad, 0, 1);
+                    //Agrego Punto De Miles...
+                    string montoUnidadString = montoUnidad.ToString("N", new CultureInfo("es-CL"));
+                    dgvLista.Rows.Add(item.idObra, nombreObra, "", "", DateTime.Now, cantidadUnidad, 0, montoUnidadString, 0, 1);
                     posicionSiguiente++;
                 }
                 dgvLista.Rows.Add("", "", "", "", "", "", "", "", "", "");
@@ -214,6 +224,8 @@ namespace Añuri
                         _KiloReporte.Descripcion = item.Descripcion;
                         _KiloReporte.Cantidad = item.Cantidad;
                         _KiloReporte.PrecioNeto = item.PrecioNeto;
+                        //Agrego Punto De Miles...
+                        string prueba = _KiloReporte.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
                         _ObraReporte.ListaKilos.Add(_KiloReporte);
                     }
                     if (item.TipoMedicion == "UNIDAD")
@@ -223,6 +235,9 @@ namespace Añuri
                         _UnidadReporte.Descripcion = item.Descripcion;
                         _UnidadReporte.Cantidad = item.Cantidad;
                         _UnidadReporte.PrecioNeto = item.PrecioNeto;
+                        //Agrego Punto De Miles...
+                        _UnidadReporte.PrecioNeto = Convert.ToDecimal(_UnidadReporte.PrecioNeto.ToString("N", new CultureInfo("es-CL")));
+
                         _ObraReporte.ListaUnidad.Add(_UnidadReporte);
                     }
                     if (Existe == false)
