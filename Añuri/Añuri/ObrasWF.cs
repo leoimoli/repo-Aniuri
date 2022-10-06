@@ -37,37 +37,49 @@ namespace Añuri
         {
             try
             {
-                const string message = "¿Usted desea finalizar la obra selccionada?";
-                const string caption = "Consulta";
-                var result = MessageBox.Show(message, caption,
-                                             MessageBoxButtons.YesNo,
-                                             MessageBoxIcon.Question);
+                if (idObraSeleccionada == 0)
                 {
-                    if (result == DialogResult.Yes)
+                    dgvListaCargaStock.Rows.Clear();
+                    const string message = "Atención: Debe seleccionar una obra.";
+                    const string caption = "Atención:";
+                    var result = MessageBox.Show(message, caption,
+                                                 MessageBoxButtons.OK,
+                                               MessageBoxIcon.Exclamation);
+                    throw new Exception();
+                }
+                else
+                {
+                    const string message = "¿Usted desea finalizar la obra selccionada?";
+                    const string caption = "Consulta";
+                    var result = MessageBox.Show(message, caption,
+                                                 MessageBoxButtons.YesNo,
+                                                 MessageBoxIcon.Question);
                     {
-                        bool Exito = ObrasNeg.FinalizarObra(idObraSeleccionada);
-                        if (Exito == true)
+                        if (result == DialogResult.Yes)
                         {
-                            const string message2 = "Se finalizo la obra seleccionada exitosamente.";
-                            const string caption2 = "Éxito";
-                            var result2 = MessageBox.Show(message2, caption2,
-                                                         MessageBoxButtons.OK,
-                                                         MessageBoxIcon.Asterisk);
+                            bool Exito = ObrasNeg.FinalizarObra(idObraSeleccionada);
+                            if (Exito == true)
+                            {
+                                const string message2 = "Se finalizo la obra seleccionada exitosamente.";
+                                const string caption2 = "Éxito";
+                                var result2 = MessageBox.Show(message2, caption2,
+                                                             MessageBoxButtons.OK,
+                                                             MessageBoxIcon.Asterisk);
+                            }
+                            else
+                            {
+                                const string message2 = "Atención: No se pudo finalizar la obra seleccionada.";
+                                const string caption2 = "Atención";
+                                var result2 = MessageBox.Show(message2, caption2,
+                                                             MessageBoxButtons.OK,
+                                                             MessageBoxIcon.Exclamation);
+                            }
                         }
                         else
                         {
-                            const string message2 = "Atención: No se pudo finalizar la obra seleccionada.";
-                            const string caption2 = "Atención";
-                            var result2 = MessageBox.Show(message2, caption2,
-                                                         MessageBoxButtons.OK,
-                                                         MessageBoxIcon.Exclamation);
+
                         }
                     }
-                    else
-                    {
-
-                    }
-
                 }
             }
             catch (Exception ex)
@@ -226,19 +238,31 @@ namespace Añuri
         {
             try
             {
-
-                List<Stock> StockObra = CargarEntidadStockParaObra();
-                bool Exito = ObrasNeg.GuardarDetalleObra(StockObra, idObraSeleccionada);
-                if (Exito == true)
+                if (idObraSeleccionada == 0)
                 {
-                    ProgressBar();
-                    const string message2 = "Se registraron los materiales para la obra seleccionada exitosamente.";
-                    const string caption2 = "Éxito";
-                    var result2 = MessageBox.Show(message2, caption2,
+                    dgvListaCargaStock.Rows.Clear();
+                    const string message = "Atención: Debe seleccionar una obra.";
+                    const string caption = "Atención:";
+                    var result = MessageBox.Show(message, caption,
                                                  MessageBoxButtons.OK,
-                                                 MessageBoxIcon.Asterisk);
-                    LimpiarCamposDeExito();
-                    FuncionListarObras();
+                                               MessageBoxIcon.Exclamation);
+                    throw new Exception();
+                }
+                else
+                {
+                    List<Stock> StockObra = CargarEntidadStockParaObra();
+                    bool Exito = ObrasNeg.GuardarDetalleObra(StockObra, idObraSeleccionada);
+                    if (Exito == true)
+                    {
+                        ProgressBar();
+                        const string message2 = "Se registraron los materiales para la obra seleccionada exitosamente.";
+                        const string caption2 = "Éxito";
+                        var result2 = MessageBox.Show(message2, caption2,
+                                                     MessageBoxButtons.OK,
+                                                     MessageBoxIcon.Asterisk);
+                        LimpiarCamposDeExito();
+                        FuncionListarObras();
+                    }
                 }
             }
             catch (Exception ex)

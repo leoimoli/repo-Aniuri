@@ -103,7 +103,7 @@ namespace Añuri.Negocio
             return exito;
         }
 
-        public static List<Stock> BuscarObrasPorMesPerfileria(DateTime fechaDesde, DateTime fechaHasta,int idGrupo)
+        public static List<Stock> BuscarObrasPorMesPerfileria(DateTime fechaDesde, DateTime fechaHasta, int idGrupo)
         {
             List<Stock> _listaObras = new List<Stock>();
             try
@@ -277,7 +277,9 @@ namespace Añuri.Negocio
                             else
                             {
                                 stockDiferencial = cantidadIngresada - StockAcumulado;
-                                if (stockDiferencial <= Valor.Cantidad)
+                                if (stockDiferencial == 0)
+                                { break; }
+                                else if (stockDiferencial <= Valor.Cantidad)
                                 {
                                     Stock _lista = new Stock();
                                     EstadoEntrada = 1;
