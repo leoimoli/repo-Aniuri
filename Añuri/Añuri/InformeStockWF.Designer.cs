@@ -93,6 +93,7 @@
             this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoMovimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idMovimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ObraAsignado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPagina)).BeginInit();
@@ -243,6 +244,7 @@
             this.PrecioNeto,
             this.TipoMovimiento,
             this.idMovimiento,
+            this.ObraAsignado,
             this.Quitar});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -663,6 +665,7 @@
             // 
             this.Fecha.HeaderText = "Fecha";
             this.Fecha.Name = "Fecha";
+            this.Fecha.Width = 70;
             // 
             // kilos
             // 
@@ -674,22 +677,30 @@
             // 
             this.PrecioUnitario.HeaderText = "Precio Unitario";
             this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.Width = 80;
             // 
             // PrecioNeto
             // 
             this.PrecioNeto.HeaderText = "Precio Neto";
             this.PrecioNeto.Name = "PrecioNeto";
+            this.PrecioNeto.Width = 80;
             // 
             // TipoMovimiento
             // 
             this.TipoMovimiento.HeaderText = "Tipo de Movimiento";
             this.TipoMovimiento.Name = "TipoMovimiento";
+            this.TipoMovimiento.Width = 80;
             // 
             // idMovimiento
             // 
             this.idMovimiento.HeaderText = "idMovimiento";
             this.idMovimiento.Name = "idMovimiento";
             this.idMovimiento.Visible = false;
+            // 
+            // ObraAsignado
+            // 
+            this.ObraAsignado.HeaderText = "Obra";
+            this.ObraAsignado.Name = "ObraAsignado";
             // 
             // Quitar
             // 
@@ -791,6 +802,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioNeto;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoMovimiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn idMovimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ObraAsignado;
         private System.Windows.Forms.DataGridViewButtonColumn Quitar;
     }
 }

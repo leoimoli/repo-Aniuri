@@ -752,6 +752,7 @@ namespace Añuri.Dao
                     _listaMateriales.Descripcion = item["DescripcionProducto"].ToString();
                     _listaMateriales.TipoMovimiento = item["TipoMovimiento"].ToString();
                     _listaMateriales.FechaFactura = Convert.ToDateTime(item["Fecha"].ToString());
+                    _listaMateriales.NombreObra = item["NombreObra"].ToString();
                     lista.Add(_listaMateriales);
                 }
             }

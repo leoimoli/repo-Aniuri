@@ -432,7 +432,7 @@ namespace Añuri
                     //Agrego Punto De Miles...
                     string ValorUnitario = item.ValorUnitario.ToString("N", new CultureInfo("es-CL"));
                     string ValorNeto = item.PrecioNeto.ToString("N", new CultureInfo("es-CL"));
-                    dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, ValorUnitario, ValorNeto, Movimiento, item.idMovimiento);
+                    dgvLista.Rows.Add(item.idProducto, item.Descripcion, item.FechaFactura, item.Cantidad, ValorUnitario, ValorNeto, Movimiento, item.idMovimiento, item.NombreObra);
                 }
             }
             dgvLista.ReadOnly = true;
@@ -1239,7 +1239,7 @@ namespace Añuri
 
         private void dgvLista_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvLista.CurrentCell.ColumnIndex == 8)
+            if (dgvLista.CurrentCell.ColumnIndex == 9)
             {
                 string TipoMovimiento = this.dgvLista.CurrentRow.Cells[6].Value.ToString();
                 if (TipoMovimiento == "Entrada")
