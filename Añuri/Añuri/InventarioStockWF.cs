@@ -475,8 +475,7 @@ namespace Añuri
 
                 //dgvInventario.Rows.Add(item.idProducto, Descripcion, StockTotal, item.Cantidad, fecha, item.ValorUnitario, Importe, ImporteTotal, "", "", "");
                 dgvInventario.Rows.Add(item.idProducto, Descripcion, StockTotal, item.Cantidad, fecha, ValorUnitario, ImporteDos, ImporteTotalDos, "", "", "");
-            }
-            dgvInventario.ReadOnly = true;
+            }            
         }
 
         private decimal CalculaImporteTotalMateriales(List<Stock> listaStockFinal2)

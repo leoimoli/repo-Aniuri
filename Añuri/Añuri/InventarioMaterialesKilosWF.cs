@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,20 @@ namespace Añuri
         {
             try
             {
+                int SumaTotalSaldoInicial = 0;
+                int SumaTotalMesEnero = 0;
+                int SumaTotalMesFebrero = 0;
+                int SumaTotalMesMarzo = 0;
+                int SumaTotalMesAbril = 0;
+                int SumaTotalMesMayo = 0;
+                int SumaTotalMesJunio = 0;
+                int SumaTotalMesJulio = 0;
+                int SumaTotalMesAgosto = 0;
+                int SumaTotalMesSeptiembre = 0;
+                int SumaTotalMesOctubre = 0;
+                int SumaTotalMesNoviembre = 0;
+                int SumaTotalMesDiciembre = 0;
+
                 dgvInventario.Rows.Clear();
                 string año = txtAño.Text;
                 string Material = txtMateriales.Text;
@@ -298,7 +313,7 @@ namespace Añuri
                                 if (listaMes.Count > 0)
                                 {
                                     int MesMayor = listaMes.Max();
-                                    int idProd = ListaidProducto.Last();      
+                                    int idProd = ListaidProducto.Last();
                                     var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
                                     if (MesMayor > 0)
                                     { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Cantidad); }
@@ -486,7 +501,7 @@ namespace Añuri
                             {
                                 PosicionAsignadaEnGrilla = 0;
                                 foreach (var item in ListaidProducto)
-                                {                                   
+                                {
                                     var info1 = ListaProductoMes.Where(n => n.idProducto == item).ToList();
                                     var info2 = info1.OrderByDescending(x => x.Mes).ToList().First();
                                     int MesMayor = info2.Mes;
@@ -506,7 +521,38 @@ namespace Añuri
                             }
                         }
                         ListaCantidadMes = ListaProductoMes;
+                        foreach (DataGridViewRow row in dgvInventario.Rows)
+                        {
+                            SumaTotalSaldoInicial += Convert.ToInt32(row.Cells["SaldoInicial"].Value);
+                            SumaTotalMesEnero += Convert.ToInt32(row.Cells["Enero"].Value);
+                            SumaTotalMesFebrero += Convert.ToInt32(row.Cells["Febrero"].Value);
+                            SumaTotalMesMarzo += Convert.ToInt32(row.Cells["Marzo"].Value);
+                            SumaTotalMesAbril += Convert.ToInt32(row.Cells["Abril"].Value);
+                            SumaTotalMesMayo += Convert.ToInt32(row.Cells["Mayo"].Value);
+                            SumaTotalMesJunio += Convert.ToInt32(row.Cells["Junio"].Value);
+                            SumaTotalMesJulio += Convert.ToInt32(row.Cells["Julio"].Value);
+                            SumaTotalMesAgosto += Convert.ToInt32(row.Cells["Agosto"].Value);
+                            SumaTotalMesSeptiembre += Convert.ToInt32(row.Cells["Septiembre"].Value);
+                            SumaTotalMesOctubre += Convert.ToInt32(row.Cells["Octubre"].Value);
+                            SumaTotalMesNoviembre += Convert.ToInt32(row.Cells["Noviembre"].Value);
+                            SumaTotalMesDiciembre += Convert.ToInt32(row.Cells["Diciembre"].Value);
+                        }
 
+                        //Agrego Punto De Miles...
+                        string SumaTotalSaldoInicialString = SumaTotalSaldoInicial.ToString();
+                        string SumaTotalMesEneroString = SumaTotalMesEnero.ToString();
+                        string SumaTotalMesFebreroString = SumaTotalMesFebrero.ToString();
+                        string SumaTotalMesMarzoString = SumaTotalMesMarzo.ToString();
+                        string SumaTotalMesAbrilString = SumaTotalMesAbril.ToString();
+                        string SumaTotalMesMayoString = SumaTotalMesMayo.ToString();
+                        string SumaTotalMesJunioString = SumaTotalMesJunio.ToString();
+                        string SumaTotalMesJulioString = SumaTotalMesJulio.ToString();
+                        string SumaTotalMesAgostoString = SumaTotalMesAgosto.ToString();
+                        string SumaTotalMesSeptiembreString = SumaTotalMesSeptiembre.ToString();
+                        string SumaTotalMesOctubreString = SumaTotalMesOctubre.ToString();
+                        string SumaTotalMesNoviembreString = SumaTotalMesNoviembre.ToString();
+                        string SumaTotalMesDiciemString = SumaTotalMesDiciembre.ToString();
+                        dgvInventario.Rows.Add("", "Totales", SumaTotalSaldoInicialString, SumaTotalMesEneroString, SumaTotalMesFebreroString, SumaTotalMesMarzoString, SumaTotalMesAbrilString, SumaTotalMesMayoString, SumaTotalMesJunioString, SumaTotalMesJulioString, SumaTotalMesAgostoString, SumaTotalMesSeptiembreString, SumaTotalMesOctubreString, SumaTotalMesNoviembreString, SumaTotalMesDiciemString);
                     }
                     else
                     {
@@ -644,7 +690,7 @@ namespace Añuri
                 bool existeEnLista = ListaIdProducto.Any(x => x == item.idProducto);
                 if (existeEnLista == false)
                 {
-                    Contador = Contador + 1;                  
+                    Contador = Contador + 1;
                     if (Total > 0)
                     {
                         SaldoInicialEnPesos lista = new SaldoInicialEnPesos();

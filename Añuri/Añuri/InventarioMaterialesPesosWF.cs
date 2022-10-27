@@ -59,6 +59,19 @@ namespace Añuri
         {
             try
             {
+                decimal SumaTotalSaldoInicial = 0;
+                decimal SumaTotalMesEnero = 0;
+                decimal SumaTotalMesFebrero = 0;
+                decimal SumaTotalMesMarzo = 0;
+                decimal SumaTotalMesAbril = 0;
+                decimal SumaTotalMesMayo = 0;
+                decimal SumaTotalMesJunio = 0;
+                decimal SumaTotalMesJulio = 0;
+                decimal SumaTotalMesAgosto = 0;
+                decimal SumaTotalMesSeptiembre = 0;
+                decimal SumaTotalMesOctubre = 0;
+                decimal SumaTotalMesNoviembre = 0;
+                decimal SumaTotalMesDiciembre = 0;
                 dgvInventario.Rows.Clear();
                 string año = txtAño.Text;
                 string Material = txtMateriales.Text;
@@ -275,47 +288,6 @@ namespace Añuri
                                             listaMeses.Add(MesDos);
                                             if (item.Mes - MesDos == 1)
                                             { item.Monto = item.Monto + valor2.Monto; }
-                                            //int Mes = item.Mes - 1;
-                                            //var valor = ListaProductoMes.FirstOrDefault(x => x.Mes == Mes && x.idProducto == item.idProducto);
-                                            //if (valor != null)
-                                            //{
-                                            //    item.Monto = item.Monto + valor.Monto;
-                                            //}
-                                            //else
-                                            //{
-                                            //    listaMeses = listaMeses.OrderBy(o => o.ToString()).ToList();
-                                            //    var UltimoMes = listaMeses.LastOrDefault();
-                                            //    var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto && x.Mes == UltimoMes);
-                                            //    if (ValorMasProximo != null)
-                                            //    {
-                                            //        var diferencia = item.Mes - ValorMasProximo.Mes;
-
-                                            //        bool existeMesEnLista = listaMeses.Any(x => x == item.Mes);
-                                            //        if (existeMesEnLista == false)
-                                            //        {
-                                            //            listaMeses.Add(item.Mes);
-                                            //        }
-                                            //        for (int i = 1; i <= diferencia; i++)
-                                            //        {
-                                            //            int MesDos = item.Mes - i;
-                                            //            var valor2 = ListaProductoMes.FirstOrDefault(x => x.Mes == ValorMasProximo.Mes && x.idProducto == item.idProducto);
-                                            //            if (valor2 != null)
-                                            //            {
-                                            //                MesProducto Lista = new MesProducto();
-                                            //                string MesNuevo = ObtenerMes(MesDos);
-                                            //                Lista.Mes = MesDos;
-                                            //                Lista.NombreMes = MesNuevo;
-                                            //                Lista.Monto = valor2.Monto;
-                                            //                Lista.idProducto = valor2.idProducto;
-                                            //                Lista.Producto = valor2.Producto;
-                                            //                ListaProductoMesNueva.Add(Lista);
-                                            //                listaMeses.Add(MesDos);
-                                            //                if (item.Mes - MesDos == 1)
-                                            //                { item.Monto = item.Monto + valor2.Monto; }
-                                            //            }
-                                            //        }
-                                            //    }
-                                            //}
                                         }
                                     }
                                 }
@@ -359,14 +331,6 @@ namespace Añuri
                                         if (MesMayor > 0)
                                         { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla + 1, valorMes.Monto); }
                                     }
-                                    //else
-                                    //{
-                                    //    int MesMayor = listaMes.Max();
-                                    //    int idProd = ListaidProducto.Last();
-                                    //    var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
-                                    //    if (MesMayor > 0)
-                                    //    { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Monto); }
-                                    //}
                                 }
                                 listaMes.Clear();
                                 listaMes.Add(item.Mes);
@@ -594,6 +558,38 @@ namespace Añuri
                             }
                         }
                         ListaMontoMes = ListaProductoMes;
+                        foreach (DataGridViewRow row in dgvInventario.Rows)
+                        {
+                            SumaTotalSaldoInicial += Convert.ToDecimal(row.Cells["SaldoInicial"].Value);
+                            SumaTotalMesEnero += Convert.ToDecimal(row.Cells["Enero"].Value);
+                            SumaTotalMesFebrero += Convert.ToDecimal(row.Cells["Febrero"].Value);
+                            SumaTotalMesMarzo += Convert.ToDecimal(row.Cells["Marzo"].Value);
+                            SumaTotalMesAbril += Convert.ToDecimal(row.Cells["Abril"].Value);
+                            SumaTotalMesMayo += Convert.ToDecimal(row.Cells["Mayo"].Value);
+                            SumaTotalMesJunio += Convert.ToDecimal(row.Cells["Junio"].Value);
+                            SumaTotalMesJulio += Convert.ToDecimal(row.Cells["Julio"].Value);
+                            SumaTotalMesAgosto += Convert.ToDecimal(row.Cells["Agosto"].Value);
+                            SumaTotalMesSeptiembre += Convert.ToDecimal(row.Cells["Septiembre"].Value);
+                            SumaTotalMesOctubre += Convert.ToDecimal(row.Cells["Octubre"].Value);
+                            SumaTotalMesNoviembre += Convert.ToDecimal(row.Cells["Noviembre"].Value);
+                            SumaTotalMesDiciembre += Convert.ToDecimal(row.Cells["Diciembre"].Value);
+                        }
+
+                        //Agrego Punto De Miles...
+                        string SumaSaldoInicialString = SumaTotalSaldoInicial.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesEneroString = SumaTotalMesEnero.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesFebreroString = SumaTotalMesFebrero.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesMarzoString = SumaTotalMesMarzo.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesAbrilString = SumaTotalMesAbril.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesMayoString = SumaTotalMesMayo.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesJunioString = SumaTotalMesJunio.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesJulioString = SumaTotalMesJulio.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesAgostoString = SumaTotalMesAgosto.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesSeptiembreString = SumaTotalMesSeptiembre.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesOctubreString = SumaTotalMesOctubre.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesNoviembreString = SumaTotalMesNoviembre.ToString("N", new CultureInfo("es-CL"));
+                        string SumaTotalMesDiciemString = SumaTotalMesDiciembre.ToString("N", new CultureInfo("es-CL"));
+                        dgvInventario.Rows.Add("","Totales", SumaSaldoInicialString, SumaTotalMesEneroString, SumaTotalMesFebreroString, SumaTotalMesMarzoString, SumaTotalMesAbrilString, SumaTotalMesMayoString, SumaTotalMesJunioString, SumaTotalMesJulioString, SumaTotalMesAgostoString, SumaTotalMesSeptiembreString, SumaTotalMesOctubreString, SumaTotalMesNoviembreString, SumaTotalMesDiciemString);
                     }
                     else
                     {
@@ -613,6 +609,7 @@ namespace Añuri
             catch (Exception ex)
             { }
         }
+
 
         private void ReformularGrilla(int MesMayor, int posicionEnGrilla, decimal montoDecimal)
         {
