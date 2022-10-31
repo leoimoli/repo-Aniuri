@@ -395,6 +395,10 @@
     <None Include="Resources\los-usuarios-del-grupo.png" />
     <None Include="Resources\usuario11.png" />
     <None Include="Resources\play2.png" />
+    <Content Include="Resources\Feliz-Fiesta-Login.gif" />
+    <Content Include="Resources\Feliz-Fiesta.gif" />
+    <Content Include="Resources\Navidad-5.gif" />
+    <Content Include="Resources\Navidad.gif" />
     <Content Include="Resources\ver %283%29.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

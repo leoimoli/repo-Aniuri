@@ -24,6 +24,22 @@ namespace Añuri
         {
             InitializeComponent();
             AbrirFormEnPanel(new InicioWF());
+            DateTime FechaActual = DateTime.Now;
+            string Prueba = "30/10/2022 23:59:59";
+            string FiestasNavideñas = "30/10/2022 23:59:59";
+            //// Imagenes Navideñas
+            if (FechaActual > Convert.ToDateTime(FiestasNavideñas))
+            {
+                //// Imagenes Navideñas
+                Image imgFiestas = Image.FromFile(Environment.CurrentDirectory + "\\" + @"Navidad-5.gif");
+                picNavidad.Image = imgFiestas;
+            }
+            else
+            {
+                picNavidad.Visible = false;
+            }
+
+
             var imagen = new Bitmap(Añuri.Properties.Resources.hogar__3_);
             ImagenPagina.Image = imagen;
             lblPantalla.Text = "Inicio";

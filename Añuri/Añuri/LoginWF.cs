@@ -134,5 +134,22 @@ namespace Añuri
             ConexionWF _cone = new ConexionWF();
             _cone.Show();
         }
+
+        private void LoginWF_Load(object sender, EventArgs e)
+        {
+            DateTime FechaActual = DateTime.Now;
+            string Prueba = "30/10/2022 23:59:59";
+            string FiestasNavideñas = "07/12/2022 23:59:59";
+            //// Imagenes Navideñas
+            if (FechaActual > Convert.ToDateTime(Prueba))
+            {
+                Image imgFiestas = Image.FromFile(Environment.CurrentDirectory + "\\" + @"Feliz-Fiesta-Login.gif");
+                picFiestas.Image = imgFiestas;
+            }
+            else
+            {
+                picFiestas.Visible = false;
+            }
+        }
     }
 }

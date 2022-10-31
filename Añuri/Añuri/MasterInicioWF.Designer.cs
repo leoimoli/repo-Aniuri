@@ -66,6 +66,7 @@
             this.panel14 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.picNavidad = new System.Windows.Forms.PictureBox();
             this.btnModificarClave = new System.Windows.Forms.Button();
             this.txtNuevaClave = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -87,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel14.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNavidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
@@ -537,6 +539,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.picNavidad);
             this.panel4.Controls.Add(this.btnModificarClave);
             this.panel4.Controls.Add(this.txtNuevaClave);
             this.panel4.Controls.Add(this.label6);
@@ -546,6 +549,15 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1078, 51);
             this.panel4.TabIndex = 11;
+            // 
+            // picNavidad
+            // 
+            this.picNavidad.Location = new System.Drawing.Point(422, 0);
+            this.picNavidad.Name = "picNavidad";
+            this.picNavidad.Size = new System.Drawing.Size(185, 50);
+            this.picNavidad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picNavidad.TabIndex = 7;
+            this.picNavidad.TabStop = false;
             // 
             // btnModificarClave
             // 
@@ -635,6 +647,7 @@
             this.panel14.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNavidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
 
@@ -684,5 +697,6 @@
         private System.Windows.Forms.Button btnModificarClave;
         private System.Windows.Forms.Panel btnPanelConfiguracion;
         private System.Windows.Forms.Button btnConfiguaracion;
+        private System.Windows.Forms.PictureBox picNavidad;
     }
 }

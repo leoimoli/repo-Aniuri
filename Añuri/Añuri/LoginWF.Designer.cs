@@ -38,10 +38,12 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.picFiestas = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFiestas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAcceder
@@ -53,7 +55,7 @@
             this.btnAcceder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAcceder.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcceder.ForeColor = System.Drawing.Color.LightGray;
-            this.btnAcceder.Location = new System.Drawing.Point(330, 251);
+            this.btnAcceder.Location = new System.Drawing.Point(330, 187);
             this.btnAcceder.Name = "btnAcceder";
             this.btnAcceder.Size = new System.Drawing.Size(400, 40);
             this.btnAcceder.TabIndex = 17;
@@ -66,7 +68,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(473, 80);
+            this.label1.Location = new System.Drawing.Point(473, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 24);
             this.label1.TabIndex = 16;
@@ -78,7 +80,7 @@
             this.txtClave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtClave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClave.ForeColor = System.Drawing.Color.Gray;
-            this.txtClave.Location = new System.Drawing.Point(360, 199);
+            this.txtClave.Location = new System.Drawing.Point(360, 145);
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(328, 27);
@@ -92,7 +94,7 @@
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.ForeColor = System.Drawing.Color.Gray;
-            this.txtUsuario.Location = new System.Drawing.Point(360, 125);
+            this.txtUsuario.Location = new System.Drawing.Point(360, 71);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(328, 27);
             this.txtUsuario.TabIndex = 14;
@@ -153,11 +155,21 @@
             this.label2.Text = ".";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // picFiestas
+            // 
+            this.picFiestas.Location = new System.Drawing.Point(384, 233);
+            this.picFiestas.Name = "picFiestas";
+            this.picFiestas.Size = new System.Drawing.Size(267, 81);
+            this.picFiestas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFiestas.TabIndex = 22;
+            this.picFiestas.TabStop = false;
+            // 
             // LoginWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 314);
+            this.Controls.Add(this.picFiestas);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -171,10 +183,12 @@
             this.Name = "LoginWF";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Añuri";
+            this.Load += new System.EventHandler(this.LoginWF_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFiestas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +205,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox picFiestas;
     }
 }
