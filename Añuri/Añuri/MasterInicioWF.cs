@@ -24,22 +24,7 @@ namespace Añuri
         {
             InitializeComponent();
             AbrirFormEnPanel(new InicioWF());
-            DateTime FechaActual = DateTime.Now;
-            string Prueba = "30/10/2022 23:59:59";
-            string FiestasNavideñas = "30/10/2022 23:59:59";
-            //// Imagenes Navideñas
-            if (FechaActual > Convert.ToDateTime(FiestasNavideñas))
-            {
-                //// Imagenes Navideñas
-                Image imgFiestas = Image.FromFile(Environment.CurrentDirectory + "\\" + @"Navidad-5.gif");
-                picNavidad.Image = imgFiestas;
-            }
-            else
-            {
-                picNavidad.Visible = false;
-            }
-
-
+            ValidarFechasFestivas();
             var imagen = new Bitmap(Añuri.Properties.Resources.hogar__3_);
             ImagenPagina.Image = imagen;
             lblPantalla.Text = "Inicio";
@@ -88,6 +73,25 @@ namespace Añuri
                 var result2 = MessageBox.Show(message2, caption2,
                                              MessageBoxButtons.OK,
                                              MessageBoxIcon.Exclamation);
+            }
+        }
+        private void ValidarFechasFestivas()
+        {
+            int AñoActual = DateTime.Now.Year;
+            DateTime FechaActual = DateTime.Now;
+            string PruebaIncio = Convert.ToString(30 + "/" + 10 + "/" + AñoActual + " " + "23" + ":59" + ":59");
+            string PruebaFin = Convert.ToString(02 + "/" + 11 + "/" + AñoActual + " " + "23" + ":59" + ":59");
+            string FiestasNavideñas = Convert.ToString(07 + "/" + 12 + "/" + AñoActual + " " + "23" + ":59" + ":59");
+            string FechaFinFiestas = Convert.ToString(06 + "/" + 01 + "/" + AñoActual + " " + "23" + ":59" + ":59");
+            //// Imagenes Navideñas
+            if (FechaActual > Convert.ToDateTime(FiestasNavideñas) && Convert.ToDateTime(FechaActual) < Convert.ToDateTime(FechaFinFiestas))
+            {
+                Image imgFiestas = Image.FromFile(Environment.CurrentDirectory + "\\" + @"Feliz-Fiesta-Login.gif");
+                picNavidad.Image = imgFiestas;
+            }
+            else
+            {
+                picNavidad.Visible = false;
             }
         }
         private void MasterInicioWF_Load(object sender, EventArgs e)

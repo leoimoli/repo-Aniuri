@@ -134,14 +134,20 @@ namespace Añuri
             ConexionWF _cone = new ConexionWF();
             _cone.Show();
         }
-
         private void LoginWF_Load(object sender, EventArgs e)
         {
+            ValidarFechasFestivas();           
+        }
+        private void ValidarFechasFestivas()
+        {
+            int AñoActual = DateTime.Now.Year;
             DateTime FechaActual = DateTime.Now;
-            string Prueba = "30/10/2022 23:59:59";
-            string FiestasNavideñas = "07/12/2022 23:59:59";
+            string PruebaIncio = Convert.ToString(30 + "/" + 10 + "/" + AñoActual + " " + "23" + ":59" + ":59");
+            string PruebaFin = Convert.ToString(02 + "/" + 11 + "/" + AñoActual + " " + "23" + ":59" + ":59");
+            string FiestasNavideñas = Convert.ToString(07 + "/" + 12 + "/" + AñoActual + " " + "23" + ":59" + ":59");
+            string FechaFinFiestas = Convert.ToString(06 + "/" + 01 + "/" + AñoActual + " " + "23" + ":59" + ":59");
             //// Imagenes Navideñas
-            if (FechaActual > Convert.ToDateTime(Prueba))
+            if (FechaActual > Convert.ToDateTime(FiestasNavideñas) && Convert.ToDateTime(FechaActual) < Convert.ToDateTime(FechaFinFiestas))
             {
                 Image imgFiestas = Image.FromFile(Environment.CurrentDirectory + "\\" + @"Feliz-Fiesta-Login.gif");
                 picFiestas.Image = imgFiestas;
