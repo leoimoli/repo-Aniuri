@@ -295,7 +295,7 @@
             this.lblDia.BackColor = System.Drawing.SystemColors.Control;
             this.lblDia.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.lblDia.Location = new System.Drawing.Point(698, 420);
+            this.lblDia.Location = new System.Drawing.Point(695, 420);
             this.lblDia.Name = "lblDia";
             this.lblDia.Size = new System.Drawing.Size(86, 30);
             this.lblDia.TabIndex = 8;
