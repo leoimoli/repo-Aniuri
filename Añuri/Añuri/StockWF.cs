@@ -463,8 +463,8 @@ namespace Añuri
                 Lista.Remito = txtRemito.Text;
                 Lista.Descripcion = row.Cells[2].Value.ToString();
                 DateTime fecha = Convert.ToDateTime(dtFechaCompra.Text);
-                Lista.FechaFactura = Convert.ToDateTime(fecha.ToShortDateString());
-                Lista.PrecioNeto = Convert.ToDecimal(row.Cells[4].Value.ToString());
+                Lista.FechaFactura = Convert.ToDateTime(fecha.ToShortDateString());               
+                Lista.PrecioNeto = Convert.ToDecimal(row.Cells[4].Value.ToString().Replace('.', ','));
                 Lista.ValorUnitario = Convert.ToDecimal(row.Cells[3].Value.ToString());
                 Lista.Cantidad = Convert.ToInt32(row.Cells[2].Value.ToString());
                 Lista.Observaciones = Convert.ToString(row.Cells[5].Value.ToString());
@@ -578,6 +578,10 @@ namespace Añuri
         private void cmbGrupo_Click(object sender, EventArgs e)
         {
             CargarComboGrupo();
+        }                    
+        private void dgvListaCargaStock_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+
         }
     }
 }
