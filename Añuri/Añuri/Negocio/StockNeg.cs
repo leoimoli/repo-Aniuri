@@ -149,6 +149,64 @@ namespace Añuri.Negocio
             }
             return _lista;
         }
+    
+        public static decimal ListarSaldoInicial(int id, string año)
+        {
+            decimal valorInicial = 0;
+            try
+            {
+                List<Stock> _lista = new List<Stock>();
+                string añoFuturo = (int.Parse(año) + 1).ToString();
+                _lista = StockDao.ListarSaldoInicial(id, año);
+
+                foreach (var item in _lista)
+                {
+                    if (item.TipoMovimiento == "E" && item.FechaMovimiento.Year != int.Parse(año))
+                    {
+                        valorInicial = valorInicial + item.PrecioNeto;
+                    }
+                    if (item.TipoMovimiento == "S" && item.FechaMovimiento.Year != int.Parse(año))
+                    {
+                        valorInicial = valorInicial - item.PrecioNeto;
+                    }
+                }
+            }
+            catch (Exception ex)
+            { }
+            return valorInicial;
+        }
+       
+
+        public static List<ResultadoGrillaEnPesos> ListarIdMateriales()
+        {
+            List<ResultadoGrillaEnPesos> resultado = new List<ResultadoGrillaEnPesos>();
+            List<Stock> _lista = new List<Stock>();
+            try
+            {
+                _lista = StockDao.ListarIdMateriales();
+                foreach (var item in _lista)
+                {
+                    if(!resultado.Any(x => x.idProducto == item.idProducto))
+                    {
+                        ResultadoGrillaEnPesos nuevo = new ResultadoGrillaEnPesos();
+                        nuevo.nombre = item.Descripcion;
+                        nuevo.idProducto = item.idProducto;
+                        nuevo.movimientos = new List<Stock>();
+                        nuevo.movimientos.Add(item);
+                        resultado.Add(nuevo);
+                    }
+                    else
+                    {
+                        resultado.FirstOrDefault(x => x.idProducto == item.idProducto).movimientos.Add(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return resultado;
+        }
+
         public static List<Stock> ListaStockFaltante()
         {
             List<Stock> _lista = new List<Stock>();

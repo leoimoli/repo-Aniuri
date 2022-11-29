@@ -581,7 +581,7 @@ namespace Añuri
         }                    
         private void dgvListaCargaStock_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-
+           
         }
     }
 }
