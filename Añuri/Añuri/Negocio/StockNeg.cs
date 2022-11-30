@@ -129,6 +129,62 @@ namespace Añuri.Negocio
             return _lista;
         }
 
+        public static List<ResultadoGrillaEnKilos> ListarMateriales()
+        {
+            List<ResultadoGrillaEnKilos> resultado = new List<ResultadoGrillaEnKilos>();
+            List<Stock> _lista = new List<Stock>();
+            try
+            {
+                _lista = StockDao.ListarMaterialesPorKilos();
+                foreach (var item in _lista)
+                {
+                    if (!resultado.Any(x => x.idProducto == item.idProducto))
+                    {
+                        ResultadoGrillaEnKilos nuevo = new ResultadoGrillaEnKilos();
+                        nuevo.nombre = item.Descripcion;
+                        nuevo.idProducto = item.idProducto;
+                        nuevo.movimientos = new List<Stock>();
+                        nuevo.movimientos.Add(item);
+                        resultado.Add(nuevo);
+                    }
+                    else
+                    {
+                        resultado.FirstOrDefault(x => x.idProducto == item.idProducto).movimientos.Add(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return resultado;
+        }
+
+        public static int ListarSaldoInicialEnKilos(int idProducto, string año)
+        {
+            int valorInicial = 0;
+            try
+            {
+                List<Stock> _lista = new List<Stock>();
+                string añoFuturo = (int.Parse(año) + 1).ToString();
+                _lista = StockDao.ListarSaldoInicialEnKilos(idProducto, año);
+
+                foreach (var item in _lista)
+                {
+                    if (item.TipoMovimiento == "E" && item.FechaMovimiento.Year != int.Parse(año))
+                    {
+                        valorInicial = valorInicial + item.Cantidad;
+                    }
+                    if (item.TipoMovimiento == "S" && item.FechaMovimiento.Year != int.Parse(año))
+                    {
+                        valorInicial = valorInicial - item.Cantidad;
+                    }
+                }
+            }
+            catch (Exception ex)
+            { }
+            return valorInicial;
+        }
+
         public static List<Stock> ListarInventarioMaterialesPorKilos(string año, string material)
         {
             List<Stock> _lista = new List<Stock>();

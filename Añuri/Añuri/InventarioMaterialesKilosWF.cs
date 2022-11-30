@@ -94,479 +94,77 @@ namespace Añuri
                     int Posicion = 0;
                     List<Stock> ListaStock = StockNeg.ListarInventarioMaterialesPorKilos(año, Material);
                     List<Stock> ListaStockSaldoInicial = StockNeg.ListarSaldoInicialInventarioMaterialesPorKilos(año, Material);
-                    if (ListaStockSaldoInicial.Count > 0)
+                    List<ResultadoGrillaEnKilos> ListaMaterial = new List<ResultadoGrillaEnKilos>();
+                    ListaMaterial = StockNeg.ListarMateriales();
+                    int fila = 0;
+                    foreach (var item in ListaMaterial)
                     {
-                        SaldoInicial = CalcularSaldoInicial(ListaStockSaldoInicial);
-                    }
+                        item.valorInicial = StockNeg.ListarSaldoInicialEnKilos(item.idProducto, año);
+                        dgvInventario.Visible = true;
 
-                    if (ListaStock.Count > 0)
-                    {
-                        btnExcel.Visible = true;
-                        btnPdf.Visible = true;
-                        List<Stock> lista = new List<Stock>();
-                        var data = ListaStock.Select(k => new { k.FechaMovimiento.Month, k.idProducto, k.Descripcion, k.TipoMovimiento, k.Cantidad }).GroupBy(x => new { x.Month, x.idProducto, x.Descripcion, x.TipoMovimiento, x.Cantidad }, (key, group) => new
+                        dgvInventario.Rows.Add(item.idProducto, item.nombre, item.valorInicial);
+
+                        int valorActual = item.valorInicial;
+                        for (int i = 1; i <= 12; i++)
                         {
-                            mes = key.Month,
-                            id = key.idProducto,
-                            nombre = key.Descripcion,
-                            tipoMov = key.TipoMovimiento,
-                            cantidad = key.Cantidad,
-                            cantidadTotal = group.Sum(k => k.Cantidad)
-                        }).ToList();
-
-                        foreach (var item in data)
-                        {
-                            bool existe = ListaId.Any(x => x == item.id);
-                            bool existeMes = ListaMes.Any(x => x == item.mes);
-                            if (existe == true && existeMes == false)
+                            List<Stock> movimientosMes = item.movimientos.Where(x => x.FechaMovimiento.Month == i && x.FechaMovimiento.Year == int.Parse(año)).ToList();
+                            if (movimientosMes != null && movimientosMes.Count > 0)
                             {
-                                MesProducto _Lista = new MesProducto();
-                                _Lista.Cantidad = Total;
-                                _Lista.idProducto = data[Posicion - 1].id;
-                                _Lista.Producto = data[Posicion - 1].nombre;
-                                string NombreMes = ObtenerMes(data[Posicion - 1].mes);
-                                _Lista.Mes = data[Posicion - 1].mes;
-                                _Lista.NombreMes = NombreMes;
-                                ListaProductoMes.Add(_Lista);
-                                SumaEntrada = 0;
-                                SumaSalida = 0;
-                                Total = 0;
-                                //ListaMes.Clear();
-                                ListaId.Add(item.id);
-                                ListaMes.Add(item.mes);
-                            }
-                            if (existe == false)
-                            {
-                                if (Posicion > 1)
+                                foreach (var movi in movimientosMes)
                                 {
-                                    bool YaExiste = ListaProductoMes.Any(x => x.idProducto == data[Posicion - 1].id && x.Mes == data[Posicion - 1].mes);
-                                    if (YaExiste == false)
+                                    if (i == movi.FechaMovimiento.Month && movi.FechaMovimiento.Year == int.Parse(año))
                                     {
-                                        MesProducto _Lista = new MesProducto();
-                                        _Lista.Cantidad = Total;
-                                        _Lista.idProducto = data[Posicion - 1].id;
-                                        _Lista.Producto = data[Posicion - 1].nombre;
-                                        string NombreMes = ObtenerMes(data[Posicion - 1].mes);
-                                        _Lista.Mes = data[Posicion - 1].mes;
-                                        _Lista.NombreMes = NombreMes;
-                                        ListaProductoMes.Add(_Lista);
-                                    }
-
-                                }
-                                SumaEntrada = 0;
-                                SumaSalida = 0;
-                                Total = 0;
-                                ListaMes.Clear();
-                                ListaId.Add(item.id);
-                                ListaMes.Add(item.mes);
-                                if (item.tipoMov == "E")
-                                {
-                                    SumaEntrada = SumaEntrada + item.cantidad;
-                                }
-                                if (item.tipoMov == "S")
-                                {
-                                    SumaSalida = SumaSalida + item.cantidad;
-                                }
-                                Total = SumaEntrada - SumaSalida;
-                            }
-                            else
-                            {
-                                existeMes = ListaMes.Any(x => x == item.mes);
-                                if (existeMes == false)
-                                {
-                                    SumaEntrada = 0;
-                                    SumaSalida = 0;
-                                    Total = 0;
-                                    ListaMes.Add(item.mes);
-                                    if (item.tipoMov == "E")
-                                    {
-                                        SumaEntrada = SumaEntrada + item.cantidad;
-                                    }
-                                    if (item.tipoMov == "S")
-                                    {
-                                        SumaSalida = SumaSalida + item.cantidad;
-                                    }
-                                    Total = SumaEntrada - SumaSalida;
-                                }
-                                else
-                                {
-                                    if (item.tipoMov == "E")
-                                    {
-                                        SumaEntrada = SumaEntrada + item.cantidad;
-                                    }
-                                    if (item.tipoMov == "S")
-                                    {
-                                        SumaSalida = SumaSalida + item.cantidad;
-                                    }
-                                    Total = SumaEntrada - SumaSalida;
-                                }
-                            }
-                            Posicion = Posicion + 1;
-                            if (Posicion == data.Count)
-                            {
-                                MesProducto _Lista = new MesProducto();
-                                _Lista.Cantidad = Total;
-                                _Lista.idProducto = data[Posicion - 1].id;
-                                _Lista.Producto = data[Posicion - 1].nombre;
-                                string NombreMes = ObtenerMes(data[Posicion - 1].mes);
-                                _Lista.Mes = data[Posicion - 1].mes;
-                                _Lista.NombreMes = NombreMes;
-                                ListaProductoMes.Add(_Lista);
-                            }
-                        }
-                        List<int> ListaProducto = new List<int>();
-                        List<int> ListaidProducto = new List<int>();
-                        int PosicionGrilla = 0;
-                        int PosicionAsignadaEnGrilla = 0;
-                        List<MesProducto> ListaProductoMesNueva = new List<MesProducto>();
-                        List<int> listaMeses = new List<int>();
-                        if (SaldoInicial.Count > 0)
-                        {
-                            foreach (var item in SaldoInicial)
-                            {
-                                foreach (var itemLista in ListaProductoMes)
-                                {
-                                    if (item.idProducto == itemLista.idProducto)
-                                    {
-                                        itemLista.CantidadSaldoInicial = item.CantidadSaldo;
-                                    }
-                                }
-                            }
-                        }
-                        ////// Recorremos la lista existente y le cargamos los saldos de meses anteriores.
-                        foreach (var item in ListaProductoMes)
-                        {
-
-                            bool ExisteProd = ListaProducto.Any(x => x == item.idProducto);
-                            if (ExisteProd == false)
-                            {
-                                listaMeses.Clear();
-                                ListaProducto.Add(item.idProducto);
-                                listaMeses.Add(item.Mes);
-                                item.Cantidad = item.Cantidad + item.CantidadSaldoInicial;
-                            }
-                            else
-                            {
-                                listaMeses = listaMeses.OrderBy(o => o.ToString()).ToList();
-                                var UltimoMes = listaMeses.LastOrDefault();
-                                var ValorMasProximo = ListaProductoMes.FirstOrDefault(x => x.idProducto == item.idProducto && x.Mes == UltimoMes);
-                                if (ValorMasProximo != null)
-                                {
-                                    var diferencia = item.Mes - ValorMasProximo.Mes;
-
-                                    bool existeMesEnLista = listaMeses.Any(x => x == item.Mes);
-                                    if (existeMesEnLista == false)
-                                    {
-                                        listaMeses.Add(item.Mes);
-                                    }
-                                    for (int i = 1; i <= diferencia; i++)
-                                    {
-                                        int MesDos = item.Mes - i;
-                                        var valor2 = ListaProductoMes.FirstOrDefault(x => x.Mes == ValorMasProximo.Mes && x.idProducto == item.idProducto);
-                                        if (valor2 != null)
+                                        if (movi.TipoMovimiento == "E")
                                         {
-                                            MesProducto Lista = new MesProducto();
-                                            string MesNuevo = ObtenerMes(MesDos);
-                                            Lista.Mes = MesDos;
-                                            Lista.NombreMes = MesNuevo;
-                                            Lista.Cantidad = valor2.Cantidad;
-                                            Lista.idProducto = valor2.idProducto;
-                                            Lista.Producto = valor2.Producto;
-                                            ListaProductoMesNueva.Add(Lista);
-                                            listaMeses.Add(MesDos);
-                                            if (item.Mes - MesDos == 1)
-                                            { item.Cantidad = item.Cantidad + valor2.Cantidad; }
+                                            valorActual = valorActual + movi.Cantidad;
+                                        }
+                                        else
+                                        {
+                                            valorActual = valorActual - movi.Cantidad;
                                         }
                                     }
+                                    if (valorActual < 0)
+                                    { valorActual = 0; }
                                 }
-
                             }
+                            dgvInventario.Rows[fila].Cells[(i + 2)].Value = valorActual;
                         }
-                        ///// Le paso los nuevos valores a la lista ListaProductoMes
-                        if (ListaProductoMesNueva.Count > 0)
-                        {
-                            foreach (var item in ListaProductoMesNueva)
-                            {
-                                MesProducto List = new MesProducto();
-                                List.Mes = item.Mes;
-                                List.NombreMes = item.NombreMes;
-                                List.Cantidad = item.Cantidad;
-                                List.idProducto = item.idProducto;
-                                List.Producto = item.Producto;
-                                ListaProductoMes.Add(List);
-                            }
-                        }
-                        ////// Armamos el dataGridView con la informacion obtenida.                        
-                        List<MesProducto> ListaProductoMes2 = ListaProductoMes.OrderBy(o => o.idProducto).ToList();
-                        //List<MesProducto> ListaProductoMes3 = ListaProductoMes2.OrderBy(o => o.Mes).ToList();
-                        int contador = 0;
-                        ///// Le volvemos a pasar a la lista final la nueva lista ordenada por producto y mes.
-                        ListaProductoMes = ListaProductoMes2;
-                        List<int> listaMes = new List<int>();
-                        foreach (var item in ListaProductoMes)
-                        {
-                            dgvInventario.Visible = true;
-                            bool ExisteProd = ListaidProducto.Any(x => x == item.idProducto);
-                            if (ExisteProd == false)
-                            {
-                                contador = contador + 1;
-                                if (listaMes.Count > 0)
-                                {
-                                    int MesMayor = listaMes.Max();
-                                    int idProd = ListaidProducto.Last();
-                                    var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
-                                    if (MesMayor > 0)
-                                    { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Cantidad); }
-                                }
-                                //else
-                                //{
-                                //    int MesMayor = listaMes.Max();
-                                //    int idProd = ListaidProducto.Last();
-                                //    var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
-                                //    if (MesMayor > 0)
-                                //    { ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Cantidad); }
-                                //}
-                                listaMes.Clear();
-                                listaMes.Add(item.Mes);
-                                ListaidProducto.Add(item.idProducto);
-                                dgvInventario.Rows.Add(item.idProducto, item.Producto);
-                                dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value = item.CantidadSaldoInicial;
-                                if (item.NombreMes == "Enero")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Enero"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Enero"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Febrero")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Febrero"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Febrero"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Marzo")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Marzo"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Marzo"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Abril")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Abril"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Abril"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Mayo")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Mayo"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Mayo"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Junio")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Junio"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Junio"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Julio")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Julio"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Julio"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Agosto")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Agosto"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Agosto"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Septiembre")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Septiembre"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Septiembre"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Octubre")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Octubre"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Octubre"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Noviembre")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Noviembre"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Noviembre"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                if (item.NombreMes == "Diciembre")
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Diciembre"].Value = item.Cantidad;
-                                }
-                                else
-                                {
-                                    dgvInventario.Rows[PosicionGrilla].Cells["Diciembre"].Value = dgvInventario.Rows[PosicionGrilla].Cells["SaldoInicial"].Value;
-                                }
-                                PosicionGrilla = PosicionGrilla + 1;
-                            }
-
-                            else
-                            {
-                                listaMes.Add(item.Mes);
-                                foreach (DataGridViewRow Row in dgvInventario.Rows)
-                                {
-                                    for (int i = 0; i < dgvInventario.Rows.Count; i++)
-                                    {
-                                        string valorGrilla = Row.Cells["materiales"].Value.ToString();
-                                        if (valorGrilla == item.Producto)
-                                        {
-                                            PosicionAsignadaEnGrilla = i;
-                                        }
-                                    }
-                                }
-                                if (item.NombreMes == "Enero")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Enero"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Febrero")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Febrero"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Marzo")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Marzo"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Abril")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Abril"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Mayo")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Mayo"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Junio")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Junio"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Julio")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Julio"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Agosto")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Agosto"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Septiembre")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Septiembre"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Octubre")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Octubre"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Noviembre")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Noviembre"].Value = item.Cantidad;
-                                }
-                                if (item.NombreMes == "Diciembre")
-                                {
-                                    dgvInventario.Rows[PosicionAsignadaEnGrilla].Cells["Diciembre"].Value = item.Cantidad;
-                                }
-                                contador = contador + 1;
-                            }
-                        }
-                        if (contador == ListaProductoMes.Count)
-                        {
-                            if (listaMes.Count > 0)
-                            {
-                                PosicionAsignadaEnGrilla = 0;
-                                foreach (var item in ListaidProducto)
-                                {
-                                    var info1 = ListaProductoMes.Where(n => n.idProducto == item).ToList();
-                                    var info2 = info1.OrderByDescending(x => x.Mes).ToList().First();
-                                    int MesMayor = info2.Mes;
-                                    int idProd = info2.idProducto;
-                                    var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
-                                    if (MesMayor > 0)
-                                    {
-                                        ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Cantidad);
-                                        PosicionAsignadaEnGrilla = PosicionAsignadaEnGrilla + 1;
-                                    }
-                                }
-                                //int MesMayor = listaMes.Max();
-                                //int idProd = ListaidProducto.Last();
-                                //var valorMes = ListaProductoMes.FirstOrDefault(x => x.Mes == MesMayor && x.idProducto == idProd);
-                                //if (MesMayor > 0)
-                                //{ ReformularGrilla(MesMayor, PosicionAsignadaEnGrilla, valorMes.Cantidad); }
-                            }
-                        }
-                        ListaCantidadMes = ListaProductoMes;
-                        foreach (DataGridViewRow row in dgvInventario.Rows)
-                        {
-                            SumaTotalSaldoInicial += Convert.ToInt32(row.Cells["SaldoInicial"].Value);
-                            SumaTotalMesEnero += Convert.ToInt32(row.Cells["Enero"].Value);
-                            SumaTotalMesFebrero += Convert.ToInt32(row.Cells["Febrero"].Value);
-                            SumaTotalMesMarzo += Convert.ToInt32(row.Cells["Marzo"].Value);
-                            SumaTotalMesAbril += Convert.ToInt32(row.Cells["Abril"].Value);
-                            SumaTotalMesMayo += Convert.ToInt32(row.Cells["Mayo"].Value);
-                            SumaTotalMesJunio += Convert.ToInt32(row.Cells["Junio"].Value);
-                            SumaTotalMesJulio += Convert.ToInt32(row.Cells["Julio"].Value);
-                            SumaTotalMesAgosto += Convert.ToInt32(row.Cells["Agosto"].Value);
-                            SumaTotalMesSeptiembre += Convert.ToInt32(row.Cells["Septiembre"].Value);
-                            SumaTotalMesOctubre += Convert.ToInt32(row.Cells["Octubre"].Value);
-                            SumaTotalMesNoviembre += Convert.ToInt32(row.Cells["Noviembre"].Value);
-                            SumaTotalMesDiciembre += Convert.ToInt32(row.Cells["Diciembre"].Value);
-                        }
-
-                        //Agrego Punto De Miles...
-                        string SumaTotalSaldoInicialString = SumaTotalSaldoInicial.ToString();
-                        string SumaTotalMesEneroString = SumaTotalMesEnero.ToString();
-                        string SumaTotalMesFebreroString = SumaTotalMesFebrero.ToString();
-                        string SumaTotalMesMarzoString = SumaTotalMesMarzo.ToString();
-                        string SumaTotalMesAbrilString = SumaTotalMesAbril.ToString();
-                        string SumaTotalMesMayoString = SumaTotalMesMayo.ToString();
-                        string SumaTotalMesJunioString = SumaTotalMesJunio.ToString();
-                        string SumaTotalMesJulioString = SumaTotalMesJulio.ToString();
-                        string SumaTotalMesAgostoString = SumaTotalMesAgosto.ToString();
-                        string SumaTotalMesSeptiembreString = SumaTotalMesSeptiembre.ToString();
-                        string SumaTotalMesOctubreString = SumaTotalMesOctubre.ToString();
-                        string SumaTotalMesNoviembreString = SumaTotalMesNoviembre.ToString();
-                        string SumaTotalMesDiciemString = SumaTotalMesDiciembre.ToString();
-                        dgvInventario.Rows.Add("", "Totales", SumaTotalSaldoInicialString, SumaTotalMesEneroString, SumaTotalMesFebreroString, SumaTotalMesMarzoString, SumaTotalMesAbrilString, SumaTotalMesMayoString, SumaTotalMesJunioString, SumaTotalMesJulioString, SumaTotalMesAgostoString, SumaTotalMesSeptiembreString, SumaTotalMesOctubreString, SumaTotalMesNoviembreString, SumaTotalMesDiciemString);
+                        fila++;
                     }
-                    else
+                    foreach (DataGridViewRow row in dgvInventario.Rows)
                     {
-                        dgvInventario.Rows.Clear();
-                        dgvInventario.Visible = false;
-                        btnExcel.Visible = false;
-                        btnPdf.Visible = false;
-                        const string message = "No se encontro información para mostrar con los parametros de busqueda ingresados..";
-                        const string caption = "Atención:";
-                        var result = MessageBox.Show(message, caption,
-                                                     MessageBoxButtons.OK,
-                                                   MessageBoxIcon.Exclamation);
-                        throw new Exception();
+                        SumaTotalSaldoInicial += Convert.ToInt32(row.Cells["SaldoInicial"].Value);
+                        SumaTotalMesEnero += Convert.ToInt32(row.Cells["Enero"].Value);
+                        SumaTotalMesFebrero += Convert.ToInt32(row.Cells["Febrero"].Value);
+                        SumaTotalMesMarzo += Convert.ToInt32(row.Cells["Marzo"].Value);
+                        SumaTotalMesAbril += Convert.ToInt32(row.Cells["Abril"].Value);
+                        SumaTotalMesMayo += Convert.ToInt32(row.Cells["Mayo"].Value);
+                        SumaTotalMesJunio += Convert.ToInt32(row.Cells["Junio"].Value);
+                        SumaTotalMesJulio += Convert.ToInt32(row.Cells["Julio"].Value);
+                        SumaTotalMesAgosto += Convert.ToInt32(row.Cells["Agosto"].Value);
+                        SumaTotalMesSeptiembre += Convert.ToInt32(row.Cells["Septiembre"].Value);
+                        SumaTotalMesOctubre += Convert.ToInt32(row.Cells["Octubre"].Value);
+                        SumaTotalMesNoviembre += Convert.ToInt32(row.Cells["Noviembre"].Value);
+                        SumaTotalMesDiciembre += Convert.ToInt32(row.Cells["Diciembre"].Value);
                     }
+
+                    //Agrego Punto De Miles...
+                    string SumaTotalSaldoInicialString = SumaTotalSaldoInicial.ToString();
+                    string SumaTotalMesEneroString = SumaTotalMesEnero.ToString();
+                    string SumaTotalMesFebreroString = SumaTotalMesFebrero.ToString();
+                    string SumaTotalMesMarzoString = SumaTotalMesMarzo.ToString();
+                    string SumaTotalMesAbrilString = SumaTotalMesAbril.ToString();
+                    string SumaTotalMesMayoString = SumaTotalMesMayo.ToString();
+                    string SumaTotalMesJunioString = SumaTotalMesJunio.ToString();
+                    string SumaTotalMesJulioString = SumaTotalMesJulio.ToString();
+                    string SumaTotalMesAgostoString = SumaTotalMesAgosto.ToString();
+                    string SumaTotalMesSeptiembreString = SumaTotalMesSeptiembre.ToString();
+                    string SumaTotalMesOctubreString = SumaTotalMesOctubre.ToString();
+                    string SumaTotalMesNoviembreString = SumaTotalMesNoviembre.ToString();
+                    string SumaTotalMesDiciemString = SumaTotalMesDiciembre.ToString();
+                    dgvInventario.Rows.Add("", "Totales", SumaTotalSaldoInicialString, SumaTotalMesEneroString, SumaTotalMesFebreroString, SumaTotalMesMarzoString, SumaTotalMesAbrilString, SumaTotalMesMayoString, SumaTotalMesJunioString, SumaTotalMesJulioString, SumaTotalMesAgostoString, SumaTotalMesSeptiembreString, SumaTotalMesOctubreString, SumaTotalMesNoviembreString, SumaTotalMesDiciemString);
+                    btnExcel.Visible = true;
+                    btnPdf.Visible = false;
                 }
             }
             catch (Exception ex)

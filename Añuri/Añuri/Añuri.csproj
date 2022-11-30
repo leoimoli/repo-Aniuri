@@ -94,6 +94,7 @@
     <Compile Include="Entidades\Reporte_Obras.cs" />
     <Compile Include="Entidades\Reporte_Proveedores.cs" />
     <Compile Include="Entidades\Reporte_Stock.cs" />
+    <Compile Include="Entidades\ResultadoGrillaEnKilos.cs" />
     <Compile Include="Entidades\ResultadoGrillaEnPesos.cs" />
     <Compile Include="Entidades\SaldoInicialEnPesos.cs" />
     <Compile Include="Entidades\Stock.cs" />
