@@ -92,7 +92,7 @@ namespace Añuri
                 Image imgFiestas = Image.FromFile(Environment.CurrentDirectory + "\\" + @"Navidad-5.gif");
                 picNavidad.Image = imgFiestas;
             }
-            if (FechaActual > Convert.ToDateTime(FiestasReyes) && Convert.ToDateTime(FechaActual) < Convert.ToDateTime(FechaFinFiestas))
+            else if (FechaActual > Convert.ToDateTime(FiestasReyes) && Convert.ToDateTime(FechaActual) < Convert.ToDateTime(FechaFinFiestas))
             {
                 Image imgFiestas = Image.FromFile(Environment.CurrentDirectory + "\\" + @"Reyes4.gif");
                 picNavidad.Image = imgFiestas;
@@ -106,7 +106,6 @@ namespace Añuri
         {
             label6.Text = Sesion.UsuarioLogueado.Apellido + "  " + Sesion.UsuarioLogueado.Nombre;
         }
-
         private void PanelContenedor_Paint(object sender, PaintEventArgs e)
         {
 
