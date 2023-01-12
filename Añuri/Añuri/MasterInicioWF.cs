@@ -84,7 +84,7 @@ namespace Añuri
             string PruebaFin = Convert.ToString(30 + "/" + 11 + "/" + AñoActual + " " + "23" + ":59" + ":59");
             string FiestasNavideñas = Convert.ToString(07 + "/" + 12 + "/" + AñoActual + " " + "23" + ":59" + ":59");
             string FiestasReyes = Convert.ToString(01 + "/" + 01 + "/" + AñoSiguiente + " " + "23" + ":59" + ":59");
-            string FechaFinFiestas = Convert.ToString(06 + "/" + 01 + "/" + AñoActual + " " + "23" + ":59" + ":59");
+            string FechaFinFiestas = Convert.ToString(06 + "/" + 01 + "/" + AñoSiguiente + " " + "23" + ":59" + ":59");
             //// Imagenes Navideñas
             if (FechaActual > Convert.ToDateTime(FiestasNavideñas) && Convert.ToDateTime(FechaActual) < Convert.ToDateTime(FiestasReyes))
             //if (FechaActual > Convert.ToDateTime(PruebaIncio) && Convert.ToDateTime(FechaActual) < Convert.ToDateTime(PruebaFin))

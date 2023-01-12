@@ -15,7 +15,19 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_005EAD63269745ADAE35E1FC3A37A71F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_09B3F7C9547143E08DEFD4461399C470"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0D192B290E574F1C94C905A7C4B70906"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -222,10 +234,50 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_005EAD63269745ADAE35E1FC3A37A71F"
+            {
+            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\Navidad-5.gif"
+            "TargetName" = "8:Navidad-5.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_BD8D391C86714F2A9037213DF2EBDEDA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_09B3F7C9547143E08DEFD4461399C470"
             {
             "SourcePath" = "8:..\\Añuri\\bin\\Debug\\eliminar.ico"
             "TargetName" = "8:eliminar.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_BD8D391C86714F2A9037213DF2EBDEDA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D192B290E574F1C94C905A7C4B70906"
+            {
+            "SourcePath" = "8:..\\Añuri\\bin\\Debug\\Feliz-Fiesta-Login.gif"
+            "TargetName" = "8:Feliz-Fiesta-Login.gif"
             "Tag" = "8:"
             "Folder" = "8:_BD8D391C86714F2A9037213DF2EBDEDA"
             "Condition" = "8:"
@@ -592,7 +644,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Añuri_Setup"
         "ProductCode" = "8:{8C213287-DB62-489B-9155-3F6EE8A40C9B}"
-        "PackageCode" = "8:{539C04AB-49E5-4DB4-9B02-EAC323AE3EAF}"
+        "PackageCode" = "8:{86DE379F-89EC-4E82-A857-11A6B9F63EF7}"
         "UpgradeCode" = "8:{DE780D4F-2F49-43F9-931C-18E5A9D7C85F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

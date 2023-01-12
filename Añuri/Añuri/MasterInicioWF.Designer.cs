@@ -534,7 +534,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(247, 17);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Añuri Hispanoamericana S.A.  V-1.0.7";
+            this.label7.Text = "Añuri Hispanoamericana S.A.  V-1.0.8";
             // 
             // panel4
             // 

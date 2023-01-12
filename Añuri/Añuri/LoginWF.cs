@@ -32,7 +32,14 @@ namespace Añuri
         }
         private void btnAcceder_Click(object sender, EventArgs e)
         {
-            Login();
+            try { Login(); }
+            catch (Exception ex)
+            {
+                var result2 = MessageBox.Show(ex.Message, "",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation);
+            }
+
         }
         #endregion
         #region Funciones
@@ -67,7 +74,9 @@ namespace Añuri
             }
             catch (Exception ex)
             {
-
+                var result2 = MessageBox.Show(ex.Message, "",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation);
             }
         }
         public string Cifrar(string clave)
@@ -141,11 +150,13 @@ namespace Añuri
         private void ValidarFechasFestivas()
         {
             int AñoActual = DateTime.Now.Year;
+            int AñoSiguiente = DateTime.Now.Year + 1;
             DateTime FechaActual = DateTime.Now;
             string PruebaIncio = Convert.ToString(30 + "/" + 10 + "/" + AñoActual + " " + "23" + ":59" + ":59");
             string PruebaFin = Convert.ToString(30 + "/" + 11 + "/" + AñoActual + " " + "23" + ":59" + ":59");
             string FiestasNavideñas = Convert.ToString(07 + "/" + 12 + "/" + AñoActual + " " + "23" + ":59" + ":59");
-            string FechaFinFiestas = Convert.ToString(06 + "/" + 01 + "/" + AñoActual + " " + "23" + ":59" + ":59");
+
+            string FechaFinFiestas = Convert.ToString(06 + "/" + 01 + "/" + AñoSiguiente + " " + "23" + ":59" + ":59");
             //// Imagenes Navideñas
             if (FechaActual > Convert.ToDateTime(FiestasNavideñas) && Convert.ToDateTime(FechaActual) < Convert.ToDateTime(FechaFinFiestas))
             //if (FechaActual > Convert.ToDateTime(PruebaIncio) && Convert.ToDateTime(FechaActual) < Convert.ToDateTime(PruebaFin))

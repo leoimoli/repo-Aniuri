@@ -116,6 +116,8 @@ namespace Añuri
                         item.valorInicial = StockNeg.ListarSaldoInicial(item.idProducto, año);
                         dgvInventario.Visible = true;
                         //Agrego Punto De Miles...
+                        if (item.valorInicial < 0)
+                        { item.valorInicial = 0; }
                         string ValorSaldo = item.valorInicial.ToString("N", new CultureInfo("es-CL"));
                         dgvInventario.Rows.Add(item.idProducto, item.nombre, ValorSaldo);
 

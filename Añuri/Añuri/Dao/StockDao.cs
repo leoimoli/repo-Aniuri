@@ -148,7 +148,7 @@ namespace Añuri.Dao
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
             MySqlParameter[] oParam = { new MySqlParameter("idMaterial_in", idProducto),
-            new MySqlParameter("Año_in", año)};
+            new MySqlParameter("Anio_in", año)};
             string proceso = "ListarSaldoInicial";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
             dt.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -217,7 +217,7 @@ namespace Añuri.Dao
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
             MySqlParameter[] oParam = { new MySqlParameter("idMaterial_in", id),
-            new MySqlParameter("Año_in", año)};
+            new MySqlParameter("Anio_in", año)};
             string proceso = "ListarSaldoInicial";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
             dt.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -324,7 +324,7 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
-            MySqlParameter[] oParam = { new MySqlParameter("Año_in", año),
+            MySqlParameter[] oParam = { new MySqlParameter("Anio_in", año),
            new MySqlParameter("Material_in", material) };
             string proceso = "ListarSaldoInicialInventarioMaterialesPorKilosPorMaterial";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
@@ -397,7 +397,7 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
-            MySqlParameter[] oParam = { new MySqlParameter("Año_in", año) };
+            MySqlParameter[] oParam = { new MySqlParameter("Anio_in", año) };
             string proceso = "ListarSaldoInicialInventarioMaterialesPorKilos";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
             dt.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -438,7 +438,7 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
-            MySqlParameter[] oParam = { new MySqlParameter("Año_in", año) };
+            MySqlParameter[] oParam = { new MySqlParameter("Anio_in", año) };
             string proceso = "ListarInventarioMaterialesPorKilos";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
             dt.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -479,7 +479,7 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
-            MySqlParameter[] oParam = { new MySqlParameter("Año_in", año),
+            MySqlParameter[] oParam = { new MySqlParameter("Anio_in", año),
             new MySqlParameter("Material_in", material)};
             string proceso = "ListarInventarioMaterialesPorKilosPorMaterial";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
@@ -521,7 +521,7 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
-            MySqlParameter[] oParam = { new MySqlParameter("Año_in", año),
+            MySqlParameter[] oParam = { new MySqlParameter("Anio_in", año),
            new MySqlParameter("Material_in", material) };
             string proceso = "ListarSaldoInicialInventarioMaterialesPesosPorMaterial";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
@@ -563,7 +563,7 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
-            MySqlParameter[] oParam = { new MySqlParameter("Año_in", año) };
+            MySqlParameter[] oParam = { new MySqlParameter("Anio_in", año) };
             string proceso = "ListarSaldoInicialInventarioMaterialesPesos";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
             dt.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -604,8 +604,8 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
-            MySqlParameter[] oParam = { new MySqlParameter("Año_in", año) };
-            string proceso = "ListarInventarioMaterialesPesosPorAño";
+            MySqlParameter[] oParam = { new MySqlParameter("Anio_in", año) };
+            string proceso = "ListarInventarioMaterialesPesosPorAnio";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
             dt.SelectCommand.CommandType = CommandType.StoredProcedure;
             dt.SelectCommand.Parameters.AddRange(oParam);
@@ -645,9 +645,9 @@ namespace Añuri.Dao
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connection;
             DataTable Tabla = new DataTable();
-            MySqlParameter[] oParam = { new MySqlParameter("Año_in", año),
+            MySqlParameter[] oParam = { new MySqlParameter("Anio_in", año),
             new MySqlParameter("Material_in", material)};
-            string proceso = "ListarInventarioMaterialesPesosPorAñoPorMaterial";
+            string proceso = "ListarInventarioMaterialesPesosPorAnioPorMaterial";
             MySqlDataAdapter dt = new MySqlDataAdapter(proceso, connection);
             dt.SelectCommand.CommandType = CommandType.StoredProcedure;
             dt.SelectCommand.Parameters.AddRange(oParam);

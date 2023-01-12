@@ -197,7 +197,7 @@ namespace Añuri.Dao
             cmd.Parameters.AddWithValue("Apellido_in", usuario.Apellido);
             cmd.Parameters.AddWithValue("Nombre_in", usuario.Nombre);
             cmd.Parameters.AddWithValue("FechaDeNacimiento_in", usuario.FechaDeNacimiento);
-            cmd.Parameters.AddWithValue("Contraseña_in", usuario.Contraseña);
+            cmd.Parameters.AddWithValue("Contrasenia_in", usuario.Contraseña);
             cmd.Parameters.AddWithValue("FechaDeAlta_in", usuario.FechaDeAlta);
             cmd.Parameters.AddWithValue("FechaUltimaConexion_in", usuario.FechaUltimaConexion);
             cmd.Parameters.AddWithValue("Perfil_in", usuario.Perfil);
