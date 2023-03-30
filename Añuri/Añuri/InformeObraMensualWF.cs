@@ -100,8 +100,9 @@ namespace Añuri
                 List<Stock> ListaAux = new List<Stock>();
                 decimal TotalPrecioNeto = 0;
                 int TotalKilos = 0;
-                int anio = DateTime.Now.Year;
-                txtAño.Text = Convert.ToString(anio);
+                //int anio = DateTime.Now.Year;
+                //txtAño.Text = Convert.ToString(anio);
+                int anio = Convert.ToInt32(txtAño.Text);
                 int mes = ValidarMes(cmbMes.Text);
                 string fechaString = Convert.ToString("01" + "/" + mes + "/" + anio);
                 DateTime FechaDesde = Convert.ToDateTime(fechaString);
