@@ -64,8 +64,11 @@
             this.btnPanelStock = new System.Windows.Forms.Panel();
             this.btnStock = new System.Windows.Forms.Button();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblUsuario = new System.Windows.Forms.Label();
+            this.btnModulos = new System.Windows.Forms.Button();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.picNavidad = new System.Windows.Forms.PictureBox();
             this.btnModificarClave = new System.Windows.Forms.Button();
             this.txtNuevaClave = new System.Windows.Forms.TextBox();
@@ -88,6 +91,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel14.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNavidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
@@ -106,6 +110,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1300, 35);
             this.panel1.TabIndex = 1;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuCabecera_MouseDown);
             // 
             // ImagenPagina
             // 
@@ -518,27 +523,30 @@
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.panel14.Controls.Add(this.label7);
+            this.panel14.Controls.Add(this.lblVersion);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel14.Location = new System.Drawing.Point(222, 604);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(1078, 46);
             this.panel14.TabIndex = 10;
             // 
-            // label7
+            // lblVersion
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(360, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(247, 17);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Añuri Hispanoamericana S.A.  V-1.0.8";
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.ForeColor = System.Drawing.Color.White;
+            this.lblVersion.Location = new System.Drawing.Point(360, 16);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(247, 17);
+            this.lblVersion.TabIndex = 6;
+            this.lblVersion.Text = "Añuri Hispanoamericana S.A.  V-1.0.8";
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.lblUsuario);
+            this.panel4.Controls.Add(this.btnModulos);
+            this.panel4.Controls.Add(this.pictureBox5);
             this.panel4.Controls.Add(this.picNavidad);
             this.panel4.Controls.Add(this.btnModificarClave);
             this.panel4.Controls.Add(this.txtNuevaClave);
@@ -549,6 +557,43 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1078, 51);
             this.panel4.TabIndex = 11;
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.lblUsuario.Location = new System.Drawing.Point(23, 12);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(144, 25);
+            this.lblUsuario.TabIndex = 24;
+            this.lblUsuario.Text = "Módulo Stock";
+            // 
+            // btnModulos
+            // 
+            this.btnModulos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnModulos.FlatAppearance.BorderSize = 0;
+            this.btnModulos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
+            this.btnModulos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModulos.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModulos.ForeColor = System.Drawing.Color.White;
+            this.btnModulos.Image = global::Añuri.Properties.Resources.intercambiar;
+            this.btnModulos.Location = new System.Drawing.Point(189, 6);
+            this.btnModulos.Name = "btnModulos";
+            this.btnModulos.Size = new System.Drawing.Size(54, 35);
+            this.btnModulos.TabIndex = 24;
+            this.toolTip1.SetToolTip(this.btnModulos, "Cambiar de Módulo");
+            this.btnModulos.UseVisualStyleBackColor = true;
+            this.btnModulos.Click += new System.EventHandler(this.btnModulos_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(265, 50);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 23;
+            this.pictureBox5.TabStop = false;
             // 
             // picNavidad
             // 
@@ -647,6 +692,7 @@
             this.panel14.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNavidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
@@ -685,7 +731,7 @@
         private System.Windows.Forms.Panel btnPanelStock;
         private System.Windows.Forms.Button btnStock;
         private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox6;
@@ -698,5 +744,8 @@
         private System.Windows.Forms.Panel btnPanelConfiguracion;
         private System.Windows.Forms.Button btnConfiguaracion;
         private System.Windows.Forms.PictureBox picNavidad;
+        private System.Windows.Forms.Button btnModulos;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label lblUsuario;
     }
 }

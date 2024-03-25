@@ -1,7 +1,4 @@
-﻿using Añuri.Dao;
-using Añuri.Entidades;
-using Añuri.Negocio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,20 +6,21 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
+using Añuri.Dao;
+using System.Timers;
 
 namespace Añuri
 {
-    public partial class InicioWF : Form
+    public partial class ModContable_InicioWFcs : Form
     {
-        public InicioWF()
+        public ModContable_InicioWFcs()
         {
             InitializeComponent();
         }
 
-        private void InicioWF_Load(object sender, EventArgs e)
+        private void ModContable_InicioWFcs_Load(object sender, EventArgs e)
         {
             try
             {
@@ -110,34 +108,86 @@ namespace Añuri
                 {
                     lblContadorUsuarios.Text = Convert.ToString(Usuarios);
                 }
-                ///// Completo Grilla con informacion
-                List<Stock> ListaStockFaltante = new List<Stock>();
-                ListaStockFaltante = StockNeg.ListaStockFaltante();
-                if (ListaStockFaltante.Count > 0)
-                {
-                    foreach (var item in ListaStockFaltante)
-                    {
-                        dgvInicio.Rows.Add(item.idProducto, item.Descripcion, item.Cantidad);
-                    }
-                }
-                dgvInicio.ReadOnly = true;
-                /////  Achico font del dia, dependiendo el mes
-                if (Mes == "Diciembre" || Mes == "Noviembre" || Mes == "Septiembre")
-                {
-                    Font fuente = new Font(label1.Font.FontFamily, 16);
-                    lblDia.Font = fuente;
-                }
-                else
-                {
-                    Font fuente = new Font(label1.Font.FontFamily, 18);
-                    lblDia.Font = fuente;
-                }
                 ////// Obtener Informacion clima
                 ObtenerInformacion();
             }
             catch (Exception ex)
             { }
         }
+        #region Botones
+        private void imgArba_Click(object sender, EventArgs e)
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                System.Diagnostics.Process.Start("https://www.arba.gov.ar/");
+            }
+            else
+            {
+
+            }
+        }
+        private void imgAfip_Click(object sender, EventArgs e)
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                System.Diagnostics.Process.Start("http://www.afip.gob.ar/sitio/externos/default.asp");
+            }
+            else
+            {
+                const string message2 = "Atención: Usted no tiene conexión a internet.";
+                const string caption2 = "Atención";
+                var result2 = MessageBox.Show(message2, caption2,
+                                             MessageBoxButtons.OK,
+                                             MessageBoxIcon.Exclamation);
+            }
+        }
+        private void imgAnses_Click(object sender, EventArgs e)
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                System.Diagnostics.Process.Start("https://servicioscorp.anses.gob.ar/clavelogon/logon.aspx?system=mianses");
+            }
+            else
+            {
+                const string message2 = "Atención: Usted no tiene conexión a internet.";
+                const string caption2 = "Atención";
+                var result2 = MessageBox.Show(message2, caption2,
+                                             MessageBoxButtons.OK,
+                                             MessageBoxIcon.Exclamation);
+            }
+        }
+        private void imgApr_Click(object sender, EventArgs e)
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                System.Diagnostics.Process.Start("http://apronline.gob.ar/");
+            }
+            else
+            {
+                const string message2 = "Atención: Usted no tiene conexión a internet.";
+                const string caption2 = "Atención";
+                var result2 = MessageBox.Show(message2, caption2,
+                                             MessageBoxButtons.OK,
+                                             MessageBoxIcon.Exclamation);
+            }
+        }
+        private void imgAgip_Click(object sender, EventArgs e)
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                System.Diagnostics.Process.Start("https://www.agip.gob.ar/");
+            }
+            else
+            {
+                const string message2 = "Atención: Usted no tiene conexión a internet.";
+                const string caption2 = "Atención";
+                var result2 = MessageBox.Show(message2, caption2,
+                                             MessageBoxButtons.OK,
+                                             MessageBoxIcon.Exclamation);
+            }
+        }
+        #endregion
+        #region Metodos
         private void ObtenerInformacion()
         {
             BuscarClima();
@@ -147,6 +197,10 @@ namespace Añuri
             if (NetworkInterface.GetIsNetworkAvailable())
             {
                 pictureBox7.Load($"https://w.bookcdn.com/weather/picture/3_55558_1_4_137AE9_350_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=49053&domid=582&anc_id=81469");
+            }
+            else
+            {
+
             }
         }
         private string ValidarDia(string diaDeLaSemana)
@@ -240,5 +294,6 @@ namespace Añuri
             CheckForIllegalCrossThreadCalls = false;
             lblMaster_FechaHoraReal.Text = Convert.ToString(DateTime.Now.ToString("HH:mm:ss"));
         }
+        #endregion
     }
 }

@@ -63,6 +63,26 @@ namespace Añuri.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Afip {
+            get {
+                object obj = ResourceManager.GetObject("Afip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Agip {
+            get {
+                object obj = ResourceManager.GetObject("Agip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Añuri {
             get {
                 object obj = ResourceManager.GetObject("Añuri", resourceCulture);
@@ -86,6 +106,36 @@ namespace Añuri.Properties {
         internal static System.Drawing.Bitmap Añuri1 {
             get {
                 object obj = ResourceManager.GetObject("Añuri1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Apr {
+            get {
+                object obj = ResourceManager.GetObject("Apr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Arba {
+            get {
+                object obj = ResourceManager.GetObject("Arba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Arba1 {
+            get {
+                object obj = ResourceManager.GetObject("Arba1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,6 +233,26 @@ namespace Añuri.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap contabilidad {
+            get {
+                object obj = ResourceManager.GetObject("contabilidad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap contabilidad__1_ {
+            get {
+                object obj = ResourceManager.GetObject("contabilidad (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dar_dinero {
             get {
                 object obj = ResourceManager.GetObject("dar-dinero", resourceCulture);
@@ -249,17 +319,7 @@ namespace Añuri.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Navidad
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("Navidad", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
+        
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
@@ -296,6 +356,16 @@ namespace Añuri.Properties {
         internal static System.Drawing.Bitmap ingeniero__1_ {
             get {
                 object obj = ResourceManager.GetObject("ingeniero (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap intercambiar {
+            get {
+                object obj = ResourceManager.GetObject("intercambiar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -436,6 +506,16 @@ namespace Añuri.Properties {
         internal static System.Drawing.Bitmap play2 {
             get {
                 object obj = ResourceManager.GetObject("play2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap presupuesto {
+            get {
+                object obj = ResourceManager.GetObject("presupuesto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

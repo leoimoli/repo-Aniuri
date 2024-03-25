@@ -15,17 +15,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.IO;
-
 namespace Añuri
 {
-    public partial class MasterInicioWF : Form
+    public partial class MasterInicioContableWF : Form
     {
-        public MasterInicioWF()
+        public MasterInicioContableWF()
         {
             InitializeComponent();
             string[] VersionTexto = Clases_Maestras.ValoresConstantes.Version;
             lblVersion.Text = VersionTexto[0].ToString();
-            AbrirFormEnPanel(new InicioWF());
+            AbrirFormEnPanel(new ModContable_InicioWFcs());
             ValidarFechasFestivas();
             var imagen = new Bitmap(Añuri.Properties.Resources.hogar__3_);
             ImagenPagina.Image = imagen;
@@ -38,13 +37,8 @@ namespace Añuri
                 {
                     if (item.NombreMenu == "btnStock")
                     {
-                        btnStock.Visible = true;
+                        btnContable.Visible = true;
                         btnPanelStock.Visible = true;
-                    }
-                    if (item.NombreMenu == "btnObra")
-                    {
-                        btnObras.Visible = true;
-                        btnPanelObras.Visible = true;
                     }
                     if (item.NombreMenu == "btnProveedores")
                     {
@@ -147,14 +141,11 @@ namespace Añuri
         }
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
-            //this.WindowState = FormWindowState.Maximized;
-            //btnMaximizar.Visible = false;
-            //btnRestaurar.Visible = true;
             this.Location = new Point(0, 0); //sobra si tienes la posición en el diseño
             this.Size = new Size(this.Width + 60, Screen.PrimaryScreen.WorkingArea.Size.Height);
             //this.WindowState = FormWindowState.Maximized;
             btnMaximizar.Visible = false;
-            btnRestaurar.Visible = true;
+            btnRestaurar.Visible = true;         
         }
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
@@ -209,71 +200,6 @@ namespace Añuri
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-        public static int contadorClic = 0;
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            if (contadorClic == 0)
-            {
-                txtNuevaClave.Visible = true;
-                txtNuevaClave.Focus();
-                btnModificarClave.Visible = true;
-                label6.Text = "Ingrese Nueva Contraseña";
-                label6.Font = new Font(label6.Font.Name, 9);
-                contadorClic = contadorClic + 1;
-            }
-            else
-            {
-                txtNuevaClave.Visible = false;
-                btnModificarClave.Visible = false;
-                label6.Text = Sesion.UsuarioLogueado.Apellido + " " + Sesion.UsuarioLogueado.Nombre;
-                contadorClic = 0;
-            }
-        }
-        private void btnModificarClave_Click(object sender, EventArgs e)
-        {
-            string clave = txtNuevaClave.Text;
-            string claveCifrada = cifrar(clave);
-            bool Exito = UsuarioDao.ResetearClave(claveCifrada);
-            if (Exito == true)
-            {
-                const string message2 = "Se reseteo la clave exitosamente.";
-                const string caption2 = "Éxito";
-                var result2 = MessageBox.Show(message2, caption2,
-                                             MessageBoxButtons.OK,
-                                             MessageBoxIcon.Asterisk);
-                txtNuevaClave.Clear();
-                txtNuevaClave.Visible = false;
-                btnModificarClave.Visible = false;
-                label6.Text = Sesion.UsuarioLogueado.Apellido + " " + Sesion.UsuarioLogueado.Nombre;
-                contadorClic = 0;
-            }
-            else
-            {
-                const string message2 = "Atención: Fallo el reseteo de la clave. Intente nuevamente.";
-                const string caption2 = "Atención";
-                var result2 = MessageBox.Show(message2, caption2,
-                                             MessageBoxButtons.OK,
-                                             MessageBoxIcon.Exclamation);
-            }
-        }
-        public string cifrar(string clave)
-        {
-            byte[] llave; //Arreglo donde guardaremos la llave para el cifrado 3DES.
-            byte[] arreglo = UTF8Encoding.UTF8.GetBytes(clave); //Arreglo donde guardaremos la cadena descifrada.
-            // Ciframos utilizando el Algoritmo MD5.
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            llave = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(clave));
-            md5.Clear();
-            //Ciframos utilizando el Algoritmo 3DES.
-            TripleDESCryptoServiceProvider tripledes = new TripleDESCryptoServiceProvider();
-            tripledes.Key = llave;
-            tripledes.Mode = CipherMode.ECB;
-            tripledes.Padding = PaddingMode.PKCS7;
-            ICryptoTransform convertir = tripledes.CreateEncryptor(); // Iniciamos la conversión de la cadena
-            byte[] resultado = convertir.TransformFinalBlock(arreglo, 0, arreglo.Length); //Arreglo de bytes donde guardaremos la cadena cifrada.
-            tripledes.Clear();
-            return Convert.ToBase64String(resultado, 0, resultado.Length); // Convertimos la cadena y la regresamos.
         }
         private void btnModulos_Click(object sender, EventArgs e)
         {

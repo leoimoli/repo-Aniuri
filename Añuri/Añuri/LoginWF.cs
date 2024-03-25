@@ -66,9 +66,12 @@ namespace Añuri
                 else
                 {
                     Sesion.UsuarioLogueado = usuarios.First();
-                    MasterInicioWF _inicio = new MasterInicioWF();
-                    _inicio.Show();
+                    ModulosWF _modulo = new ModulosWF();
+                    _modulo.Show();
                     Hide();
+                    //MasterInicioWF _inicio = new MasterInicioWF();
+                    //_inicio.Show();
+                    //Hide();
                 }
                 //}              
             }

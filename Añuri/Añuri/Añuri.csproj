@@ -65,6 +65,7 @@
     <Compile Include="Clases Maestras\AutoCompleteUsuarios.cs" />
     <Compile Include="Clases Maestras\ListarProveedores.cs" />
     <Compile Include="Clases Maestras\Sesion.cs" />
+    <Compile Include="Clases Maestras\Valores_Constantes.cs" />
     <Compile Include="ConexionWF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,11 +155,29 @@
     <Compile Include="LoginWF.Designer.cs">
       <DependentUpon>LoginWF.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterInicioContableWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterInicioContableWF.Designer.cs">
+      <DependentUpon>MasterInicioContableWF.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterInicioWF.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MasterInicioWF.Designer.cs">
       <DependentUpon>MasterInicioWF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModContable-InicioWFcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModContable-InicioWFcs.Designer.cs">
+      <DependentUpon>ModContable-InicioWFcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModulosWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModulosWF.Designer.cs">
+      <DependentUpon>ModulosWF.cs</DependentUpon>
     </Compile>
     <Compile Include="Negocio\ObrasNeg.cs" />
     <Compile Include="Negocio\ProductoNeg.cs" />
@@ -238,8 +257,17 @@
     <EmbeddedResource Include="LoginWF.resx">
       <DependentUpon>LoginWF.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MasterInicioContableWF.resx">
+      <DependentUpon>MasterInicioContableWF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterInicioWF.resx">
       <DependentUpon>MasterInicioWF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModContable-InicioWFcs.resx">
+      <DependentUpon>ModContable-InicioWFcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModulosWF.resx">
+      <DependentUpon>ModulosWF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObrasWF.resx">
       <DependentUpon>ObrasWF.cs</DependentUpon>
@@ -388,6 +416,11 @@
     <None Include="Resources\barrow-con-materiales-de-construccion.png" />
     <None Include="Resources\barrow-con-materiales-de-construccion %281%29.png" />
     <None Include="Resources\barrow-con-materiales-de-construccion %282%29.png" />
+    <None Include="Resources\Arba.gif" />
+    <None Include="Resources\Arba.png" />
+    <None Include="Resources\Apr.png" />
+    <None Include="Resources\Agip.png" />
+    <None Include="Resources\Afip.jpg" />
     <Content Include="Resources\configuraciones_1.png" />
     <None Include="Resources\inventario.png" />
     <None Include="Resources\peso.png" />
@@ -397,10 +430,14 @@
     <None Include="Resources\los-usuarios-del-grupo.png" />
     <None Include="Resources\usuario11.png" />
     <None Include="Resources\play2.png" />
+    <None Include="Resources\contabilidad.png" />
+    <None Include="Resources\contabilidad %281%29.png" />
     <Content Include="Resources\Feliz-Fiesta-Login.gif" />
     <Content Include="Resources\Feliz-Fiesta.gif" />
+    <None Include="Resources\intercambiar.png" />
     <Content Include="Resources\Navidad-5.gif" />
     <Content Include="Resources\Navidad.gif" />
+    <None Include="Resources\presupuesto.png" />
     <Content Include="Resources\ver %283%29.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
