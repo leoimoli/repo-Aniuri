@@ -61,7 +61,6 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
-
         public static List<Stock> GraficoMaterialesEnPesos(int idObraSeleccionada)
         {
             List<Stock> listaMateriales = new List<Stock>();
@@ -92,7 +91,6 @@ namespace Añuri.Dao
             connection.Close();
             return listaMateriales;
         }
-
         public static List<Stock> BuscarObrasPorMesPerfileria(DateTime fechaDesde, DateTime fechaHasta, int idGrupo)
         {
             connection.Close();
@@ -128,7 +126,6 @@ namespace Añuri.Dao
             connection.Close();
             return _ListaObras;
         }
-
         public static List<Obra> BuscarInformacionLocalidad(string localidad, int idProvincia)
         {
             connection.Close();
@@ -352,7 +349,6 @@ namespace Añuri.Dao
             connection.Close();
             return listaMateriales;
         }
-
         public static bool ValidarBajaDeStock(int idMaterial, int idMovimiento)
         {
             bool esValido = true;
@@ -380,10 +376,9 @@ namespace Añuri.Dao
             connection.Close();
             return esValido;
         }
-
         public static bool EliminarMovientoEntradaStock(int idMaterial, int idMovimiento)
         {
-            bool Exito = false;         
+            bool Exito = false;
             connection.Close();
             connection.Open();
             ///PROCEDIMIENTO
@@ -393,11 +388,10 @@ namespace Añuri.Dao
             cmd.Parameters.AddWithValue("idMaterial_in", idMaterial);
             cmd.Parameters.AddWithValue("idMovimiento_in", idMovimiento);
             cmd.ExecuteNonQuery();
-            Exito = true;          
+            Exito = true;
             connection.Close();
             return Exito;
         }
-
         public static bool ReintegrarStock(int idMaterial, int idMovimientoSeleccionado, int idMovimiento, int Kilos)
         {
             bool Exito = false;
@@ -424,7 +418,6 @@ namespace Añuri.Dao
 
             return Exito;
         }
-
         public static bool ReintegroActualizarStock(int idMaterial, int kilos, string Condicion)
         {
             bool exito = false;
@@ -450,7 +443,6 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
-
         private static int RegistrarMovimientosEliminados(int idMaterial, int idMovimientoEntradaSeleccionado, int idMovimiento)
         {
             int idReintegro = 0;
@@ -472,7 +464,6 @@ namespace Añuri.Dao
             connection.Close();
             return idReintegro;
         }
-
         public static bool ValidarEliminacionDeRegistro(int idMaterial, int idMovimientoEntradaSeleccionado, DateTime fechaMovimiento)
         {
             bool esValido = true;

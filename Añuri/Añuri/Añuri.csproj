@@ -78,6 +78,7 @@
     <Compile Include="ConfiguracionWF.Designer.cs">
       <DependentUpon>ConfiguracionWF.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dao\ContabilidadDao.cs" />
     <Compile Include="Dao\DaoConsultasGenerales.cs" />
     <Compile Include="Dao\ObrasDao.cs" />
     <Compile Include="Dao\ProductoDao.cs" />
@@ -167,6 +168,18 @@
     <Compile Include="MasterInicioWF.Designer.cs">
       <DependentUpon>MasterInicioWF.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModContable-Contabilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModContable-Contabilidad.Designer.cs">
+      <DependentUpon>ModContable-Contabilidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModContable-ImportarPadronWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModContable-ImportarPadronWF.Designer.cs">
+      <DependentUpon>ModContable-ImportarPadronWF.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModContable-InicioWFcs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +192,7 @@
     <Compile Include="ModulosWF.Designer.cs">
       <DependentUpon>ModulosWF.cs</DependentUpon>
     </Compile>
+    <Compile Include="Negocio\ContabilidadNeg.cs" />
     <Compile Include="Negocio\ObrasNeg.cs" />
     <Compile Include="Negocio\ProductoNeg.cs" />
     <Compile Include="Negocio\ProveedoresNeg.cs" />
@@ -262,6 +276,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterInicioWF.resx">
       <DependentUpon>MasterInicioWF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModContable-Contabilidad.resx">
+      <DependentUpon>ModContable-Contabilidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModContable-ImportarPadronWF.resx">
+      <DependentUpon>ModContable-ImportarPadronWF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModContable-InicioWFcs.resx">
       <DependentUpon>ModContable-InicioWFcs.cs</DependentUpon>
@@ -407,6 +427,7 @@
     <None Include="Resources\mas %282%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\volver-flecha-izquierda.png" />
     <None Include="Resources\informe-empresarial-con-crecimiento %281%29.png" />
     <None Include="Resources\buscar %282%29.png" />
     <None Include="Resources\sobresalir.png" />
@@ -421,6 +442,8 @@
     <None Include="Resources\Apr.png" />
     <None Include="Resources\Agip.png" />
     <None Include="Resources\Afip.jpg" />
+    <None Include="Resources\almacenamiento-en-la-nube.png" />
+    <None Include="Resources\buscar %281%29.png" />
     <Content Include="Resources\configuraciones_1.png" />
     <None Include="Resources\inventario.png" />
     <None Include="Resources\peso.png" />
@@ -432,12 +455,18 @@
     <None Include="Resources\play2.png" />
     <None Include="Resources\contabilidad.png" />
     <None Include="Resources\contabilidad %281%29.png" />
+    <None Include="Resources\engranaje.png" />
+    <None Include="Resources\consulta.png" />
     <Content Include="Resources\Feliz-Fiesta-Login.gif" />
     <Content Include="Resources\Feliz-Fiesta.gif" />
     <None Include="Resources\intercambiar.png" />
+    <None Include="Resources\importar.png" />
+    <None Include="Resources\importar %281%29.png" />
     <Content Include="Resources\Navidad-5.gif" />
     <Content Include="Resources\Navidad.gif" />
     <None Include="Resources\presupuesto.png" />
+    <None Include="Resources\nuevo.png" />
+    <None Include="Resources\saco-de-dinero.png" />
     <Content Include="Resources\ver %283%29.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

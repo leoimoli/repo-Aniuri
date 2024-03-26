@@ -207,5 +207,13 @@ namespace Añuri
             _modulo.Show();
             Hide();
         }
+
+        private void btnContable_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new ModContable_Contabilidad());
+            var imagen = new Bitmap(Añuri.Properties.Resources.configuraciones);
+            ImagenPagina.Image = imagen;
+            lblPantalla.Text = "Contabilidad";
+        }
     }
 }

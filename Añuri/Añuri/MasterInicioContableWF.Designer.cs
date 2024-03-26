@@ -614,6 +614,7 @@
             this.btnContable.Text = "Contabilidad";
             this.btnContable.UseVisualStyleBackColor = true;
             this.btnContable.Visible = false;
+            this.btnContable.Click += new System.EventHandler(this.btnContable_Click);
             // 
             // MasterInicioContableWF
             // 
