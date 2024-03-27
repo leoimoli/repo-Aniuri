@@ -233,6 +233,26 @@ namespace Añuri.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carga__1_ {
+            get {
+                object obj = ResourceManager.GetObject("carga (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carga__2_ {
+            get {
+                object obj = ResourceManager.GetObject("carga (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cerrar {
             get {
                 object obj = ResourceManager.GetObject("cerrar", resourceCulture);
@@ -473,9 +493,29 @@ namespace Añuri.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lupa__1_ {
+            get {
+                object obj = ResourceManager.GetObject("lupa (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mas__2_ {
             get {
                 object obj = ResourceManager.GetObject("mas (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mas__2_1 {
+            get {
+                object obj = ResourceManager.GetObject("mas (2)1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

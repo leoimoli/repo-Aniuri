@@ -215,5 +215,13 @@ namespace Añuri
             ImagenPagina.Image = imagen;
             lblPantalla.Text = "Contabilidad";
         }
+
+        private void btnProveedores_Click_1(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new ModContable_ProveedoresWF());
+            var imagen = new Bitmap(Añuri.Properties.Resources.configuraciones);
+            ImagenPagina.Image = imagen;
+            lblPantalla.Text = "Proveedores";
+        }
     }
 }

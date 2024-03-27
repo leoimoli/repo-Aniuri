@@ -14,7 +14,7 @@ namespace Añuri.Dao
     {
         private static MySql.Data.MySqlClient.MySqlConnection connection = new MySqlConnection(Properties.Settings.Default.db);
         public static int BuscarIdProvincia(string provincia)
-        {
+      {
             connection.Close();
             connection.Open();
             int idProvincia = 0;

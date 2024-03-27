@@ -96,7 +96,6 @@ namespace Añuri.Dao
             }
             return exito;
         }
-
         public static List<Stock> ListarMaterialesPorKilos()
         {
             connection.Close();
@@ -137,7 +136,6 @@ namespace Añuri.Dao
             connection.Close();
             return _lista;
         }
-
         public static List<Stock> ListarSaldoInicialEnKilos(int idProducto, string año)
         {
             List<Stock> lista = new List<Stock>();
@@ -180,7 +178,6 @@ namespace Añuri.Dao
             connection.Close();
             return lista;
         }
-
         public static List<string> CargarComboGrupo()
         {
             connection.Close();
@@ -206,7 +203,6 @@ namespace Añuri.Dao
             connection.Close();
             return _Grupos;
         }
-
         public static List<Stock> ListarSaldoInicial(int id, string año)
         {
             List<Stock> lista = new List<Stock>();
@@ -249,7 +245,6 @@ namespace Añuri.Dao
             connection.Close();
             return lista;
         }
-
         public static List<Stock> ListarIdMateriales()
         {
             connection.Close();
@@ -292,7 +287,6 @@ namespace Añuri.Dao
             connection.Close();
             return _lista;
         }
-
         public static bool ValidarProductoExistente(string text)
         {
             connection.Close();
@@ -961,7 +955,6 @@ namespace Añuri.Dao
             connection.Close();
             return exito;
         }
-
         public static string ObteneridStock(int idProducto)
         {
             connection.Close();
@@ -987,7 +980,6 @@ namespace Añuri.Dao
             connection.Close();
             return Stock;
         }
-
         private static List<int> ValidarStockExistente(int idProducto)
         {
             connection.Close();

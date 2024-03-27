@@ -169,6 +169,9 @@
   <data name="sobresalir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sobresalir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="lupa (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="play1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -177,6 +180,9 @@
   </data>
   <data name="Arba" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Arba.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carga (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\carga (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="play2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,8 +205,8 @@
   <data name="cajas-de-carga-de-trabajador (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cajas-de-carga-de-trabajador (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dar-dinero" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dar-dinero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="importar (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\importar (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="trabajando" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trabajando.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -223,9 +229,6 @@
   <data name="menos (2)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\menos (2)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="transporte-de-camiones-con-materiales-de-construccion (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\transporte-de-camiones-con-materiales-de-construccion (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="inventario" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\inventario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -238,8 +241,14 @@
   <data name="estadisticas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\estadisticas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carga (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\carga (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="usuario (4)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\usuario (4).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="saco-de-dinero" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\saco-de-dinero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ingeniero (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ingeniero (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -265,14 +274,14 @@
   <data name="Agip" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Agip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="saco-de-dinero" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\saco-de-dinero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="transporte-de-camiones-con-materiales-de-construccion (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transporte-de-camiones-con-materiales-de-construccion (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="configuraciones" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\configuraciones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Añuri1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Añuri1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dar-dinero" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dar-dinero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hogar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hogar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -294,6 +303,9 @@
   </data>
   <data name="hogar (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hogar (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Añuri1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Añuri1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="barrow-con-materiales-de-construccion (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\barrow-con-materiales-de-construccion (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -319,7 +331,7 @@
   <data name="Apr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Apr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="importar (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\importar (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mas (2)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mas (2)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

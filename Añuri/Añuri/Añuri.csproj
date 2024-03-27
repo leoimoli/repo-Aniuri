@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -83,6 +83,7 @@
     <Compile Include="Dao\ObrasDao.cs" />
     <Compile Include="Dao\ProductoDao.cs" />
     <Compile Include="Dao\ProveedoresDao.cs" />
+    <Compile Include="Dao\ProveedoresDAO_Conta.cs" />
     <Compile Include="Dao\ReporteDao.cs" />
     <Compile Include="Dao\StockDao.cs" />
     <Compile Include="Dao\UsuarioDao.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Entidades\Obra.cs" />
     <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\Proveedores.cs" />
+    <Compile Include="Entidades\ProveedoresModCont.cs" />
     <Compile Include="Entidades\Reporte_Obras.cs" />
     <Compile Include="Entidades\Reporte_Proveedores.cs" />
     <Compile Include="Entidades\Reporte_Stock.cs" />
@@ -186,6 +188,18 @@
     <Compile Include="ModContable-InicioWFcs.Designer.cs">
       <DependentUpon>ModContable-InicioWFcs.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModContable-ProveedoresWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModContable-ProveedoresWF.Designer.cs">
+      <DependentUpon>ModContable-ProveedoresWF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModContable_CargaMasivaProveedoresWF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModContable_CargaMasivaProveedoresWF.Designer.cs">
+      <DependentUpon>ModContable_CargaMasivaProveedoresWF.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModulosWF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +210,7 @@
     <Compile Include="Negocio\ObrasNeg.cs" />
     <Compile Include="Negocio\ProductoNeg.cs" />
     <Compile Include="Negocio\ProveedoresNeg.cs" />
+    <Compile Include="Negocio\ProveedoresNeg_Conta.cs" />
     <Compile Include="Negocio\StockNeg.cs" />
     <Compile Include="Negocio\UsuarioNeg.cs" />
     <Compile Include="ObrasWF.cs">
@@ -285,6 +300,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModContable-InicioWFcs.resx">
       <DependentUpon>ModContable-InicioWFcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModContable-ProveedoresWF.resx">
+      <DependentUpon>ModContable-ProveedoresWF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModContable_CargaMasivaProveedoresWF.resx">
+      <DependentUpon>ModContable_CargaMasivaProveedoresWF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModulosWF.resx">
       <DependentUpon>ModulosWF.cs</DependentUpon>
@@ -444,6 +465,8 @@
     <None Include="Resources\Afip.jpg" />
     <None Include="Resources\almacenamiento-en-la-nube.png" />
     <None Include="Resources\buscar %281%29.png" />
+    <None Include="Resources\carga %281%29.png" />
+    <None Include="Resources\carga %282%29.png" />
     <Content Include="Resources\configuraciones_1.png" />
     <None Include="Resources\inventario.png" />
     <None Include="Resources\peso.png" />
@@ -462,6 +485,8 @@
     <None Include="Resources\intercambiar.png" />
     <None Include="Resources\importar.png" />
     <None Include="Resources\importar %281%29.png" />
+    <None Include="Resources\lupa %281%29.png" />
+    <None Include="Resources\mas %282%291.png" />
     <Content Include="Resources\Navidad-5.gif" />
     <Content Include="Resources\Navidad.gif" />
     <None Include="Resources\presupuesto.png" />
